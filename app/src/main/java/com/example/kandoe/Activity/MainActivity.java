@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.kandoe.Fragment.AccountFragment;
+import com.example.kandoe.Fragment.MainFragment;
 import com.example.kandoe.NavigationDrawerFragment;
 import com.example.kandoe.R;
 
@@ -57,18 +59,27 @@ public class MainActivity extends ActionBarActivity
     }
 
     public void onSectionAttached(int number) {
+        Fragment fragment= new MainFragment();
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
+                startActivity(new Intent(getApplication(),SignInActivity.class));
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
-                startActivity(new Intent(getApplication(),SignInActivity.class));
+                //startActivity(new Intent(getApplication(),AccountActivity.class));
+                fragment = new AccountFragment();
                 break;
+            default:
+                fragment = new MainFragment();
+                break;
+
         }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_main,fragment).commit();
     }
 
     public void restoreActionBar() {

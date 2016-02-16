@@ -2,40 +2,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey">
+    android:background="@color/light_grey"
+    android:id="@+id/account">
 
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:paddingBottom="5dp"
-        android:paddingLeft="15dp"
-        android:paddingTop="5dp"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:text="@string/account_title"/>
-
+        android:paddingLeft="10dp"
+        android:gravity="center_horizontal"
+        android:src="@drawable/avatar"
+        android:id="@+id/account_avatar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
 
     <EditText
-        android:id="@+id/lblEmail"
+        android:id="@+id/account_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:layout_marginTop="20dp"
         android:text="@string/account_email"
         android:textColor="@color/dark_grey"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/account_avatar"
         android:drawableLeft="@drawable/ic_action_email"/>
 
     <EditText
-        android:id="@+id/lblFirstName"
+        android:id="@+id/account_firstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/lblEmail"
-        android:layout_below="@+id/lblEmail"
+        android:layout_alignLeft="@+id/account_email"
+        android:layout_below="@+id/account_email"
         android:layout_marginTop="20dp"
         android:paddingLeft="10dp"
         android:text="@string/account_firstName"
@@ -44,11 +41,11 @@
 
 
     <EditText
-        android:id="@+id/lblLastName"
+        android:id="@+id/account_lastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/lblFirstName"
-        android:layout_below="@+id/lblFirstName"
+        android:layout_alignLeft="@+id/account_firstName"
+        android:layout_below="@+id/account_firstName"
         android:layout_marginTop="20dp"
         android:paddingLeft="10dp"
         android:text="@string/account_lastName"

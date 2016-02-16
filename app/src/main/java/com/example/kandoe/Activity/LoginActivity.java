@@ -32,10 +32,8 @@ public class LoginActivity extends AppCompatActivity implements
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 
-    private EditText emailText;
-    private EditText passText;
-    private Button loginButton;
-    private Button registrateButton;
+    private EditText emailText, passText;
+    private Button loginButton,registrateButton;
 
     private GoogleApiClient mGoogleApiClient;
 

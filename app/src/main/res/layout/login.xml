@@ -108,7 +108,8 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:clickable="false"
                 android:gravity="end"
-                android:textSize="11sp"/>
+                android:textSize="11sp"
+                android:background="@color/clear"/>
 
         </LinearLayout>
     </ScrollView>
