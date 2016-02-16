@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_id": "kandoe-59841",
+    "project_number": "1064471169067",
+    "name": "Kandoe"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064471169067:android:b75a7f259866e53a",
+        "client_id": "android:com.example.kandoe",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.example.kandoe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064471169067-6cuo1keb93lt8bm6g7f74dh3elmoqidn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kandoe",
+            "certificate_hash": "8ADB273131AD87B6256602A2986267C01163E354"
+          }
+        },
+        {
+          "client_id": "1064471169067-06hi1pqbjdv9jk441261ib480rhnsd0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

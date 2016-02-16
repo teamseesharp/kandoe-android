@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".Activity.MainActivity">
+    <item android:id="@+id/action_example" android:title="@string/action_example"
+        app:showAsAction="withText|ifRoom" />
+    <item android:id="@+id/action_login"
+        android:title="@string/menu_login"
+        android:icon="@drawable/ic_action_login"
+        android:visible="true" app:showAsAction="always" />
+</menu>

@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Kandoe</string>
+
+    <!-- Navigation drawer -->
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Log in</string>
+    <string name="menu_login">login</string>
+
+    <!-- Login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Wachtwoord</string>
+    <string name="login">Aanmelden</string>
+    <string name="login_google">Log in met Google account</string>
+    <string name="action_register"><u>Registreer met email</u></string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">Dit is geen geldig email adres</string>
+    <string name="error_invalid_password">Wachtwoord te kort</string>
+    <string name="error_incorrect_password">Wachtwoord is onjuist</string>
+    <string name="error_field_required">Dit veld is verplicht</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <!-- Register -->
+    <string name="register_title">Creëer een account</string>
+    <string name="register_email">Email</string>
+    <string name="register_password">Wachtwoord</string>
+    <string name="register_repeatPassword">Herhaal wachtwoord</string>
+    <string name="register_firstName">Voornaam</string>
+    <string name="register_lastName">Achternaam</string>
+    <string name="register_create">Creeër</string>
+
+    <!-- Account -->
+    <string name="account_title">Profiel</string>
+    <string name="account_firstName">Voornaam</string>
+    <string name="account_lastName">Achternaam</string>
+    <string name="account_email">Email</string>
+
+
+    <!-- GOOGLE -->
+        <string name="title_text">Google Sign-In</string>
+
+        <!-- Sign-in status messages -->
+        <string name="signed_in_fmt">Signed in as: %s</string>
+        <string name="signed_in">Signed in</string>
+        <string name="signing_in">Signing in…</string>
+        <string name="signed_out">Signed out</string>
+        <string name="signed_in_err">"Error: please check logs."</string>
+        <string name="error_null_person">
+        Error: Plus.PeopleApi.getCurrentPerson returned null. Ensure that the Google+ API is
+        enabled for your project, you have a properly configured google-services.json file
+        and that your device has an internet connection.
+        </string>
+        <string name="loading">Loading…</string>
+        <string name="auth_code_fmt">Auth Code: %s</string>
+        <string name="id_token_fmt">ID Token: %s</string>
+
+        <!-- Google Play Services error for Toast -->
+        <string name="play_services_error_fmt">Google Play Services Error: %i</string>
+
+        <!-- Button labels -->
+        <string name="sign_out">Sign Out</string>
+        <string name="disconnect">Disconnect</string>
+
+        <!-- Content Description for images -->
+        <string name="desc_google_icon">Google Logo</string>
+
+        <!-- Rationale for asking for Contacts -->
+        <string name="contacts_permission_rationale">Contacts access is needed in order to retrieve your email address.</string>
+
+        <!-- Activity Names and Descriptions -->
+        <string name="name_sign_in_activity">SignInActivity</string>
+        <string name="desc_sign_in_activity">Signing in, signing out, and revoking access.</string>
+        <string name="desc_sign_in_activity_scopes">Signing in, signing out, and revoking access with Google Drive permissions.</string>
+
+
+        <!-- TODO(user): replace with your real server client ID -->
+        <!-- Server Client ID.  This should be a valid Web OAuth 2.0 Client ID obtained
+             from https://console.developers.google.com/ -->
+        <string name="server_client_id">YOUR_SERVER_CLIENT_ID</string>
+
+</resources>
