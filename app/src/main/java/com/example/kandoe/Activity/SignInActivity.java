@@ -62,7 +62,7 @@ public class SignInActivity extends AppCompatActivity implements
         // [END configure_signin]
 
         // [START build_client]
-        // Build a GoogleApiClient with access to the Google Sign-In API and the
+        // Build a GoogleApiClient with access to the Google Sign-In KandoeBackendAPI and the
         // options specified by gso.
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)

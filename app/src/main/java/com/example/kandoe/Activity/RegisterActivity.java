@@ -36,11 +36,11 @@ public class RegisterActivity extends Activity {
     }
 
     private void makeItems() {
-        email = (EditText) findViewById(R.id.register_email);
-        password = (EditText) findViewById(R.id.register_password);
-        first_name = (EditText) findViewById(R.id.register_first_name);
-        last_name = (EditText) findViewById(R.id.register_last_name);
-        confirmpassword = (EditText) findViewById(R.id.register_confirmpassword);
+        email = (EditText) findViewById(R.id.txtregister_email);
+        password = (EditText) findViewById(R.id.txtregister_password);
+        first_name = (EditText) findViewById(R.id.txtregiser_firstname);
+        last_name = (EditText) findViewById(R.id.txtregister_last_name);
+        confirmpassword = (EditText) findViewById(R.id.txtregister_confirmpassword);
         txtError = (TextView) findViewById(R.id.register_txtError);
 
         btnCreate = (Button) findViewById(R.id.btn_createAccount);
@@ -132,7 +132,7 @@ public class RegisterActivity extends Activity {
 
     private void changeTextColor(String newColor, String editTextToChange) {
         int colorToUse = android.R.color.black;
-        int idToFind = R.id.register_first_name;
+        int idToFind = R.id.txtregiser_firstname;
 
         switch (newColor) {
             case "red":
@@ -144,22 +144,22 @@ public class RegisterActivity extends Activity {
         }
         switch (editTextToChange) {
             case "first_name":
-                idToFind = R.id.register_first_name;
+                idToFind = R.id.txtregiser_firstname;
                 break;
             case "last_name":
-                idToFind = R.id.register_last_name;
+                idToFind = R.id.txtregister_last_name;
                 break;
             case "email":
-                idToFind = R.id.register_email;
+                idToFind = R.id.txtregister_email;
                 break;
             case "password":
-                idToFind = R.id.register_password;
+                idToFind = R.id.txtregister_password;
                 break;
             case "confirmpassword":
-                idToFind = R.id.register_confirmpassword;
+                idToFind = R.id.txtregister_confirmpassword;
                 break;
             default:
-                idToFind = R.id.register_first_name;
+                idToFind = R.id.txtregiser_firstname;
                 break;
         }
 
