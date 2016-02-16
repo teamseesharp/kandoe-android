@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 
 import com.example.kandoe.Fragment.AccountFragment;
 import com.example.kandoe.Fragment.MainFragment;
-import com.example.kandoe.NavigationDrawerFragment;
+import com.example.kandoe.Fragment.NavigationDrawerFragment;
 import com.example.kandoe.R;
 
 

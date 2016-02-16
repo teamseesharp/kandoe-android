@@ -37,7 +37,7 @@
     <string name="register_repeatPassword">Herhaal wachtwoord</string>
     <string name="register_firstName">Voornaam</string>
     <string name="register_lastName">Achternaam</string>
-    <string name="register_create">Creeër</string>
+    <string name="register_create">Registreer</string>
 
     <!-- Account -->
     <string name="account_title">Profiel</string>
