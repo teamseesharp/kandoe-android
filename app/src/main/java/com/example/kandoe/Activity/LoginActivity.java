@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity implements
         // [END configure_signin]
 
         // [START build_client]
-        // Build a GoogleApiClient with access to the Google Sign-In API and the
+        // Build a GoogleApiClient with access to the Google Sign-In KandoeBackendAPI and the
         // options specified by gso.
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
@@ -82,9 +82,9 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
     private void makeItems() {
-        emailText = (EditText) findViewById(R.id.email);
+        emailText = (EditText) findViewById(R.id.txtEmail);
         emailText.setText("");
-        passText = (EditText) findViewById(R.id.password);
+        passText = (EditText) findViewById(R.id.txtPaswoord);
         passText.setText("");
 
         registrateButton = (Button) findViewById(R.id.btn_register);

@@ -52,13 +52,14 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/email"
+                    android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:text="txtEmail" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -67,7 +68,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/txtPaswoord"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
@@ -88,7 +89,9 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/login"
                 android:textStyle="bold"
-                android:background="@color/white" />
+                android:background="@drawable/background_roundconers"
+                android:layout_margin="3dp"
+                android:allowUndo="false" />
 
 
             <com.google.android.gms.common.SignInButton
