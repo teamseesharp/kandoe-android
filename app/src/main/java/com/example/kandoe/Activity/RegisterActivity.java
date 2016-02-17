@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 
 /**
  * Created by Michelle on 16-5-2015.
+ * Activity to register a new user
  */
 public class RegisterActivity extends Activity {
 

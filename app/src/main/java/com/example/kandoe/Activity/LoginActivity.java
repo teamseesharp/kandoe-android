@@ -2,6 +2,7 @@ package com.example.kandoe.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +22,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via email/password or google+.
  */
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
@@ -42,6 +43,8 @@ public class LoginActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        ActionBar bar = getSupportActionBar();
+        bar.hide();
 
         // Button listeners
         findViewById(R.id.btn_loginGoogle).setOnClickListener(this);
