@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.kandoe.R;
 import com.google.android.gms.auth.api.Auth;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity implements
 
     private EditText emailText, passText;
     private Button loginButton,registrateButton;
+    private TextView loginerror;
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -87,6 +89,7 @@ public class LoginActivity extends AppCompatActivity implements
         emailText.setText("");
         passText = (EditText) findViewById(R.id.txtPaswoord);
         passText.setText("");
+        loginerror = (TextView) findViewById(R.id.login_error);
 
         registrateButton = (Button) findViewById(R.id.btn_register);
         loginButton = (Button) findViewById(R.id.btn_login);
@@ -117,6 +120,8 @@ public class LoginActivity extends AppCompatActivity implements
         String password = passText.getText().toString().trim();
         if(username.equals(email) && password.equals(pass)){
             startActivity(new Intent(getApplication(), MainActivity.class));
+        }else{
+            loginerror.setVisibility(View.VISIBLE);
         }
 
         //getJPPService().login(username, password, "password", this);

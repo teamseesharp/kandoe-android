@@ -2,7 +2,7 @@
     <string name="app_name">Kandoe</string>
 
     <!-- Navigation drawer -->
-    <string name="title_section1">Section 1</string>
+    <string name="title_section1">Sessies</string>
     <string name="title_section2">Google log out</string>
     <string name="title_section3">Mijn profiel</string>
 
@@ -21,14 +21,7 @@
     <string name="login">Aanmelden</string>
     <string name="login_google">Log in met Google account</string>
     <string name="action_register"><u>Registreer met email</u></string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">Dit is geen geldig email adres</string>
-    <string name="error_invalid_password">Wachtwoord te kort</string>
-    <string name="error_incorrect_password">Wachtwoord is onjuist</string>
-    <string name="error_field_required">Dit veld is verplicht</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="error_login">Foutief emailadres of wachtwoord</string>
 
     <!-- Register -->
     <string name="register_title">Creëer een account</string>
