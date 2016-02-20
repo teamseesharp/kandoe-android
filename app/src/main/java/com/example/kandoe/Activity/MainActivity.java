@@ -1,6 +1,7 @@
 package com.example.kandoe.Activity;
 
 import android.app.Activity;
+import android.app.ListFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,7 +20,8 @@ import android.view.ViewGroup;
 
 import com.example.kandoe.Fragment.AccountFragment;
 import com.example.kandoe.Fragment.MainFragment;
-import com.example.kandoe.Fragment.NavigationDrawerFragment;
+import com.example.kandoe.Fragment.SessionListFragment;
+import com.example.kandoe.NavigationDrawerFragment;
 import com.example.kandoe.R;
 
 
@@ -64,10 +66,12 @@ public class MainActivity extends ActionBarActivity
     }
 
     public void onSectionAttached(int number) {
-        Fragment fragment= new MainFragment();
+        Fragment fragment = null;
+        ListFragment listfragment = null;
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
+                listfragment = new SessionListFragment();
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
@@ -83,8 +87,20 @@ public class MainActivity extends ActionBarActivity
                 break;
 
         }
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragment_main,fragment).commit();
+        if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
+
+        } else if (listfragment != null) {
+            android.app.FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment_main, listfragment).commit();
+
+        } else {
+            // error in creating fragment
+            //Todo error loggen
+            //Log.e("MainActivity", "Error in creating fragment");
+        }
+
     }
 
     public void restoreActionBar() {
