@@ -71,16 +71,19 @@ public class MainActivity extends ActionBarActivity
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
-                listfragment = new SessionListFragment();
+
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
-                startActivity(new Intent(getApplication(),SignInActivity.class));
+                listfragment = new SessionListFragment();
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
-                //startActivity(new Intent(getApplication(),AccountActivity.class));
                 fragment = new AccountFragment();
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
+                startActivity(new Intent(getApplication(),SignInActivity.class));
                 break;
             default:
                 fragment = new MainFragment();
@@ -143,7 +146,12 @@ public class MainActivity extends ActionBarActivity
 
         if(id == R.id.action_login){
             //TODO: OOK GOOGLE LOG OUT
-            this.startActivity(new Intent(this, LoginActivity.class));
+            LoginActivity login= new LoginActivity();
+            if(login.isGoogleLogin()){
+                login.signOut(login.getmGoogleApiClient());
+            }else{
+                this.startActivity(new Intent(this, LoginActivity.class));
+            }
         }
 
         return super.onOptionsItemSelected(item);

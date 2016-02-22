@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.kandoe.Model.CreatedUser;
+import com.example.kandoe.Model.RegisterUser;
 import com.example.kandoe.R;
 
 import java.util.regex.Pattern;
@@ -24,14 +24,14 @@ public class RegisterActivity extends Activity {
     private EditText email,password,confirmpassword,first_name,last_name;
     private TextView txtError;
 
-    private CreatedUser UserToCreate;
+    private RegisterUser UserToCreate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
-        UserToCreate = new CreatedUser();
+        UserToCreate = new RegisterUser();
         makeItems();
         makeListener();
     }

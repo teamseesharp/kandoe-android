@@ -1,8 +1,6 @@
 package com.example.kandoe.Fragment;
 
-import android.app.Fragment;
 import android.app.ListFragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +10,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.example.kandoe.Activity.SessionActivity;
 import com.example.kandoe.R;
 
 import java.util.ArrayList;
@@ -47,9 +44,7 @@ public class SessionListFragment extends ListFragment implements OnItemClickList
         int sessionId;
         sessionId = 1;
 
-        Intent intent = new Intent(getActivity(), SessionActivity.class);
-        intent.putExtra("SESSIONID", sessionId);
-        startActivity(intent);
+
 
         Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
     }

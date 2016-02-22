@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity implements
     private TextView loginerror;
 
     private GoogleApiClient mGoogleApiClient;
+    private boolean googleLogin = false;
 
     private boolean APIconnection = false;
 
@@ -122,12 +123,23 @@ public class LoginActivity extends AppCompatActivity implements
         String username = emailText.getText().toString().trim();
         String password = passText.getText().toString().trim();
         if(username.equals(email) && password.equals(pass)){
+            googleLogin = false;
             startActivity(new Intent(getApplication(), MainActivity.class));
         }else{
             loginerror.setVisibility(View.VISIBLE);
         }
+    }
 
-        //getJPPService().login(username, password, "password", this);
+    protected void tryLogout(GoogleApiClient googleApiClient){
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                            // [START_EXCLUDE]
+                            startActivity(new Intent(getApplication(), LoginActivity.class));
+                            // [END_EXCLUDE]
+                        }
+                    });
     }
 
     @Override
@@ -186,11 +198,12 @@ public class LoginActivity extends AppCompatActivity implements
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
+        googleLogin = true;
     }
     // [END signIn]
 
     // [START signOut]
-    protected void signOut() {
+    protected void signOut(GoogleApiClient googleApiClient) {
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
                     @Override
@@ -242,6 +255,14 @@ public class LoginActivity extends AppCompatActivity implements
                 signIn();
                 break;
         }
+    }
+
+    public GoogleApiClient getmGoogleApiClient() {
+        return mGoogleApiClient;
+    }
+
+    public boolean isGoogleLogin() {
+        return googleLogin;
     }
 }
 

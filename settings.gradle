@@ -1,1 +1,1 @@
-include ':crouton-1.8.5', ':app'
+include ':app', ':crouton-1.8.5'
