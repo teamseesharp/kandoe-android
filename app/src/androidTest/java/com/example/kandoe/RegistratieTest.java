@@ -42,10 +42,9 @@ public class RegistratieTest {
     }
 
     @Test
-    public void changeText_sameActivity() {
+    public void register() {
         // Type text and then press the button.
-        onView(withId(R.id.txtregister_email))
-                .perform(typeText(username), closeSoftKeyboard());
+        onView(withId(R.id.txtregister_email)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.txtregister_password)).perform(typeText(paswoord), closeSoftKeyboard());
         onView(withId(R.id.txtregister_confirmpassword)).perform(typeText(paswoord), closeSoftKeyboard());
         onView(withId(R.id.txtregiser_firstname)).perform(typeText(firstname), closeSoftKeyboard());

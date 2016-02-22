@@ -42,10 +42,9 @@ public class LoginTest {
     }
 
     @Test
-    public void changeText_sameActivity() {
+    public void loginWithCredentials() {
         // Type text and then press the button.
-        onView(withId(R.id.txtEmail))
-                .perform(typeText(username), closeSoftKeyboard());
+        onView(withId(R.id.txtEmail)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.txtPaswoord)).perform(typeText(paswoord), closeSoftKeyboard());
 
 
