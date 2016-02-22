@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kandoe.R;
 import com.google.android.gms.auth.api.Auth;
@@ -39,6 +40,8 @@ public class LoginActivity extends AppCompatActivity implements
     private TextView loginerror;
 
     private GoogleApiClient mGoogleApiClient;
+
+    private boolean APIconnection = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -220,7 +223,18 @@ public class LoginActivity extends AppCompatActivity implements
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
 
+    public boolean isAPIconnection() {
+        return APIconnection;
+    }
 
+    public void setAPIconnection(boolean APIconnection) {
+        this.APIconnection = APIconnection;
+    }
+
+
+    public void showToast(String tekst){
+        Toast.makeText(getApplicationContext(),tekst, Toast.LENGTH_LONG).show();
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
