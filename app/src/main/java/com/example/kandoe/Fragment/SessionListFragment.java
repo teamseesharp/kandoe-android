@@ -1,7 +1,8 @@
 package com.example.kandoe.Fragment;
 
-import android.app.ListFragment;
 import android.os.Bundle;
+
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Created by JoachimDs on 19/02/2016.
  */
-public class SessionListFragment extends ListFragment implements OnItemClickListener {
+public class SessionListFragment extends android.support.v4.app.ListFragment implements OnItemClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_session_list, container, false);
@@ -44,7 +45,15 @@ public class SessionListFragment extends ListFragment implements OnItemClickList
         int sessionId;
         sessionId = 1;
 
+       /* Intent intent = new Intent(getActivity(), SessionActivity.class);
+        intent.putExtra("SESSIONID", sessionId);
+        startActivity(intent);*/
 
+        CircleFragment fragment = CircleFragment.newInstance(String.valueOf(position), null);
+
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
 
         Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
     }
