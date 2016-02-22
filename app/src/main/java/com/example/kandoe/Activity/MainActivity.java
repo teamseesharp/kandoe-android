@@ -1,8 +1,8 @@
 package com.example.kandoe.Activity;
 
 import android.app.Activity;
-import android.app.ListFragment;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kandoe.Fragment.AccountFragment;
+import com.example.kandoe.Fragment.CircleFragment;
 import com.example.kandoe.Fragment.MainFragment;
 import com.example.kandoe.Fragment.SessionListFragment;
 import com.example.kandoe.NavigationDrawerFragment;
@@ -24,7 +25,7 @@ import com.example.kandoe.R;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, CircleFragment.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -62,7 +63,7 @@ public class MainActivity extends ActionBarActivity
 
     public void onSectionAttached(int number) {
         Fragment fragment = null;
-        ListFragment listfragment = null;
+        android.support.v4.app.ListFragment listfragment = null;
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
@@ -87,7 +88,7 @@ public class MainActivity extends ActionBarActivity
             fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
 
         } else if (listfragment != null) {
-            android.app.FragmentManager fragmentManager = getFragmentManager();
+           FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment_main, listfragment).commit();
 
         } else {
@@ -142,6 +143,11 @@ public class MainActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     /**
