@@ -33,8 +33,8 @@ public class SessionListFragment extends android.support.v4.app.ListFragment imp
 
         //Todo parameter data voorzien met juiste data
         ArrayList<String> data = new ArrayList<>();
-        data.add("Eerste item");
-        data.add(("Tweede item"));
+        data.add("Sessie 1");
+        data.add(("Sessie 2"));
         //ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(), data, android.R.layout.simple_list_item_1);
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, data);
         setListAdapter(adapter);
