@@ -3,32 +3,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/blue"
+    android:background="@color/grey"
     android:id="@+id/register">
 
     <TextView
+        android:id="@+id/Title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/register_title"
-        android:id="@+id/Title"
         android:gravity="center_horizontal"
         android:textSize="25dp"
-        android:layout_marginTop="25dp"
-        android:textColor="@color/dark_grey"
-        android:autoText="false"/>
+        android:textColor="@color/primary_dark"
+        android:autoText="false"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="23dp"
+        android:layout_alignStart="@+id/logo" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:gravity="center_horizontal"
+        android:src="@drawable/logozondertekst"
+        android:padding="15dp"
+        android:id="@+id/logo"
+        android:layout_marginStart="32dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
+        android:id="@+id/txtregister_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:hint="@string/register_email"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/txtregister_email"
-        android:background="@color/white"
-        android:hint="@string/register_email"
         android:layout_marginTop="25dp"
         android:layout_below="@+id/Title"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/dark_grey"/>
+        android:layout_centerHorizontal="true"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -39,10 +51,8 @@
         android:layout_below="@+id/txtregister_email"
         android:layout_alignLeft="@+id/txtregister_email"
         android:layout_alignStart="@+id/txtregister_email"
-        android:layout_marginTop="25dp"
-        android:hint="@string/register_password"
-        android:background="@color/white"
-        android:textColor="@color/dark_grey"/>
+        android:layout_marginTop="15dp"
+        android:hint="@string/register_password"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -53,10 +63,8 @@
         android:layout_below="@+id/txtregister_password"
         android:layout_alignLeft="@+id/txtregister_password"
         android:layout_alignStart="@+id/txtregister_password"
-        android:layout_marginTop="25dp"
-        android:hint="@string/register_repeatPassword"
-        android:background="@color/white"
-        android:textColor="@color/dark_grey"/>
+        android:layout_marginTop="15dp"
+        android:hint="@string/register_repeatPassword"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -67,10 +75,8 @@
         android:layout_below="@+id/txtregister_confirmpassword"
         android:layout_alignLeft="@+id/txtregister_confirmpassword"
         android:layout_alignStart="@+id/txtregister_confirmpassword"
-        android:layout_marginTop="25dp"
-        android:background="@color/white"
-        android:hint="@string/register_firstName"
-        android:textColor="@color/dark_grey"/>
+        android:layout_marginTop="15dp"
+        android:hint="@string/register_firstName"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -81,10 +87,8 @@
         android:layout_below="@+id/txtregiser_firstname"
         android:layout_alignLeft="@+id/txtregiser_firstname"
         android:layout_alignStart="@+id/txtregiser_firstname"
-        android:layout_marginTop="25dp"
-        android:background="@color/white"
-        android:hint="@string/register_lastName"
-        android:textColor="@color/dark_grey"/>
+        android:layout_marginTop="15dp"
+        android:hint="@string/register_lastName"/>
 
     <TextView
         android:layout_width="fill_parent"
@@ -102,7 +106,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/txtregister_last_name"
-        android:gravity="center">
+        android:gravity="center"
+        android:weightSum="1">
 
 
         <Button
@@ -110,13 +115,13 @@
             android:layout_height="wrap_content"
             android:text="@string/register_create"
             android:id="@+id/btn_createAccount"
-            android:background="@color/orange"
+            android:background="@color/primary_dark"
             android:layout_marginTop="35dp"
             android:layout_marginBottom="35dp"
             android:layout_alignParentBottom="true"
             android:textColor="@color/dark_grey"
             android:layout_below="@+id/last_name"
             android:layout_gravity="center"
-            />
+            android:layout_weight="0.37" />
     </LinearLayout>
 </RelativeLayout>

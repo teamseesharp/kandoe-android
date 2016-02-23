@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<color name="blue">#ff00799b</color>
-<color name="white">#ffffffff</color>
-<color name="orange">#ffd66b36</color>
-<color name="dark_grey">#222222</color>
-<color name="black">#ff000000</color>
-<color name="light_grey">#ffbababa</color>
-<color name="transparant_grey">#55000000</color>
+    <color name="blue">#ff00799b</color>
+    <color name="white">#ffffffff</color>
+    <color name="orange">#ffd66b36</color>
+    <color name="grey">#5B5B5B</color>
+    <color name="dark_grey">#222222</color>
+    <color name="black">#ff000000</color>
+    <color name="light_grey">#ffbababa</color>
+    <color name="transparant_grey">#55000000</color>
     <color name="clear">#00000000</color>
 
 
@@ -18,14 +19,15 @@
     <color name="blue_grey_900">#263238</color>
 
 
-        <color name="primary">#4CAF50</color>
-        <color name="primary_dark">#388E3C</color>
-        <color name="primary_light">#C8E6C9</color>
-        <color name="accent">#448AFF</color>
-        <color name="primary_text">#212121</color>
-        <color name="secondary_text">#727272</color>
-        <color name="icons">#FFFFFF</color>
-        <color name="divider">#B6B6B6</color>
+    <color name="primary">#4CAF50</color>
+    <color name="primary_dark">#388E3C</color>
+    <color name="primary_light">#C8E6C9</color>
+    <color name="nav_drawer">#5f995f</color>
+    <color name="accent">#5f995f</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
 
 
 </resources>
