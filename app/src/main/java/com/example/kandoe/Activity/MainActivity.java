@@ -1,14 +1,10 @@
 package com.example.kandoe.Activity;
 
 import android.app.Activity;
-import android.app.ListFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
@@ -17,8 +13,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 
 import com.example.kandoe.Fragment.AccountFragment;
+import com.example.kandoe.Fragment.CircleFragment;
 import com.example.kandoe.Fragment.MainFragment;
 import com.example.kandoe.Fragment.NavigationDrawerFragment;
 import com.example.kandoe.Fragment.SessionListFragment;
@@ -46,8 +46,7 @@ public class MainActivity extends ActionBarActivity
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5f995f")));
 
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+        mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
         // Set up the drawer.
@@ -67,11 +66,11 @@ public class MainActivity extends ActionBarActivity
 
     public void onSectionAttached(int number) {
         Fragment fragment = null;
-        ListFragment listfragment = null;
+        android.support.v4.app.ListFragment listfragment = null;
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
-
+                fragment = new CircleFragment();
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
@@ -90,15 +89,16 @@ public class MainActivity extends ActionBarActivity
                 break;
 
         }
+
         if (fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
 
         } else if (listfragment != null) {
-            android.app.FragmentManager fragmentManager = getFragmentManager();
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment_main, listfragment).commit();
 
-        } else {
+        }  else {
             // error in creating fragment
             //Todo error loggen
             //Log.e("MainActivity", "Error in creating fragment");
@@ -145,9 +145,9 @@ public class MainActivity extends ActionBarActivity
         }
 
         if(id == R.id.action_login){
-            //TODO: OOK GOOGLE LOG OUT
             LoginActivity login= new LoginActivity();
             if(login.isGoogleLogin()){
+                //TODO: OOK GOOGLE LOG OUT !! Werkt nog niet
                 login.signOut(login.getmGoogleApiClient());
             }else{
                 this.startActivity(new Intent(this, LoginActivity.class));
