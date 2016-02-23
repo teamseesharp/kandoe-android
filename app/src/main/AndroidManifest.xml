@@ -31,9 +31,6 @@
         <activity
             android:label="Google"
             android:name=".Activity.SignInActivity"/>
-        <activity
-            android:label="Sessions"
-            android:name=".Activity.SessionActivity"/>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package com.example.kandoe.Fragment;
 
+import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v4.app.FragmentManager;
@@ -37,10 +39,13 @@ public class SessionListFragment extends android.support.v4.app.ListFragment imp
         ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, data);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
+
+
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
         //Todo naar volgend activity of fragment gaan en id van sessie meegeven
         int sessionId;
         sessionId = 1;
@@ -54,6 +59,7 @@ public class SessionListFragment extends android.support.v4.app.ListFragment imp
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
+
 
         Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
     }

@@ -28,7 +28,7 @@ import static junit.framework.Assert.fail;
 @RunWith(AndroidJUnit4.class)
 public class APIConnectionTest {
 
-    Response<ResponseBody> body;
+      Response<ResponseBody> body;
     @Rule
     public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(
             LoginActivity.class);
@@ -41,7 +41,7 @@ public class APIConnectionTest {
         KandoeBackendAPI service = APIServiceGenerator.createService(KandoeBackendAPI.class);
 
         // Fetch and print a list of the contributors to this library.
-        Call<ResponseBody> jsonObjectCall = service.getOrganisation();
+        Call<ResponseBody> jsonObjectCall = service.getOrganisations();
 
         try {
             body = jsonObjectCall.execute();
@@ -51,11 +51,9 @@ public class APIConnectionTest {
             e.printStackTrace();
         }
         Log.d("APITEST CODE", String.valueOf(body.code()));
-          assertEquals(mActivityRule.getActivity().isAPIconnection(), true);
+        assertEquals(mActivityRule.getActivity().isAPIconnection(), true);
 
 
     }
-
-
 
 }
