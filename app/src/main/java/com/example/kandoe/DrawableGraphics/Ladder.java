@@ -1,7 +1,9 @@
 package com.example.kandoe.DrawableGraphics;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -29,11 +31,21 @@ public class Ladder extends View {
     }
 
     public void createLadder(ViewGroup container) {
-
+        createBackGround(container);
         createSteps(container);
         createLegs(container);
 
         createBullets(container);
+
+
+    }
+
+    private void createBackGround(ViewGroup container) {
+
+        View background = new Background(getContext());
+
+        container.addView(background);
+
 
 
     }
@@ -45,13 +57,7 @@ public class Ladder extends View {
 
             View bullet = new BulletPoint(getContext(), step);
 
-            bullet.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getContext(), "Bullet pressed ", Toast.LENGTH_SHORT).show();
 
-                }
-            });
 
             bullets.add(bullet);
             container.addView(bullet);
@@ -62,7 +68,7 @@ public class Ladder extends View {
     private void createSteps(ViewGroup container) {
 
         //init values
-        int ctLeft = 200, ctTop = 225, ctRight = container.getWidth() - 200, ctBottom = ctTop + 15;
+        int ctLeft = 210, ctTop = 225, ctRight = ctLeft+600, ctBottom = ctTop + 15;
 
         int topOffset = 0; //space between 2 steps
 
@@ -79,7 +85,7 @@ public class Ladder extends View {
     private void createLegs(ViewGroup container) {
         //init values
         int clLeft = 200, clTop = 150, clRight = clLeft + 50, clBottom = 800;
-        int offset = container.getWidth() - 450;
+        int offset = 600;
 
         //left leg
         View leftleg = new RoundedRectangle(getContext(), clLeft, clTop, clRight, clBottom, Color.rgb(102, 51, 0));

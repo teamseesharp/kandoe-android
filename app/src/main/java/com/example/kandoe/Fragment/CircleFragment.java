@@ -62,9 +62,7 @@ public class CircleFragment extends Fragment {
 
     }
 
-    public void initButtons(){
-        bg = (ImageView) getView().findViewById(R.id.bgLadder);
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,11 +71,19 @@ public class CircleFragment extends Fragment {
 
 
 
+
+
+View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
+
+        init(view);
         Ladder ladder = new Ladder(getContext(),4);
-        ladder.createLadder(container);
+       ladder.createLadder(container);
+        return view;
+    }
+
+    private void init(View view) {
 
 
-        return inflater.inflate(R.layout.fragment_circlesession, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

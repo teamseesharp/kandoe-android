@@ -66,7 +66,8 @@ public class BulletPoint extends View {
         //int yCenter = this.trede.getBottom2() - this.trede.getTop2();
 
         int temp = trede.getRight2() - trede.getLeft2() - size * 2;
-        int xCenter = random.nextInt(temp) + trede.getLeft2()+100;
+        int xCenter = random.nextInt(temp) + trede.getLeft2()+50;
+      //  int xCenter = 450;
         int yCenter = random.nextInt(trede.getBottom2()-trede.getTop2())+trede.getTop2();
 
 
