@@ -25,6 +25,7 @@ public class RoundedRectangle extends View {
     int right;
     int bottom;
     int color;
+    int stepNumber;
     RectF rectF;
 
     public RoundedRectangle(Context context) {
@@ -39,6 +40,23 @@ public class RoundedRectangle extends View {
         this.right = right;
         this.bottom = bottom;
         this.color = color;
+        this.setLayerType(LAYER_TYPE_SOFTWARE, paint);
+
+
+        Rect rect = new Rect(left, top, right, bottom);
+
+        //RectF for rounded corners
+        rectF = new RectF(rect);
+    }
+
+    public RoundedRectangle(Context context, int left, int top, int right, int bottom, int color, int stepNumber) {
+        super(context);
+        this.left = left;
+        this.top = top;
+        this.right = right;
+        this.bottom = bottom;
+        this.color = color;
+        this.stepNumber = stepNumber;
         this.setLayerType(LAYER_TYPE_SOFTWARE, paint);
 
 
@@ -78,5 +96,9 @@ public class RoundedRectangle extends View {
 
     public int getBottom2() {
         return bottom;
+    }
+
+    public int getStepNumber() {
+        return stepNumber;
     }
 }

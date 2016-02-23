@@ -6,10 +6,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.example.kandoe.R;
+
+import static android.graphics.drawable.GradientDrawable.Orientation.BOTTOM_TOP;
 
 /**
  * Created by Thomas on 2016-02-23.
@@ -26,7 +29,8 @@ public class Background extends View {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
-         d = getResources().getDrawable(R.drawable.bgcartoon);
+        d = getResources().getDrawable(R.drawable.bgcartoon);
+
 
         d.setBounds(0, 0, width,height/2);
 
