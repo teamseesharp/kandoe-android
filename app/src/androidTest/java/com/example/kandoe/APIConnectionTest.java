@@ -3,31 +3,21 @@ package com.example.kandoe;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.kandoe.API.APIServiceGenerator;
 import com.example.kandoe.API.KandoeBackendAPI;
 import com.example.kandoe.Activity.LoginActivity;
-import com.example.kandoe.Model.User;
 
-import org.json.JSONObject;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
-import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail;

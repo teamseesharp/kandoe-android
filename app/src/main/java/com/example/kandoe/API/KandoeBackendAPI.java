@@ -7,7 +7,7 @@ import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.SubTheme;
 import com.example.kandoe.Model.Theme;
-import com.example.kandoe.Model.User;
+import com.example.kandoe.Model.UserAccount;
 
 import org.json.JSONObject;
 
@@ -41,7 +41,7 @@ public interface KandoeBackendAPI {
     //Account
     //Todo voorlopig komt de response niet overeen met de klasse..
     @GET("api/account/userInfo")
-    Call<User> getUserInfo();
+    Call<UserAccount> getUserInfo();
 
     @POST("api/account/logout")
     Call<ResponseBody> logout();

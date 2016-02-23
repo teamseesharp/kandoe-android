@@ -2,11 +2,13 @@ package com.example.kandoe.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kandoe.R;
@@ -22,7 +24,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via email/password or google+.
  */
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
@@ -35,8 +37,10 @@ public class LoginActivity extends AppCompatActivity implements
 
     private EditText emailText, passText;
     private Button loginButton,registrateButton;
+    private TextView loginerror;
 
     private GoogleApiClient mGoogleApiClient;
+    private boolean googleLogin = false;
 
     private boolean APIconnection = false;
 
@@ -45,6 +49,8 @@ public class LoginActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        ActionBar bar = getSupportActionBar();
+        bar.hide();
 
         // Button listeners
         findViewById(R.id.btn_loginGoogle).setOnClickListener(this);
@@ -87,6 +93,7 @@ public class LoginActivity extends AppCompatActivity implements
         emailText.setText("");
         passText = (EditText) findViewById(R.id.txtPaswoord);
         passText.setText("");
+        loginerror = (TextView) findViewById(R.id.login_error);
 
         registrateButton = (Button) findViewById(R.id.btn_register);
         loginButton = (Button) findViewById(R.id.btn_login);
@@ -116,10 +123,23 @@ public class LoginActivity extends AppCompatActivity implements
         String username = emailText.getText().toString().trim();
         String password = passText.getText().toString().trim();
         if(username.equals(email) && password.equals(pass)){
+            googleLogin = false;
             startActivity(new Intent(getApplication(), MainActivity.class));
+        }else{
+            loginerror.setVisibility(View.VISIBLE);
         }
+    }
 
-        //getJPPService().login(username, password, "password", this);
+    protected void tryLogout(GoogleApiClient googleApiClient){
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                            // [START_EXCLUDE]
+                            startActivity(new Intent(getApplication(), LoginActivity.class));
+                            // [END_EXCLUDE]
+                        }
+                    });
     }
 
     @Override
@@ -178,11 +198,12 @@ public class LoginActivity extends AppCompatActivity implements
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
+        googleLogin = true;
     }
     // [END signIn]
 
     // [START signOut]
-    protected void signOut() {
+    protected void signOut(GoogleApiClient googleApiClient) {
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
                     @Override
@@ -234,6 +255,14 @@ public class LoginActivity extends AppCompatActivity implements
                 signIn();
                 break;
         }
+    }
+
+    public GoogleApiClient getmGoogleApiClient() {
+        return mGoogleApiClient;
+    }
+
+    public boolean isGoogleLogin() {
+        return googleLogin;
     }
 }
 

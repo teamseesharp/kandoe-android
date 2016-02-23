@@ -5,7 +5,7 @@ import android.media.Image;
 /**
  * Created by Michelle on 10-2-2016.
  */
-public class User {
+public class UserAccount {
     private int Id;
     private String Email;
     private String FirstName;
@@ -13,7 +13,7 @@ public class User {
     private Image Avatar;
     private boolean HasRegistered;
 
-    public User(String firstName, String lastName, int id, String email, boolean hasRegistered, Image avatar) {
+    public UserAccount(String firstName, String lastName, int id, String email, boolean hasRegistered, Image avatar) {
         FirstName = firstName;
         LastName = lastName;
         Id = id;

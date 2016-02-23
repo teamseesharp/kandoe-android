@@ -3,18 +3,18 @@ package com.example.kandoe.Model;
 /**
  * Created by Michelle on 10-2-2016.
  */
-public class CreatedUser {
+public class RegisterUser {
     private String email;
     private String password;
     private String confirmpassword;
     private String lastname;
     private String firstname;
 
-    public CreatedUser(){
+    public RegisterUser(){
 
     }
 
-    public CreatedUser(String email, String password, String confirmpassword, String lastname, String firstname) {
+    public RegisterUser(String email, String password, String confirmpassword, String lastname, String firstname) {
         this.email = email;
         this.password = password;
         this.confirmpassword = confirmpassword;
