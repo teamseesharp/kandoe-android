@@ -39,6 +39,9 @@
     <string name="account_lastName">Achternaam</string>
     <string name="account_email">Email</string>
 
+    <!-- Retrofit -->
+    <string name="retrofit_error">Oep!Er is iets fout gegaan</string>
+
 
     <!-- GOOGLE -->
     <string name="title_text">Google Sign-In</string>

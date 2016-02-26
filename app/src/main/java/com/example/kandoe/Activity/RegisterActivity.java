@@ -3,22 +3,17 @@ package com.example.kandoe.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.kandoe.API.APIServiceGenerator;
+import com.example.kandoe.API.KandoeBackendAPI;
 import com.example.kandoe.Model.RegisterUser;
 import com.example.kandoe.R;
 
 import java.util.regex.Pattern;
-
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 
 /**
@@ -32,14 +27,14 @@ public class RegisterActivity extends Activity  {
     private TextView txtError;
     private Activity act;
 
-    private RegisterUser UserToCreate;
+    private RegisterUser userToCreate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
-        UserToCreate = new RegisterUser();
+        userToCreate = new RegisterUser();
         act = this;
         makeItems();
         makeListener();
@@ -75,7 +70,7 @@ public class RegisterActivity extends Activity  {
                     changeTextColor("red", "email");
                 } else {
                     changeTextColor("black", "email");
-                    UserToCreate.setEmail(email.getText().toString());
+                    userToCreate.setEmail(email.getText().toString());
                 }
             }
         });
@@ -88,7 +83,7 @@ public class RegisterActivity extends Activity  {
                     txtError.setText("Vul je voornaam in !");
                 } else {
                     changeTextColor("black", "first_name");
-                    UserToCreate.setFirstname(first_name.getText().toString());
+                    userToCreate.setFirstname(first_name.getText().toString());
                 }
             }
         });
@@ -100,7 +95,7 @@ public class RegisterActivity extends Activity  {
                     changeTextColor("red", "last_name");
                 } else {
                     changeTextColor("black", "last_name");
-                    UserToCreate.setLastname(last_name.getText().toString());
+                    userToCreate.setLastname(last_name.getText().toString());
                 }
             }
         });
@@ -113,7 +108,7 @@ public class RegisterActivity extends Activity  {
                     txtError.setText("Wachtwoord moet minstens 6 karaters lang zijn!");
                 } else {
                     changeTextColor("black", "password");
-                    UserToCreate.setPassword(password.getText().toString());
+                    userToCreate.setPassword(password.getText().toString());
                 }
             }
         });
@@ -126,7 +121,7 @@ public class RegisterActivity extends Activity  {
                     txtError.setText("Niet identiek aan wachtwoord!");
                 } else {
                     changeTextColor("black", "confirmpassword");
-                    UserToCreate.setConfirmpassword(confirmpassword.getText().toString());
+                    userToCreate.setConfirmpassword(confirmpassword.getText().toString());
                 }
             }
         });
@@ -135,21 +130,12 @@ public class RegisterActivity extends Activity  {
     private void register() {
         //TODO: callback uitwerken
         startActivity(new Intent(getApplication(), MainActivity.class));
-        final Callback<String> callback = new Callback<String>() {
-            @Override
-            public void success(String callback, Response response) {
-                //Crouton.makeText(act, "Registreren is gelukt", Style.CONFIRM).show();
-                startActivity(new Intent(act, MainActivity.class));
-            }
 
-            @Override
-            public void failure(RetrofitError error) {
-                Log.e(this.getClass().getSimpleName(), error.toString());
-                Crouton.makeText(act, "Registreren niet is gelukt. Heb je alles wel ingevuld?\n" + error.getMessage(), Style.ALERT).show();
-            }
-        };
         //TODO: service ophalen
-        //getJPPService().register(UserToCreate, callback);
+        //getJPPService().register(userToCreate, callback);
+        KandoeBackendAPI service = APIServiceGenerator.createService(KandoeBackendAPI.class);
+        service.register(userToCreate.getEmail(),userToCreate.getPassword(),userToCreate.getConfirmpassword());
+
     }
 
     private boolean isEmpty(EditText eText) {

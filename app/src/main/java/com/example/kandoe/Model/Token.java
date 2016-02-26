@@ -3,21 +3,21 @@ package com.example.kandoe.Model;
 import org.joda.time.DateTime;
 
 /**
- * Created by Michelle on 25-2-2016.
+ * Created by JoachimDs on 15/05/2015.
  */
 public class Token {
     private String access_token;
     private String token_type;      //Bearer
     private int expires_in;
-    private String user;
+    private String userName;
     private DateTime issued;
     private DateTime expires;
 
-    public Token(String access_token, String token_type, int expires_in, String user, DateTime issued, DateTime expires) {
+    public Token(String access_token, String token_type, int expires_in, String userName, DateTime issued, DateTime expires) {
         this.access_token = access_token;
         this.token_type = token_type;
         this.expires_in = expires_in;
-        this.user = user;
+        this.userName = userName;
         this.issued = issued;
         this.expires = expires;
     }
@@ -27,7 +27,7 @@ public class Token {
     }
 
     public String getUserName() {
-        return user;
+        return userName;
     }
 
     public DateTime getExpires() {

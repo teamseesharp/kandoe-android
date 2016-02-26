@@ -2,12 +2,13 @@ package com.example.kandoe.Model;
 
 import android.media.Image;
 
+import java.util.ArrayList;
 
 
 /**
  * Created by Michelle on 20-2-2016.
  */
-public class Session {
+public class Session extends ArrayList<Session> {
     private int id;
     private Image snapshot;
     private int date;

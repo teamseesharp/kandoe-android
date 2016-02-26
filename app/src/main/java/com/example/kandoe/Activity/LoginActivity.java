@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.kandoe.API.APIServiceGenerator;
+import com.example.kandoe.API.KandoeBackendAPI;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.google.android.gms.auth.api.Auth;
@@ -134,6 +136,9 @@ public class LoginActivity extends AppCompatActivity implements
         }else{
             loginerror.setVisibility(View.VISIBLE);
         }
+
+        KandoeBackendAPI service = APIServiceGenerator.createService(KandoeBackendAPI.class);
+
     }
 
     @Override
