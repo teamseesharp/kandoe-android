@@ -3,6 +3,7 @@ package com.example.kandoe.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,16 +14,23 @@ import com.example.kandoe.R;
 
 import java.util.regex.Pattern;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 
 /**
  * Created by Michelle on 16-5-2015.
  * Activity to register a new user
  */
-public class RegisterActivity extends Activity {
+public class RegisterActivity extends Activity  {
 
     private Button btnCreate;
     private EditText email,password,confirmpassword,first_name,last_name;
     private TextView txtError;
+    private Activity act;
 
     private RegisterUser UserToCreate;
 
@@ -32,6 +40,7 @@ public class RegisterActivity extends Activity {
         setContentView(R.layout.register);
 
         UserToCreate = new RegisterUser();
+        act = this;
         makeItems();
         makeListener();
     }
@@ -47,6 +56,7 @@ public class RegisterActivity extends Activity {
         btnCreate = (Button) findViewById(R.id.btn_createAccount);
     }
 
+    /*This method checks (when focus) if the data is filled in correctly*/
     private void makeListener() {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +135,21 @@ public class RegisterActivity extends Activity {
     private void register() {
         //TODO: callback uitwerken
         startActivity(new Intent(getApplication(), MainActivity.class));
+        final Callback<String> callback = new Callback<String>() {
+            @Override
+            public void success(String callback, Response response) {
+                //Crouton.makeText(act, "Registreren is gelukt", Style.CONFIRM).show();
+                startActivity(new Intent(act, MainActivity.class));
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.e(this.getClass().getSimpleName(), error.toString());
+                Crouton.makeText(act, "Registreren niet is gelukt. Heb je alles wel ingevuld?\n" + error.getMessage(), Style.ALERT).show();
+            }
+        };
+        //TODO: service ophalen
+        //getJPPService().register(UserToCreate, callback);
     }
 
     private boolean isEmpty(EditText eText) {

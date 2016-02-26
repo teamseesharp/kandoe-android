@@ -18,9 +18,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.fail;
 
 /**
  * Created by Thomas on 2016-02-16.

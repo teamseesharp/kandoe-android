@@ -2,21 +2,17 @@ package com.example.kandoe.API;
 
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.CardReview;
-import com.example.kandoe.Model.Chat;
+import com.example.kandoe.Model.ChatMessage;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.SubTheme;
 import com.example.kandoe.Model.Theme;
 import com.example.kandoe.Model.UserAccount;
 
-import org.json.JSONObject;
-
 import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -80,10 +76,10 @@ public interface KandoeBackendAPI {
 
     //ChatMessage
     @GET("api/chatMessage")
-    Call<List<Chat>> getChats();
+    Call<List<ChatMessage>> getChats();
 
     @GET("api/chatMessage/{id}")
-    Call<Chat> getChat(@Path("id") int id);
+    Call<ChatMessage> getChat(@Path("id") int id);
 
     @POST("api/chatMessage")
     Call<ResponseBody> chat(@Body String chatmessage);
@@ -113,10 +109,6 @@ public interface KandoeBackendAPI {
 
     @GET("api/subTheme/{id}")
     Call<SubTheme> getSubTheme(@Path("id") int id);
-
-
-
-
 }
 
 
