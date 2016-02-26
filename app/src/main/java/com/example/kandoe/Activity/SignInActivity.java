@@ -27,6 +27,7 @@ import com.google.android.gms.common.api.Status;
 /**
  * Activity to demonstrate basic retrieval of the Google user's ID, email address, and basic
  * profile.
+ * ToDo: Deze moet weg als google logout in orde is
  */
 public class SignInActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,

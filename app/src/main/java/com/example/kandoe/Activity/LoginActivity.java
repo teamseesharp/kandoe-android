@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -23,12 +23,18 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 /**
  * A login screen that offers login via email/password or google+.
  */
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
-        View.OnClickListener {
+        View.OnClickListener, Callback<UserAccount> {
 
     private static final String email = "test@test.be";
     private static final String pass = "test";
@@ -130,18 +136,6 @@ public class LoginActivity extends AppCompatActivity implements
         }
     }
 
-    protected void tryLogout(GoogleApiClient googleApiClient){
-            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                    new ResultCallback<Status>() {
-                        @Override
-                        public void onResult(Status status) {
-                            // [START_EXCLUDE]
-                            startActivity(new Intent(getApplication(), LoginActivity.class));
-                            // [END_EXCLUDE]
-                        }
-                    });
-    }
-
     @Override
     public void onStart() {
         super.onStart();
@@ -204,7 +198,7 @@ public class LoginActivity extends AppCompatActivity implements
 
     // [START signOut]
     protected void signOut(GoogleApiClient googleApiClient) {
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
                     @Override
                     public void onResult(Status status) {
@@ -245,9 +239,6 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
 
-    public void showToast(String tekst){
-        Toast.makeText(getApplicationContext(),tekst, Toast.LENGTH_LONG).show();
-    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -263,6 +254,20 @@ public class LoginActivity extends AppCompatActivity implements
 
     public boolean isGoogleLogin() {
         return googleLogin;
+    }
+
+    //TODO: uitwerken
+    @Override
+    public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
+//        if (token != null) {
+//            setToken(token);
+//            startActivity(new Intent(this, MainActivity.class));
+//        }
+    }
+
+    @Override
+    public void onFailure(Call<UserAccount> call, Throwable t) {
+        Crouton.makeText(this, "Inloggen is niet gelukt!.", Style.ALERT).show();
     }
 }
 

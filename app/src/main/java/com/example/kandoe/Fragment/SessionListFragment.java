@@ -1,9 +1,6 @@
 package com.example.kandoe.Fragment;
 
-import android.app.ListFragment;
-import android.content.Intent;
 import android.os.Bundle;
-
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +16,7 @@ import java.util.ArrayList;
 
 /**
  * Created by JoachimDs on 19/02/2016.
+ * Shows all sessions in listview
  */
 public class SessionListFragment extends android.support.v4.app.ListFragment implements OnItemClickListener {
     @Override
@@ -54,6 +52,11 @@ public class SessionListFragment extends android.support.v4.app.ListFragment imp
         intent.putExtra("SESSIONID", sessionId);
         startActivity(intent);*/
 
+        //ToDO: dit moet session herbekijken zijn
+        //if(sessionFinished){
+        //open sessionFragment
+        //} else {
+        //Open circleFragment}
         CircleFragment fragment = CircleFragment.newInstance(String.valueOf(position), null);
 
 

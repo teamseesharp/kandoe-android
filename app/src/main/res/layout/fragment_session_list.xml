@@ -14,10 +14,23 @@
     </ListView>
 
     <TextView
-        android:id="@android:id/empty"
+        android:id="@+id/session_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </TextView>
+
+    <ImageView
+        android:id="@+id/session_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtQuestion"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="350dp"
+        android:clickable="false"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
+        android:visibility="visible" />
+
 
 
 </LinearLayout>

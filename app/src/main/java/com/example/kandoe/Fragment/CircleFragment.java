@@ -10,12 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.kandoe.Controller.CircleSessionController;
-import com.example.kandoe.DrawableGraphics.BulletPoint;
-import com.example.kandoe.DrawableGraphics.Ladder;
-import com.example.kandoe.Model.Card;
 import com.example.kandoe.R;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.

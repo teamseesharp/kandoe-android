@@ -1,9 +1,24 @@
 package com.example.kandoe;
 
+import android.support.test.espresso.UiController;
+import android.support.test.espresso.ViewAction;
+import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.test.suitebuilder.annotation.LargeTest;
+import android.view.View;
 
+import com.example.kandoe.Activity.MainActivity;
+
+import org.hamcrest.Matcher;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
  * Created by Michelle on 17-2-2016.
@@ -11,17 +26,52 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class NavigationTest {
-//    @Test
-//    public void clickOnAndroidHomeIcon_OpensNavigation() {
-//        // Check that left drawer is closed at startup
-//        onView(withId(R.id.drawer_layout))
-//                .check(matches(isClosed(Gravity.LEFT))); // Left Drawer should be closed.
-//
-//        // Open Drawer
-//        onView(withContentDescription("Navigate up")).perform(click());
-//
-//        // Check if drawer is open
-//        onView(withId(R.id.drawer_layout))
-//                .check(matches(isOpen(Gravity.LEFT))); // Left drawer is open open.
-//    }
+    @Rule
+    public ActivityTestRule<MainActivity> mActivity = new ActivityTestRule<>(
+            MainActivity.class);
+
+    private static ViewAction actionOpenDrawer() {
+    return new ViewAction() {
+        @Override
+        public Matcher<View> getConstraints() {
+            return isAssignableFrom(DrawerLayout.class);
+        }
+
+        @Override
+        public String getDescription() {
+            return "open drawer";
+        }
+
+        @Override
+        public void perform(UiController uiController, View view) {
+            ((DrawerLayout) view).openDrawer(GravityCompat.START);
+        }
+    };
+}
+    private static ViewAction actionCloseDrawer() {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return isAssignableFrom(DrawerLayout.class);
+            }
+
+            @Override
+            public String getDescription() {
+                return "close drawer";
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                ((DrawerLayout) view).closeDrawer(GravityCompat.START);
+            }
+        };
+    }
+
+    @Test
+    public void testDrawer(){
+        onView(withId(R.id.drawer_layout)).perform(actionOpenDrawer());
+        onView(withId(R.id.drawer_layout)).perform(actionCloseDrawer());
+
+    }
+
 }
