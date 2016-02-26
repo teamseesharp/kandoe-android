@@ -4,11 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 
+import com.example.kandoe.Adapter.ExpandableListViewAdapter;
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.R;
 
@@ -30,7 +33,7 @@ public class CircleFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private ImageView bg;
+    private ExpandableListView listView;
 
     private CircleSessionController controller;
 
@@ -66,6 +69,20 @@ public class CircleFragment extends Fragment {
 
     }
 
+    private void initItems() {
+        DisplayMetrics displayMetrics = controller.getContext().getResources().getDisplayMetrics();
+
+        int height = displayMetrics.heightPixels;
+
+        listView.setTop(height / 2);
+        listView.setBottom(height);
+
+        ExpandableListViewAdapter listViewAdapter = new ExpandableListViewAdapter();
+
+        listView.setAdapter(listViewAdapter);
+
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,14 +92,15 @@ public class CircleFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
 
-        controller.createLadder(container);
+        listView = (ExpandableListView) view.findViewById(R.id.expandableListView);
 
+        controller.createLadder(container);
+initItems();
 
         return view;
     }
 
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

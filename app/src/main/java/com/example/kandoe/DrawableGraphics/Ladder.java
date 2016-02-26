@@ -96,12 +96,7 @@ public class Ladder extends View {
           /*  LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, WRAP_CONTENT);
             myImageView .setLayoutParams(params);*/
 
-            bullet.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.out.println("looool");
-                }
-            });
+
 
             controller.getBulletPoints().add(bullet);
             container.addView(bullet);

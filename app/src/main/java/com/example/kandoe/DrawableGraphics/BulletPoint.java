@@ -23,11 +23,6 @@ import java.util.ArrayList;
  */
 public class BulletPoint extends View {
     private Paint paint;
-    int left;
-    int top;
-    int right;
-    int bottom;
-    int color;
     int id;
 
     private RectF rectF;
@@ -59,7 +54,12 @@ public class BulletPoint extends View {
         //Paint init, layertype is needed for shadow
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         this.setLayerType(LAYER_TYPE_SOFTWARE, paint);
-        paint.setColor(Color.rgb(34, 139, 34));
+
+        paint.setColor(Color.parseColor(BulletColor.getColor(id).getHexCode()));
+
+        //paint.setColor(Color.rgb(34, 139, 34));
+
+
         paint.setShadowLayer(4.0f, 0.0f, 2.0f, Color.BLACK);
 
 
@@ -70,12 +70,6 @@ public class BulletPoint extends View {
         //RectF for rounded corners
         rectF = new RectF(rect);
 
-        setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "test", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
@@ -103,7 +97,7 @@ public class BulletPoint extends View {
     }
 
     @Override
-    protected void onDraw( Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
 
 
         canvas.drawRoundRect(rectF, 100, 100, paint);
@@ -115,15 +109,16 @@ public class BulletPoint extends View {
 
     private void drawRectText(String text, Canvas canvas, RectF r) {
 
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(50);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setShadowLayer(0f, 0.0f, 0f, Color.BLACK);
+        Paint paint2 = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint2.setColor(Color.WHITE);
+        paint2.setTextSize(50);
+        paint2.setTextAlign(Paint.Align.CENTER);
+        paint2.setShadowLayer(0f, 0.0f, 0f, Color.BLACK);
         float width = r.width();
 
-        int numOfChars = paint.breakText(text, true, width, null);
+        int numOfChars = paint2.breakText(text, true, width, null);
         int start = (text.length() - numOfChars) / 2;
-        canvas.drawText(text, start, start + numOfChars, r.centerX(), r.centerY() + 20, paint);
+        canvas.drawText(text, start, start + numOfChars, r.centerX(), r.centerY() + 20, paint2);
     }
 
     private int getId(Card card) {

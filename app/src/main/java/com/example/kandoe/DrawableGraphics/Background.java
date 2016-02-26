@@ -26,10 +26,10 @@ public class Background extends View {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
-        d = getResources().getDrawable(R.drawable.blurrybg);
+        d = getResources().getDrawable(R.drawable.bgcartoon);
 
 
-        d.setBounds(0, 0, width,height/2);
+        d.setBounds(0, 0, width,(int) (height/2));
 
 
          rect = new Rect(0,0,width,height/2);
