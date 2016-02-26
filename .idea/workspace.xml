@@ -9,27 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f15714f-3615-4e30-b50f-a4604111200c" name="Default" comment="Nieuwe cards model">
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\appcompat_v7_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\design_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\espresso_core_2_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\espresso_idling_resource_2_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\exposed_instrumentation_api_publish_0_4_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\play_services_auth_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\play_services_basement_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\recyclerview_v7_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\rules_0_4_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\runner_0_4_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\support_annotations_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\support_v4_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\.idea\libraries\uiautomator_v18_2_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="O:\School\Integratieproject2\kandoe-android\kandoe-android.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Controller/CircleSessionController.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Controller/CircleSessionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crouton-1.8.5/crouton-1.8.5.iml" afterPath="$PROJECT_DIR$/crouton-1.8.5/crouton-1.8.5.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+    <list default="true" id="9f15714f-3615-4e30-b50f-a4604111200c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kandoe-android.iws" />
@@ -2625,7 +2605,19 @@
       <option name="project" value="LOCAL" />
       <updated>1456241972805</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Nieuwe cards model">
+      <created>1456496352159</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1456496352159</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Nieuwe cards model">
+      <created>1456496474660</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1456496474660</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2639,7 +2631,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-2" width="1932" height="1056" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2693,7 +2685,8 @@
     <MESSAGE value="ladder responsive + controller" />
     <MESSAGE value="bg" />
     <MESSAGE value="background + responsive" />
-    <option name="LAST_COMMIT_MESSAGE" value="background + responsive" />
+    <MESSAGE value="Nieuwe cards model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nieuwe cards model" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
