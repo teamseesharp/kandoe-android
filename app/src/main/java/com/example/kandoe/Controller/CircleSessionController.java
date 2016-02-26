@@ -32,10 +32,10 @@ public class CircleSessionController {
 
         session = new Session(null,1,4,1);
 
-        cards.add(new Card(1, "", "Test"));
-        cards.add(new Card(2, "", "Test"));
-        cards.add(new Card(3, "", "Test"));
-        cards.add(new Card(4, "", "Test"));
+        cards.add(new Card(1, "", "Test", ""));
+        cards.add(new Card(2, "", "Test", ""));
+        cards.add(new Card(3, "", "Test", ""));
+        cards.add(new Card(4, "", "Test", ""));
 
     }
 
