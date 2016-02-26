@@ -9,8 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.kandoe.Controller.CircleSessionController;
+import com.example.kandoe.DrawableGraphics.BulletPoint;
 import com.example.kandoe.DrawableGraphics.Ladder;
+import com.example.kandoe.Model.Card;
 import com.example.kandoe.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,8 +37,9 @@ public class CircleFragment extends Fragment {
 
     private ImageView bg;
 
-    private OnFragmentInteractionListener mListener;
+    private CircleSessionController controller;
 
+    private OnFragmentInteractionListener mListener;
 
 
     public CircleFragment() {
@@ -59,9 +65,11 @@ public class CircleFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        //TODO Add session parameter
+        controller = new CircleSessionController(getContext());
+
 
     }
-
 
 
     @Override
@@ -70,21 +78,14 @@ public class CircleFragment extends Fragment {
         // Inflate the layout for this fragment
 
 
+        View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
+
+        controller.createLadder(container);
 
 
-
-View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
-
-        init(view);
-        Ladder ladder = new Ladder(getContext(),4);
-       ladder.createLadder(container);
         return view;
     }
 
-    private void init(View view) {
-
-
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -143,7 +144,6 @@ View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
         container.addView(rightLeg);
     }
 */
-
 
 
     /**

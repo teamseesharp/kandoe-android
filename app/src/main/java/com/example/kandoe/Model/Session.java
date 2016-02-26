@@ -2,20 +2,24 @@ package com.example.kandoe.Model;
 
 import android.media.Image;
 
-import org.joda.time.DateTime;
+
 
 /**
  * Created by Michelle on 20-2-2016.
  */
 public class Session {
+    private int id;
     private Image snapshot;
-    private DateTime date;
+    private int date;
+    private int numberOfSteps;
     //CHAT??
 
 
-    public Session(Image snapshot, DateTime date) {
+    public Session(Image snapshot, int date, int numberOfSteps,int id) {
         this.snapshot = snapshot;
         this.date = date;
+        this.numberOfSteps = numberOfSteps;
+        this.id = id;
     }
 
     public Image getSnapshot() {
@@ -26,11 +30,8 @@ public class Session {
         this.snapshot = snapshot;
     }
 
-    public DateTime getDate() {
-        return date;
-    }
 
-    public void setDate(DateTime date) {
-        this.date = date;
+    public int getNumberOfSteps() {
+        return numberOfSteps;
     }
 }
