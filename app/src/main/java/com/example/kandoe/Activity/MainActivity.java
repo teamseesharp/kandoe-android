@@ -23,6 +23,7 @@ import com.example.kandoe.Fragment.CircleFragment;
 import com.example.kandoe.Fragment.MainFragment;
 import com.example.kandoe.Fragment.NavigationDrawerFragment;
 import com.example.kandoe.Fragment.SessionListFragment;
+import com.example.kandoe.Fragment.Setup;
 import com.example.kandoe.R;
 
 
@@ -68,6 +69,7 @@ public class MainActivity extends ActionBarActivity
     public void onSectionAttached(int number) {
         Fragment fragment = null;
         android.support.v4.app.ListFragment listfragment = null;
+
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
@@ -84,6 +86,10 @@ public class MainActivity extends ActionBarActivity
             case 4:
                 mTitle = getString(R.string.title_section4);
                 startActivity(new Intent(getApplication(),SignInActivity.class));
+                break;
+            case 5:
+                mTitle = "Spel starten";
+                listfragment = new Setup();
                 break;
             default:
                 fragment = new MainFragment();

@@ -6,12 +6,14 @@ package com.example.kandoe.Model;
 public class Card {
     private int id;
     private String text;
+    private String description;
     private String URL;
 
-    public Card(int id, String URL, String text) {
+    public Card(int id, String URL, String text, String description) {
         this.id = id;
         this.URL = URL;
         this.text = text;
+        this.description = description;
     }
 
     public int getId() {
@@ -36,6 +38,14 @@ public class Card {
 
     public void setURL(String URL) {
         this.URL = URL;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 
