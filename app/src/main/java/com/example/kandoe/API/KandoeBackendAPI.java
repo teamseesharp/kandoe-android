@@ -37,7 +37,10 @@ public interface KandoeBackendAPI {
     //Account
     //Todo voorlopig komt de response niet overeen met de klasse..
     @GET("api/account/userInfo")
-    Call<UserAccount> getUserInfo();
+    Call<UserAccount> getUsers();
+
+    @GET ("api/account/{id}")
+    Call<UserAccount> getUserInfo(@Path("id") int id);
 
     @POST("api/account/logout")
     Call<ResponseBody> logout();
@@ -62,8 +65,8 @@ public interface KandoeBackendAPI {
     @GET("api/session")
     Call<List<Session>> getSessions();
 
-    @GET("api/session/id")
-    Call<Session> getSessionDetails(@Path("id") int id);
+    @GET("api/session/{id}")
+    Call<Session> getSessionDetail(@Path("id") int id);
 
 
     //Organisation

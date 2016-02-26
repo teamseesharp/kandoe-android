@@ -10,15 +10,27 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.example.kandoe.API.APIServiceGenerator;
+import com.example.kandoe.API.KandoeBackendAPI;
+import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by JoachimDs on 19/02/2016.
  * Shows all sessions in listview
  */
 public class SessionListFragment extends android.support.v4.app.ListFragment implements OnItemClickListener {
+    KandoeBackendAPI service = APIServiceGenerator.createService(KandoeBackendAPI.class);
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_session_list, container, false);
@@ -45,12 +57,7 @@ public class SessionListFragment extends android.support.v4.app.ListFragment imp
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         //Todo naar volgend activity of fragment gaan en id van sessie meegeven
-        int sessionId;
-        sessionId = 1;
-
-       /* Intent intent = new Intent(getActivity(), SessionActivity.class);
-        intent.putExtra("SESSIONID", sessionId);
-        startActivity(intent);*/
+        int sessionId = 1;
 
         //ToDO: dit moet session herbekijken zijn
         //if(sessionFinished){
@@ -65,5 +72,20 @@ public class SessionListFragment extends android.support.v4.app.ListFragment imp
 
 
         Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    public void retrieveSessions(){
+        Call<List<Session>> sessions = service.getSessions();
+        sessions.enqueue(new Callback<List<Session>>() {
+            @Override
+            public void onResponse(Call<List<Session>> call, Response<List<Session>> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Session>> call, Throwable t) {
+
+            }
+        });
     }
 }
