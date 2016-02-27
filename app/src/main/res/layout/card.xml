@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="15dp">
 
 
     <TextView
@@ -10,12 +11,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Kaart titel" />
+        android:text="Kaart titel"
+        android:layout_marginLeft="0dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text"
+        android:layout_alignTop="@+id/chckBoxUpvote"
+        android:layout_toEndOf="@+id/txtNumberHolder"
+        android:layout_marginStart="89dp"
+        android:paddingLeft="10dp" />
 
     <TextView
         android:id="@+id/txtCardDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="kaart Beschrijving"/>
-</LinearLayout>
+        android:text="kaart Beschrijving"
+        android:layout_marginLeft="0dp"
+        android:layout_below="@+id/txtCardTitle"
+        android:layout_alignStart="@+id/txtCardTitle"
+        android:layout_marginStart="20dp"
+        android:paddingLeft="25dp"
+        android:textColor="@color/secondary_text"
+        android:layout_toStartOf="@+id/chckBoxUpvote" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upvote"
+        android:id="@+id/chckBoxUpvote"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:checked="false"
+        android:paddingRight="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="1"
+        android:id="@+id/txtNumberHolder"
+        android:textColor="#ffffff"
+        android:layout_alignParentTop="true"
+        android:textAlignment="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="2.5dp" />
+</RelativeLayout>

@@ -19,17 +19,17 @@ public class Background extends View {
     Rect rect;
     Drawable d;
 
-    public Background(Context context) {
+    public Background(Context context, int height) {
         super(context);
         paint.setColor(Color.LTGRAY);
 
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
-        int height = metrics.heightPixels;
+
         d = getResources().getDrawable(R.drawable.bgcartoon);
 
 
-        d.setBounds(0, 0, width,(int) (height/2));
+        d.setBounds(0, 0, width,(int) (height));
 
 
          rect = new Rect(0,0,width,height/2);

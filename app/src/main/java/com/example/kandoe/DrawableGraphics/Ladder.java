@@ -28,8 +28,9 @@ public class Ladder extends View {
     private CircleSessionController controller;
     private ArrayList<View> steps;
     private ArrayList<RoundedRectangle> legs;
+    private double bottembound;
 
-    int clLeft, clTop, clRight, clBottom, offset,width,height;
+    int clLeft, clTop, clRight, clBottom, offset, width, height, heightleg;
 
 
     public Ladder(Context context) {
@@ -64,25 +65,29 @@ public class Ladder extends View {
 
     private void init() {
         DisplayMetrics displayMetrics = controller.getContext().getResources().getDisplayMetrics();
-         width = displayMetrics.widthPixels;
-         height = displayMetrics.heightPixels;
+        width = displayMetrics.widthPixels;
+        height = displayMetrics.heightPixels;
 
         clLeft = width / 4;
-        clTop = 150;
+        clTop = (int) (height * 0.05);
         clRight = clLeft + 40;
         clBottom = (int) (height / 2.5);
         offset = width / 2;
+
+        heightleg = clBottom - clTop;
     }
 
     private void createBackGround(ViewGroup container) {
 
-        View background = new Background(getContext());
+        bottembound = (heightleg + heightleg * 0.3);
+        controller.setBottomboundLadder(bottembound);
+
+        View background = new Background(getContext(), (int) bottembound);
 
         container.addView(background);
 
 
     }
-
 
 
     private void createBullets(ViewGroup container) {
@@ -97,7 +102,6 @@ public class Ladder extends View {
             myImageView .setLayoutParams(params);*/
 
 
-
             controller.getBulletPoints().add(bullet);
             container.addView(bullet);
 
@@ -106,15 +110,17 @@ public class Ladder extends View {
 
     private void createSteps(ViewGroup container) {
 
+        int numberOfSteps = controller.getSession().getNumberOfSteps();
+
         //init values
-        int ctLeft = clLeft + 30, ctTop = 225, ctRight = clLeft + offset + 5, ctBottom = ctTop + 15;
+        int ctLeft = clLeft + 30, ctTop = clTop + heightleg / numberOfSteps / 2, ctRight = clLeft + offset + 5, ctBottom = ctTop + 15;
 
         int topOffset = 0; //space between 2 steps
 
         //create steps
-        for (int i = 0; i < controller.getSession().getNumberOfSteps(); i++) {
+        for (int i = 0; i < numberOfSteps; i++) {
             RoundedRectangle trede = new RoundedRectangle(getContext(), ctLeft, ctTop + topOffset, ctRight, ctBottom + topOffset, Color.rgb(101, 67, 33), i);
-            topOffset +=  (clBottom-clTop)/controller.getSession().getNumberOfSteps();
+            topOffset += heightleg / numberOfSteps;
 
             steps.add(trede);
             container.addView(trede);

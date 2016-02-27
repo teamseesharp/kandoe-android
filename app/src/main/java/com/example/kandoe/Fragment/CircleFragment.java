@@ -8,11 +8,15 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListView;
-import android.widget.ImageView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.kandoe.Adpaters.CardAdapter;
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.R;
+
+import java.util.LinkedList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,8 +35,6 @@ public class CircleFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    private ExpandableListView listView;
 
     private CircleSessionController controller;
 
@@ -73,28 +75,54 @@ public class CircleFragment extends Fragment {
 
         int height = displayMetrics.heightPixels;
 
-        listView.setTop(height / 2);
-        listView.setBottom(height);
 
         //ExpandableListViewAdapter listViewAdapter = new ExpandableListViewAdapter();
 
-       // listView.setAdapter(listViewAdapter);
+        // listView.setAdapter(listViewAdapter);
 
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
 
         View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
 
-        listView = (ExpandableListView) view.findViewById(R.id.expandableListView);
 
         controller.createLadder(container);
-initItems();
+
+        ListView listView = new ListView(getContext());
+
+    /*    ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_2, android.R.id.text1, new LinkedList()) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
+                text1.setText(controller.getCards().get(position).getText());
+                text2.setText(controller.getCards().get(position).getDescription());
+                return view;
+            }
+        };*/
+
+        CardAdapter cardAdapter= new CardAdapter(getContext(), android.R.layout.simple_list_item_2, controller.getCards());
+
+        controller.setAdapter(cardAdapter);
+
+        listView.setAdapter(cardAdapter);
+// ...
+
+
+        container.addView(listView);
+
+        listView.setPadding(0, (int) controller.getBottomboundLadder(), 0, 0);
+
+
+        initItems();
 
         return view;
     }
