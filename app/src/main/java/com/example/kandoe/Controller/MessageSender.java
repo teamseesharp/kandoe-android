@@ -19,7 +19,7 @@ public class MessageSender {
 
     public MessageSender(int sessionId) throws IOException, TimeoutException {
         this.exchange_name = setExchange_name(sessionId);
-        init();
+        //init();
 
     }
 

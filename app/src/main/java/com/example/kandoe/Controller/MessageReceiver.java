@@ -22,7 +22,7 @@ public class MessageReceiver {
 
     public MessageReceiver(int sessionId) throws IOException, TimeoutException {
         this.exchange_name = setExchange_name(sessionId);
-        init();
+     //   init();
 
     }
 

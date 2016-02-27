@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 
-import com.example.kandoe.Adapter.ExpandableListViewAdapter;
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.R;
 
@@ -77,9 +76,9 @@ public class CircleFragment extends Fragment {
         listView.setTop(height / 2);
         listView.setBottom(height);
 
-        ExpandableListViewAdapter listViewAdapter = new ExpandableListViewAdapter();
+        //ExpandableListViewAdapter listViewAdapter = new ExpandableListViewAdapter();
 
-        listView.setAdapter(listViewAdapter);
+       // listView.setAdapter(listViewAdapter);
 
 
     }
