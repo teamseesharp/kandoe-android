@@ -18,11 +18,13 @@ public class CircleSessionController {
     private ArrayList<Card> cards;
     private ArrayList<View> bulletPoints;
     private Session session;
+    private ChatController chatController;
     private Context context;
 
     public CircleSessionController(Context context) {
         init();
         this.context = context;
+
     }
 
     private void init() {
@@ -30,7 +32,9 @@ public class CircleSessionController {
         cards = new ArrayList<>();
         bulletPoints = new ArrayList<>();
 
+
         session = new Session(null,1,4,1);
+        chatController = new ChatController(session.getId());
 
         cards.add(new Card(1, "", "Test", ""));
         cards.add(new Card(2, "", "Test", ""));

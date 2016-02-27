@@ -6,12 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.example.kandoe.Controller.BulletPointListener;
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Utilities.Utilities;

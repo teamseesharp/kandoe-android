@@ -31,6 +31,9 @@ public class Session extends ArrayList<Session> {
         this.snapshot = snapshot;
     }
 
+    public int getId() {
+        return id;
+    }
 
     public int getNumberOfSteps() {
         return numberOfSteps;

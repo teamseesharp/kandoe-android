@@ -8,6 +8,8 @@ import org.joda.time.DateTime;
 public class ChatMessage {
     private String message;
     private DateTime timestamp;
+    private int sessionId;
+    private int userId;
 
     public ChatMessage(String message, DateTime timestamp) {
         this.message = message;
