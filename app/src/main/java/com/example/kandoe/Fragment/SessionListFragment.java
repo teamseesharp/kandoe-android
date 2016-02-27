@@ -29,8 +29,6 @@ import retrofit2.Response;
 public class SessionListFragment extends android.support.v4.app.ListFragment implements OnItemClickListener {
     KandoeBackendAPI service = APIServiceGenerator.createService(KandoeBackendAPI.class);
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_session_list, container, false);

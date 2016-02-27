@@ -24,19 +24,30 @@ import java.util.ArrayList;
  */
 public class Setup extends ListFragment implements OnItemClickListener {
     private ArrayList<Card> cards;
-    private ArrayList<Card> myCards ;
+    private ArrayList<Card> myCards;
     private GridView grdMyCards;
     private GridView grdCards;
+    private CardAdapter cardAdapter;
+    private CardAdapter myCardAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.setup, container, false);
 
         myCards = new ArrayList<>();
-        grdCards = (GridView) view.findViewById(R.id.grdcards);
-        grdCards.setAdapter(new CardAdapter(view.getContext(), R.layout.card, getCardData()));
+        cards = new ArrayList<>();
+        cards = getCardData();
+
         grdMyCards = (GridView) view.findViewById(R.id.grdmycards);
-        grdMyCards.setAdapter(new CardAdapter(view.getContext(), R.layout.card, getCardData()));
+        myCardAdapter = new CardAdapter(view.getContext(), R.layout.card, myCards);
+        grdMyCards.setAdapter(myCardAdapter);
+        grdMyCards.setOnItemClickListener(this);
+
+        grdCards = (GridView) view.findViewById(R.id.grdcards);
+        cardAdapter = new CardAdapter(view.getContext(), R.layout.card, cards);
+        grdCards.setAdapter(cardAdapter);
+        grdCards.setOnItemClickListener(this);
+
         return view;
     }
 
@@ -50,22 +61,36 @@ public class Setup extends ListFragment implements OnItemClickListener {
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String title = (String) ((TextView) view.findViewById(R.id.txtCardTitle)).getText();
         String descrption = (String) ((TextView) view.findViewById(R.id.txtCardDescription)).getText();
-        Card cardToMove = new Card(1, "url", title, descrption);
+        ArrayList<Card> from = new ArrayList<>();
+        ArrayList<Card> too = new ArrayList<>();
+        Card cardToMove = new Card(1, "", "", "");
 
-        if (parent.getId() == grdCards.getId()){
-            //Geklikt op view van alle kaarten
-            myCards.add(cardToMove);
-            cards.remove(cardToMove);
-        } else {
-            cards.add(cardToMove);
-            myCards.remove(cardToMove);
+        switch(parent.getId()) {
+            case R.id.grdmycards:
+                from = myCards;
+                too = cards;
+                break;
+            case R.id.grdcards:
+                from = cards;
+                too = myCards;
+                break;
         }
-        
+
+        for (Card card : from){
+            if (card.getText().equals(title) && card.getDescription().equals(descrption)){
+                cardToMove = card;
+            }
+        }
+
+        from.remove(cardToMove);
+        too.add(cardToMove);
+
+        cardAdapter.notifyDataSetChanged();
+        myCardAdapter.notifyDataSetChanged();
     }
 
     public ArrayList<Card> getCardData() {
         //Todo parameter data voorzien met juiste datacards = new ArrayList<>();
-        ArrayList<Card> cards = new ArrayList<>();
         cards.add(new Card(1, "url1", "Titel kaart 1", "Omschrijving 1"));
         cards.add(new Card(2, "url2", "Titel kaart 2", "Omschrijving 2"));
         cards.add(new Card(3, "url3", "Titel kaart 3", "Omschrijving 3"));
