@@ -10,8 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.auth0.lock.Lock;
+import com.auth0.lock.LockProvider;
 import com.example.kandoe.API.APIServiceGenerator;
 import com.example.kandoe.API.KandoeBackendAPI;
+import com.example.kandoe.Lock.KandoeApplication;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.google.android.gms.auth.api.Auth;
@@ -36,7 +39,7 @@ import retrofit2.Response;
  */
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
-        View.OnClickListener, Callback<UserAccount> {
+        View.OnClickListener, Callback<UserAccount>,LockProvider {
 
     private static final String email = "test@test.be";
     private static final String pass = "test";
@@ -51,6 +54,7 @@ public class LoginActivity extends AppCompatActivity implements
     private boolean googleLogin = false;
 
     private boolean APIconnection = false;
+    private Lock lock;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,11 @@ public class LoginActivity extends AppCompatActivity implements
 
         ActionBar bar = getSupportActionBar();
         bar.hide();
+
+
+
+       Intent lockIntent = new Intent(this, KandoeApplication.class);
+       startActivity(lockIntent);
 
         // Button listeners
         findViewById(R.id.btn_loginGoogle).setOnClickListener(this);
@@ -273,6 +282,11 @@ public class LoginActivity extends AppCompatActivity implements
     @Override
     public void onFailure(Call<UserAccount> call, Throwable t) {
         Crouton.makeText(this, "Inloggen is niet gelukt!.", Style.ALERT).show();
+    }
+
+    @Override
+    public Lock getLock() {
+        return lock;
     }
 }
 

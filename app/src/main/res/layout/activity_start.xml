@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+
+    <ImageView
+        android:id="@+id/outside_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/community"
+        android:tint="#b6b5b5"
+        android:tintMode="multiply"
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:id="@+id/inside_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logomettekst"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in"
+        android:id="@+id/sign_in_button"
+        android:layout_marginBottom="29dp"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:textColor="#ffffff"
+        android:textSize="22dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
