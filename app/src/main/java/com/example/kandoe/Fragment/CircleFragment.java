@@ -1,6 +1,7 @@
 package com.example.kandoe.Fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,8 +9,10 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.kandoe.Adpaters.CardAdapter;
@@ -37,8 +40,9 @@ public class CircleFragment extends Fragment {
     private String mParam2;
 
     private CircleSessionController controller;
-
     private OnFragmentInteractionListener mListener;
+
+    private RadioGroup radioGroup;
 
 
     public CircleFragment() {
@@ -70,18 +74,7 @@ public class CircleFragment extends Fragment {
 
     }
 
-    private void initItems() {
-        DisplayMetrics displayMetrics = controller.getContext().getResources().getDisplayMetrics();
 
-        int height = displayMetrics.heightPixels;
-
-
-        //ExpandableListViewAdapter listViewAdapter = new ExpandableListViewAdapter();
-
-        // listView.setAdapter(listViewAdapter);
-
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -96,33 +89,19 @@ public class CircleFragment extends Fragment {
 
         ListView listView = new ListView(getContext());
 
-    /*    ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_2, android.R.id.text1, new LinkedList()) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
-
-                text1.setText(controller.getCards().get(position).getText());
-                text2.setText(controller.getCards().get(position).getDescription());
-                return view;
-            }
-        };*/
-
-        CardAdapter cardAdapter= new CardAdapter(getContext(), android.R.layout.simple_list_item_2, controller.getCards());
+        CardAdapter cardAdapter= new CardAdapter(getContext(), false, controller.getCards());
 
         controller.setAdapter(cardAdapter);
 
         listView.setAdapter(cardAdapter);
-// ...
 
 
-        container.addView(listView);
 
-        listView.setPadding(0, (int) controller.getBottomboundLadder(), 0, 0);
+       container.addView(listView);
+
+        listView.setPadding(0,(int) controller.getBottomboundLadder() , 0, 0);
 
 
-        initItems();
 
         return view;
     }
@@ -152,38 +131,6 @@ public class CircleFragment extends Fragment {
         mListener = null;
     }
 
-    //create ladder legs
- /*   private void createLadder(ViewGroup container) {
-
-        int aantaltredes = 4;
-        tredes = new ArrayList<>(aantaltredes);
-
-        //left leg
-        int clLeft = 200, clTop = 150, clRight = clLeft + 50, clBottom = 800;
-        int offset = container.getWidth() - 450;
-        View leftleg = new RoundedRectangle(getContext(), clLeft, clTop, clRight, clBottom, Color.rgb(102, 51, 0));
-
-        //right leg
-        View rightLeg = new RoundedRectangle(getContext(), clLeft + offset, clTop, clRight + offset, clBottom, Color.rgb(102, 51, 0));
-
-
-        int ctLeft = 200, ctTop = 225, ctRight = container.getWidth() - 200, ctBottom = ctTop + 15;
-        int topOffset = 0;
-
-        //tredes
-        for (int i = 0; i < aantaltredes; i++) {
-            RoundedRectangle trede = new RoundedRectangle(getContext(), ctLeft, ctTop + topOffset, ctRight, ctBottom + topOffset, Color.rgb(101, 67, 33));
-            topOffset += 125;
-            tredes.add(trede);
-            container.addView(trede);
-
-        }
-
-        container.addView(leftleg);
-
-        container.addView(rightLeg);
-    }
-*/
 
 
     /**

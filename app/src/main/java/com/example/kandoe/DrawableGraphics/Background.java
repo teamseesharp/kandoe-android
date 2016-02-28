@@ -16,8 +16,9 @@ import com.example.kandoe.R;
  */
 public class Background extends View {
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    Rect rect;
+    Rect border;
     Drawable d;
+
 
     public Background(Context context, int height) {
         super(context);
@@ -29,10 +30,11 @@ public class Background extends View {
         d = getResources().getDrawable(R.drawable.bgcartoon);
 
 
-        d.setBounds(0, 0, width,(int) (height));
+        d.setBounds(0, 0, width, (int) (height));
 
 
-         rect = new Rect(0,0,width,height/2);
+        //rect = new Rect(0, 0, width, height / 2);
+        border = new Rect(0, height - 2, width, height + 2);
     }
 
     @Override
@@ -40,8 +42,10 @@ public class Background extends View {
 
 
 
-d.draw(canvas);
-       // canvas.drawRect(rect, paint);
+            d.draw(canvas);
+            canvas.drawRect(border, paint);
+
+            // canvas.drawRect(rect, paint);
 
 
     }

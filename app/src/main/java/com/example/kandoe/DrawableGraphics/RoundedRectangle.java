@@ -8,6 +8,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.View;
 
+import java.util.ArrayList;
+
 /**
  * Created by Thomas on 2016-02-22.
  * Class to create rounded rectangles with help of paint
@@ -21,6 +23,7 @@ public class RoundedRectangle extends View {
     int color;
     int stepNumber;
     RectF rectF;
+    ArrayList<Rect> bulletPoints;
 
     public RoundedRectangle(Context context) {
         super(context);
@@ -37,10 +40,14 @@ public class RoundedRectangle extends View {
         this.setLayerType(LAYER_TYPE_SOFTWARE, paint);
 
 
+
         Rect rect = new Rect(left, top, right, bottom);
 
         //RectF for rounded corners
         rectF = new RectF(rect);
+        paint.setColor(color);
+
+        paint.setShadowLayer(4.0f, 0.0f, 2.0f, Color.BLACK);
     }
 
     public RoundedRectangle(Context context, int left, int top, int right, int bottom, int color, int stepNumber) {
@@ -52,20 +59,22 @@ public class RoundedRectangle extends View {
         this.color = color;
         this.stepNumber = stepNumber;
         this.setLayerType(LAYER_TYPE_SOFTWARE, paint);
+        bulletPoints = new ArrayList<>();
 
 
         Rect rect = new Rect(left, top, right, bottom);
 
         //RectF for rounded corners
         rectF = new RectF(rect);
+        paint.setColor(color);
+
+        paint.setShadowLayer(4.0f, 0.0f, 2.0f, Color.BLACK);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
 
-        paint.setColor(color);
 
-        paint.setShadowLayer(4.0f, 0.0f, 2.0f, Color.BLACK);
 
 
         canvas.drawRoundRect(rectF, 15, 15, paint);
@@ -95,4 +104,10 @@ public class RoundedRectangle extends View {
     public int getStepNumber() {
         return stepNumber;
     }
+
+    public ArrayList<Rect> getBulletPoints() {
+        return bulletPoints;
+    }
+
+
 }
