@@ -13,11 +13,19 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.auth0.core.Token;
+import com.example.kandoe.API.APIServiceGenerator;
+import com.example.kandoe.API.KandoeBackendAPI;
 import com.example.kandoe.Adpaters.CardAdapter;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.R;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by JoachimDs on 19/02/2016.
@@ -30,14 +38,21 @@ public class Setup extends ListFragment implements OnItemClickListener {
     private CardAdapter cardAdapter;
     private CardAdapter myCardAdapter;
 
+    KandoeBackendAPI service;
+
+    public Setup(Token token) {
+        service = APIServiceGenerator.createService(KandoeBackendAPI.class, token.getIdToken());
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.setup, container, false);
 
+
+
         myCards = new ArrayList<>();
         cards = new ArrayList<>();
         cards = getCardData();
-
 
 
         grdMyCards = (GridView) view.findViewById(R.id.grdmycards);
@@ -47,6 +62,7 @@ public class Setup extends ListFragment implements OnItemClickListener {
 
         grdCards = (GridView) view.findViewById(R.id.grdcards);
         cardAdapter = new CardAdapter(view.getContext(), true, cards);
+
         grdCards.setAdapter(cardAdapter);
         grdCards.setOnItemClickListener(this);
 
@@ -61,13 +77,13 @@ public class Setup extends ListFragment implements OnItemClickListener {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String title = (String) ((TextView) view.findViewById(R.id.txtCardTitle)).getText();
-        String descrption = (String) ((TextView) view.findViewById(R.id.txtCardDescription)).getText();
+        String cardid = (String) ((TextView) view.findViewById(R.id.txtId)).getText();
+        //String descrption = (String) ((TextView) view.findViewById(R.id.txtCardDescription)).getText();
         ArrayList<Card> from = new ArrayList<>();
         ArrayList<Card> too = new ArrayList<>();
-        Card cardToMove = new Card(1, "", "", "");
+        Card cardToMove = new Card(-1, "", "", "");
 
-        switch(parent.getId()) {
+        switch (parent.getId()) {
             case R.id.grdmycards:
                 from = myCards;
                 too = cards;
@@ -78,25 +94,43 @@ public class Setup extends ListFragment implements OnItemClickListener {
                 break;
         }
 
-        for (Card card : from){
-            if (card.getText().equals(title) && card.getDescription().equals(descrption)){
+        for (Card card : from) {
+            if (cardid.equals(String.valueOf(card.getId()))) {
                 cardToMove = card;
             }
         }
 
         from.remove(cardToMove);
-        too.add(cardToMove);
+        too.add(0,cardToMove);
 
         cardAdapter.notifyDataSetChanged();
         myCardAdapter.notifyDataSetChanged();
     }
 
     public ArrayList<Card> getCardData() {
+
+        Call<List<Card>> callList = service.getCards();
+
+        callList.enqueue(new Callback<List<Card>>() {
+            @Override
+            public void onResponse(Call<List<Card>> call, Response<List<Card>> response) {
+                cards.addAll(response.body());
+              cardAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Card>> call, Throwable t) {
+                System.out.println(t.toString());
+            }
+        });
+
+
         //Todo parameter data voorzien met juiste datacards = new ArrayList<>();
-        cards.add(new Card(1, "url1", "Titel kaart 1", "Omschrijving 1"));
+        /*cards.add(new Card(1, "url1", "Titel kaart 1", "Omschrijving 1"));
         cards.add(new Card(2, "url2", "Titel kaart 2", "Omschrijving 2"));
         cards.add(new Card(3, "url3", "Titel kaart 3", "Omschrijving 3"));
-        cards.add(new Card(4, "url4", "Titel kaart 4", "Omschrijving 4"));
+        cards.add(new Card(4, "url4", "Titel kaart 4", "Omschrijving 4"));*/
 
         return cards;
     }

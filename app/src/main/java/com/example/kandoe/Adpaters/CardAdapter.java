@@ -61,6 +61,7 @@ public class CardAdapter extends ArrayAdapter {
             holder.description = (TextView) view.findViewById(R.id.txtCardDescription);
             holder.upvote = (CheckBox) view.findViewById(R.id.radioButton);
             holder.number = (TextView) view.findViewById(R.id.txtNumberHolder);
+            holder.id = (TextView) view.findViewById(R.id.txtId);
 
 
             view.setTag(holder);
@@ -71,6 +72,7 @@ public class CardAdapter extends ArrayAdapter {
         Card card = (Card) data.get(position);
         holder.title.setText(card.getText());
         holder.description.setText(card.getDescription());
+        holder.id.setText(String.valueOf(card.getId()));
 
         //TODO positie meegeven
         holder.number.setText("1");
@@ -88,6 +90,7 @@ public class CardAdapter extends ArrayAdapter {
         TextView description;
         CheckBox upvote;
         TextView number;
+        TextView id;
 
 
     }

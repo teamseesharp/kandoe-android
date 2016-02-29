@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/crouton-1.8.5/crouton-1.8.5.iml" filepath="$PROJECT_DIR$/crouton-1.8.5/crouton-1.8.5.iml" />
       <module fileurl="file://$PROJECT_DIR$/kandoe-android.iml" filepath="$PROJECT_DIR$/kandoe-android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/kandoe-androidv2.iml" filepath="$PROJECT_DIR$/kandoe-androidv2.iml" />
     </modules>
   </component>
 </project>

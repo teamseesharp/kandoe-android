@@ -2,17 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/account">
+    android:id="@+id/account"
+    android:background="#ffffff">
 
     <ImageView
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:paddingLeft="10dp"
         android:gravity="center_horizontal"
         android:src="@drawable/avatar"
         android:id="@+id/account_avatar"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
 
 
     <EditText
@@ -22,36 +24,58 @@
         android:paddingLeft="10dp"
         android:text="@string/account_email"
         android:textColor="@color/dark_grey"
-        android:layout_alignParentStart="true"
+        android:drawableLeft="@drawable/ic_action_email"
+        android:inputType="textEmailAddress"
+        android:editable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+
+        android:layout_below="@+id/account_fname"
+        android:layout_alignParentStart="true" />
+
+
+    <EditText
+        android:id="@+id/account_fname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="Naam"
+        android:textColor="@color/dark_grey"
+        android:drawableLeft="@drawable/ic_action_person"
+        android:inputType="textEmailAddress"
+        android:editable="false"
         android:layout_below="@+id/account_avatar"
-        android:drawableLeft="@drawable/ic_action_email"/>
+        android:layout_alignParentStart="true" />
 
-    <EditText
-        android:id="@+id/account_firstName"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/account_email"
-        android:layout_below="@+id/account_email"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="10dp"
-        android:text="@string/account_firstName"
-        android:textColor="@color/dark_grey"
-        android:drawableLeft="@drawable/ic_action_person"/>
+        android:text="Naam"
+        android:id="@+id/textView"
+        android:layout_alignTop="@+id/account_fname"
+        android:layout_alignStart="@+id/textView2" />
 
-
-    <EditText
-        android:id="@+id/account_lastName"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/account_firstName"
-        android:layout_below="@+id/account_firstName"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="10dp"
-        android:text="@string/account_lastName"
-        android:textColor="@color/dark_grey"
-        android:drawableLeft="@drawable/ic_action_person"/>
+        android:text="Email"
+        android:id="@+id/textView2"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginStart="41dp"
+        android:layout_alignTop="@+id/account_email"
+        android:layout_alignParentStart="true" />
 
-
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:checked="false"
+        android:layout_margin="5dp" />
 
 
 </RelativeLayout>

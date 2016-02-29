@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.auth0.core.Token;
+import com.auth0.core.UserProfile;
+import com.auth0.lock.Lock;
 import com.auth0.lock.LockActivity;
 import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.R;
@@ -25,7 +28,13 @@ public class StartActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             final Intent newIntent = new Intent(StartActivity.this, MainActivity.class);
-            newIntent.putExtras(intent);
+            UserProfile profile = intent.getParcelableExtra(Lock.AUTHENTICATION_ACTION_PROFILE_PARAMETER);
+            Token token = intent.getParcelableExtra(Lock.AUTHENTICATION_ACTION_TOKEN_PARAMETER);
+            //newIntent.putExtras(intent);
+
+            newIntent.putExtra("profile", profile);
+            newIntent.putExtra("token", token);
+
             startActivity(newIntent);
         }
     };
@@ -48,5 +57,6 @@ public class StartActivity extends AppCompatActivity {
         });
         broadcastManager = LocalBroadcastManager.getInstance(this);
         broadcastManager.registerReceiver(authenticationReceiver, new IntentFilter(AUTHENTICATION_ACTION));
+
     }
 }

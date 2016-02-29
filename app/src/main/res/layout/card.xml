@@ -59,4 +59,14 @@
         android:nestedScrollingEnabled="true"
         android:focusable="false" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="id"
+        android:id="@+id/txtId"
+        android:layout_below="@+id/txtCardDescription"
+        android:layout_alignParentStart="true"
+        android:visibility="gone" />
+
 </RelativeLayout>

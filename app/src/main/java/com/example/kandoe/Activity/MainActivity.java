@@ -18,6 +18,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 
+import com.auth0.core.Token;
+import com.auth0.core.UserProfile;
 import com.example.kandoe.Fragment.AccountFragment;
 import com.example.kandoe.Fragment.CircleFragment;
 import com.example.kandoe.Fragment.MainFragment;
@@ -39,11 +41,21 @@ public class MainActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private UserProfile userProfile;
+    private Token token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+
+        if (intent != null) {
+            userProfile = intent.getParcelableExtra("profile");
+            token = intent.getParcelableExtra("token");
+        }
+
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5f995f")));
@@ -82,14 +94,18 @@ public class MainActivity extends ActionBarActivity
             case 3:
                 mTitle = getString(R.string.title_section3);
                 fragment = new AccountFragment();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("profile",userProfile);
+                fragment.setArguments(bundle);
+
                 break;
             case 4:
                 mTitle = getString(R.string.title_section4);
-                startActivity(new Intent(getApplication(),SignInActivity.class));
+                startActivity(new Intent(getApplication(), SignInActivity.class));
                 break;
             case 5:
                 mTitle = "Spel starten";
-                listfragment = new Setup();
+                listfragment = new Setup(token);
                 break;
             default:
                 fragment = new MainFragment();
@@ -105,7 +121,7 @@ public class MainActivity extends ActionBarActivity
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment_main, listfragment).commit();
 
-        }  else {
+        } else {
             // error in creating fragment
             //Todo error loggen
             //Log.e("MainActivity", "Error in creating fragment");
@@ -151,12 +167,12 @@ public class MainActivity extends ActionBarActivity
             return true;
         }
 
-        if(id == R.id.action_login){
-            LoginActivity login= new LoginActivity();
-            if(login.isGoogleLogin()){
+        if (id == R.id.action_login) {
+            LoginActivity login = new LoginActivity();
+            if (login.isGoogleLogin()) {
                 //TODO: OOK GOOGLE LOG OUT !! Werkt nog niet
                 login.signOut(login.getmGoogleApiClient());
-            }else{
+            } else {
                 this.startActivity(new Intent(this, LoginActivity.class));
             }
         }

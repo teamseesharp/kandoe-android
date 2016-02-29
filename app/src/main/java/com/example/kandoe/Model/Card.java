@@ -5,40 +5,42 @@ package com.example.kandoe.Model;
  */
 
 public class Card {
-    private int id;
-    private String text;
+    private int Id;
+    private String Text;
     private String description;
-    private String URL;
+    private String SubthemeId;
+    private String Image;
 
-    public Card(int id, String URL, String text, String description) {
-        this.id = id;
-        this.URL = URL;
-        this.text = text;
-        this.description = description;
+    public Card(int id, String text, String subthemeId, String image) {
+        Id = id;
+        Text = text;
+        SubthemeId = subthemeId;
+        Image = image;
+        this.description = "Geen beschrijving";
     }
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getText() {
-        return text;
+        return Text;
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.Text = text;
     }
 
-    public String getURL() {
-        return URL;
+    public String getImage() {
+        return Image;
     }
 
-    public void setURL(String URL) {
-        this.URL = URL;
+    public void setImage(String image) {
+        this.Image = image;
     }
 
     public String getDescription() {

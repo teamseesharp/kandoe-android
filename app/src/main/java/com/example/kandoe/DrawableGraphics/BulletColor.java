@@ -31,7 +31,9 @@ public enum BulletColor {
     private BulletColor(final String hex) {
         this.hex = hex;
     }
+
     static ArrayList<BulletColor> list = new ArrayList<BulletColor>(Arrays.asList(BulletColor.values()));
+
     public String getHexCode() {
         return hex;
     }
@@ -39,10 +41,21 @@ public enum BulletColor {
     public static BulletColor getColor(int cardId) {
 
 
-       if (cardId > list.size()) {
+        if (cardId >= list.size()) {
+            double mod = list.size() % cardId;
 
-            cardId = new Random().nextInt(list.size());
+         if (mod>14){
+             return list.get(14);
+         } else return list.get((int) mod);
+
+
+
+
+
+
         }
+
+
         return list.get(cardId);
     }
 
