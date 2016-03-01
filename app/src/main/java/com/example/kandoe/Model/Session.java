@@ -13,6 +13,7 @@ public class Session extends ArrayList<Session> {
     private Image snapshot;
     private int date;
     private int numberOfSteps;
+    private int numberOfCards;
     //CHAT??
 
 
@@ -37,5 +38,13 @@ public class Session extends ArrayList<Session> {
 
     public int getNumberOfSteps() {
         return numberOfSteps;
+    }
+
+    public int getNumberOfCards() {
+        return numberOfCards;
+    }
+
+    public void setNumberOfCards(int numberOfCards) {
+        this.numberOfCards = numberOfCards;
     }
 }

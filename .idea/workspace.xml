@@ -17,33 +17,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f15714f-3615-4e30-b50f-a4604111200c" name="Default" comment="Merge remote-tracking branch 'remotes/origin/slave' into updatedAuth0&#10;&#10;# Conflicts:&#10;#&#9;.idea/libraries/appcompat_v7_23_1_1.xml&#10;#&#9;.idea/libraries/espresso_idling_resource_2_2_1.xml&#10;#&#9;.idea/libraries/exposed_instrumentation_api_publish_0_4_1.xml&#10;#&#9;.idea/libraries/play_services_auth_8_4_0.xml&#10;#&#9;.idea/libraries/uiautomator_v18_2_1_2.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;app/app.iml&#10;#&#9;app/src/main/java/com/example/kandoe/Activity/MainActivity.java&#10;#&#9;app/src/main/java/com/example/kandoe/Fragment/NavigationDrawerFragment.java&#10;#&#9;app/src/main/res/layout/register.xml&#10;#&#9;app/src/main/res/menu/menu_main.xml&#10;#&#9;app/src/main/res/values/color.xml&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Adpaters/SessionAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/editted_modified_states.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/greentag.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/listchild.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/listgroup.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/orangetag.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/redtag.xml" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\espresso_core_2_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\rules_0_4_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\runner_0_4_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\app\src\main\java\com\example\kandoe\Activity\SignInActivity.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\app\src\main\java\com\example\kandoe\Model\Token.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\app\src\main\res\layout\sign_in.xml" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\app\src\main\java\com\example\kandoe\Fragment\Setup.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/SetupFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/CircleFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/CircleFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Activity/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/NavigationDrawerFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/NavigationDrawerFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Model/Organisation.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Model/Organisation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Model/Session.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Model/Session.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Adpaters/SessionAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Adpaters/SessionAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/SessionListFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/SessionListFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/SetupFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/SetupFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Utilities/Utilities.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Utilities/Utilities.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_start.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_start.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_session_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_session_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/listchild.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/listchild.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/listgroup.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/listgroup.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/setup.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/setup.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -2597,6 +2584,50 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kandoe" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DrawableGraphics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kandoe-android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kandoe" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Adpaters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kandoe-android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -3055,7 +3086,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456820616690</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="lot of changes, workflow">
+      <created>1456845279215</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1456845279215</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3069,7 +3106,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3088,7 +3125,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21321961" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21321961" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -3157,7 +3194,8 @@
     <MESSAGE value="background + responsive" />
     <MESSAGE value="Nieuwe cards model" />
     <MESSAGE value="updated auth +  session setup + profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated auth +  session setup + profile" />
+    <MESSAGE value="lot of changes, workflow" />
+    <option name="LAST_COMMIT_MESSAGE" value="lot of changes, workflow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3242,6 +3280,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1693#1694#0" expanded="false" />
+            <element signature="e#1721#1722#0" expanded="false" />
+            <element signature="e#1769#1770#0" expanded="false" />
+            <element signature="e#1804#1805#0" expanded="false" />
+            <element signature="e#1839#1840#0" expanded="false" />
+            <element signature="e#1869#1870#0" expanded="false" />
+            <element signature="e#1904#1905#0" expanded="false" />
+            <element signature="e#1934#1935#0" expanded="false" />
+            <element signature="e#1978#1979#0" expanded="false" />
+            <element signature="e#2018#2019#0" expanded="false" />
+            <element signature="e#2182#2183#0" expanded="false" />
+            <element signature="e#2212#2213#0" expanded="false" />
+            <element signature="e#2264#2265#0" expanded="false" />
+            <element signature="e#2302#2303#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3270,6 +3325,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3346,6 +3402,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="329" column="0" selection-start-line="329" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
+          <folding>
+            <element signature="e#11484#11485#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3427,6 +3486,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3434,6 +3494,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

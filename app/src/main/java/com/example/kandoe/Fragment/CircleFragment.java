@@ -1,60 +1,42 @@
 package com.example.kandoe.Fragment;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
+import com.example.kandoe.API.KandoeBackendAPI;
 import com.example.kandoe.Adpaters.CardAdapter;
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.R;
 
-import java.util.LinkedList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CircleFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CircleFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CircleFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private CircleSessionController controller;
     private OnFragmentInteractionListener mListener;
-
-    private RadioGroup radioGroup;
-
+    private KandoeBackendAPI service;
 
     public CircleFragment() {
-        // Required empty public constructor
+    }
+
+    public CircleFragment(KandoeBackendAPI service) {
+        this.service = service;
     }
 
 
-    public static CircleFragment newInstance(String param1, String param2) {
+    public static CircleFragment newInstance(KandoeBackendAPI param1) {
         CircleFragment fragment = new CircleFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable("Service", (Parcelable) param1);
+
         fragment.setArguments(args);
 
         return fragment;
@@ -64,8 +46,8 @@ public class CircleFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            service = getArguments().getParcelable("Service");
+
         }
 
         //TODO Add session parameter

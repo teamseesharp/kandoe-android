@@ -20,12 +20,14 @@ import android.support.v4.widget.DrawerLayout;
 
 import com.auth0.core.Token;
 import com.auth0.core.UserProfile;
+import com.example.kandoe.API.APIServiceGenerator;
+import com.example.kandoe.API.KandoeBackendAPI;
 import com.example.kandoe.Fragment.AccountFragment;
 import com.example.kandoe.Fragment.CircleFragment;
 import com.example.kandoe.Fragment.MainFragment;
 import com.example.kandoe.Fragment.NavigationDrawerFragment;
 import com.example.kandoe.Fragment.SessionListFragment;
-import com.example.kandoe.Fragment.Setup;
+import com.example.kandoe.Fragment.SetupFragment;
 import com.example.kandoe.R;
 
 
@@ -43,6 +45,7 @@ public class MainActivity extends ActionBarActivity
     private CharSequence mTitle;
     private UserProfile userProfile;
     private Token token;
+    private KandoeBackendAPI service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,7 @@ public class MainActivity extends ActionBarActivity
             token = intent.getParcelableExtra("token");
         }
 
+        service = APIServiceGenerator.createService(KandoeBackendAPI.class,token.getIdToken());
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5f995f")));
@@ -83,30 +87,29 @@ public class MainActivity extends ActionBarActivity
         android.support.v4.app.ListFragment listfragment = null;
 
         switch (number) {
-            case 1:
+           /* case 2:
                 mTitle = getString(R.string.title_section1);
                 fragment = new CircleFragment();
+                break;*/
+            case 1:
+                fragment = new MainFragment();
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
-                listfragment = new SessionListFragment();
+                fragment = new SessionListFragment(service);
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
                 fragment = new AccountFragment();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("profile",userProfile);
+                bundle.putParcelable("profile", userProfile);
                 fragment.setArguments(bundle);
 
                 break;
-            case 4:
-                mTitle = getString(R.string.title_section4);
-                startActivity(new Intent(getApplication(), SignInActivity.class));
-                break;
-            case 5:
+            /*case 4:
                 mTitle = "Spel starten";
-                listfragment = new Setup(token);
-                break;
+                listfragment = new SetupFragment(token);
+                break;*/
             default:
                 fragment = new MainFragment();
                 break;
