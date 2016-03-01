@@ -16,47 +16,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f15714f-3615-4e30-b50f-a4604111200c" name="Default" comment="Nieuwe cards model">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Utilities/ImageLoadTask.java" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\converter_gson_2_0_0_beta4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\crouton_1_8_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\espresso_core_2_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\espresso_idling_resource_2_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\exposed_instrumentation_api_publish_0_4_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\gson_2_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\hamcrest_core_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\hamcrest_integration_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\hamcrest_library_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\javawriter_2_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\javax_annotation_api_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\javax_inject_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\joda_time_2_7.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\jsr305_2_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\junit_4_12.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\okhttp_3_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\okio_1_6_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\play_services_auth_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\play_services_base_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\play_services_basement_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\play_services_measurement_8_4_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\retrofit_1_8_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\retrofit_2_0_0_beta4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\robotium_solo_5_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\rules_0_4_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\runner_0_4_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Thomas\Documents\AndroidProjects\kandoe-androidv5\kandoe-android\.idea\libraries\uiautomator_v18_2_1_2.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/API/APIServiceGenerator.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/API/APIServiceGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/AccountFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/AccountFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/DrawableGraphics/BulletColor.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/DrawableGraphics/BulletColor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Model/Card.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Model/Card.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Adpaters/CardAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Adpaters/CardAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/Setup.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Fragment/Setup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Lock/StartActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kandoe/Lock/StartActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/card.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_account.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_account.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+    <list default="true" id="9f15714f-3615-4e30-b50f-a4604111200c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kandoe-android.iws" />
@@ -3154,7 +3114,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456494766486</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="updated auth +  session setup + profile">
+      <created>1456776357217</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1456776357217</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3255,7 +3221,8 @@
     <MESSAGE value="bg" />
     <MESSAGE value="background + responsive" />
     <MESSAGE value="Nieuwe cards model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nieuwe cards model" />
+    <MESSAGE value="updated auth +  session setup + profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated auth +  session setup + profile" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
