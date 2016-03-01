@@ -30,7 +30,7 @@ import retrofit2.Response;
 /**
  * Created by JoachimDs on 19/02/2016.
  */
-public class Setup extends ListFragment implements OnItemClickListener {
+public class SetupFragment extends ListFragment implements OnItemClickListener {
     private ArrayList<Card> cards;
     private ArrayList<Card> myCards;
     private GridView grdMyCards;
@@ -40,7 +40,7 @@ public class Setup extends ListFragment implements OnItemClickListener {
 
     KandoeBackendAPI service;
 
-    public Setup(Token token) {
+    public SetupFragment(Token token) {
         service = APIServiceGenerator.createService(KandoeBackendAPI.class, token.getIdToken());
     }
 
