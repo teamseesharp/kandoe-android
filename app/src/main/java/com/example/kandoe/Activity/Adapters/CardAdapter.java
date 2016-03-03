@@ -1,4 +1,4 @@
-package com.example.kandoe.Activity.Adapaters;
+package com.example.kandoe.Activity.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,9 +19,7 @@ import com.example.kandoe.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by JoachimDs on 25/02/2016.
- */
+
 public class CardAdapter extends ArrayAdapter {
     private Context context;
     private int layoutResourceId;
@@ -70,7 +68,7 @@ public class CardAdapter extends ArrayAdapter {
 
         setBG(holder, card.getId());
 
-        handleRadioButton(holder);
+        handleSetup(holder);
 
 
         return view;
@@ -87,7 +85,7 @@ public class CardAdapter extends ArrayAdapter {
     }
 
 
-    private void handleRadioButton(final ViewHolder holder) {
+    private void handleSetup(final ViewHolder holder) {
         if (!setup) {
             checks.add(holder.upvote);
 
@@ -108,6 +106,8 @@ public class CardAdapter extends ArrayAdapter {
             });
         } else {
             holder.upvote.setVisibility(View.INVISIBLE);
+            holder.number.setText("");
+
         }
 
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
-import com.example.kandoe.Activity.Adapaters.SessionAdapter;
+import com.example.kandoe.Activity.Adapters.SessionAdapter;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
@@ -79,8 +79,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
         sessions.add(new Session(null, 2, 3, 1));
         sessions.add(new Session(null, 2, 3, 2));
-        sessions.add(new Session(null, 2, 3, 3));
-        sessions.add(new Session(null, 2, 3, 4));
+
         Organisation organisation = new Organisation("KdG", sessions, "1");
         Organisation organisation2 = new Organisation("Antwerpen", sessions, "2");
         Organisation organisation3 = new Organisation("Paljaskes Unite", sessions, "3");

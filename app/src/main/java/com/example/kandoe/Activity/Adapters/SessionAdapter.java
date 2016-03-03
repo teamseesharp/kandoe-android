@@ -1,4 +1,4 @@
-package com.example.kandoe.Activity.Adapaters;
+package com.example.kandoe.Activity.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

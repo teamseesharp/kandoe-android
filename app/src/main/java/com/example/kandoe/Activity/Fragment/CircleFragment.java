@@ -10,18 +10,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.kandoe.Model.Session;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
-import com.example.kandoe.Activity.Adapaters.CardAdapter;
+import com.example.kandoe.Activity.Adapters.CardAdapter;
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.R;
 
+import java.io.Serializable;
+
 
 public class CircleFragment extends Fragment {
+    private static final String EXTRA_SERVICE = "Service";
+    private static final String EXTRA_SESSION = "Session";
 
 
     private CircleSessionController controller;
     private OnFragmentInteractionListener mListener;
     private KandoeBackendAPI service;
+    private Session session;
 
     public CircleFragment() {
     }
@@ -31,11 +37,11 @@ public class CircleFragment extends Fragment {
     }
 
 
-    public static CircleFragment newInstance(KandoeBackendAPI param1) {
+    public static CircleFragment newInstance(KandoeBackendAPI service, Session session) {
         CircleFragment fragment = new CircleFragment();
         Bundle args = new Bundle();
-        args.putParcelable("Service", (Parcelable) param1);
-
+        args.putSerializable(EXTRA_SERVICE, (Serializable) service);
+        args.putSerializable(EXTRA_SESSION, session);
         fragment.setArguments(args);
 
         return fragment;
@@ -45,16 +51,16 @@ public class CircleFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            service = getArguments().getParcelable("Service");
+            service = (KandoeBackendAPI) getArguments().getSerializable(EXTRA_SERVICE);
+            session = (Session) getArguments().getSerializable(EXTRA_SESSION);
 
         }
 
         //TODO Add session parameter
-        controller = new CircleSessionController(getContext());
+        controller = new CircleSessionController(getContext(),session);
 
 
     }
-
 
 
     @Override
@@ -70,18 +76,16 @@ public class CircleFragment extends Fragment {
 
         ListView listView = new ListView(getContext());
 
-        CardAdapter cardAdapter= new CardAdapter(getContext(), false, controller.getCards());
+        CardAdapter cardAdapter = new CardAdapter(getContext(), false, controller.getCards());
 
         controller.setAdapter(cardAdapter);
 
         listView.setAdapter(cardAdapter);
 
 
+        container.addView(listView);
 
-       container.addView(listView);
-
-        listView.setPadding(0,(int) controller.getBottomboundLadder() , 0, 0);
-
+        listView.setPadding(0, (int) controller.getBottomboundLadder(), 0, 0);
 
 
         return view;
@@ -111,7 +115,6 @@ public class CircleFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
 
 
     /**

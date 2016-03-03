@@ -1,18 +1,21 @@
 package com.example.kandoe.Activity.Fragment;
 
+import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
-import com.example.kandoe.Activity.Adapaters.CardAdapter;
+import com.example.kandoe.Activity.Adapters.CardAdapter;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
@@ -25,9 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by JoachimDs on 19/02/2016.
- */
+
 public class SetupFragment extends ListFragment implements OnItemClickListener {
     private static final String EXTRA_SERVICE =   "Service" ;
     private static final String EXTRA_SESSION =   "Session" ;
@@ -38,6 +39,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     private CardAdapter cardAdapter;
     private CardAdapter myCardAdapter;
     private ProgressBar progressBar;
+    private Button playButton;
     private TextView numberOfCards;
 
     KandoeBackendAPI service;
@@ -64,11 +66,9 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     {
         super.onCreate(savedInstanceState);
         service = (KandoeBackendAPI) getArguments().getSerializable(EXTRA_SERVICE);
-       session = (Session) getArguments().getSerializable(EXTRA_SESSION);
+        session = (Session) getArguments().getSerializable(EXTRA_SESSION);
 
-        //...
-        //etc
-        //...
+
     }
 
     @Override
@@ -96,6 +96,21 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
         grdCards.setAdapter(cardAdapter);
         grdCards.setOnItemClickListener(this);
+
+        playButton = (Button) view.findViewById(R.id.btnPlay);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                CircleFragment fragment = CircleFragment.newInstance(service, session);
+
+
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
+
+            }
+        });
 
         return view;
     }
@@ -145,11 +160,20 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         double max = session.getNumberOfCards();
         double currentNumber = myCards.size();
         double progress = (currentNumber/max)*100;
-
         progressBar.setProgress((int) progress);
-
-
         numberOfCards.setText(String.valueOf(cards.size()));
+
+
+        if (progressBar.getProgress() == 100){
+            playButton.setEnabled(true);
+            playButton.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
+        } else {
+            playButton.setEnabled(false);
+            playButton.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
 
     }
     public ArrayList<Card> getCardData() {
@@ -171,11 +195,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         });
 
 
-        //Todo parameter data voorzien met juiste datacards = new ArrayList<>();
-        /*cards.add(new Card(1, "url1", "Titel kaart 1", "Omschrijving 1"));
-        cards.add(new Card(2, "url2", "Titel kaart 2", "Omschrijving 2"));
-        cards.add(new Card(3, "url3", "Titel kaart 3", "Omschrijving 3"));
-        cards.add(new Card(4, "url4", "Titel kaart 4", "Omschrijving 4"));*/
 
         return cards;
     }

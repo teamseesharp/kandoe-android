@@ -33,7 +33,10 @@
         android:verticalSpacing="10dp"
         android:layout_below="@+id/txtmyCards"
         android:layout_alignParentStart="true"
-        android:layout_margin="15dp" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp" />
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
@@ -72,25 +75,41 @@
         android:layout_alignParentStart="true"
         android:layout_margin="15dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speel"
+        android:id="@+id/btnPlay"
+        android:enabled="false"
+        android:focusable="false"
+        android:layout_alignEnd="@+id/grdmycards"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/txtmyCards"
+        android:layout_alignTop="@+id/txtmyCards"
+        android:textSize="18dp"
+        android:visibility="invisible" />
+
     <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="100dp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/txtmyCards"
-        android:progress="50"
-        android:progressTint="#33691e"
-        android:padding="15dp"
+        android:progress="100"
+        android:progressTint="@color/accent"
         android:indeterminate="false"
-        android:max="100" />
+        android:max="100"
+        android:layout_alignBottom="@+id/txtmyCards"
+        android:layout_alignStart="@+id/btnPlay"
+        android:layout_alignEnd="@+id/btnPlay"
+        android:layout_margin="15dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="3"
+        android:text="0"
         android:id="@+id/txtNumberOfCards"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"

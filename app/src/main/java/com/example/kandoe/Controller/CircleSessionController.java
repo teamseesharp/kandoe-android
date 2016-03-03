@@ -20,16 +20,15 @@ public class CircleSessionController {
     private ArrayAdapter adapter;
     private Session session;
     private ChatController chatController;
+
     private Context context;
     private double bottomboundLadder;
 
 
-
-
-    public CircleSessionController(Context context) {
+    public CircleSessionController(Context context, Session session) {
         init();
         this.context = context;
-
+        this.session = session;
     }
 
     private void init() {
@@ -38,15 +37,15 @@ public class CircleSessionController {
         bulletPoints = new ArrayList<>();
 
 
-        session = new Session(null,1,4,1);
+        session = new Session(null, 1, 4, 1);
         chatController = new ChatController(session.getId());
 
-        cards.add(new Card(1, "", "Jeugd", "info over Jeugd "));
-        cards.add(new Card(2, "", "Armoede ", "info over paupers"));
-        cards.add(new Card(3, "", "Racisme", "info over racisme en andere zaken met discriminatie"));
-        cards.add(new Card(4, "", "Inspiratieloosheid", "info over niks"));
-        cards.add(new Card(5, "", "Inspiratieloosheid", "info over niks"));
-        cards.add(new Card(6, "", "Inspiratieloosheid", "info over niks"));
+        cards.add(new Card(1, "Jeugd", "info over Jeugd ", ""));
+        cards.add(new Card(2, "Armoede ", "info over paupers", ""));
+        cards.add(new Card(3, "Racisme", "info over racisme en andere zaken met discriminatie", ""));
+        cards.add(new Card(4, "Inspiratieloosheid", "info over niks", ""));
+        cards.add(new Card(5, "Inspiratieloosheid", "info over niks", ""));
+        cards.add(new Card(6, "Inspiratieloosheid", "info over niks", ""));
     }
 
     public void createLadder(ViewGroup container) {
