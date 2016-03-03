@@ -1,11 +1,13 @@
 package com.example.kandoe.Activity.Fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -15,8 +17,11 @@ import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Activity.Adapters.CardAdapter;
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.R;
+import com.example.kandoe.Utilities.DrawableGraphics.SurfacePanel;
 
 import java.io.Serializable;
+
+import retrofit.http.PATCH;
 
 
 public class CircleFragment extends Fragment {
@@ -57,7 +62,7 @@ public class CircleFragment extends Fragment {
         }
 
         //TODO Add session parameter
-        controller = new CircleSessionController(getContext(),session);
+        controller = new CircleSessionController(getContext(), session);
 
 
     }
@@ -72,9 +77,18 @@ public class CircleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
 
 
-        controller.createLadder(container);
+        // controller.createLadder(container);
+//container.addView(new SurfacePanel(getContext(),controller));
 
-        ListView listView = new ListView(getContext());
+
+        SurfacePanel panel = (SurfacePanel) view.findViewById(R.id.view);
+        panel.setController(controller);
+       // panel.invalidate();
+
+
+        System.out.println(panel.getBottom());
+
+        ListView listView = (ListView) view.findViewById(R.id.lvCards);
 
         CardAdapter cardAdapter = new CardAdapter(getContext(), false, controller.getCards());
 
@@ -82,10 +96,12 @@ public class CircleFragment extends Fragment {
 
         listView.setAdapter(cardAdapter);
 
+        //listView.setTop(panel.getHeight());
+        System.out.println(panel.getHeight());
 
-        container.addView(listView);
 
-        listView.setPadding(0, (int) controller.getBottomboundLadder(), 0, 0);
+
+      //  listView.setPadding(0, (int) controller.getBottomboundLadder(), 0, 0);
 
 
         return view;
@@ -127,6 +143,8 @@ public class CircleFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

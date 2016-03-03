@@ -41,16 +41,8 @@ public enum BulletColor {
 
 
         if (cardId >= list.size()) {
-            double mod = list.size() % cardId;
 
-         if (mod>14){
-             return list.get(14);
-         } else return list.get((int) mod);
-
-
-
-
-
+            return list.get(cardId%list.size());
 
         }
 

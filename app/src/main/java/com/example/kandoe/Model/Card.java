@@ -11,6 +11,9 @@ public class Card {
     private String SubthemeId;
     private String Image;
 
+    public Card() {
+    }
+
     public Card(int id, String text, String subthemeId, String image) {
         Id = id;
         Text = text;
@@ -49,6 +52,14 @@ public class Card {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSubthemeId() {
+        return SubthemeId;
+    }
+
+    public void setSubthemeId(String subthemeId) {
+        SubthemeId = subthemeId;
     }
 }
 

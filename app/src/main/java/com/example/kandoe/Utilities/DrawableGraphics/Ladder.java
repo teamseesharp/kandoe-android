@@ -1,7 +1,9 @@
 package com.example.kandoe.Utilities.DrawableGraphics;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,13 +46,12 @@ public class Ladder extends View {
         legs = new ArrayList<>();
     }
 
-    public void createLadder(ViewGroup container) {
+    public void createLadder(Canvas container) {
         init();
         createBackGround(container);
 
         createSteps(container);
         createLegs(container);
-
         createBullets(container);
 
     }
@@ -69,59 +70,69 @@ public class Ladder extends View {
         heightleg = clBottom - clTop;
     }
 
-    private void createBackGround(ViewGroup container) {
+    private void createBackGround(Canvas container) {
+
+        System.out.println("Drawing Background");
 
         bottembound = (heightleg + heightleg * 0.3);
         controller.setBottomboundLadder(bottembound);
 
-        View background = new Background(getContext(), (int) bottembound);
+       View background = new Background(getContext(), (int) bottembound,container);
 
-        container.addView(background);
+        //container.addView(background);
+
 
 
     }
 
 
-    private void createBullets(ViewGroup container) {
+    private void createBullets(Canvas container) {
 
+        System.out.println("Drawing Bullets");
 
         for (Card card : controller.getCards()) {
 
 
-            View bullet = new BulletPoint(getContext(), steps, card, legs, controller);
+            View bullet = new BulletPoint(getContext(), steps, card, legs, controller,container);
 
           /*  LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, WRAP_CONTENT);
             myImageView .setLayoutParams(params);*/
 
 
             controller.getBulletPoints().add(bullet);
-            container.addView(bullet);
+          //  container.addView(bullet);
 
         }
     }
 
-    private void createSteps(ViewGroup container) {
 
-        int numberOfSteps = controller.getSession().getNumberOfSteps();
+    private void createSteps( Canvas container) {
+
+
+        System.out.println("Drawing Steps");
+         int numberOfSteps = controller.getSession().getNumberOfSteps();
 
         //init values
-        int ctLeft = clLeft + 30, ctTop = clTop + heightleg / numberOfSteps / 2, ctRight = clLeft + offset + 5, ctBottom = ctTop + 15;
+         int ctLeft = clLeft + 30, ctTop = clTop + heightleg / numberOfSteps / 2, ctRight = clLeft + offset + 5, ctBottom = ctTop + 15;
 
-        int topOffset = 0; //space between 2 steps
+         int topOffset = 0; //space between 2 steps
 
         //create steps
         for (int i = 0; i < numberOfSteps; i++) {
-            RoundedRectangle trede = new RoundedRectangle(getContext(), ctLeft, ctTop + topOffset, ctRight, ctBottom + topOffset, Color.rgb(101, 67, 33), i);
+            RoundedRectangle trede = new RoundedRectangle(getContext(), ctLeft, ctTop + topOffset, ctRight, ctBottom + topOffset, Color.rgb(101, 67, 33), i,container);
             topOffset += heightleg / numberOfSteps;
 
             steps.add(trede);
-            container.addView(trede);
+            //container.addView(trede);
+
 
         }
+
+
     }
 
 
-    private void createLegs(ViewGroup container) {
+    private void createLegs(Canvas container) {
         //init values
 
         // int clLeft = 200, clTop = 150, clRight = clLeft + 50, clBottom = 800;
@@ -129,15 +140,15 @@ public class Ladder extends View {
 
 
         //left leg
-        RoundedRectangle leftleg = new RoundedRectangle(getContext(), clLeft, clTop, clRight, clBottom, Color.rgb(102, 51, 0));
+        RoundedRectangle leftleg = new RoundedRectangle(getContext(), clLeft, clTop, clRight, clBottom, Color.rgb(102, 51, 0),container);
 
         //right leg
-        RoundedRectangle rightLeg = new RoundedRectangle(getContext(), clLeft + offset, clTop, clRight + offset, clBottom, Color.rgb(102, 51, 0));
+        RoundedRectangle rightLeg = new RoundedRectangle(getContext(), clLeft + offset, clTop, clRight + offset, clBottom, Color.rgb(102, 51, 0),container);
 
         legs.add(leftleg);
         legs.add(rightLeg);
-        container.addView(leftleg);
-        container.addView(rightLeg);
+       /* container.addView(leftleg);
+        container.addView(rightLeg);*/
     }
 
 

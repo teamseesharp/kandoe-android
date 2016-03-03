@@ -3,6 +3,7 @@ package com.example.kandoe.Utilities.DrawableGraphics;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -19,6 +20,29 @@ public class Background extends View {
     Rect border;
     Drawable d;
 
+    public Background(Context context, int height, Canvas container) {
+        super(context);
+
+        paint.setColor(Color.LTGRAY);
+
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+
+        d = context.getResources().getDrawable(R.drawable.bgcartoon);
+
+
+        if (d != null) {
+            d.setBounds(0, 0, width, (int) (height));
+        }
+
+
+        //rect = new Rect(0, 0, width, height / 2);
+        border = new Rect(0, height - 2, width, height + 2);
+
+        d.draw(container);
+        container.drawRect(border, paint);
+
+    }
 
     public Background(Context context, int height) {
         super(context);
@@ -27,26 +51,25 @@ public class Background extends View {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
 
-        d = getResources().getDrawable(R.drawable.bgcartoon);
+        d = context.getResources().getDrawable(R.drawable.bgcartoon);
 
 
-        d.setBounds(0, 0, width, (int) (height));
+        if (d != null) {
+            d.setBounds(0, 0, width, (int) (height));
+        }
 
 
         //rect = new Rect(0, 0, width, height / 2);
         border = new Rect(0, height - 2, width, height + 2);
     }
 
+
+
     @Override
-    protected void onDraw(Canvas canvas) {
-
-
-
-            d.draw(canvas);
-            canvas.drawRect(border, paint);
-
-            // canvas.drawRect(rect, paint);
-
-
+    public void onDraw(Canvas canvas) {
+        d.draw(canvas);
+        canvas.drawRect(border, paint);
     }
+
+
 }

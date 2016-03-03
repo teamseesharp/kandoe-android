@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.view.SurfaceView;
 import android.view.View;
 
 import com.example.kandoe.Controller.CircleSessionController;
@@ -26,17 +27,19 @@ public class BulletPoint extends View {
 
     Rect rect;
 
-
     public BulletPoint(Context context) {
         super(context);
 
     }
 
 
-    public BulletPoint(Context context, ArrayList<View> steps, Card card, ArrayList<RoundedRectangle> legs, CircleSessionController controller) {
+    public BulletPoint(Context context, ArrayList<View> steps, Card card, ArrayList<RoundedRectangle> legs, CircleSessionController controller, Canvas container) {
         super(context);
         initValues(card, steps, legs, controller);
 
+
+        container.drawRoundRect(rectF, 100, 100, paint);
+        drawRectText(String.valueOf(card.getId()), container, rectF);
     }
 
 
@@ -107,11 +110,16 @@ public class BulletPoint extends View {
 
         //  canvas.drawBitmap(bmDest, bmDest.getWidth(), bmDest.getHeight(), null);
 
+
+
+
         canvas.drawRoundRect(rectF, 100, 100, paint);
         drawRectText(String.valueOf(card.getId()), canvas, rectF);
 
 
     }
+
+
 
 
     private void drawRectText(String text, Canvas canvas, RectF r) {

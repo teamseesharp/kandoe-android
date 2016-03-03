@@ -30,7 +30,7 @@ public class RoundedRectangle extends View {
 
     }
 
-    public RoundedRectangle(Context context, int left, int top, int right, int bottom, int color) {
+    public RoundedRectangle(Context context, int left, int top, int right, int bottom, int color, Canvas container) {
         super(context);
         this.left = left;
         this.top = top;
@@ -48,9 +48,10 @@ public class RoundedRectangle extends View {
         paint.setColor(color);
 
         paint.setShadowLayer(4.0f, 0.0f, 2.0f, Color.BLACK);
+        container.drawRoundRect(rectF, 15, 15, paint);
     }
 
-    public RoundedRectangle(Context context, int left, int top, int right, int bottom, int color, int stepNumber) {
+    public RoundedRectangle(Context context, int left, int top, int right, int bottom, int color, int stepNumber, Canvas container) {
         super(context);
         this.left = left;
         this.top = top;
@@ -69,6 +70,8 @@ public class RoundedRectangle extends View {
         paint.setColor(color);
 
         paint.setShadowLayer(4.0f, 0.0f, 2.0f, Color.BLACK);
+
+        container.drawRoundRect(rectF, 15, 15, paint);
     }
 
     @Override

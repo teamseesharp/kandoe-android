@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
+import android.text.Editable;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -166,7 +168,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         double progress = (currentNumber/max)*100;
         progressBar.setProgress((int) progress);
         progressBar.setProgress((int) progress);
-        numberOfCards.setText(String.valueOf(cards.size()));
+        //numberOfCards.setText(String.valueOf(cards.size()));
 
         if (progressBar.getProgress() == 100){
             playButton.setEnabled(true);
@@ -210,7 +212,23 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //TODO: PUT CARD
+                        Editable kaartnaam = input.getText();
+                        Card newCard = new Card();
+
+                        newCard.setText(String.valueOf(kaartnaam));
+                         //TODO NOG TE VERVANGEN
+                        session.setSubThemaId(5);
+                        newCard.setSubthemeId(String.valueOf(session.getSubThemaId()));
+
+                        //TODO POST naar backend
+
+                        // mock return
+                        newCard.setId(cards.size() + new Random().nextInt(100));
+
+                        myCards.add(0,newCard);
+                        myCardAdapter.notifyDataSetChanged();
+
+
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
