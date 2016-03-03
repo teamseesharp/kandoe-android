@@ -25,7 +25,7 @@ public class AccountFragment extends Fragment {
     KandoeBackendAPI service = APIServiceGenerator.createService(KandoeBackendAPI.class);
     int id;
 
-    private EditText fName,lName,email;
+    private EditText fName,email;
     private Switch aSwitch;
     private ImageView imageView;
 

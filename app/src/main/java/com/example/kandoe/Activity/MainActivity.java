@@ -6,6 +6,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
@@ -14,20 +17,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.DrawerLayout;
 
 import com.auth0.core.Token;
 import com.auth0.core.UserProfile;
-import com.example.kandoe.Utilities.API.APIServiceGenerator;
-import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Activity.Fragment.AccountFragment;
 import com.example.kandoe.Activity.Fragment.CircleFragment;
+import com.example.kandoe.Activity.Fragment.HelpFragment;
 import com.example.kandoe.Activity.Fragment.MainFragment;
 import com.example.kandoe.Activity.Fragment.NavigationDrawerFragment;
 import com.example.kandoe.Activity.Fragment.SessionListFragment;
 import com.example.kandoe.R;
+import com.example.kandoe.Utilities.API.APIServiceGenerator;
+import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
 
 public class MainActivity extends ActionBarActivity
@@ -91,6 +92,7 @@ public class MainActivity extends ActionBarActivity
                 fragment = new CircleFragment();
                 break;*/
             case 1:
+                mTitle = getString(R.string.title_section1);
                 fragment = new MainFragment();
                 break;
             case 2:
@@ -154,6 +156,8 @@ public class MainActivity extends ActionBarActivity
         inflater.inflate(R.menu.menu_main, menu);
         MenuItem item = menu.findItem(R.id.action_login);
         item.setVisible(true);
+        MenuItem item2 = menu.findItem(R.id.action_help);
+        item2.setVisible(true);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -165,12 +169,16 @@ public class MainActivity extends ActionBarActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_login) {
+            startActivity(new Intent(MainActivity.this, StartActivity.class));
         }
 
-        if (id == R.id.action_login) {
-
+        if( id == R.id.action_help){
+            Fragment help = new HelpFragment();
+            if (help != null) {
+                android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragment_main, help).commit();
+            }
         }
 
         return super.onOptionsItemSelected(item);

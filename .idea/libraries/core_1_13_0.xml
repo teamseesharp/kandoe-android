@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="core-1.13.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.auth0.android/core/1.13.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.auth0.android/core/1.13.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.auth0.android/core/1.13.0/5102e1055e697cc9b7f3db723a079a5c9614a2df/core-1.13.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

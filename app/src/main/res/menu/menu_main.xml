@@ -2,6 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Activity.MainActivity">
+    <item android:id="@+id/action_help"
+        android:title="@string/menu_help"
+        android:icon="@drawable/ic_action_help"
+        android:visible="true"
+        app:showAsAction="never" />
     <item android:id="@+id/action_login"
         android:title="@string/menu_login"
         android:icon="@drawable/ic_action_login"

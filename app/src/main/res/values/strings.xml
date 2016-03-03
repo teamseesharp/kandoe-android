@@ -15,6 +15,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Log in</string>
     <string name="menu_login">Uitloggen</string>
+    <string name="menu_help">Help</string>
 
     <!-- Login -->
     <string name="prompt_email">Email</string>
@@ -39,8 +40,23 @@
     <string name="account_lastName">Achternaam</string>
     <string name="account_email">Email</string>
 
-    <!-- Retrofit -->
-    <string name="retrofit_error">Oep!Er is iets fout gegaan</string>
+    <!-- Help -->
+    <string name="help_About_title">Over</string>
+    <string name="help_About_info">Kandoe is een methodiek van de UAB. Deze app is gemaakt door laatste jaars in opdracht van Karel de Grote hogeschool, voor het vak integratieproject 2</string>
+    <string name="help_Kandoe_title">Uitleg</string>
+    <string name="help_Kandoe_1">1. een organisator bepaalt het thema waarover het spel zal gaan door kaartjes op te stellen met daarop een woord of kort stukje tekst (bv. ‘speelplein aanleggen’, ‘presenteren voor een groep’, enzovoort.)</string>
+    <string name="help_Kandoe_2">2. deelnemers kiezen een aantal kaartjes uit het beschikbare aanbod (bepaald door de organisator). Deelnemers kunnen ook zelf nog kaartjes toevoegen aan het spel indien gewenst </string>
+    <string name="help_Kandoe_3">3. Enkel de gekozen kaartjes uit stap 2 worden op het speelbord gelegd.</string>
+    <string name="help_Kandoe_4">4. Er worden nu verschillende rondes gespeeld en in elke ronde schuift elke deelnemer om de beurt één van de kaartjes één stap hoger.</string>
+    <string name="help_Kandoe_5">5. de spelorganisator beslist wanneer het spel eindigt en neemt een snapshot.</string>
+    <string name="help_Kandoe_6">6. kaartjes die hoger liggen hebben voor de deelnemers een hogere prioriteit.</string>
+
+
+    <!--Card Setup-->
+    <string name="cardSetup_title1">Gekozen kaarten</string>
+    <string name="cardSetup_title2">Beschikbare Kaarten</string>
+
+
 
 
 

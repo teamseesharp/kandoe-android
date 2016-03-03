@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="lock-facebook-2.0.0">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.auth0.android/lock-facebook/2.0.0/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.auth0.android/lock-facebook/2.0.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.auth0.android/lock-facebook/2.0.0/c3b21f5e59413d3d9b266dc4301ed5638b1726ae/lock-facebook-2.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

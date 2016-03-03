@@ -46,6 +46,12 @@ public class CircleSessionController {
         cards.add(new Card(4, "Inspiratieloosheid", "info over niks", ""));
         cards.add(new Card(5, "Inspiratieloosheid", "info over niks", ""));
         cards.add(new Card(6, "Inspiratieloosheid", "info over niks", ""));
+        cards.add(new Card(1, "", "Jeugd", "info over Jeugd "));
+        cards.add(new Card(2, "", "Armoede ", "info over paupers"));
+        cards.add(new Card(3, "", "Racisme", "info over racisme en andere zaken met discriminatie"));
+        cards.add(new Card(4, "", "Mileu", "info over betere zorgen voor milieu"));
+        cards.add(new Card(5, "", "Seks", "info over seks"));
+        cards.add(new Card(6, "", "Drugs", "info over drugs"));
     }
 
     public void createLadder(ViewGroup container) {

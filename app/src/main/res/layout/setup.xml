@@ -13,7 +13,7 @@
         android:paddingBottom="5dp"
         android:paddingLeft="15dp"
         android:paddingTop="7dp"
-        android:text="Gekozen kaarten"
+        android:text="@string/cardSetup_title1"
         android:textColor="@color/white"
         android:textSize="22dp"
         android:textStyle="bold"
@@ -54,7 +54,7 @@
         android:paddingBottom="5dp"
         android:paddingLeft="15dp"
         android:paddingTop="7dp"
-        android:text="Beschikbare Kaarten"
+        android:text="@string/cardSetup_title2"
         android:textColor="@color/white"
         android:textSize="22dp"
         android:textStyle="bold"
@@ -78,7 +78,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Speel"
         android:id="@+id/btnPlay"
         android:enabled="false"
         android:focusable="false"
@@ -105,16 +104,16 @@
         android:paddingLeft="2dp"
         android:paddingRight="2dp" />
 
-    <TextView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
-        android:id="@+id/txtNumberOfCards"
+        android:src="@drawable/ic_action_new"
+        android:id="@+id/addCardButton"
+        android:background="@color/primary"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="15dp"
-        android:textColor="#ffffff" />
+        android:layout_marginRight="15dp" />
 
 
 </RelativeLayout>
