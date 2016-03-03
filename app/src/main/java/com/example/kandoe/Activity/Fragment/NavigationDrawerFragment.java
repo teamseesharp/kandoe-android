@@ -1,4 +1,4 @@
-package com.example.kandoe.Fragment;
+package com.example.kandoe.Activity.Fragment;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

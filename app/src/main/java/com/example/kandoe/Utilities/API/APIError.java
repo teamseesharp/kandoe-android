@@ -1,4 +1,4 @@
-package com.example.kandoe.API;
+package com.example.kandoe.Utilities.API;
 
 /**
  * Created by Thomas on 2016-02-16.

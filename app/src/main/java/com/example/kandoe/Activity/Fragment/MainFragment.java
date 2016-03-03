@@ -1,4 +1,4 @@
-package com.example.kandoe.Fragment;
+package com.example.kandoe.Activity.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

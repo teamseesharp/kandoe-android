@@ -1,4 +1,4 @@
-package com.example.kandoe.API;
+package com.example.kandoe.Utilities.API;
 
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.CardReview;

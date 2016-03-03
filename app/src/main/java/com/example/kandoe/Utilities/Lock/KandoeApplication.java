@@ -1,14 +1,9 @@
-package com.example.kandoe.Lock;
+package com.example.kandoe.Utilities.Lock;
 
 import android.app.Application;
 
-import com.auth0.core.Strategies;
-import com.auth0.facebook.FacebookIdentityProvider;
-import com.auth0.googleplus.GooglePlusIdentityProvider;
 import com.auth0.lock.Lock;
-import com.auth0.lock.LockActivity;
 import com.auth0.lock.LockProvider;
-import com.google.android.gms.auth.api.credentials.CredentialRequest;
 
 /**
  * Created by Thomas on 28-2-2016.

@@ -1,30 +1,19 @@
-package com.example.kandoe.Fragment;
+package com.example.kandoe.Activity.Fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
 
-import com.example.kandoe.API.APIServiceGenerator;
-import com.example.kandoe.API.KandoeBackendAPI;
-import com.example.kandoe.Adpaters.SessionAdapter;
+import com.example.kandoe.Utilities.API.KandoeBackendAPI;
+import com.example.kandoe.Activity.Adapaters.SessionAdapter;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by JoachimDs on 19/02/2016.

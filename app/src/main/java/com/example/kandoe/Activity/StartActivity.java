@@ -1,4 +1,4 @@
-package com.example.kandoe.Lock;
+package com.example.kandoe.Activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,7 +15,6 @@ import com.auth0.core.Token;
 import com.auth0.core.UserProfile;
 import com.auth0.lock.Lock;
 import com.auth0.lock.LockActivity;
-import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.R;
 
 import static com.auth0.lock.Lock.AUTHENTICATION_ACTION;

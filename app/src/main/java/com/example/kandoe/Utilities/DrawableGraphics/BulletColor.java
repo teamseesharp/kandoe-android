@@ -1,8 +1,7 @@
-package com.example.kandoe.DrawableGraphics;
+package com.example.kandoe.Utilities.DrawableGraphics;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 
 /**
  * Created by Thomas on 2016-02-26.

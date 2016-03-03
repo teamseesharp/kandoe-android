@@ -1,4 +1,4 @@
-package com.example.kandoe.Adpaters;
+package com.example.kandoe.Activity.Adapaters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,25 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.kandoe.Controller.CircleSessionController;
-import com.example.kandoe.DrawableGraphics.BulletColor;
+import com.example.kandoe.Utilities.DrawableGraphics.BulletColor;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.R;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 /**
  * Created by JoachimDs on 25/02/2016.

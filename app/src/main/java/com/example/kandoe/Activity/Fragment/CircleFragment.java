@@ -1,4 +1,4 @@
-package com.example.kandoe.Fragment;
+package com.example.kandoe.Activity.Fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,10 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.RadioGroup;
 
-import com.example.kandoe.API.KandoeBackendAPI;
-import com.example.kandoe.Adpaters.CardAdapter;
+import com.example.kandoe.Utilities.API.KandoeBackendAPI;
+import com.example.kandoe.Activity.Adapaters.CardAdapter;
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.R;
 

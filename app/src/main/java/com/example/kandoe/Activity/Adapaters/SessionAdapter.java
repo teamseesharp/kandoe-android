@@ -1,20 +1,16 @@
-package com.example.kandoe.Adpaters;
+package com.example.kandoe.Activity.Adapaters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 
 /**

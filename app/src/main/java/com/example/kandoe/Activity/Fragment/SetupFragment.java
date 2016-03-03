@@ -1,9 +1,6 @@
-package com.example.kandoe.Fragment;
+package com.example.kandoe.Activity.Fragment;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +10,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.auth0.core.Token;
-import com.example.kandoe.API.APIServiceGenerator;
-import com.example.kandoe.API.KandoeBackendAPI;
-import com.example.kandoe.Adpaters.CardAdapter;
+import com.example.kandoe.Utilities.API.KandoeBackendAPI;
+import com.example.kandoe.Activity.Adapaters.CardAdapter;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
-
-import org.w3c.dom.ProcessingInstruction;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -5,8 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.example.kandoe.DrawableGraphics.BulletPoint;
-import com.example.kandoe.DrawableGraphics.Ladder;
+import com.example.kandoe.Utilities.DrawableGraphics.Ladder;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Session;
 

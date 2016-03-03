@@ -1,4 +1,4 @@
-package com.example.kandoe.Fragment;
+package com.example.kandoe.Activity.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,18 +10,12 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.auth0.core.UserProfile;
-import com.example.kandoe.API.APIServiceGenerator;
-import com.example.kandoe.API.KandoeBackendAPI;
-import com.example.kandoe.Model.UserAccount;
+import com.example.kandoe.Utilities.API.APIServiceGenerator;
+import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.ImageLoadTask;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by Michelle on 16-2-2016.

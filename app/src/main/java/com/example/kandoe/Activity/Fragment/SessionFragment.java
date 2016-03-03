@@ -1,4 +1,4 @@
-package com.example.kandoe.Fragment;
+package com.example.kandoe.Activity.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.kandoe.API.APIServiceGenerator;
-import com.example.kandoe.API.KandoeBackendAPI;
+import com.example.kandoe.Utilities.API.APIServiceGenerator;
+import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
 

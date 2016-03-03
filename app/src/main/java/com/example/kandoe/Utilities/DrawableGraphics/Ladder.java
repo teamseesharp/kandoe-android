@@ -1,21 +1,13 @@
-package com.example.kandoe.DrawableGraphics;
+package com.example.kandoe.Utilities.DrawableGraphics;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.Model.Card;
-import com.example.kandoe.Utilities.Utilities;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.kandoe.DrawableGraphics;
+package com.example.kandoe.Utilities.DrawableGraphics;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,7 +11,6 @@ import android.view.View;
 
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.Model.Card;
-import com.example.kandoe.Utilities.Utilities;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -4,9 +4,8 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
-import com.example.kandoe.API.APIServiceGenerator;
-import com.example.kandoe.API.KandoeBackendAPI;
-import com.example.kandoe.Activity.LoginActivity;
+import com.example.kandoe.Utilities.API.APIServiceGenerator;
+import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
 import org.junit.Rule;
 import org.junit.Test;

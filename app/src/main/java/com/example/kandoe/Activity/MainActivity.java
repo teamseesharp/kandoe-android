@@ -20,14 +20,13 @@ import android.support.v4.widget.DrawerLayout;
 
 import com.auth0.core.Token;
 import com.auth0.core.UserProfile;
-import com.example.kandoe.API.APIServiceGenerator;
-import com.example.kandoe.API.KandoeBackendAPI;
-import com.example.kandoe.Fragment.AccountFragment;
-import com.example.kandoe.Fragment.CircleFragment;
-import com.example.kandoe.Fragment.MainFragment;
-import com.example.kandoe.Fragment.NavigationDrawerFragment;
-import com.example.kandoe.Fragment.SessionListFragment;
-import com.example.kandoe.Fragment.SetupFragment;
+import com.example.kandoe.Utilities.API.APIServiceGenerator;
+import com.example.kandoe.Utilities.API.KandoeBackendAPI;
+import com.example.kandoe.Activity.Fragment.AccountFragment;
+import com.example.kandoe.Activity.Fragment.CircleFragment;
+import com.example.kandoe.Activity.Fragment.MainFragment;
+import com.example.kandoe.Activity.Fragment.NavigationDrawerFragment;
+import com.example.kandoe.Activity.Fragment.SessionListFragment;
 import com.example.kandoe.R;
 
 
@@ -171,13 +170,7 @@ public class MainActivity extends ActionBarActivity
         }
 
         if (id == R.id.action_login) {
-            LoginActivity login = new LoginActivity();
-            if (login.isGoogleLogin()) {
-                //TODO: OOK GOOGLE LOG OUT !! Werkt nog niet
-                login.signOut(login.getmGoogleApiClient());
-            } else {
-                this.startActivity(new Intent(this, LoginActivity.class));
-            }
+
         }
 
         return super.onOptionsItemSelected(item);

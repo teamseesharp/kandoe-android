@@ -4,8 +4,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.example.kandoe.Activity.LoginActivity;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
