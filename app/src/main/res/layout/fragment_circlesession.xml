@@ -11,34 +11,34 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:background="@color/primary">
 
         <ImageButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:id="@+id/imageButton"
-
-            android:scaleType="centerCrop"
-            android:layout_alignBottom="@+id/textView3"
-            android:layout_alignParentTop="true" />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Spelers"
-            android:id="@+id/textView3"
+            android:id="@+id/button_players"
+            android:scaleType="centerCrop"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/imageButton" />
+            android:layout_alignBottom="@+id/votebutton"
+            android:src="@drawable/ic_group"
+            android:background="@color/white"/>
+
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Stem"
-            android:id="@+id/button"
+            android:id="@+id/votebutton"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:background="@color/white"
+            android:text="STEM"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"/>
     </RelativeLayout>
 
     <com.example.kandoe.Utilities.DrawableGraphics.SurfacePanel

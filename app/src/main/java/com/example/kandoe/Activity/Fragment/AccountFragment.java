@@ -12,8 +12,6 @@ import android.widget.ImageView;
 import android.widget.Switch;
 
 import com.auth0.core.UserProfile;
-import com.example.kandoe.Utilities.API.APIServiceGenerator;
-import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.ImageLoadTask;
 
@@ -22,8 +20,6 @@ import com.example.kandoe.Utilities.ImageLoadTask;
  * Shows user account information
  */
 public class AccountFragment extends Fragment {
-    KandoeBackendAPI service = APIServiceGenerator.createService(KandoeBackendAPI.class);
-    int id;
 
     private EditText fName,email;
     private Switch aSwitch;

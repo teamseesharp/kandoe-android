@@ -1,27 +1,28 @@
 package com.example.kandoe.Activity.Fragment;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
-import com.example.kandoe.Model.Session;
-import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Activity.Adapters.CardAdapter;
 import com.example.kandoe.Controller.CircleSessionController;
+import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
+import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Utilities.DrawableGraphics.SurfacePanel;
 
 import java.io.Serializable;
-
-import retrofit.http.PATCH;
 
 
 public class CircleFragment extends Fragment {
@@ -33,6 +34,7 @@ public class CircleFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private KandoeBackendAPI service;
     private Session session;
+
 
     public CircleFragment() {
     }
@@ -63,16 +65,13 @@ public class CircleFragment extends Fragment {
 
         //TODO Add session parameter
         controller = new CircleSessionController(getContext(), session);
-
-
+        
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
 
         View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
 
@@ -83,7 +82,7 @@ public class CircleFragment extends Fragment {
 
         SurfacePanel panel = (SurfacePanel) view.findViewById(R.id.view);
         panel.setController(controller);
-       // panel.invalidate();
+        // panel.invalidate();
 
 
         System.out.println(panel.getBottom());
@@ -96,12 +95,26 @@ public class CircleFragment extends Fragment {
 
         listView.setAdapter(cardAdapter);
 
+        //BUTTONS
+        ImageButton showPersons = (ImageButton) view.findViewById(R.id.button_players);
+        showPersons.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopup(v);
+            }
+        });
 
+        Button voteUp = (Button) view.findViewById(R.id.button);
+        voteUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: VOTEUP
+            }
+        });
 
 
 
       //  listView.setPadding(0, (int) controller.getBottomboundLadder(), 0, 0);
-
 
         return view;
     }
@@ -131,6 +144,34 @@ public class CircleFragment extends Fragment {
         mListener = null;
     }
 
+    public void showPopup(View anchorView) {
+
+        final View popupView =  getActivity().getLayoutInflater().inflate(R.layout.popup, null);
+
+        final PopupWindow popupWindow = new PopupWindow(popupView,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        // TODO: spelers inladen
+        TextView tv = (TextView) popupView.findViewById(R.id.popup_tv);
+        tv.setText("Michelle\nJoachim\nThomas\nCas\nBennie\nOlivier");
+
+        // If the PopupWindow should be focusable
+        popupWindow.setFocusable(true);
+
+        // If you need the PopupWindow to dismiss when when touched outside
+        popupWindow.setBackgroundDrawable(new ColorDrawable());
+
+        int location[] = new int[2];
+
+        // Get the View's(the one that was clicked in the Fragment) location
+        anchorView.getLocationOnScreen(location);
+
+        // Using location, the PopupWindow will be displayed right under anchorView
+        popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY,
+                location[0], location[1] + anchorView.getHeight());
+
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this
@@ -148,6 +189,4 @@ public class CircleFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
-
 }
