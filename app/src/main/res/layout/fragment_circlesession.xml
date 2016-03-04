@@ -8,8 +8,41 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <ImageButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/imageButton"
+
+            android:scaleType="centerCrop"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Spelers"
+            android:id="@+id/textView3"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/imageButton" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stem"
+            android:id="@+id/button"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
     <com.example.kandoe.Utilities.DrawableGraphics.SurfacePanel
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="325dp"
         android:id="@+id/view" />
 
@@ -17,5 +50,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lvCards"
-         />
+        />
 </LinearLayout>

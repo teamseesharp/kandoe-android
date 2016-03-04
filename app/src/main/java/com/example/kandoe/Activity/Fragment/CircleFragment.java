@@ -96,8 +96,7 @@ public class CircleFragment extends Fragment {
 
         listView.setAdapter(cardAdapter);
 
-        //listView.setTop(panel.getHeight());
-        System.out.println(panel.getHeight());
+
 
 
 
