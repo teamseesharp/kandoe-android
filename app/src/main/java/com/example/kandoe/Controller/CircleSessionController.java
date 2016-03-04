@@ -39,7 +39,7 @@ public class CircleSessionController {
         bulletPoints = new ArrayList<>();
 
 
-        session = new Session(null, 1, 4, 1);
+        session = new Session();
         chatController = new ChatController(session.getId());
 
         cards.add(new Card(1, "Jeugd", "info over Jeugd ", ""));

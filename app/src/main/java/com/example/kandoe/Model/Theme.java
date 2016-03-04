@@ -1,17 +1,46 @@
 package com.example.kandoe.Model;
 
-/**
- * Created by Michelle on 22-2-2016.
- */
-public class Theme {
-    private String name;
-    private String Description;
-    private String tag;
+import java.util.ArrayList;
 
-    public Theme(String name, String description, String tag) {
-        this.name = name;
-        Description = description;
-        this.tag = tag;
+
+public class Theme {
+    private int Id, OrganisationId,OrganiserId;
+    private String Name,Description,Tags;
+    private ArrayList<SubTheme> Subthemes;
+
+    public Theme() {
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public int getOrganisationId() {
+        return OrganisationId;
+    }
+
+    public void setOrganisationId(int organisationId) {
+        OrganisationId = organisationId;
+    }
+
+    public int getOrganiserId() {
+        return OrganiserId;
+    }
+
+    public void setOrganiserId(int organiserId) {
+        OrganiserId = organiserId;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
     }
 
     public String getDescription() {
@@ -22,19 +51,19 @@ public class Theme {
         Description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getTags() {
+        return Tags;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTags(String tags) {
+        Tags = tags;
     }
 
-    public String getTag() {
-        return tag;
+    public ArrayList<SubTheme> getSubthemes() {
+        return Subthemes;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setSubthemes(ArrayList<SubTheme> subthemes) {
+        Subthemes = subthemes;
     }
 }

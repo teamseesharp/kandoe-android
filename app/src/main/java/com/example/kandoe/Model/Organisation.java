@@ -7,14 +7,11 @@ import java.util.ArrayList;
  */
 public class Organisation {
     private String Name;
-    private ArrayList<Session> sessions;
+   private ArrayList<Session> Sessions;
     private String Id;
+   private ArrayList<Theme> Themes;
 
-
-    public Organisation(String name, ArrayList<Session> sessions, String id) {
-        Name = name;
-        this.sessions = sessions;
-        Id = id;
+    public Organisation() {
     }
 
     public String getName() {
@@ -26,11 +23,11 @@ public class Organisation {
     }
 
     public ArrayList<Session> getSessions() {
-        return sessions;
+        return Sessions;
     }
 
     public void setSessions(ArrayList<Session> sessions) {
-        this.sessions = sessions;
+       Sessions = sessions;
     }
 
     public String getId() {
@@ -39,5 +36,13 @@ public class Organisation {
 
     public void setId(String id) {
         Id = id;
+    }
+
+    public ArrayList<Theme> getThemes() {
+        return Themes;
+    }
+
+    public void setThemes(ArrayList<Theme> themes) {
+        Themes = themes;
     }
 }

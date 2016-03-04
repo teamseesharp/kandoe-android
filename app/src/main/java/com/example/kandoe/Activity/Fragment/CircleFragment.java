@@ -46,7 +46,7 @@ public class CircleFragment extends Fragment {
         CircleFragment fragment = new CircleFragment();
         Bundle args = new Bundle();
         args.putSerializable(EXTRA_SERVICE, (Serializable) service);
-        args.putSerializable(EXTRA_SESSION, session);
+        args.putSerializable(EXTRA_SESSION, (Serializable) session);
         fragment.setArguments(args);
 
         return fragment;

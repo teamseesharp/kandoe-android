@@ -217,8 +217,8 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
                         newCard.setText(String.valueOf(kaartnaam));
                          //TODO NOG TE VERVANGEN
-                        session.setSubThemaId(5);
-                        newCard.setSubthemeId(String.valueOf(session.getSubThemaId()));
+                        session.setSubThemeId(5);
+                        newCard.setSubthemeId(String.valueOf(session.getSubThemeId()));
 
                         //TODO POST naar backend
 

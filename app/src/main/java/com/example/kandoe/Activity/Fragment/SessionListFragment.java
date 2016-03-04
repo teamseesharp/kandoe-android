@@ -1,12 +1,14 @@
 package com.example.kandoe.Activity.Fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
+import com.example.kandoe.Model.Card;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Activity.Adapters.SessionAdapter;
 import com.example.kandoe.Model.Organisation;
@@ -14,6 +16,11 @@ import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by JoachimDs on 19/02/2016.
@@ -28,6 +35,8 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
     public SessionListFragment(KandoeBackendAPI service) {
         this.service = service;
+        organisations = new ArrayList<>();
+        getOrganisationsData();
     }
 
     @Override
@@ -51,13 +60,13 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
                 android.support.v4.app.Fragment fragment;
 
-                if (firstTime){
-                     fragment = SetupFragment.newInstance(service,new Session(null,1,4,1));
-                }else {
-                     fragment = new CircleFragment(service);
+                if (firstTime) {
+                    //fragment = SetupFragment.newInstance(service, organisation.getSessions().get(childPosition));
+                    fragment = new Fragment();
+                    //TODO
+                } else {
+                    fragment = new CircleFragment(service);
                 }
-
-
 
 
                 FragmentManager fragmentManager = getFragmentManager();
@@ -73,25 +82,29 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
         super.onCreate(savedInstanceState);
 
 
-        //Todo parameter data voorzien met juiste data
-        ArrayList<Session> sessions = new ArrayList<>();
-        organisations = new ArrayList<>();
+    }
 
-        sessions.add(new Session(null, 2, 3, 1));
-        sessions.add(new Session(null, 2, 3, 2));
+    public void getOrganisationsData() {
 
-        Organisation organisation = new Organisation("KdG", sessions, "1");
-        Organisation organisation2 = new Organisation("Antwerpen", sessions, "2");
-        Organisation organisation3 = new Organisation("Paljaskes Unite", sessions, "3");
+        Call<List<Organisation>> callList = service.getOrganisations();
 
-        organisations.add(organisation);
-        organisations.add(organisation2);
-        organisations.add(organisation3);
+        callList.enqueue(new Callback<List<Organisation>>() {
+            @Override
+            public void onResponse(Call<List<Organisation>> call, Response<List<Organisation>> response) {
+                organisations.addAll(response.body());
+                System.out.println(organisations);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<Organisation>> call, Throwable t) {
+                System.out.println(t.toString());
+            }
+        });
 
 
     }
 
 
-
-
 }
+

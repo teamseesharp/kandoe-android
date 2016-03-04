@@ -70,8 +70,8 @@ public interface KandoeBackendAPI {
 
 
     //Organisation
-    @GET("api/organisations")
-    Call<ResponseBody> getOrganisations();
+    @GET("api/organisation")
+    Call<List<Organisation>> getOrganisations();
 
     @GET("api/organisation/{id}")
     Call<Organisation> getOrganisation(@Path("id") int id);

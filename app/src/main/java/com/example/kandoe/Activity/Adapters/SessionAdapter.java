@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
+import com.example.kandoe.Model.SubTheme;
+import com.example.kandoe.Model.Theme;
 import com.example.kandoe.R;
 
 import java.util.ArrayList;
@@ -47,11 +49,31 @@ public class SessionAdapter extends BaseExpandableListAdapter {
                     .getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.listchild, null);
         }
-        TextView tv = (TextView) convertView.findViewById(R.id.txtSessionName);
+        TextView themetag = (TextView) convertView.findViewById(R.id.txtThemeName);
+        TextView subtheme = (TextView) convertView.findViewById(R.id.txtSubthemeName);
+        TextView themedescp =(TextView) convertView.findViewById(R.id.txtDescription);
+
+        Theme currentTheme = null;
+        SubTheme currentSubtheme = null;
+
+        for (Theme thema : groups.get(groupPosition).getThemes()) {
+            for (SubTheme subthema : thema.getSubthemes()) {
+                if (subthema.getId() == child.getSubThemeId()) {
+                    currentSubtheme = subthema;
+                    currentTheme = thema;
+                    break;
+                }
+            }
+        }
 
 
-        tv.setText("sessieeeee");
-
+        if (currentTheme != null) {
+            themetag.setText(currentTheme.getName());
+            themedescp.setText(currentTheme.getDescription());
+        }
+        if (currentSubtheme != null) {
+            subtheme.setText(currentSubtheme.getName());
+        }
 
 
         return convertView;
