@@ -9,6 +9,7 @@ import com.example.kandoe.Model.SubTheme;
 import com.example.kandoe.Model.Theme;
 import com.example.kandoe.Model.UserAccount;
 
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -16,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -24,94 +26,109 @@ import retrofit2.http.Path;
 public interface KandoeBackendAPI {
 
     //Card
-    @GET("api/card")
+    @GET("api/cards")
     Call<List<Card>> getCards();
 
-    @GET("api/card/{id}")
-    Call<Card> getCardDetails(@Path("id") int id);
+    @GET("api/cards/{id}")
+    Call<Card> getCardById(@Path("id") int id);
 
-    @POST("api/card")
-    Call<Card> playCard(@Body Card card);
+    @POST("api/cards")
+    Call<Card> addCard(@Body Card card);
 
 
     //Account
     //Todo voorlopig komt de response niet overeen met de klasse..
-    @GET("api/account/userInfo")
+    @GET("api/accounts")
     Call<UserAccount> getUsers();
 
-    @GET ("api/account/{id}")
-    Call<UserAccount> getUserInfo(@Path("id") int id);
+    @GET ("api/accounts/{id}")
+    Call<UserAccount> getUserById(@Path("id") int id);
 
-    @POST("api/account/logout")
-    Call<ResponseBody> logout();
-
-    @POST("api/account/changePassword")
-    Call<ResponseBody> changePassword(@Body String oldPassword, @Body String newPassword, @Body String confirmPassword);
-
-    @POST("api/account/setPassword")
-    Call<ResponseBody> setPassword(@Body String newPassword, @Body String confirmPassword);
-
-    @POST("api/account/addExternalLogin")
-    Call<ResponseBody> addExternalLogin(@Body String externalAccessToken);
-
-    @POST("api/account/removeLogin")
-    Call<ResponseBody> removeLogin(@Body String loginProvider, @Body String providerKey);
-
-    @POST("api/account/register")
-    Call<ResponseBody> register(@Body String email, @Body String password, @Body String confirmPassword);
+    //TODO: deze klopt niet
+    @PUT("api/accounts")
+    Call<ResponseBody> changeAccount(@Body String oldPassword, @Body String newPassword, @Body String confirmPassword);
 
 
     //Session
-    @GET("api/session")
-    Call<List<Session>> getSessions();
+    @GET ("api/sessions")
+    Call<List<Session>> getAllSessions();
 
-    @GET("api/session/{id}")
-    Call<Session> getSessionDetail(@Path("id") int id);
+    @GET("api/sessions/{id}")
+    Call<Session> getSessionById(@Path("id") int id);
+
+    @GET ("api/sessions/by-organisation/{id}")
+    Call<List<Session>> getSessionsByOrganisation(@Path("id") int id);
+
+    @GET ("api/sessions/by-subtheme/{id}")
+    Call<List<Session>> getSessionsBySubtheme(@Path("id") int id);
+
+    @GET ("api/sessions/by-start-date/{date}")
+    Call<List<Session>> getSessionsByStartDate(@Path("date") Date date);
+
+    @GET ("api/sessions/by-end-date/{date}")
+    Call<List<Session>> getSessionsByEndDate(@Path("date") Date date);
 
 
     //Organisation
-    @GET("api/organisation")
+    @GET("api/organisations")
     Call<List<Organisation>> getOrganisations();
 
-    @GET("api/organisation/{id}")
-    Call<Organisation> getOrganisation(@Path("id") int id);
+    @GET("api/organisations/{id}")
+    Call<Organisation> getOrganisationById(@Path("id") int id);
+
+    @GET("api/organisations/by-organiser/{id}")
+    Call<List<Organisation>> getOrganisationsByOrganiserId(@Path("id") int id);
 
 
     //ChatMessage
-    @GET("api/chatMessage")
-    Call<List<ChatMessage>> getChats();
+    @GET("api/chat-messages")
+    Call<List<ChatMessage>> getChatMessages();
 
-    @GET("api/chatMessage/{id}")
-    Call<ChatMessage> getChat(@Path("id") int id);
+    @GET("api/chat-messages/{id}")
+    Call<ChatMessage> getChatById(@Path("id") int id);
 
-    @POST("api/chatMessage")
+    @POST("api/chat-messages")
     Call<ResponseBody> chat(@Body String chatmessage);
 
+    @GET ("api/chat-messages/by-session/{id}")
+    Call<List<ChatMessage>> getChatMessagesBySessionId(@Path("id") int id);
 
 
     //Theme
-    @GET("api/theme")
-    Call<List<Theme>> getTheme();
+    @GET("api/themes")
+    Call<List<Theme>> getThemes();
 
-    @GET("api/theme/{id}")
-    Call<Theme> getTheme(@Path("id") int id);
+    @GET("api/themes/{id}")
+    Call<Theme> getThemesById(@Path("id") int id);
+
+    @GET ("api/themes/by-organisation/{id}")
+    Call<Theme> getThemeByOrganisationId(@Path("id") int id);
+
+    @GET ("api/themes/by-tag/{tag}")
+    Call<List<Theme>>getThemesByTag(@Path("tag") String tag);
 
 
     //CardReview
-    @GET("api/cardReview")
-    Call<List<CardReview>> getCardReview();
+    @GET("api/cardReviews")
+    Call<List<CardReview>> getCardReviews();
 
-    @GET("api/cardReview/{id}")
-    Call<CardReview> getCardReview(@Path("id") int id);
+    @GET("api/cardReviews/{id}")
+    Call<CardReview> getCardReviewById(@Path("id") int id);
+
+    @GET("api/card-reviews/by-card/{id}")
+    Call<CardReview> getCardReviewByCardId(@Path("id") int id);
 
 
 
     //Subtheme
-    @GET("api/subTheme")
+    @GET("api/subThemes")
     Call<List<SubTheme>> getSubThemes();
 
-    @GET("api/subTheme/{id}")
-    Call<SubTheme> getSubTheme(@Path("id") int id);
+    @GET("api/subThemes/{id}")
+    Call<SubTheme> getSubThemeById(@Path("id") int id);
+
+    @GET("api/subthemes/by-theme/{id}")
+    Call<List<SubTheme>>getSubthemesByThemeId(@Path("id") int id);
 }
 
 

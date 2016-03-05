@@ -8,12 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
-import com.example.kandoe.Model.Card;
-import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Activity.Adapters.SessionAdapter;
 import com.example.kandoe.Model.Organisation;
-import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
+import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 public class Organisation {
     private String Name;
-   private ArrayList<Session> Sessions;
+    private ArrayList<Session> Sessions;
     private String Id;
-   private ArrayList<Theme> Themes;
+    private ArrayList<Theme> Themes;
 
     public Organisation() {
     }

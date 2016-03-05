@@ -94,6 +94,7 @@ public class MainActivity extends ActionBarActivity
             case 1:
                 mTitle = getString(R.string.title_section1);
                 fragment = new MainFragment();
+               // fragment = new SetupFragment();
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
