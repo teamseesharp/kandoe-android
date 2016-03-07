@@ -1,35 +1,54 @@
 package com.example.kandoe.Model;
 
-import android.media.Image;
-import android.os.Message;
+import android.accounts.Account;
+
+import org.joda.time.DateTime;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
-
 
 /**
  * Created by Michelle on 20-2-2016.
  */
-public class Session implements Serializable {
-
+public class Session implements Serializable{
 
     private int Id, MaxCardsToChoose, MaxParticipants, Modus, OrganisationId, Round, SubthemeId;
-    boolean CardCreationAllowed, CardReviewsAllowed, IsFinished;
+    private boolean CardCreationAllowed, CardReviewsAllowed, IsFinished;
+    private DateTime End,Start;
+    private int NumberOfSteps;
 
+    private ArrayList<Card> Cards;
+    private ArrayList<ChatMessage> Chatmessages;
+    private ArrayList<Account> Organisers;
+    private ArrayList<Account> Participants;
 
-
-    private int numberOfSteps;
 
     public Session() {
+        MaxParticipants = 8;
+        MaxCardsToChoose = 3;
+    }
+
+    public Session(int id, int maxCardsToChoose, int maxParticipants, int modus, int organisationId, int round, int subthemeId, boolean cardCreationAllowed, boolean cardReviewsAllowed, boolean isFinished, DateTime end, DateTime start, ArrayList<Card> cards, ArrayList<ChatMessage> chatmessages, ArrayList<Account> organisers, ArrayList<Account> participants) {
+        Id = id;
+        MaxCardsToChoose = maxCardsToChoose;
+        MaxParticipants = maxParticipants;
+        Modus = modus;
+        OrganisationId = organisationId;
+        Round = round;
+        SubthemeId = subthemeId;
+        CardCreationAllowed = cardCreationAllowed;
+        CardReviewsAllowed = cardReviewsAllowed;
+        IsFinished = isFinished;
+        End = end;
+        Start = start;
+        Cards = cards;
+        Chatmessages = chatmessages;
+        Organisers = organisers;
+        Participants = participants;
     }
 
     public int getId() {
         return Id;
-    }
-
-    public int getNumberOfSteps() {
-        return numberOfSteps;
     }
 
     public int getNumberOfCards() {
@@ -42,11 +61,6 @@ public class Session implements Serializable {
 
     public void setId(int id) {
         this.Id = id;
-    }
-
-
-    public void setNumberOfSteps(int numberOfSteps) {
-        this.numberOfSteps = numberOfSteps;
     }
 
     public int getSubThemeId() {
@@ -97,8 +111,6 @@ public class Session implements Serializable {
         Round = round;
     }
 
-
-
     public boolean isCardCreationAllowed() {
         return CardCreationAllowed;
     }
@@ -123,4 +135,67 @@ public class Session implements Serializable {
         IsFinished = isFinished;
     }
 
+    public DateTime getEnd() {
+        return End;
     }
+
+    public void setEnd(DateTime end) {
+        End = end;
+    }
+
+    public DateTime getStart() {
+        return Start;
+    }
+
+    public void setStart(DateTime start) {
+        Start = start;
+    }
+
+    public int getSubthemeId() {
+        return SubthemeId;
+    }
+
+    public void setSubthemeId(int subthemeId) {
+        SubthemeId = subthemeId;
+    }
+
+    public int getNumberOfSteps() {
+        return NumberOfSteps;
+    }
+
+    public void setNumberOfSteps(int numberOfSteps) {
+        NumberOfSteps = numberOfSteps;
+    }
+
+    public ArrayList<Card> getCards() {
+        return Cards;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        Cards = cards;
+    }
+
+    public ArrayList<ChatMessage> getChatmessages() {
+        return Chatmessages;
+    }
+
+    public void setChatmessages(ArrayList<ChatMessage> chatmessages) {
+        Chatmessages = chatmessages;
+    }
+
+    public ArrayList<Account> getParticipants() {
+        return Participants;
+    }
+
+    public void setParticipants(ArrayList<Account> participants) {
+        Participants = participants;
+    }
+
+    public ArrayList<Account> getOrganisers() {
+        return Organisers;
+    }
+
+    public void setOrganisers(ArrayList<Account> organisers) {
+        Organisers = organisers;
+    }
+}

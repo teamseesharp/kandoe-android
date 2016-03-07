@@ -6,12 +6,21 @@ import java.util.ArrayList;
  * Created by Michelle on 22-2-2016.
  */
 public class Organisation {
+    private int Id, OrganiserId;
     private String Name;
+
     private ArrayList<Session> Sessions;
-    private String Id;
     private ArrayList<Theme> Themes;
 
     public Organisation() {
+    }
+
+    public Organisation(int id, int organiserId, String name, ArrayList<Session> sessions, ArrayList<Theme> themes) {
+        Id = id;
+        OrganiserId = organiserId;
+        Name = name;
+        Sessions = sessions;
+        Themes = themes;
     }
 
     public String getName() {
@@ -30,11 +39,11 @@ public class Organisation {
        Sessions = sessions;
     }
 
-    public String getId() {
+    public int getId() {
         return Id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         Id = id;
     }
 
@@ -44,5 +53,13 @@ public class Organisation {
 
     public void setThemes(ArrayList<Theme> themes) {
         Themes = themes;
+    }
+
+    public int getOrganiserId() {
+        return OrganiserId;
+    }
+
+    public void setOrganiserId(int organiserId) {
+        OrganiserId = organiserId;
     }
 }

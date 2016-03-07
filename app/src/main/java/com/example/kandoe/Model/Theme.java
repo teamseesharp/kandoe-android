@@ -6,9 +6,20 @@ import java.util.ArrayList;
 public class Theme {
     private int Id, OrganisationId,OrganiserId;
     private String Name,Description,Tags;
+
     private ArrayList<SubTheme> Subthemes;
 
     public Theme() {
+    }
+
+    public Theme(int id, int organisationId, int organiserId, String name, String description, String tags, ArrayList<SubTheme> subthemes) {
+        Id = id;
+        OrganisationId = organisationId;
+        OrganiserId = organiserId;
+        Name = name;
+        Description = description;
+        Tags = tags;
+        Subthemes = subthemes;
     }
 
     public int getId() {

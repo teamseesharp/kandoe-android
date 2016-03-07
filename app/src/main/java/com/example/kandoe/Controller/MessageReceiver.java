@@ -27,7 +27,6 @@ public class MessageReceiver {
     }
 
 
-
     private String setExchange_name(int sessionId) {
         return "session" + sessionId + "exchange";
 

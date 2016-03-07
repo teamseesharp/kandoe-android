@@ -1,13 +1,27 @@
 package com.example.kandoe.Model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Michelle on 22-2-2016.
  */
 public class SubTheme {
-    private int Id,OrganiserId,ThemaId;
+    private int Id,OrganiserId,ThemeId;
     private String Name;
 
+    private ArrayList<Session> Sessions;
+    private ArrayList<Card> Cards;
+
     public SubTheme() {
+    }
+
+    public SubTheme(int id, int organiserId, int themeId, String name, ArrayList<Session> sessions, ArrayList<Card> cards) {
+        Id = id;
+        OrganiserId = organiserId;
+        ThemeId = themeId;
+        Name = name;
+        Sessions = sessions;
+        Cards = cards;
     }
 
     public int getId() {
@@ -27,11 +41,11 @@ public class SubTheme {
     }
 
     public int getThemaId() {
-        return ThemaId;
+        return ThemeId;
     }
 
     public void setThemaId(int themaId) {
-        ThemaId = themaId;
+        ThemeId = themaId;
     }
 
     public String getName() {
@@ -40,6 +54,30 @@ public class SubTheme {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    public int getThemeId() {
+        return ThemeId;
+    }
+
+    public void setThemeId(int themeId) {
+        ThemeId = themeId;
+    }
+
+    public ArrayList<Session> getSessions() {
+        return Sessions;
+    }
+
+    public void setSessions(ArrayList<Session> sessions) {
+        Sessions = sessions;
+    }
+
+    public ArrayList<Card> getCards() {
+        return Cards;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        Cards = cards;
     }
 }
 
