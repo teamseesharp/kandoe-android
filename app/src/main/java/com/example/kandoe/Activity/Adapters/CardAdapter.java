@@ -46,8 +46,8 @@ public class CardAdapter extends ArrayAdapter {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             view = inflater.inflate(layoutResourceId, parent, false);
             holder = new ViewHolder();
-            holder.title = (TextView) view.findViewById(R.id.txtCardTitle);
-            holder.description = (TextView) view.findViewById(R.id.txtCardDescription);
+            holder.title = (TextView) view.findViewById(R.id.txtCardDescription);
+            holder.description = (TextView) view.findViewById(R.id.txtCardTitle);
             holder.upvote = (CheckBox) view.findViewById(R.id.radioButton);
             holder.number = (TextView) view.findViewById(R.id.txtNumberHolder);
             holder.id = (TextView) view.findViewById(R.id.txtId);
@@ -59,7 +59,6 @@ public class CardAdapter extends ArrayAdapter {
         }
 
         Card card = (Card) data.get(position);
-        holder.title.setText(card.getText());
         holder.description.setText(card.getDescription());
         holder.id.setText(String.valueOf(card.getId()));
 

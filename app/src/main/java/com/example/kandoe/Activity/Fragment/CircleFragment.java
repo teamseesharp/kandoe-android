@@ -58,7 +58,6 @@ public class CircleFragment extends Fragment {
         if (getArguments() != null) {
             service = (KandoeBackendAPI) getArguments().getSerializable(EXTRA_SERVICE);
             session = (Session) getArguments().getSerializable(EXTRA_SESSION);
-
         }
 
         //TODO Add session parameter

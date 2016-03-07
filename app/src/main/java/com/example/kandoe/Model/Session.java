@@ -13,7 +13,7 @@ public class Session implements Serializable{
     private int Id, MaxCardsToChoose, MaxParticipants, Modus, OrganisationId, Round, SubthemeId;
     private boolean CardCreationAllowed, CardReviewsAllowed, IsFinished;
     private String End,Start;
-    private int NumberOfSteps;
+    private int NumberOfSteps = 4;
 
     private ArrayList<Card> Cards;
     private ArrayList<ChatMessage> Chatmessages;

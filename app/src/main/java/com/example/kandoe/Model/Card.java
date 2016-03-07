@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Card {
     private int Id,CreatorId;
     private String Text;
-    private String Description;
     private String SubthemeId;
     private String Image;
 
@@ -20,19 +19,15 @@ public class Card {
     public Card() {
     }
 
-    public Card(int id, String text, String subthemeId, String image) {
+    public Card(int id, String text) {
         Id = id;
-        Text = text;
-        SubthemeId = subthemeId;
-        Image = image;
-        this.Description = "Geen beschrijving";
+        this.Text = text;
     }
 
     public Card(int id, int creatorId, String text, String description, String subthemeId, String image, ArrayList<SubTheme> subthemes, ArrayList<Session> sessions, ArrayList<CardReview> cardReviews) {
         Id = id;
         CreatorId = creatorId;
-        Text = text;
-        Description = description;
+        Text = description;
         SubthemeId = subthemeId;
         Image = image;
         Subthemes = subthemes;
@@ -47,15 +42,7 @@ public class Card {
     public void setId(int id) {
         this.Id = id;
     }
-
-    public String getText() {
-        return Text;
-    }
-
-    public void setText(String text) {
-        this.Text = text;
-    }
-
+    
     public String getImage() {
         return Image;
     }
@@ -65,11 +52,11 @@ public class Card {
     }
 
     public String getDescription() {
-        return Description;
+        return Text;
     }
 
     public void setDescription(String description) {
-        this.Description = description;
+        this.Text = description;
     }
 
     public String getSubthemeId() {

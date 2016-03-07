@@ -47,7 +47,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     private TextView numberOfCards;
     private ImageButton addButton;
 
-    KandoeBackendAPI service;
+    private KandoeBackendAPI service;
     private Session session;
 
 
@@ -100,6 +100,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         grdCards.setOnItemClickListener(this);
 
         playButton = (Button) view.findViewById(R.id.btnPlay);
+        playButton.setText("Speel");
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +122,9 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             }
         });
 
+        Toast.makeText(getActivity(), "Kies minimum 1 kaart en maximum 3)",
+                Toast.LENGTH_LONG).show();
+
         return view;
     }
 
@@ -135,7 +139,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         String cardId = (String) ((TextView) view.findViewById(R.id.txtId)).getText();
         ArrayList<Card> from = new ArrayList<>();
         ArrayList<Card> too = new ArrayList<>();
-        Card cardToMove = new Card(-1, "", "", "");
+        Card cardToMove = new Card(-1, "");
 
         switch (parent.getId()) {
             case R.id.grdmycards:
@@ -173,7 +177,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         progressBar.setProgress((int) progress);
         //numberOfCards.setText(String.valueOf(cards.size()));
 
-        if (progressBar.getProgress() == 100){
+        if (progressBar.getProgress() == 100 && myCards.size() >= 1 && myCards.size() <=3){
             playButton.setEnabled(true);
             playButton.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.INVISIBLE);
@@ -218,7 +222,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                         Editable kaartnaam = input.getText();
                         Card newCard = new Card();
 
-                        newCard.setText(String.valueOf(kaartnaam));
+                        newCard.setDescription(String.valueOf(kaartnaam));
                          //TODO NOG TE VERVANGEN
                         session.setSubThemeId(5);
                         newCard.setSubthemeId(String.valueOf(session.getSubThemeId()));
@@ -226,24 +230,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                         // mock return
                         newCard.setId(cards.size() + new Random().nextInt(100));
 
-                        //TODO POST naar backend
-                        Call<Card> call = service.addCard(newCard);
-                        call.enqueue(new Callback<Card>() {
-                            @Override
-                            public void onResponse(Call<Card> call, Response<Card> response) {
-                              if(response.isSuccess()){
-                                 //do NOTHING
-                                  Toast.makeText(getActivity(), "kaart toegevoegd!!! =)",
-                                          Toast.LENGTH_LONG).show();
-                              }
-                            }
-
-                            @Override
-                            public void onFailure(Call<Card> call, Throwable t) {
-                                Toast.makeText(getActivity(), "FAILLLLLL)",
-                                        Toast.LENGTH_LONG).show();
-                            }
-                        });
+                        doPostCard(newCard);
 
                         myCards.add(0,newCard);
                         myCardAdapter.notifyDataSetChanged();
@@ -259,4 +246,24 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 })
                 .show();
     }
+
+    private void doPostCard(Card card){
+        Call<Card> call = service.addCard(card);
+        call.enqueue(new Callback<Card>() {
+            @Override
+            public void onResponse(Call<Card> call, Response<Card> response) {
+                Toast.makeText(getActivity(), "kaart toegevoegd!!! =)",
+                            Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<Card> call, Throwable t) {
+                Toast.makeText(getActivity(), "FAILLLLLL)",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
 }
