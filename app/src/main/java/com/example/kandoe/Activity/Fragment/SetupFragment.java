@@ -3,7 +3,6 @@ package com.example.kandoe.Activity.Fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.text.Editable;
@@ -19,6 +18,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kandoe.Activity.Adapters.CardAdapter;
 import com.example.kandoe.Model.Card;
@@ -223,10 +223,27 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                         session.setSubThemeId(5);
                         newCard.setSubthemeId(String.valueOf(session.getSubThemeId()));
 
-                        //TODO POST naar backend
-
                         // mock return
                         newCard.setId(cards.size() + new Random().nextInt(100));
+
+                        //TODO POST naar backend
+                        Call<Card> call = service.addCard(newCard);
+                        call.enqueue(new Callback<Card>() {
+                            @Override
+                            public void onResponse(Call<Card> call, Response<Card> response) {
+                              if(response.isSuccess()){
+                                 //do NOTHING
+                                  Toast.makeText(getActivity(), "kaart toegevoegd!!! =)",
+                                          Toast.LENGTH_LONG).show();
+                              }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Card> call, Throwable t) {
+                                Toast.makeText(getActivity(), "FAILLLLLL)",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        });
 
                         myCards.add(0,newCard);
                         myCardAdapter.notifyDataSetChanged();

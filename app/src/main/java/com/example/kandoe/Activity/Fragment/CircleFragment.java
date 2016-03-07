@@ -35,14 +35,12 @@ public class CircleFragment extends Fragment {
     private KandoeBackendAPI service;
     private Session session;
 
-
     public CircleFragment() {
     }
 
     public CircleFragment(KandoeBackendAPI service) {
         this.service = service;
     }
-
 
     public static CircleFragment newInstance(KandoeBackendAPI service, Session session) {
         CircleFragment fragment = new CircleFragment();
@@ -104,13 +102,11 @@ public class CircleFragment extends Fragment {
             }
         });
 
-        Button voteUp = (Button) view.findViewById(R.id.button);
+        Button voteUp = (Button) view.findViewById(R.id.votebutton);
         voteUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: VOTEUP
-
-                //k
             }
         });
 
@@ -160,7 +156,7 @@ public class CircleFragment extends Fragment {
         // If the PopupWindow should be focusable
         popupWindow.setFocusable(true);
 
-        // If you need the PopupWindow to dismiss when when touched outside
+        // If you need the PopupWindow to dismiss when touched outside
         popupWindow.setBackgroundDrawable(new ColorDrawable());
 
         int location[] = new int[2];

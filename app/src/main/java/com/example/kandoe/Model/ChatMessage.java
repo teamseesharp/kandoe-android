@@ -1,16 +1,14 @@
 package com.example.kandoe.Model;
 
-import org.joda.time.DateTime;
-
 /**
  * Created by Michelle on 22-2-2016.
  */
 public class ChatMessage {
     private int Id,MessengerId,SessionId;
     private String Text;
-    private DateTime timestamp;
+    private String timestamp;
 
-    public ChatMessage(int id, int messengerId, int sessionId, String text, DateTime timestamp) {
+    public ChatMessage(int id, int messengerId, int sessionId, String text, String timestamp) {
         Id = id;
         MessengerId = messengerId;
         SessionId = sessionId;
@@ -50,11 +48,11 @@ public class ChatMessage {
         Text = text;
     }
 
-    public DateTime getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(DateTime timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 }

@@ -2,8 +2,6 @@ package com.example.kandoe.Model;
 
 import android.accounts.Account;
 
-import org.joda.time.DateTime;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -14,7 +12,7 @@ public class Session implements Serializable{
 
     private int Id, MaxCardsToChoose, MaxParticipants, Modus, OrganisationId, Round, SubthemeId;
     private boolean CardCreationAllowed, CardReviewsAllowed, IsFinished;
-    private DateTime End,Start;
+    private String End,Start;
     private int NumberOfSteps;
 
     private ArrayList<Card> Cards;
@@ -28,7 +26,7 @@ public class Session implements Serializable{
         MaxCardsToChoose = 3;
     }
 
-    public Session(int id, int maxCardsToChoose, int maxParticipants, int modus, int organisationId, int round, int subthemeId, boolean cardCreationAllowed, boolean cardReviewsAllowed, boolean isFinished, DateTime end, DateTime start, ArrayList<Card> cards, ArrayList<ChatMessage> chatmessages, ArrayList<Account> organisers, ArrayList<Account> participants) {
+    public Session(int id, int maxCardsToChoose, int maxParticipants, int modus, int organisationId, int round, int subthemeId, boolean cardCreationAllowed, boolean cardReviewsAllowed, boolean isFinished, String end, String start, ArrayList<Card> cards, ArrayList<ChatMessage> chatmessages, ArrayList<Account> organisers, ArrayList<Account> participants) {
         Id = id;
         MaxCardsToChoose = maxCardsToChoose;
         MaxParticipants = maxParticipants;
@@ -135,19 +133,19 @@ public class Session implements Serializable{
         IsFinished = isFinished;
     }
 
-    public DateTime getEnd() {
+    public String getEnd() {
         return End;
     }
 
-    public void setEnd(DateTime end) {
+    public void setEnd(String end) {
         End = end;
     }
 
-    public DateTime getStart() {
+    public String getStart() {
         return Start;
     }
 
-    public void setStart(DateTime start) {
+    public void setStart(String start) {
         Start = start;
     }
 
