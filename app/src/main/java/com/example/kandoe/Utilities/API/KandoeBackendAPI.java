@@ -73,6 +73,9 @@ public interface KandoeBackendAPI {
     @GET("api/organisations")
     Call<List<Organisation>> getOrganisations();
 
+    @GET("api/verbose/organisations")
+    Call<List<Organisation>> getOrganisationsVerbose();
+
     @GET("api/organisations/{id}")
     Call<Organisation> getOrganisationById(@Path("id") int id);
 

@@ -10,6 +10,7 @@ import android.widget.ExpandableListView;
 
 import com.example.kandoe.Activity.Adapters.SessionAdapter;
 import com.example.kandoe.Model.Organisation;
+import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
@@ -53,14 +54,14 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 Organisation organisation = organisations.get(groupPosition);
-                //Session session = organisation.getSessions().get(childPosition);
+                Session session = organisation.getSessions().get(childPosition);
                 boolean firstTime = true;
 
                 android.support.v4.app.Fragment fragment;
 
                 if (firstTime) {
-                    //fragment = SetupFragment.newInstance(service, organisation.getSessions().get(childPosition));
-                    fragment = new Fragment();
+                    fragment = SetupFragment.newInstance(service, session);
+
                     //TODO
                 } else {
                     fragment = new CircleFragment(service);
@@ -84,7 +85,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
     public void getOrganisationsData() {
 
-        Call<List<Organisation>> callList = service.getOrganisations();
+        Call<List<Organisation>> callList = service.getOrganisationsVerbose();
 
         callList.enqueue(new Callback<List<Organisation>>() {
             @Override

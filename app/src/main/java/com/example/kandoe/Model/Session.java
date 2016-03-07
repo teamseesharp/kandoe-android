@@ -3,6 +3,7 @@ package com.example.kandoe.Model;
 import android.media.Image;
 import android.os.Message;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -10,7 +11,7 @@ import java.util.Date;
 /**
  * Created by Michelle on 20-2-2016.
  */
-public class Session {
+public class Session implements Serializable {
 
 
     private int Id, MaxCardsToChoose, MaxParticipants, Modus, OrganisationId, Round, SubthemeId;

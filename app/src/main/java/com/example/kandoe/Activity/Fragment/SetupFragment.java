@@ -3,6 +3,7 @@ package com.example.kandoe.Activity.Fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.text.Editable;
@@ -58,7 +59,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         SetupFragment f = new SetupFragment();
         Bundle bdl = new Bundle(2);
         bdl.putSerializable(EXTRA_SERVICE, (Serializable) service);
-        bdl.putSerializable(EXTRA_SESSION, (Serializable) session);
+        bdl.putSerializable(EXTRA_SESSION,  session);
         f.setArguments(bdl);
         return f;
     }
