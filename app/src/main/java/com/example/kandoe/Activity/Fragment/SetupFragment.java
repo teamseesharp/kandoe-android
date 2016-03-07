@@ -71,6 +71,8 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         service = (KandoeBackendAPI) getArguments().getSerializable(EXTRA_SERVICE);
         session = (Session) getArguments().getSerializable(EXTRA_SESSION);
+
+
     }
 
     @Override

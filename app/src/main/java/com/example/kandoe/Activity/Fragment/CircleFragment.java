@@ -109,6 +109,8 @@ public class CircleFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO: VOTEUP
+
+                //k
             }
         });
 
