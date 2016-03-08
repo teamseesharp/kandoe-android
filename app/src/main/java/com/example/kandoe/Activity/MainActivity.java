@@ -98,7 +98,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
-                fragment = new SessionListFragment(service);
+                fragment = new SessionListFragment(service,userProfile);
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
@@ -230,4 +230,8 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
 }

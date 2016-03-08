@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kandoe.Activity.Adapters.CardAdapter;
+import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
@@ -29,7 +30,6 @@ import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,11 +37,11 @@ import retrofit2.Response;
 
 
 public class SetupFragment extends ListFragment implements OnItemClickListener {
-    private static final String EXTRA_SERVICE =   "Service" ;
-    private static final String EXTRA_SESSION =   "Session" ;
+    private static final String EXTRA_SERVICE = "Service";
+    private static final String EXTRA_SESSION = "Session";
     private ArrayList<Card> cards, myCards;
     private GridView grdMyCards, grdCards;
-    private CardAdapter cardAdapter,myCardAdapter;
+    private CardAdapter cardAdapter, myCardAdapter;
     private ProgressBar progressBar;
     private Button playButton;
     private TextView numberOfCards;
@@ -54,23 +54,23 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     public SetupFragment() {
     }
 
-    public static SetupFragment newInstance(KandoeBackendAPI service, Session session)
-    {
+    public static SetupFragment newInstance(KandoeBackendAPI service, Session session) {
         SetupFragment f = new SetupFragment();
         Bundle bdl = new Bundle(2);
         bdl.putSerializable(EXTRA_SERVICE, (Serializable) service);
-        bdl.putSerializable(EXTRA_SESSION,  session);
+        bdl.putSerializable(EXTRA_SESSION, session);
         f.setArguments(bdl);
         return f;
     }
 
+    MainActivity mainActivity;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         service = (KandoeBackendAPI) getArguments().getSerializable(EXTRA_SERVICE);
         session = (Session) getArguments().getSerializable(EXTRA_SESSION);
+        mainActivity = (MainActivity) getActivity();
 
 
     }
@@ -105,8 +105,11 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             @Override
             public void onClick(View v) {
 
-                CircleFragment fragment = CircleFragment.newInstance(service, session);
 
+                //  addCardsToSession();
+
+
+                CircleFragment fragment = CircleFragment.newInstance(service, session);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
 
@@ -126,6 +129,25 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 Toast.LENGTH_LONG).show();
 
         return view;
+    }
+
+    private boolean addCardsToSession() {
+
+        Call<Boolean> call = service.addCardsToSession(session.getId(), myCards);
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccess()) {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+
+            }
+        });
+        return false;
     }
 
     @Override
@@ -168,16 +190,16 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     }
 
 
-    private void setProgress(){
+    private void setProgress() {
         session.setNumberOfCards(3);
         double max = session.getNumberOfCards();
         double currentNumber = myCards.size();
-        double progress = (currentNumber/max)*100;
+        double progress = (currentNumber / max) * 100;
         progressBar.setProgress((int) progress);
         progressBar.setProgress((int) progress);
         //numberOfCards.setText(String.valueOf(cards.size()));
 
-        if (progressBar.getProgress() == 100 && myCards.size() >= 1 && myCards.size() <=3){
+        if (progressBar.getProgress() == 100 && myCards.size() >= 1 && myCards.size() <= 3) {
             playButton.setEnabled(true);
             playButton.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.INVISIBLE);
@@ -209,10 +231,11 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         return cards;
     }
 
-    private void addCard(){
+    private void addCard() {
         final EditText input = new EditText(getActivity());
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         input.setLines(1);
+
         new AlertDialog.Builder(getActivity())
                 .setTitle("Voeg kaart toe:")
                 .setView(input)
@@ -223,16 +246,11 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                         Card newCard = new Card();
 
                         newCard.setDescription(String.valueOf(kaartnaam));
-                         //TODO NOG TE VERVANGEN
-                        session.setSubThemeId(5);
                         newCard.setSubthemeId(String.valueOf(session.getSubThemeId()));
+                        CreateCard(newCard);
 
-                        // mock return
-                        newCard.setId(cards.size() + new Random().nextInt(100));
-
-                        doPostCard(newCard);
-
-                        myCards.add(0,newCard);
+                        // TODO MOVE TO CALL (Response)
+                        myCards.add(0, newCard);
                         myCardAdapter.notifyDataSetChanged();
 
 
@@ -247,22 +265,42 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 .show();
     }
 
-    private void doPostCard(Card card){
-        Call<Card> call = service.addCard(card);
-        call.enqueue(new Callback<Card>() {
+    private void CreateCard(Card card) {
+
+        // TODO vervangen met auth0 id
+        card.setCreatorId(2);
+
+        Call<Void> call = service.addCard(card);
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Card> call, Response<Card> response) {
-                Toast.makeText(getActivity(), "kaart toegevoegd!!! =)",
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                System.out.println(response);
+
+                if (response.isSuccess()) {
+                    Toast.makeText(getActivity(), "kaart toegevoegd! :)",
                             Toast.LENGTH_LONG).show();
 
+                /* TODO Aanpassen in DB , callback card
+                   Card confirmationCard = response.body();
+                   myCards.add(0, confirmationCard);
+                   myCardAdapter.notifyDataSetChanged();*/
+
+                } else {
+                    Toast.makeText(getActivity(), "Kaart niet toegevoegd! :(",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<Card> call, Throwable t) {
-                Toast.makeText(getActivity(), "FAILLLLLL)",
-                        Toast.LENGTH_LONG).show();
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getActivity(), "Kaart toevoegen mislukt)",
+                        Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+
     }
 
 

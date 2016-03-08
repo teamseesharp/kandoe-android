@@ -32,8 +32,16 @@ public interface KandoeBackendAPI {
     @GET("api/cards/{id}")
     Call<Card> getCardById(@Path("id") int id);
 
-    @POST("api/cards")
-    Call<Card> addCard(@Body Card card);
+    @POST("api/cards/")
+    Call<Void> addCard(@Body Card card);
+
+
+
+
+    //Using already existing cards, add to the specified session.
+    @POST("api/cards/{sessionid)")
+    Call<Boolean> addCardsToSession(@Path("sessionid") int id, @Body List<Card> cards);
+
 
 
     //Account
@@ -73,6 +81,7 @@ public interface KandoeBackendAPI {
     @GET("api/organisations")
     Call<List<Organisation>> getOrganisations();
 
+    //Get all organisations and all nested collections.
     @GET("api/verbose/organisations")
     Call<List<Organisation>> getOrganisationsVerbose();
 

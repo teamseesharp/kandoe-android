@@ -56,7 +56,9 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         Theme currentTheme = null;
         SubTheme currentSubtheme = null;
 
-        for (Theme thema : groups.get(groupPosition).getThemes()) {
+        ArrayList<Theme> themes = groups.get(groupPosition).getThemes();
+
+        for (Theme thema : themes ) {
             for (SubTheme subthema : thema.getSubthemes()) {
                 if (subthema.getId() == child.getSubThemeId()) {
                     currentSubtheme = subthema;

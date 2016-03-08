@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
+import com.auth0.core.UserProfile;
 import com.example.kandoe.Activity.Adapters.SessionAdapter;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
@@ -32,7 +33,8 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
     private SessionAdapter adapter;
 
 
-    public SessionListFragment(KandoeBackendAPI service) {
+
+    public SessionListFragment(KandoeBackendAPI service, UserProfile userProfile) {
         this.service = service;
         organisations = new ArrayList<>();
         getOrganisationsData();
