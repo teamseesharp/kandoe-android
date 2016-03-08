@@ -87,18 +87,13 @@ public class MainActivity extends ActionBarActivity
         android.support.v4.app.ListFragment listfragment = null;
 
         switch (number) {
-           /* case 2:
-                mTitle = getString(R.string.title_section1);
-                fragment = new CircleFragment();
-                break;*/
             case 1:
                 mTitle = getString(R.string.title_section1);
-                fragment = new MainFragment();
-               // fragment = new SetupFragment();
+                fragment = new SessionListFragment(service);
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
-                fragment = new SessionListFragment(service,userProfile);
+                fragment = new MainFragment();
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
@@ -175,6 +170,9 @@ public class MainActivity extends ActionBarActivity
         }
 
         if( id == R.id.action_help){
+            mTitle = getString(R.string.title_section4);
+            restoreActionBar();
+
             Fragment help = new HelpFragment();
             if (help != null) {
                 android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
@@ -230,8 +228,4 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
-
-    public UserProfile getUserProfile() {
-        return userProfile;
-    }
 }

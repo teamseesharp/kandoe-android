@@ -33,7 +33,6 @@ public class MessageReceiver {
     }
 
 
-
     private void init() throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("chicken.rmq.cloudamqp.com");

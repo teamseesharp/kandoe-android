@@ -2,10 +2,10 @@
     <string name="app_name">Kandoe</string>
 
     <!-- Navigation drawer -->
-    <string name="title_section1">Overzicht</string>
-    <string name="title_section2">Sessie overzicht</string>
+    <string name="title_section1">Sessie overzicht</string>
+    <string name="title_section2">Gespeelde sessies</string>
     <string name="title_section3">Mijn profiel</string>
-    <string name="title_section4">Google log out</string>
+    <string name="title_section4">Help</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

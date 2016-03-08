@@ -109,8 +109,6 @@ public class CircleFragment extends Fragment {
             }
         });
 
-
-
       //  listView.setPadding(0, (int) controller.getBottomboundLadder(), 0, 0);
 
         return view;
@@ -186,4 +184,5 @@ public class CircleFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }

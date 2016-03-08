@@ -14,7 +14,7 @@ public class UserAccount {
 
     private ArrayList<Card> Cards;
     private ArrayList<CardReview> CardReviews;
-    private ArrayList<ChatMessage> Chatmessages;
+    private ArrayList<ChatMessage> ChatMessages;
     private ArrayList<Organisation> Organisations;
     private ArrayList<Session> OrganisedSessions;
     private ArrayList<Session> ParticipatingSessions;
@@ -30,7 +30,7 @@ public class UserAccount {
         Picture = picture;
         Cards = cards;
         CardReviews = cardReviews;
-        Chatmessages = chatmessages;
+        ChatMessages = chatmessages;
         Organisations = organisations;
         OrganisedSessions = organisedSessions;
         ParticipatingSessions = participatingSessions;
@@ -107,11 +107,11 @@ public class UserAccount {
     }
 
     public ArrayList<ChatMessage> getChatmessages() {
-        return Chatmessages;
+        return ChatMessages;
     }
 
     public void setChatmessages(ArrayList<ChatMessage> chatmessages) {
-        Chatmessages = chatmessages;
+        ChatMessages = chatmessages;
     }
 
     public ArrayList<Organisation> getOrganisations() {
