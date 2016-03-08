@@ -30,7 +30,7 @@ public class CircleFragment extends Fragment {
     private static final String EXTRA_SERVICE = "Service";
     private static final String EXTRA_SESSION = "Session";
 
-
+    //TEST
     private CircleSessionController controller;
     private OnFragmentInteractionListener mListener;
     private KandoeBackendAPI service;
