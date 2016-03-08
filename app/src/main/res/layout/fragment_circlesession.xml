@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@color/primary">
+        android:background="@color/primary"
+        android:orientation="horizontal">
+
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -24,7 +26,19 @@
             android:layout_alignParentTop="true"
             android:layout_alignBottom="@+id/votebutton"
             android:src="@drawable/ic_group"
-            android:background="@color/white"/>
+            android:background="@color/white" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/playersTurn"
+            android:text="@string/session_playersTurn"
+            android:textColor="@color/white"
+            android:layout_marginLeft="5dp"
+            android:textSize="15dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
 
 
         <Button

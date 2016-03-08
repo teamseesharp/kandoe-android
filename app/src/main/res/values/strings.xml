@@ -17,23 +17,6 @@
     <string name="menu_login">Uitloggen</string>
     <string name="menu_help">Help</string>
 
-    <!-- Login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Wachtwoord</string>
-    <string name="login">Aanmelden</string>
-    <string name="login_google">Log in met Google account</string>
-    <string name="action_register"><u>Registreer met email</u></string>
-    <string name="error_login">Foutief emailadres of wachtwoord</string>
-
-    <!-- Register -->
-    <string name="register_title">Creëer een account</string>
-    <string name="register_email">Email</string>
-    <string name="register_password">Wachtwoord</string>
-    <string name="register_repeatPassword">Herhaal wachtwoord</string>
-    <string name="register_firstName">Voornaam</string>
-    <string name="register_lastName">Achternaam</string>
-    <string name="register_create">Registreer</string>
-
     <!-- Account -->
     <string name="account_title">Profiel</string>
     <string name="account_firstName">Voornaam</string>
@@ -55,6 +38,10 @@
     <!--Card Setup-->
     <string name="cardSetup_title1">Gekozen kaarten</string>
     <string name="cardSetup_title2">Beschikbare Kaarten</string>
+
+    <!--Circle session-->
+    <string name="session_playerName">[naam]</string>
+    <string name="session_playersTurn">is aan de beurt</string>
 
 
 

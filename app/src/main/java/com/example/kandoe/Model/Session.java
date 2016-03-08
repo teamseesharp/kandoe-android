@@ -1,7 +1,5 @@
 package com.example.kandoe.Model;
 
-import android.accounts.Account;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -17,8 +15,8 @@ public class Session implements Serializable{
 
     private ArrayList<Card> Cards;
     private ArrayList<ChatMessage> Chatmessages;
-    private ArrayList<Account> Organisers;
-    private ArrayList<Account> Participants;
+    private ArrayList<UserAccount> Organisers;
+    private ArrayList<UserAccount> Participants;
 
 
     public Session() {
@@ -26,7 +24,7 @@ public class Session implements Serializable{
         MaxCardsToChoose = 3;
     }
 
-    public Session(int id, int maxCardsToChoose, int maxParticipants, int modus, int organisationId, int round, int subthemeId, boolean cardCreationAllowed, boolean cardReviewsAllowed, boolean isFinished, String end, String start, ArrayList<Card> cards, ArrayList<ChatMessage> chatmessages, ArrayList<Account> organisers, ArrayList<Account> participants) {
+    public Session(int id, int maxCardsToChoose, int maxParticipants, int modus, int organisationId, int round, int subthemeId, boolean cardCreationAllowed, boolean cardReviewsAllowed, boolean isFinished, String end, String start, ArrayList<Card> cards, ArrayList<ChatMessage> chatmessages, ArrayList<UserAccount> organisers, ArrayList<UserAccount> participants) {
         Id = id;
         MaxCardsToChoose = maxCardsToChoose;
         MaxParticipants = maxParticipants;
@@ -181,19 +179,19 @@ public class Session implements Serializable{
         Chatmessages = chatmessages;
     }
 
-    public ArrayList<Account> getParticipants() {
+    public ArrayList<UserAccount> getParticipants() {
         return Participants;
     }
 
-    public void setParticipants(ArrayList<Account> participants) {
+    public void setParticipants(ArrayList<UserAccount> participants) {
         Participants = participants;
     }
 
-    public ArrayList<Account> getOrganisers() {
+    public ArrayList<UserAccount> getOrganisers() {
         return Organisers;
     }
 
-    public void setOrganisers(ArrayList<Account> organisers) {
+    public void setOrganisers(ArrayList<UserAccount> organisers) {
         Organisers = organisers;
     }
 }

@@ -23,6 +23,7 @@ import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Utilities.DrawableGraphics.SurfacePanel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class CircleFragment extends Fragment {
@@ -34,6 +35,19 @@ public class CircleFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private KandoeBackendAPI service;
     private Session session;
+    private ArrayList<String> participants = new ArrayList<>();
+
+    //TIJDELIJK
+    public void addSpelers(){
+        participants.add("Michelle");
+        participants.add("Joachim");
+        participants.add("Thomas");
+        participants.add("Cas");
+        participants.add("Bennie");
+        participants.add("Olivier");
+        participants.add("Paljas");
+        participants.add("dingske");
+    }
 
     public CircleFragment() {
     }
@@ -62,6 +76,8 @@ public class CircleFragment extends Fragment {
 
         //TODO Add session parameter
         controller = new CircleSessionController(getContext(), session);
+
+        addSpelers();
         
     }
 
@@ -81,16 +97,17 @@ public class CircleFragment extends Fragment {
         panel.setController(controller);
         // panel.invalidate();
 
-
         System.out.println(panel.getBottom());
 
         ListView listView = (ListView) view.findViewById(R.id.lvCards);
-
         CardAdapter cardAdapter = new CardAdapter(getContext(), false, controller.getCards());
-
         controller.setAdapter(cardAdapter);
-
         listView.setAdapter(cardAdapter);
+
+        TextView playerName = (TextView) view.findViewById(R.id.playersTurn);
+        //TODO: current player ophalen en tonen
+        String player = "Michelle" + " " + playerName.getText().toString();
+        playerName.setText(player);
 
         //BUTTONS
         ImageButton showPersons = (ImageButton) view.findViewById(R.id.button_players);
@@ -148,7 +165,7 @@ public class CircleFragment extends Fragment {
 
         // TODO: spelers inladen
         TextView tv = (TextView) popupView.findViewById(R.id.popup_tv);
-        tv.setText("Michelle\nJoachim\nThomas\nCas\nBennie\nOlivier");
+        tv.setText(participantsOnNewLine());
 
         // If the PopupWindow should be focusable
         popupWindow.setFocusable(true);
@@ -165,6 +182,14 @@ public class CircleFragment extends Fragment {
         popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY,
                 location[0], location[1] + anchorView.getHeight());
 
+    }
+
+    public String participantsOnNewLine(){
+        StringBuffer names = new StringBuffer();
+        for (String p : participants) {
+            names.append(p.toString()).append('\n');
+        }
+        return names.toString();
     }
 
 
