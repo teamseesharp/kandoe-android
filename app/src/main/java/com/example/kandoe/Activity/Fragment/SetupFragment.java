@@ -1,5 +1,6 @@
 package com.example.kandoe.Activity.Fragment;
 
+import android.accounts.Account;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.example.kandoe.Activity.Adapters.CardAdapter;
 import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Session;
+import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
@@ -39,6 +41,7 @@ import retrofit2.Response;
 public class SetupFragment extends ListFragment implements OnItemClickListener {
     private static final String EXTRA_SERVICE = "Service";
     private static final String EXTRA_SESSION = "Session";
+
     private ArrayList<Card> cards, myCards;
     private GridView grdMyCards, grdCards;
     private CardAdapter cardAdapter, myCardAdapter;
@@ -49,6 +52,8 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
     private KandoeBackendAPI service;
     private Session session;
+    private MainActivity mainActivity;
+    private UserAccount account;
 
 
     public SetupFragment() {
@@ -63,7 +68,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         return f;
     }
 
-    MainActivity mainActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,7 +76,26 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         session = (Session) getArguments().getSerializable(EXTRA_SESSION);
         mainActivity = (MainActivity) getActivity();
 
+        getUserAccountInfo();
 
+    }
+
+    private void getUserAccountInfo() {
+        String secret = mainActivity.getUserProfile().getId();
+
+        Call<UserAccount> call = service.getUserId(secret);
+        call.enqueue(new Callback<UserAccount>() {
+            @Override
+            public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
+                account = response.body();
+
+            }
+
+            @Override
+            public void onFailure(Call<UserAccount> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
@@ -124,9 +147,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 addCard();
             }
         });
-
-        Toast.makeText(getActivity(), "Kies minimum 1 kaart en maximum 3)",
-                Toast.LENGTH_LONG).show();
 
         return view;
     }
@@ -203,6 +223,11 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             playButton.setEnabled(true);
             playButton.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.INVISIBLE);
+        } else if (progressBar.getProgress() == 100  && myCards.size() >= 3) {
+            Toast.makeText(getContext(),"Je hebt teveel kaarten geselecteerd!", Toast.LENGTH_LONG).show();
+            playButton.setEnabled(false);
+            playButton.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
         } else {
             playButton.setEnabled(false);
             playButton.setVisibility(View.INVISIBLE);
@@ -237,7 +262,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         input.setLines(1);
 
         new AlertDialog.Builder(getActivity())
-                .setTitle("Voeg kaart toe:")
+                .setTitle("Voeg een kaart toe:")
                 .setView(input)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -267,8 +292,9 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
     private void CreateCard(Card card) {
 
-        // TODO vervangen met auth0 id
-        card.setCreatorId(2);
+
+        card.setCreatorId(account.getId());
+
 
         Call<Void> call = service.addCard(card);
         call.enqueue(new Callback<Void>() {
@@ -293,12 +319,10 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getActivity(), "Kaart toevoegen mislukt)",
+                Toast.makeText(getActivity(), "Kaart toevoegen mislukt",
                         Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
 
     }

@@ -58,6 +58,9 @@ public interface KandoeBackendAPI {
     @PUT("api/accounts")
     Call<ResponseBody> changeAccount(@Body String oldPassword, @Body String newPassword, @Body String confirmPassword);
 
+    @GET("api/accounts/by-auth0-user-id/{secret}")
+    Call<UserAccount> getUserId(@Path("secret") String secret);
+
 
     //Session
     @GET ("api/sessions")

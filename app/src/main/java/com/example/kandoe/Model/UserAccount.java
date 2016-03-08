@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class UserAccount {
     private int Id;
     private String Email, Name, Surname,Secret;
-    private Image Picture;
+
 
     private ArrayList<Card> Cards;
     private ArrayList<CardReview> CardReviews;
@@ -21,22 +21,7 @@ public class UserAccount {
     private ArrayList<SubTheme> Subthemes;
     private ArrayList<Theme> Themes;
 
-    public UserAccount(int id, String email, String name, String surname, String secret, Image picture, ArrayList<Card> cards, ArrayList<CardReview> cardReviews, ArrayList<ChatMessage> chatmessages, ArrayList<Organisation> organisations, ArrayList<Session> organisedSessions, ArrayList<Session> participatingSessions, ArrayList<SubTheme> subthemes, ArrayList<Theme> themes) {
-        Id = id;
-        Email = email;
-        Name = name;
-        Surname = surname;
-        Secret = secret;
-        Picture = picture;
-        Cards = cards;
-        CardReviews = cardReviews;
-        ChatMessages = chatmessages;
-        Organisations = organisations;
-        OrganisedSessions = organisedSessions;
-        ParticipatingSessions = participatingSessions;
-        Subthemes = subthemes;
-        Themes = themes;
-    }
+
 
     public UserAccount(){
 
@@ -72,14 +57,6 @@ public class UserAccount {
 
     public void setSurname(String surname) {
         Surname = surname;
-    }
-
-    public Image getPicture() {
-        return Picture;
-    }
-
-    public void setPicture(Image picture) {
-        Picture = picture;
     }
 
     public String getSecret() {

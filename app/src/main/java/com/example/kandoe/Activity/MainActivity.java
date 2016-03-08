@@ -228,4 +228,7 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
 }
