@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -33,6 +34,13 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
         super(context, attrs);
         getHolder().addCallback(this);
         thread = new DrawThread(getHolder());
+
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+
+
+        getHolder().setFixedSize(width,height/2-100);
     }
 
     // Constructor

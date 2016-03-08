@@ -32,15 +32,17 @@ public interface KandoeBackendAPI {
     @GET("api/cards/{id}")
     Call<Card> getCardById(@Path("id") int id);
 
+    //Create new card
     @POST("api/cards/")
     Call<Void> addCard(@Body Card card);
-
-
-
 
     //Using already existing cards, add to the specified session.
     @POST("api/cards/{sessionid)")
     Call<Boolean> addCardsToSession(@Path("sessionid") int id, @Body List<Card> cards);
+
+    //Get position of a specified card in a specified session.
+    @GET("api/cards/{id}/position/{sessionid}")
+    Call<Integer> getPositionInSession(@Path("id") int carId, @Path("sessionid") int sessionId);
 
 
 

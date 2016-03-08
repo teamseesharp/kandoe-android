@@ -30,7 +30,6 @@ public class CircleFragment extends Fragment {
     private static final String EXTRA_SERVICE = "Service";
     private static final String EXTRA_SESSION = "Session";
 
-    //TEST
     private CircleSessionController controller;
     private OnFragmentInteractionListener mListener;
     private KandoeBackendAPI service;
@@ -78,7 +77,7 @@ public class CircleFragment extends Fragment {
         controller = new CircleSessionController(getContext(), session);
 
         addSpelers();
-        
+
     }
 
 
@@ -126,7 +125,7 @@ public class CircleFragment extends Fragment {
             }
         });
 
-      //  listView.setPadding(0, (int) controller.getBottomboundLadder(), 0, 0);
+        //  listView.setPadding(0, (int) controller.getBottomboundLadder(), 0, 0);
 
         return view;
     }

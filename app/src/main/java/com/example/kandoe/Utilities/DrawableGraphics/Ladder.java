@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -18,11 +19,12 @@ import java.util.ArrayList;
  */
 public class Ladder extends View {
 
-
+private final String DEBUGTAG = "LADDER";
     private CircleSessionController controller;
     private ArrayList<View> steps;
     private ArrayList<RoundedRectangle> legs;
     private double bottembound;
+    private boolean firstTime;
 
     int clLeft, clTop, clRight, clBottom, offset, width, height, heightleg;
 
@@ -31,13 +33,7 @@ public class Ladder extends View {
         super(context);
     }
 
-   /* public Ladder(Context context, int numberOfSteps, ArrayList<Card> cards, ArrayList<View> bulletPoints) {
-        super(context);
-        steps = new ArrayList<>();
-        bullets = bulletPoints;
-        this.cards = cards;
-        this.numberOfSteps = numberOfSteps;
-    }*/
+
 
     public Ladder(CircleSessionController circleSessionController) {
         super(circleSessionController.getContext());
@@ -49,10 +45,12 @@ public class Ladder extends View {
     public void createLadder(Canvas container) {
         init();
         createBackGround(container);
-
         createSteps(container);
         createLegs(container);
-        createBullets(container);
+
+        if (controller.getSession().getRound() != 0){
+            createBullets(container);
+        }
 
     }
 
@@ -77,9 +75,8 @@ public class Ladder extends View {
         bottembound = (heightleg + heightleg * 0.3);
         controller.setBottomboundLadder(bottembound);
 
-       View background = new Background(getContext(), (int) bottembound,container);
+        View background = new Background(getContext(), (int) bottembound,container);
 
-        //container.addView(background);
 
 
 
@@ -88,19 +85,12 @@ public class Ladder extends View {
 
     private void createBullets(Canvas container) {
 
-        System.out.println("Drawing Bullets");
+        Log.d(DEBUGTAG, "Creating bullets");
 
         for (Card card : controller.getCards()) {
-
-
-            View bullet = new BulletPoint(getContext(), steps, card, legs, controller,container);
-
-          /*  LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, WRAP_CONTENT);
-            myImageView .setLayoutParams(params);*/
-
-
+            View bullet = new BulletPoint(getContext(), steps, card, legs, controller, container);
             controller.getBulletPoints().add(bullet);
-          //  container.addView(bullet);
+
 
         }
     }
@@ -109,7 +99,7 @@ public class Ladder extends View {
     private void createSteps( Canvas container) {
 
 
-        System.out.println("Drawing Steps");
+        Log.d(DEBUGTAG,"Creating steps");
          int numberOfSteps = controller.getSession().getNumberOfSteps();
 
         //init values
@@ -123,7 +113,7 @@ public class Ladder extends View {
             topOffset += heightleg / numberOfSteps;
 
             steps.add(trede);
-            //container.addView(trede);
+
 
 
         }
@@ -133,11 +123,8 @@ public class Ladder extends View {
 
 
     private void createLegs(Canvas container) {
-        //init values
 
-        // int clLeft = 200, clTop = 150, clRight = clLeft + 50, clBottom = 800;
-        //   int offset = 600;
-
+        Log.d(DEBUGTAG,"Creating legs");
 
         //left leg
         RoundedRectangle leftleg = new RoundedRectangle(getContext(), clLeft, clTop, clRight, clBottom, Color.rgb(102, 51, 0),container);
@@ -147,8 +134,7 @@ public class Ladder extends View {
 
         legs.add(leftleg);
         legs.add(rightLeg);
-       /* container.addView(leftleg);
-        container.addView(rightLeg);*/
+
     }
 
 

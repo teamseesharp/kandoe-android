@@ -92,7 +92,7 @@ public class BulletPoint extends View {
     private RoundedRectangle getStepOnPosition(int cardId, ArrayList<RoundedRectangle> steps) {
 
         //TODO Call naar positie card
-        int position = new Random().nextInt(steps.size());
+        int position = steps.size();
 
 
         for (RoundedRectangle step : steps) {
@@ -105,13 +105,6 @@ public class BulletPoint extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-
-        //canvas.setBitmap(bmDest);
-
-        //  canvas.drawBitmap(bmDest, bmDest.getWidth(), bmDest.getHeight(), null);
-
-
-
 
         canvas.drawRoundRect(rectF, 100, 100, paint);
         drawRectText(String.valueOf(card.getId()), canvas, rectF);
@@ -129,7 +122,7 @@ public class BulletPoint extends View {
 
         int numOfChars = paint2.breakText(text, true, width, null);
         int start = (text.length() - numOfChars) / 2;
-        canvas.drawText(text, start, start + numOfChars, r.centerX(), r.centerY() + 20, paint2);
+        canvas.drawText("", start, start + numOfChars, r.centerX(), r.centerY() + 20, paint2);
     }
 
 

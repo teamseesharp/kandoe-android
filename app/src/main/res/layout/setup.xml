@@ -104,7 +104,10 @@
         android:layout_alignEnd="@+id/btnPlay"
         android:layout_margin="15dp"
         android:paddingLeft="2dp"
-        android:paddingRight="2dp" />
+        android:paddingRight="2dp"
+
+
+        />
 
     <ImageButton
         android:layout_width="wrap_content"

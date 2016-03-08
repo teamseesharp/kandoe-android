@@ -46,7 +46,7 @@ public class CardAdapter extends ArrayAdapter {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             view = inflater.inflate(layoutResourceId, parent, false);
             holder = new ViewHolder();
-            holder.title = (TextView) view.findViewById(R.id.txtCardDescription);
+
             holder.description = (TextView) view.findViewById(R.id.txtCardTitle);
             holder.upvote = (CheckBox) view.findViewById(R.id.radioButton);
             holder.number = (TextView) view.findViewById(R.id.txtNumberHolder);
@@ -63,7 +63,7 @@ public class CardAdapter extends ArrayAdapter {
         holder.id.setText(String.valueOf(card.getId()));
 
         //TODO positie meegeven
-        holder.number.setText("1");
+        holder.number.setText("");
 
         setBG(holder, card.getId());
 
@@ -74,7 +74,7 @@ public class CardAdapter extends ArrayAdapter {
     }
 
     static class ViewHolder {
-        TextView title;
+
         TextView description;
         CheckBox upvote;
         TextView number;
