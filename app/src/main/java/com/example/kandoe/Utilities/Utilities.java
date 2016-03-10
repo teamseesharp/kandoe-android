@@ -16,7 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Utilities {
 
-    public static String stringFormatter(String string) {
+    public static String dateFormatter(String string) {
         String buffer = string.substring(0, 16);
         String jaar = buffer.substring(0, 4);
         String maand = buffer.substring(5, 7);
@@ -37,13 +37,13 @@ public class Utilities {
         }
 
 
-        if (year == Integer.parseInt(jaar)) {
+       /* if (year == Integer.parseInt(jaar)) {
             if (longMonth.toString().equals(maand)) {
                 if (day == Integer.parseInt(dag)) {
                     return uur + ":" + minuut;
                 }
             }
-        }
+        }*/
         return dag + "-" + maand + "-" + jaar;
 
     }

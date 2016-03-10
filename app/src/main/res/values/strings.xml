@@ -44,11 +44,6 @@
     <string name="session_playersTurn">is aan de beurt</string>
 
 
-
-
-
-
-
     <!-- TODO(user): replace with your real server client ID -->
     <!-- Server Client ID.  This should be a valid Web OAuth 2.0 Client ID obtained
              from https://console.developers.google.com/ -->
@@ -57,7 +52,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_section5">Spel setup</string>
-
 
 
     <string name="facebook_app_id">590812887748784</string>

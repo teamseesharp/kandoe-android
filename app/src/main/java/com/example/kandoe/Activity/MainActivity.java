@@ -57,6 +57,7 @@ public class MainActivity extends ActionBarActivity
         if (intent != null) {
             userProfile = intent.getParcelableExtra("profile");
             token = intent.getParcelableExtra("token");
+            System.out.println(token.getIdToken());
         }
 
         service = APIServiceGenerator.createService(KandoeBackendAPI.class,token.getIdToken());

@@ -12,10 +12,14 @@ import com.auth0.core.UserProfile;
 import com.example.kandoe.Activity.Adapters.SessionAdapter;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
+import com.example.kandoe.Model.SubTheme;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -31,26 +35,28 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
     private ArrayList<Organisation> organisations;
     private SessionAdapter adapter;
+    private ArrayList<SubTheme> subThemes;
 
 
 
     public SessionListFragment(KandoeBackendAPI service, UserProfile userProfile) {
         this.service = service;
         organisations = new ArrayList<>();
+        subThemes =  new ArrayList<>();
         getOrganisationsData();
+        getSubThemesData();
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_session_list, container, false);
 
         ExpandableListView expandableListView = (ExpandableListView) view.findViewById(R.id.listview);
-        adapter = new SessionAdapter(getContext(), organisations);
+        adapter = new SessionAdapter(getContext(), organisations,subThemes);
 
         expandableListView.setAdapter(adapter);
-        for (int i = 0; i < adapter.getGroupCount(); i++)
-            expandableListView.expandGroup(i);
-
 
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
@@ -92,8 +98,31 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
         callList.enqueue(new Callback<List<Organisation>>() {
             @Override
             public void onResponse(Call<List<Organisation>> call, Response<List<Organisation>> response) {
-                organisations.addAll(response.body());
-                System.out.println(organisations);
+
+                ArrayList<Organisation> organisationsTemp = (ArrayList<Organisation>) response.body();
+
+                for (Organisation org : organisationsTemp) {
+
+                    Collections.sort(org.getSessions(), new Comparator<Session>() {
+                        @Override
+                        public int compare(Session lhs, Session rhs) {
+                            if (lhs.getSubthemeId() == rhs.getSubthemeId()) return 0;
+                            if (lhs.getSubthemeId() > rhs.getSubthemeId()) return -1;
+                            if (lhs.getSubthemeId() < rhs.getSubthemeId()) return 1;
+                            return 0;
+                        }
+                    });
+
+                    for (Session sess : org.getSessions()) {
+                        if (sess.isFinished()){
+                            org.getSessions().remove(sess);
+                        }
+                    }
+
+                }
+
+
+                organisations.addAll(organisationsTemp);
                 adapter.notifyDataSetChanged();
             }
 
@@ -103,6 +132,25 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
             }
         });
 
+
+    }
+
+    private void getSubThemesData() {
+
+        Call<List<SubTheme>> call = service.getSubThemes();
+
+        call.enqueue(new Callback<List<SubTheme>>() {
+            @Override
+            public void onResponse(Call<List<SubTheme>> call, Response<List<SubTheme>> response) {
+                subThemes.addAll(response.body());
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<SubTheme>> call, Throwable t) {
+                System.out.println(t.toString());
+            }
+        });
 
     }
 
