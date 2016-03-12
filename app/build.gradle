@@ -46,6 +46,9 @@ dependencies {
     //Espresso
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
 
+
+
+
     compile 'com.auth0.android:lock:1.13.+'
     compile 'com.auth0.android:lock-facebook:2.0.+'
     compile 'com.auth0.android:lock-googleplus:2.0.+'
@@ -56,14 +59,11 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'joda-time:joda-time:2.7'
     compile 'com.squareup.retrofit:retrofit:1.8.0'
-
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
     compile 'com.jayway.android.robotium:robotium-solo:5.2.1'
     compile 'com.rabbitmq:amqp-client:3.6.0'
-
     compile 'com.google.android.gms:play-services-auth:8.4.0'
-
 }
 
 

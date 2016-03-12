@@ -68,7 +68,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         Bundle bdl = new Bundle(2);
         bdl.putSerializable(EXTRA_SERVICE, (Serializable) service);
         bdl.putSerializable(EXTRA_SESSION, session);
-        bdl.putString(EXTRA_TITLE,text);
+        bdl.putString(EXTRA_TITLE, text);
         f.setArguments(bdl);
         return f;
     }
@@ -114,11 +114,12 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.setup, container, false);
 
-        assert mainActivity.getActionBar() != null;
-        mainActivity.getActionBar().setTitle(title);
+        if(mainActivity.getActionBar() != null) {
+            mainActivity.getActionBar().setTitle(title);
+        } if(mainActivity.getSupportActionBar() != null) {
+            mainActivity.getSupportActionBar().setTitle(title);
+        }
 
-        assert mainActivity.getSupportActionBar() != null;
-        mainActivity.getSupportActionBar().setTitle(title);
 
 
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
