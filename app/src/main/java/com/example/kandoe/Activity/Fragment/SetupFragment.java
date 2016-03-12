@@ -31,6 +31,8 @@ import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -41,6 +43,7 @@ import retrofit2.Response;
 public class SetupFragment extends ListFragment implements OnItemClickListener {
     private static final String EXTRA_SERVICE = "Service";
     private static final String EXTRA_SESSION = "Session";
+    private static final String EXTRA_TITLE = "Title";
 
     private ArrayList<Card> cards, myCards;
     private GridView grdMyCards, grdCards;
@@ -54,16 +57,18 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     private Session session;
     private MainActivity mainActivity;
     private UserAccount account;
+    private String title;
 
 
     public SetupFragment() {
     }
 
-    public static SetupFragment newInstance(KandoeBackendAPI service, Session session) {
+    public static SetupFragment newInstance(KandoeBackendAPI service, Session session, String text) {
         SetupFragment f = new SetupFragment();
         Bundle bdl = new Bundle(2);
         bdl.putSerializable(EXTRA_SERVICE, (Serializable) service);
         bdl.putSerializable(EXTRA_SESSION, session);
+        bdl.putString(EXTRA_TITLE,text);
         f.setArguments(bdl);
         return f;
     }
@@ -74,9 +79,16 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         service = (KandoeBackendAPI) getArguments().getSerializable(EXTRA_SERVICE);
         session = (Session) getArguments().getSerializable(EXTRA_SESSION);
+        title = getArguments().getString(EXTRA_TITLE);
+
         mainActivity = (MainActivity) getActivity();
+        myCards = new ArrayList<>();
+        cards = new ArrayList<>();
 
         getUserAccountInfo();
+        getCardData();
+
+
 
     }
 
@@ -102,9 +114,12 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.setup, container, false);
 
-        myCards = new ArrayList<>();
-        cards = new ArrayList<>();
-        cards = getCardData();
+        assert mainActivity.getActionBar() != null;
+        mainActivity.getActionBar().setTitle(title);
+
+        assert mainActivity.getSupportActionBar() != null;
+        mainActivity.getSupportActionBar().setTitle(title);
+
 
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         progressBar.setProgress(0);
@@ -235,14 +250,18 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         }
     }
 
-    public ArrayList<Card> getCardData() {
+    private void getCardData() {
 
-        Call<List<Card>> callList = service.getCards();
+
+
+
+        Call<List<Card>> callList = service.getCardsBySubthemeId(session.getSubThemeId());
 
         callList.enqueue(new Callback<List<Card>>() {
             @Override
             public void onResponse(Call<List<Card>> call, Response<List<Card>> response) {
                 cards.addAll(response.body());
+                Collections.shuffle(cards);
                 cardAdapter.notifyDataSetChanged();
 
             }
@@ -253,7 +272,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             }
         });
 
-        return cards;
+
     }
 
     private void addCard() {

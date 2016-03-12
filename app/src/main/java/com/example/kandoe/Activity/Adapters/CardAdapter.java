@@ -19,6 +19,8 @@ import com.example.kandoe.R;
 
 import java.util.ArrayList;
 
+import static com.example.kandoe.R.drawable.listborderitem;
+
 
 public class CardAdapter extends ArrayAdapter {
     private Context context;
@@ -67,8 +69,7 @@ public class CardAdapter extends ArrayAdapter {
 
         setBG(holder, card.getId());
 
-        handleSetup(holder);
-
+        handleSetup(holder,view);
 
         return view;
     }
@@ -84,7 +85,7 @@ public class CardAdapter extends ArrayAdapter {
     }
 
 
-    private void handleSetup(final ViewHolder holder) {
+    private void handleSetup(final ViewHolder holder, View view) {
         if (!setup) {
             checks.add(holder.upvote);
 
@@ -106,6 +107,8 @@ public class CardAdapter extends ArrayAdapter {
         } else {
             holder.upvote.setVisibility(View.INVISIBLE);
             holder.number.setText("");
+
+           view.setBackgroundResource(R.drawable.listborderitem);
 
         }
 

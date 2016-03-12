@@ -29,8 +29,8 @@ public interface KandoeBackendAPI {
     @GET("api/cards")
     Call<List<Card>> getCards();
 
-    @GET("api/cards/{id}")
-    Call<Card> getCardById(@Path("id") int id);
+    @GET("api/selection-cards/by-subtheme/{id}")
+    Call<List<Card>> getCardsBySubthemeId(@Path("id") int id);
 
     //Create new card
     @POST("api/cards/")
