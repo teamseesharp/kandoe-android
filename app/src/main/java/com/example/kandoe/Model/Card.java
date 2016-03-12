@@ -7,14 +7,11 @@ import java.util.ArrayList;
  */
 
 public class Card {
-    private int Id,CreatorId;
-    private String Text;
-    private String SubthemeId;
-    private String Image;
+    private int Id,CreatorId,SessionId,SessionLevel,SubthemeId,ThemeId;
+    private String Text,Image;
 
     private ArrayList<SubTheme> Subthemes;
     private ArrayList<Session> Sessions;
-    private ArrayList<CardReview> cardReviews;
 
     public Card() {
     }
@@ -24,17 +21,6 @@ public class Card {
         this.Text = text;
     }
 
-    public Card(int id, int creatorId, String text, String description, String subthemeId, String image, ArrayList<SubTheme> subthemes, ArrayList<Session> sessions, ArrayList<CardReview> cardReviews) {
-        Id = id;
-        CreatorId = creatorId;
-        Text = description;
-        SubthemeId = subthemeId;
-        Image = image;
-        Subthemes = subthemes;
-        Sessions = sessions;
-        this.cardReviews = cardReviews;
-    }
-
     public int getId() {
         return Id;
     }
@@ -42,7 +28,7 @@ public class Card {
     public void setId(int id) {
         this.Id = id;
     }
-    
+
     public String getImage() {
         return Image;
     }
@@ -51,20 +37,37 @@ public class Card {
         this.Image = image;
     }
 
-    public String getDescription() {
-        return Text;
+
+    public int getSessionId() {
+        return SessionId;
     }
 
-    public void setDescription(String description) {
-        this.Text = description;
+    public void setSessionId(int sessionId) {
+        SessionId = sessionId;
     }
 
-    public String getSubthemeId() {
+    public int getSessionLevel() {
+        return SessionLevel;
+    }
+
+    public void setSessionLevel(int sessionLevel) {
+        SessionLevel = sessionLevel;
+    }
+
+    public int getSubthemeId() {
         return SubthemeId;
     }
 
-    public void setSubthemeId(String subthemeId) {
+    public void setSubthemeId(int subthemeId) {
         SubthemeId = subthemeId;
+    }
+
+    public String getText() {
+        return Text;
+    }
+
+    public void setText(String text) {
+        Text = text;
     }
 
     public int getCreatorId() {
@@ -91,12 +94,12 @@ public class Card {
         Sessions = sessions;
     }
 
-    public ArrayList<CardReview> getCardReviews() {
-        return cardReviews;
+    public int getThemeId() {
+        return ThemeId;
     }
 
-    public void setCardReviews(ArrayList<CardReview> cardReviews) {
-        this.cardReviews = cardReviews;
+    public void setThemeId(int themeId) {
+        ThemeId = themeId;
     }
 }
 

@@ -1,7 +1,5 @@
 package com.example.kandoe.Model;
 
-import android.media.Image;
-
 import java.util.ArrayList;
 
 /**
@@ -9,11 +7,8 @@ import java.util.ArrayList;
  */
 public class UserAccount {
     private int Id;
-    private String Email, Name, Surname,Secret;
+    private String Email, Name,Picture, Surname,Secret;
 
-
-    private ArrayList<Card> Cards;
-    private ArrayList<CardReview> CardReviews;
     private ArrayList<ChatMessage> ChatMessages;
     private ArrayList<Organisation> Organisations;
     private ArrayList<Session> OrganisedSessions;
@@ -67,20 +62,20 @@ public class UserAccount {
         Secret = secret;
     }
 
-    public ArrayList<Card> getCards() {
-        return Cards;
+    public String getPicture() {
+        return Picture;
     }
 
-    public void setCards(ArrayList<Card> cards) {
-        Cards = cards;
+    public void setPicture(String picture) {
+        Picture = picture;
     }
 
-    public ArrayList<CardReview> getCardReviews() {
-        return CardReviews;
+    public ArrayList<ChatMessage> getChatMessages() {
+        return ChatMessages;
     }
 
-    public void setCardReviews(ArrayList<CardReview> cardReviews) {
-        CardReviews = cardReviews;
+    public void setChatMessages(ArrayList<ChatMessage> chatMessages) {
+        ChatMessages = chatMessages;
     }
 
     public ArrayList<ChatMessage> getChatmessages() {

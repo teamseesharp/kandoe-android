@@ -40,12 +40,6 @@ public class CircleSessionController {
         session = new Session();
         chatController = new ChatController(session.getId());
 
-        cards.add(new Card(1, "Jeugd"));
-        cards.add(new Card(2, "Armoede "));
-        cards.add(new Card(3, "Racisme"));
-        cards.add(new Card(4, "Inspiratieloosheid"));
-        cards.add(new Card(5, "Milieu"));
-        cards.add(new Card(6, "Feest"));
 
     }
 

@@ -1,7 +1,6 @@
 package com.example.kandoe.Activity.Fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,6 @@ import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -74,6 +72,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                 } else {
                     fragment = new CircleFragment(service);
                 }
+
 
 
                 FragmentManager fragmentManager = getFragmentManager();

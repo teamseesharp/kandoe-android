@@ -8,8 +8,8 @@ import java.util.ArrayList;
  */
 public class Session implements Serializable{
 
-    private int Id, MaxCardsToChoose, MaxParticipants, Modus, OrganisationId, Round, SubthemeId;
-    private boolean CardCreationAllowed, CardReviewsAllowed, IsFinished;
+    private int Id, MaxCardsToChoose, MaxParticipants, Modus, OrganisationId, Round, SubthemeId,CurrentPlayerIndex;
+    private boolean CardCreationAllowed, IsFinished;
     private String End,Start;
     private int NumberOfSteps = 4;
 
@@ -24,7 +24,7 @@ public class Session implements Serializable{
         MaxCardsToChoose = 3;
     }
 
-    public Session(int id, int maxCardsToChoose, int maxParticipants, int modus, int organisationId, int round, int subthemeId, boolean cardCreationAllowed, boolean cardReviewsAllowed, boolean isFinished, String end, String start, ArrayList<Card> cards, ArrayList<ChatMessage> chatmessages, ArrayList<UserAccount> organisers, ArrayList<UserAccount> participants) {
+    public Session(int id, int maxCardsToChoose, int maxParticipants, int modus, int organisationId, int round, int subthemeId, boolean cardCreationAllowed, boolean isFinished, String end, String start, ArrayList<Card> cards, ArrayList<ChatMessage> chatmessages, ArrayList<UserAccount> organisers, ArrayList<UserAccount> participants) {
         Id = id;
         MaxCardsToChoose = maxCardsToChoose;
         MaxParticipants = maxParticipants;
@@ -33,7 +33,6 @@ public class Session implements Serializable{
         Round = round;
         SubthemeId = subthemeId;
         CardCreationAllowed = cardCreationAllowed;
-        CardReviewsAllowed = cardReviewsAllowed;
         IsFinished = isFinished;
         End = end;
         Start = start;
@@ -115,12 +114,12 @@ public class Session implements Serializable{
         CardCreationAllowed = cardCreationAllowed;
     }
 
-    public boolean isCardReviewsAllowed() {
-        return CardReviewsAllowed;
+    public int getCurrentPlayerIndex() {
+        return CurrentPlayerIndex;
     }
 
-    public void setCardReviewsAllowed(boolean cardReviewsAllowed) {
-        CardReviewsAllowed = cardReviewsAllowed;
+    public void setCurrentPlayerIndex(int currentPlayerIndex) {
+        CurrentPlayerIndex = currentPlayerIndex;
     }
 
     public boolean isFinished() {

@@ -18,12 +18,17 @@ import android.widget.TextView;
 import com.example.kandoe.Activity.Adapters.CardAdapter;
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.Model.Session;
+import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Utilities.DrawableGraphics.SurfacePanel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class CircleFragment extends Fragment {
@@ -77,6 +82,7 @@ public class CircleFragment extends Fragment {
         controller = new CircleSessionController(getContext(), session);
 
         addSpelers();
+        //getSessionInfo();
 
     }
 
@@ -185,8 +191,8 @@ public class CircleFragment extends Fragment {
 
     public String participantsOnNewLine(){
         StringBuffer names = new StringBuffer();
-        for (String p : participants) {
-            names.append(p.toString()).append('\n');
+        for (UserAccount u : session.getParticipants()) {
+            names.append(u.getName()).append('\n');
         }
         return names.toString();
     }
@@ -209,4 +215,18 @@ public class CircleFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    public void getSessionInfo(){
+        Call<Session> call = service.getVerboseSessionById(session.getId());
+        call.enqueue(new Callback<Session>() {
+            @Override
+            public void onResponse(Call<Session> call, Response<Session> response) {
+                session = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<Session> call, Throwable t) {
+
+            }
+        });
+    }
 }

@@ -1,6 +1,5 @@
 package com.example.kandoe.Activity.Fragment;
 
-import android.accounts.Account;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -31,7 +30,6 @@ import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -87,9 +85,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
         getUserAccountInfo();
         getCardData();
-
-
-
     }
 
     private void getUserAccountInfo() {
@@ -100,15 +95,36 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             @Override
             public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
                 account = response.body();
-
             }
 
             @Override
             public void onFailure(Call<UserAccount> call, Throwable t) {
-
             }
         });
     }
+
+    private void addUserToSession(){
+        Call<Void> call = service.addPlayerToSession(session.getId(), account);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccess()) {
+                    Toast.makeText(getActivity(), "speler aan sessie toegevoegd! :)",
+                            Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getActivity(), "speler NIET aan sessie toegevoegd! :/",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getActivity(), "Oeps ! Er is iets misgelopen",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -119,7 +135,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         } if(mainActivity.getSupportActionBar() != null) {
             mainActivity.getSupportActionBar().setTitle(title);
         }
-
 
 
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
@@ -143,20 +158,22 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                //  addCardsToSession();
-
-
+                addCardsToSession();
+                addUserToSession();
                 CircleFragment fragment = CircleFragment.newInstance(service, session);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
-
             }
         });
 
-        //TODO: ALS toevoegen niet toegestaan is --> button INVISIBLE maken
+
         addButton = (ImageButton) view.findViewById(R.id.addCardButton);
+        if(session.isCardCreationAllowed()){
+            addButton.setVisibility(View.VISIBLE);
+        }else{
+            addButton.setVisibility(View.INVISIBLE);
+        }
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,23 +184,26 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         return view;
     }
 
-    private boolean addCardsToSession() {
-
-        Call<Boolean> call = service.addCardsToSession(session.getId(), myCards);
-        call.enqueue(new Callback<Boolean>() {
+    private void addCardsToSession() {
+        Call<Void> call = service.addCardsToSession(session.getId(), myCards);
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccess()) {
-
+                    Toast.makeText(getActivity(), "kaarten aan sessie toegevoegd! :)",
+                            Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getActivity(), "kaarten NIET aan sessie toegevoegd! :/",
+                            Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
-
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getActivity(), "Oeps er is iets fout gegaan...",
+                        Toast.LENGTH_LONG).show();
             }
         });
-        return false;
     }
 
     @Override
@@ -197,7 +217,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         String cardId = (String) ((TextView) view.findViewById(R.id.txtId)).getText();
         ArrayList<Card> from = new ArrayList<>();
         ArrayList<Card> too = new ArrayList<>();
-        Card cardToMove = new Card(-1, "");
+        Card cardToMove = new Card(-1,"");
 
         switch (parent.getId()) {
             case R.id.grdmycards:
@@ -217,7 +237,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         }
 
         from.remove(cardToMove);
-        too.add(0, cardToMove);
+        too.add(0,cardToMove);
 
         setProgress();
 
@@ -252,11 +272,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     }
 
     private void getCardData() {
-
-
-
-
-        Call<List<Card>> callList = service.getCardsBySubthemeId(session.getSubThemeId());
+        Call<List<Card>> callList = service.getSelectionCardsBySubthemeId(session.getSubThemeId());
 
         callList.enqueue(new Callback<List<Card>>() {
             @Override
@@ -290,14 +306,15 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                         Editable kaartnaam = input.getText();
                         Card newCard = new Card();
 
-                        newCard.setDescription(String.valueOf(kaartnaam));
-                        newCard.setSubthemeId(String.valueOf(session.getSubThemeId()));
-                        CreateCard(newCard);
+                        newCard.setText(String.valueOf(kaartnaam));
+                        newCard.setSubthemeId(session.getSubThemeId());
+                        //TODO JUISTE THEMA ID DOORGEVEN
+                        newCard.setThemeId(1);
+                        createCard(newCard);
 
                         // TODO MOVE TO CALL (Response)
                         myCards.add(0, newCard);
                         myCardAdapter.notifyDataSetChanged();
-
 
                     }
                 })
@@ -310,16 +327,11 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 .show();
     }
 
-    private void CreateCard(Card card) {
-
-
-        card.setCreatorId(account.getId());
-
-
-        Call<Void> call = service.addCard(card);
-        call.enqueue(new Callback<Void>() {
+    private void createCard(Card card) {
+        Call<Card> call = service.addCard(card);
+        call.enqueue(new Callback<Card>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(Call<Card> call, Response<Card> response) {
                 System.out.println(response);
 
                 if (response.isSuccess()) {
@@ -338,7 +350,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<Card> call, Throwable t) {
                 Toast.makeText(getActivity(), "Kaart toevoegen mislukt",
                         Toast.LENGTH_SHORT).show();
             }

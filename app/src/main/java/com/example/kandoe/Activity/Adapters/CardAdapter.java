@@ -61,7 +61,7 @@ public class CardAdapter extends ArrayAdapter {
         }
 
         Card card = (Card) data.get(position);
-        holder.description.setText(card.getDescription());
+        holder.description.setText(card.getText());
         holder.id.setText(String.valueOf(card.getId()));
 
         //TODO positie meegeven

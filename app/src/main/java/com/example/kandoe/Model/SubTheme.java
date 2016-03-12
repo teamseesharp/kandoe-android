@@ -10,7 +10,7 @@ public class SubTheme {
     private String Name;
 
     private ArrayList<Session> Sessions;
-    private ArrayList<Card> Cards;
+    private ArrayList<Card> SelectionCards;
 
     public SubTheme() {
     }
@@ -21,7 +21,7 @@ public class SubTheme {
         ThemeId = themeId;
         Name = name;
         Sessions = sessions;
-        Cards = cards;
+        SelectionCards = cards;
     }
 
     public int getId() {
@@ -72,12 +72,12 @@ public class SubTheme {
         Sessions = sessions;
     }
 
-    public ArrayList<Card> getCards() {
-        return Cards;
+    public ArrayList<Card> getSelectionCards() {
+        return SelectionCards;
     }
 
-    public void setCards(ArrayList<Card> cards) {
-        Cards = cards;
+    public void setSelectionCards(ArrayList<Card> selectionCards) {
+        SelectionCards = selectionCards;
     }
 }
 

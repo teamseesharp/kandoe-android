@@ -1,7 +1,6 @@
 package com.example.kandoe.Utilities.API;
 
 import com.example.kandoe.Model.Card;
-import com.example.kandoe.Model.CardReview;
 import com.example.kandoe.Model.ChatMessage;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
@@ -16,6 +15,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -25,24 +25,32 @@ import retrofit2.http.Path;
  */
 public interface KandoeBackendAPI {
 
-    //Card
-    @GET("api/cards")
-    Call<List<Card>> getCards();
+    //SelectionCard
+    @GET("api/selection-cards")
+    Call<List<Card>> getSelectionCards();
+
+    @GET("api/selection-cards/{id}")
+    Call<List<Card>> getSelectionCardsById(@Path("id") int id);
 
     @GET("api/selection-cards/by-subtheme/{id}")
-    Call<List<Card>> getCardsBySubthemeId(@Path("id") int id);
+    Call<List<Card>> getSelectionCardsBySubthemeId(@Path("id") int id);
 
     //Create new card
-    @POST("api/cards/")
-    Call<Void> addCard(@Body Card card);
+    @POST("api/selection-cards")
+    Call<Card> addCard(@Body Card card);
 
+    //SessionCard
     //Using already existing cards, add to the specified session.
-    @POST("api/cards/{sessionid)")
-    Call<Boolean> addCardsToSession(@Path("sessionid") int id, @Body List<Card> cards);
+    @POST("api/sessions/{id}/select-cards")
+    Call<Void> addCardsToSession(@Path("id") int id, @Body List<Card> cards);
 
     //Get position of a specified card in a specified session.
     @GET("api/cards/{id}/position/{sessionid}")
-    Call<Integer> getPositionInSession(@Path("id") int carId, @Path("sessionid") int sessionId);
+    Call<Integer> getPositionInSession(@Path("id") int cardId, @Path("sessionid") int sessionId);
+
+    @PATCH("api/sessions/{id}/join")
+    Call<Void> addPlayerToSession(@Path("id") int id, @Body UserAccount account);
+
 
 
 
@@ -81,6 +89,8 @@ public interface KandoeBackendAPI {
     @GET ("api/sessions/by-end-date/{date}")
     Call<List<Session>> getSessionsByEndDate(@Path("date") Date date);
 
+    @GET ("api/verbose/sessions/{id}")
+    Call<Session> getVerboseSessionById(@Path("id") int id);
 
     //Organisation
     @GET("api/organisations")
@@ -123,18 +133,6 @@ public interface KandoeBackendAPI {
 
     @GET ("api/themes/by-tag/{tag}")
     Call<List<Theme>>getThemesByTag(@Path("tag") String tag);
-
-
-    //CardReview
-    @GET("api/cardReviews")
-    Call<List<CardReview>> getCardReviews();
-
-    @GET("api/cardReviews/{id}")
-    Call<CardReview> getCardReviewById(@Path("id") int id);
-
-    @GET("api/card-reviews/by-card/{id}")
-    Call<CardReview> getCardReviewByCardId(@Path("id") int id);
-
 
 
     //Subtheme
