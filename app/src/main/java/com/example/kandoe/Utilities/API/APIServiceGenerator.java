@@ -36,7 +36,7 @@ public class APIServiceGenerator {
 
                     // Request customization: add request headers
                     Request.Builder requestBuilder = original.newBuilder()
-                            .header("Authorization", authToken)
+                            .header("Authorization", String.format("%s %s", "Bearer", authToken))
                             .method(original.method(), original.body());
 
                     Request request = requestBuilder.build();

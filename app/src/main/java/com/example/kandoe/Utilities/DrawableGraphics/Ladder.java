@@ -3,11 +3,9 @@ package com.example.kandoe.Utilities.DrawableGraphics;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.Model.Card;
@@ -100,7 +98,7 @@ private final String DEBUGTAG = "LADDER";
 
 
         Log.d(DEBUGTAG,"Creating steps");
-         int numberOfSteps = controller.getSession().getNumberOfSteps();
+        int numberOfSteps = controller.getSession().getNumberOfSteps();
 
         //init values
          int ctLeft = clLeft + 30, ctTop = clTop + heightleg / numberOfSteps / 2, ctRight = clLeft + offset + 5, ctBottom = ctTop + 15;

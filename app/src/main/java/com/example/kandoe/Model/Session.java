@@ -183,4 +183,6 @@ public class Session implements Serializable{
     public void setOrganisers(ArrayList<UserAccount> organisers) {
         Organisers = organisers;
     }
+
+
 }

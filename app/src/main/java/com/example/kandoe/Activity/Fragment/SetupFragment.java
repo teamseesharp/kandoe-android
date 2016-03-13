@@ -97,10 +97,11 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
 
     private void addUserToSession() {
-        Call<Void> call = service.addPlayerToSession(1);
+        Call<Void> call = service.addPlayerToSession(session.getId());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                System.out.println(response.code());
                 if (response.isSuccess()) {
                     Toast.makeText(getActivity(), "speler aan sessie toegevoegd! :)",
                             Toast.LENGTH_LONG).show();
@@ -153,7 +154,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             @Override
             public void onClick(View v) {
                 addCardsToSession();
-                //addUserToSession();
+                addUserToSession();
                 CircleFragment fragment = CircleFragment.newInstance(service, session);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();

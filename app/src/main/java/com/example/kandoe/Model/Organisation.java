@@ -62,4 +62,6 @@ public class Organisation {
     public void setOrganiserId(int organiserId) {
         OrganiserId = organiserId;
     }
+
+
 }
