@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.auth0.core.UserProfile;
@@ -183,12 +182,12 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                             }
                         });
 
-                        for (Session sess : org.getSessions()) {
+                        /*for (Session sess : org.getSessions()) {
                             if (sess.isFinished()) {
                               //  org.getSessions().remove(sess);
                                 toDelete.add(sess);
                             }
-                        }
+                        }*/
 
                         org.getSessions().removeAll(toDelete);
 

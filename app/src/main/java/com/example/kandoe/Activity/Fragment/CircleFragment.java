@@ -14,8 +14,10 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kandoe.Activity.Adapters.CardAdapter;
+import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.UserAccount;
@@ -39,6 +41,8 @@ public class CircleFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private KandoeBackendAPI service;
     private Session session;
+    private MainActivity mainActivity;
+    private UserAccount account;
     private ArrayList<String> participants = new ArrayList<>();
 
     //TIJDELIJK
@@ -78,10 +82,11 @@ public class CircleFragment extends Fragment {
             session = (Session) getArguments().getSerializable(EXTRA_SESSION);
         }
 
-
+        mainActivity = (MainActivity) getActivity();
         controller = new CircleSessionController(getContext(), session,service);
 
-        addSpelers();
+        //addSpelers();
+        getUserAccountInfo();
         //getSessionInfo();
 
     }
@@ -127,10 +132,21 @@ public class CircleFragment extends Fragment {
         });
 
         Button voteUp = (Button) view.findViewById(R.id.votebutton);
+
+        //TODO: wanneer session call werkt dit uit commentaar zetten + testen
+       /* int index = session.getCurrentPlayerIndex();
+        UserAccount current = session.getParticipants().get(index);
+        if(account.getName().equals(current.getName())){
+            voteUp.setVisibility(View.VISIBLE);
+        }else{
+            voteUp.setVisibility(View.INVISIBLE);
+        }*/
+
         voteUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: VOTEUP
+
             }
         });
 
@@ -194,8 +210,8 @@ public class CircleFragment extends Fragment {
 
     public String participantsOnNewLine(){
         StringBuffer names = new StringBuffer();
-        for (UserAccount u : session.getParticipants()) {
-            names.append(u.getName()).append('\n');
+        for (String s : participants) {
+            names.append(s).append('\n');
         }
         return names.toString();
     }
@@ -229,6 +245,44 @@ public class CircleFragment extends Fragment {
             @Override
             public void onFailure(Call<Session> call, Throwable t) {
 
+            }
+        });
+    }
+
+    private void getUserAccountInfo() {
+        String secret = mainActivity.getUserProfile().getId();
+
+        Call<UserAccount> call = service.getUserId(secret);
+        call.enqueue(new Callback<UserAccount>() {
+            @Override
+            public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
+                account = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<UserAccount> call, Throwable t) {
+            }
+        });
+    }
+
+    private void voteCardUp(){
+        Call<Void> call = service.levelUpCard(1);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccess()) {
+                    Toast.makeText(getActivity(), "Kaart 1 omhoog :)",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getActivity(), "kaarten verhogen mislukt",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getActivity(), "Oeps er is iets misgelopen",
+                        Toast.LENGTH_LONG).show();
             }
         });
     }

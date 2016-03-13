@@ -92,29 +92,12 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         mainActivity = (MainActivity) getActivity();
         myCards = new ArrayList<>();
         cards = new ArrayList<>();
-
-        getUserAccountInfo();
         getCardData();
     }
 
-    private void getUserAccountInfo() {
-        String secret = mainActivity.getUserProfile().getId();
-
-        Call<UserAccount> call = service.getUserId(secret);
-        call.enqueue(new Callback<UserAccount>() {
-            @Override
-            public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
-                account = response.body();
-            }
-
-            @Override
-            public void onFailure(Call<UserAccount> call, Throwable t) {
-            }
-        });
-    }
 
     private void addUserToSession() {
-        Call<Void> call = service.addPlayerToSession(session.getId(), account);
+        Call<Void> call = service.addPlayerToSession(1);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -170,7 +153,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             @Override
             public void onClick(View v) {
                 addCardsToSession();
-              //  addUserToSession();
+                //addUserToSession();
                 CircleFragment fragment = CircleFragment.newInstance(service, session);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
@@ -196,11 +179,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     }
 
     private void addCardsToSession() {
-
-
-
-
-
         Call<Void> call = service.addCardsToSession(session.getId(), myCards);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -332,8 +310,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
                         newCard.setText(String.valueOf(kaartnaam));
                         newCard.setSubthemeId(session.getSubThemeId());
-                        //TODO JUISTE THEMA ID DOORGEVEN
-
 
                         newCard.setThemeId(theme.getId());
                         createCard(newCard);

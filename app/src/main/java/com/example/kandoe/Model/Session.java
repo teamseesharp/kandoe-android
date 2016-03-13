@@ -14,7 +14,7 @@ public class Session implements Serializable{
     private int NumberOfSteps = 4;
 
     private ArrayList<Card> SessionCards;
-    private ArrayList<ChatMessage> Chatmessages;
+    private ArrayList<ChatMessage> ChatMessages;
     private ArrayList<UserAccount> Organisers;
     private ArrayList<UserAccount> Participants;
 
@@ -22,24 +22,6 @@ public class Session implements Serializable{
     public Session() {
         MaxParticipants = 8;
         MaxCardsToChoose = 3;
-    }
-
-    public Session(int id, int maxCardsToChoose, int maxParticipants, int modus, int organisationId, int round, int subthemeId, boolean cardCreationAllowed, boolean isFinished, String end, String start, ArrayList<Card> cards, ArrayList<ChatMessage> chatmessages, ArrayList<UserAccount> organisers, ArrayList<UserAccount> participants) {
-        Id = id;
-        MaxCardsToChoose = maxCardsToChoose;
-        MaxParticipants = maxParticipants;
-        Modus = modus;
-        OrganisationId = organisationId;
-        Round = round;
-        SubthemeId = subthemeId;
-        CardCreationAllowed = cardCreationAllowed;
-        IsFinished = isFinished;
-        End = end;
-        Start = start;
-        SessionCards = cards;
-        Chatmessages = chatmessages;
-        Organisers = organisers;
-        Participants = participants;
     }
 
     public int getId() {
@@ -170,12 +152,20 @@ public class Session implements Serializable{
         SessionCards = cards;
     }
 
-    public ArrayList<ChatMessage> getChatmessages() {
-        return Chatmessages;
+    public ArrayList<Card> getSessionCards() {
+        return SessionCards;
     }
 
-    public void setChatmessages(ArrayList<ChatMessage> chatmessages) {
-        Chatmessages = chatmessages;
+    public void setSessionCards(ArrayList<Card> sessionCards) {
+        SessionCards = sessionCards;
+    }
+
+    public ArrayList<ChatMessage> getChatMessages() {
+        return ChatMessages;
+    }
+
+    public void setChatMessages(ArrayList<ChatMessage> chatMessages) {
+        ChatMessages = chatMessages;
     }
 
     public ArrayList<UserAccount> getParticipants() {

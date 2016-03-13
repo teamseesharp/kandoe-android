@@ -49,9 +49,7 @@ public interface KandoeBackendAPI {
     Call<Integer> getPositionInSession(@Path("id") int cardId, @Path("sessionid") int sessionId);
 
     @PATCH("api/sessions/{id}/join")
-    Call<Void> addPlayerToSession(@Path("id") int id, @Body UserAccount account);
-
-
+    Call<Void> addPlayerToSession(@Path("id") int id);
 
 
     //Account
@@ -91,6 +89,9 @@ public interface KandoeBackendAPI {
 
     @GET ("api/verbose/sessions/{id}")
     Call<Session> getVerboseSessionById(@Path("id") int id);
+
+    @PATCH ("api/sessions/{sessionId}/level-up-card/{cardId}")
+    Call<Void> levelUpCard(@Path("cardId") int id);
 
     //Organisation
     @GET("api/organisations")
