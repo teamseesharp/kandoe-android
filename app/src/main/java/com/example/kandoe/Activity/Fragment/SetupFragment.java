@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.text.Editable;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ import com.example.kandoe.Activity.Adapters.CardAdapter;
 import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Session;
+import com.example.kandoe.Model.SubTheme;
+import com.example.kandoe.Model.Theme;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
@@ -41,7 +44,9 @@ import retrofit2.Response;
 public class SetupFragment extends ListFragment implements OnItemClickListener {
     private static final String EXTRA_SERVICE = "Service";
     private static final String EXTRA_SESSION = "Session";
-    private static final String EXTRA_TITLE = "Title";
+    private static final String EXTRA_THEMA = "Theme";
+    private static final String EXTRA_SUBTHEME = "Subtheme";
+    private static final String TAG = "Setupfragment";
 
     private ArrayList<Card> cards, myCards;
     private GridView grdMyCards, grdCards;
@@ -55,18 +60,19 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     private Session session;
     private MainActivity mainActivity;
     private UserAccount account;
-    private String title;
-
+    private SubTheme subtheme;
+    private Theme theme;
 
     public SetupFragment() {
     }
 
-    public static SetupFragment newInstance(KandoeBackendAPI service, Session session, String text) {
+    public static SetupFragment newInstance(KandoeBackendAPI service, Session session, Theme theme, SubTheme subTheme) {
         SetupFragment f = new SetupFragment();
         Bundle bdl = new Bundle(2);
         bdl.putSerializable(EXTRA_SERVICE, (Serializable) service);
         bdl.putSerializable(EXTRA_SESSION, session);
-        bdl.putString(EXTRA_TITLE, text);
+        bdl.putSerializable(EXTRA_THEMA, theme);
+        bdl.putSerializable(EXTRA_SUBTHEME, subTheme);
         f.setArguments(bdl);
         return f;
     }
@@ -75,9 +81,13 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        service = (KandoeBackendAPI) getArguments().getSerializable(EXTRA_SERVICE);
-        session = (Session) getArguments().getSerializable(EXTRA_SESSION);
-        title = getArguments().getString(EXTRA_TITLE);
+
+        if (getArguments() != null) {
+            service = (KandoeBackendAPI) getArguments().getSerializable(EXTRA_SERVICE);
+            session = (Session) getArguments().getSerializable(EXTRA_SESSION);
+            theme = (Theme) getArguments().getSerializable(EXTRA_THEMA);
+            subtheme = (SubTheme) getArguments().getSerializable(EXTRA_SUBTHEME);
+        }
 
         mainActivity = (MainActivity) getActivity();
         myCards = new ArrayList<>();
@@ -103,7 +113,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         });
     }
 
-    private void addUserToSession(){
+    private void addUserToSession() {
         Call<Void> call = service.addPlayerToSession(session.getId(), account);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -111,7 +121,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 if (response.isSuccess()) {
                     Toast.makeText(getActivity(), "speler aan sessie toegevoegd! :)",
                             Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     Toast.makeText(getActivity(), "speler NIET aan sessie toegevoegd! :/",
                             Toast.LENGTH_LONG).show();
                 }
@@ -130,10 +140,11 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.setup, container, false);
 
-        if(mainActivity.getActionBar() != null) {
-            mainActivity.getActionBar().setTitle(title);
-        } if(mainActivity.getSupportActionBar() != null) {
-            mainActivity.getSupportActionBar().setTitle(title);
+        if (mainActivity.getActionBar() != null) {
+            mainActivity.getActionBar().setTitle(subtheme.getName());
+        }
+        if (mainActivity.getSupportActionBar() != null) {
+            mainActivity.getSupportActionBar().setTitle(subtheme.getName());
         }
 
 
@@ -168,9 +179,9 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
 
         addButton = (ImageButton) view.findViewById(R.id.addCardButton);
-        if(session.isCardCreationAllowed()){
+        if (session.isCardCreationAllowed()) {
             addButton.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             addButton.setVisibility(View.INVISIBLE);
         }
 
@@ -185,6 +196,11 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     }
 
     private void addCardsToSession() {
+
+
+
+
+
         Call<Void> call = service.addCardsToSession(session.getId(), myCards);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -192,7 +208,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 if (response.isSuccess()) {
                     Toast.makeText(getActivity(), "kaarten aan sessie toegevoegd! :)",
                             Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     Toast.makeText(getActivity(), "kaarten NIET aan sessie toegevoegd! :/",
                             Toast.LENGTH_LONG).show();
                 }
@@ -217,7 +233,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         String cardId = (String) ((TextView) view.findViewById(R.id.txtId)).getText();
         ArrayList<Card> from = new ArrayList<>();
         ArrayList<Card> too = new ArrayList<>();
-        Card cardToMove = new Card(-1,"");
+        Card cardToMove = new Card(-1, "");
 
         switch (parent.getId()) {
             case R.id.grdmycards:
@@ -237,7 +253,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         }
 
         from.remove(cardToMove);
-        too.add(0,cardToMove);
+        too.add(0, cardToMove);
 
         setProgress();
 
@@ -259,8 +275,8 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             playButton.setEnabled(true);
             playButton.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.INVISIBLE);
-        } else if (progressBar.getProgress() == 100  && myCards.size() >= 3) {
-            Toast.makeText(getContext(),"Je hebt teveel kaarten geselecteerd!", Toast.LENGTH_LONG).show();
+        } else if (progressBar.getProgress() == 100 && myCards.size() >= 3) {
+            Toast.makeText(getContext(), "Je hebt teveel kaarten geselecteerd!", Toast.LENGTH_LONG).show();
             playButton.setEnabled(false);
             playButton.setVisibility(View.INVISIBLE);
             progressBar.setVisibility(View.VISIBLE);
@@ -277,9 +293,17 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         callList.enqueue(new Callback<List<Card>>() {
             @Override
             public void onResponse(Call<List<Card>> call, Response<List<Card>> response) {
-                cards.addAll(response.body());
-                Collections.shuffle(cards);
-                cardAdapter.notifyDataSetChanged();
+
+                try {
+                    cards.addAll(response.body());
+                    Collections.shuffle(cards);
+                    cardAdapter.notifyDataSetChanged();
+                } catch (NullPointerException e){
+                    Toast.makeText(getActivity(), "Spijtig, er is iets misgegaan met ophalen van de kaarten. Probeer in enkele ogenblikken terug", Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "onResponse: subthemes" + e.getMessage());
+                    Log.d(TAG, "onResponse: " + response.errorBody());
+                }
+
 
             }
 
@@ -309,7 +333,9 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                         newCard.setText(String.valueOf(kaartnaam));
                         newCard.setSubthemeId(session.getSubThemeId());
                         //TODO JUISTE THEMA ID DOORGEVEN
-                        newCard.setThemeId(1);
+
+
+                        newCard.setThemeId(theme.getId());
                         createCard(newCard);
 
                         // TODO MOVE TO CALL (Response)

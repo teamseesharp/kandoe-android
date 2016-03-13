@@ -1,9 +1,10 @@
 package com.example.kandoe.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Theme {
+public class Theme implements Serializable{
     private int Id, OrganisationId,OrganiserId;
     private String Name,Description,Tags;
 

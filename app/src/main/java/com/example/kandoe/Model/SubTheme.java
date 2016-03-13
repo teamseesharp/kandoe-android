@@ -1,11 +1,12 @@
 package com.example.kandoe.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Michelle on 22-2-2016.
  */
-public class SubTheme {
+public class SubTheme implements Serializable {
     private int Id,OrganiserId,ThemeId;
     private String Name;
 

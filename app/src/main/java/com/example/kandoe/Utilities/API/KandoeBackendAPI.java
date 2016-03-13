@@ -41,7 +41,7 @@ public interface KandoeBackendAPI {
 
     //SessionCard
     //Using already existing cards, add to the specified session.
-    @POST("api/sessions/{id}/select-cards")
+    @PATCH("api/sessions/{id}/select-cards")
     Call<Void> addCardsToSession(@Path("id") int id, @Body List<Card> cards);
 
     //Get position of a specified card in a specified session.

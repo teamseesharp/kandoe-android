@@ -2,18 +2,23 @@ package com.example.kandoe.Activity.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.auth0.core.UserProfile;
 import com.example.kandoe.Activity.Adapters.SessionAdapter;
+import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.SubTheme;
+import com.example.kandoe.Model.Theme;
+import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
@@ -38,7 +43,8 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
     private ArrayList<Organisation> organisations;
     private SessionAdapter adapter;
     private ArrayList<SubTheme> subThemes;
-
+    boolean getDataSucces = false;
+    private UserAccount userAccount;
 
     public SessionListFragment(KandoeBackendAPI service, UserProfile userProfile) {
         this.service = service;
@@ -51,7 +57,16 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
         final View view = inflater.inflate(R.layout.fragment_session_list, container, false);
 
         ExpandableListView expandableListView = (ExpandableListView) view.findViewById(R.id.listview);
+        Button refresh = (Button) view.findViewById(R.id.btnRefresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                subThemes = new ArrayList<SubTheme>();
+                organisations = new ArrayList<Organisation>();
+                getOrganisationsData();
 
+            }
+        });
 
         expandableListView.setAdapter(adapter);
 
@@ -60,19 +75,41 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 Organisation organisation = organisations.get(groupPosition);
                 Session session = organisation.getSessions().get(childPosition);
-                TextView textView = (TextView) v.findViewById(R.id.txtSubthemeName);
+
                 boolean firstTime = true;
+
+                SubTheme currentsubtheme = null;
+                Theme currenttheme = null;
+                for (UserAccount accounts : session.getParticipants()) {
+                    if (accounts.getId() == userAccount.getId()) {
+                        firstTime = false;
+                    }
+                }
+
+
+                for (SubTheme subtheme : subThemes) {
+                    if (subtheme.getId() == session.getSubThemeId()) {
+                        currentsubtheme = subtheme;
+                    }
+
+                }
+                for (Theme theme : organisation.getThemes()) {
+
+                    if (theme.getId() == (currentsubtheme != null ? currentsubtheme.getThemaId() : 0)) {
+                        currenttheme = theme;
+                    }
+                }
+
 
                 android.support.v4.app.Fragment fragment;
 
                 if (firstTime) {
-                    fragment = SetupFragment.newInstance(service, session,textView.getText().toString());
+                    fragment = SetupFragment.newInstance(service, session, currenttheme, currentsubtheme);
 
                     //TODO
                 } else {
                     fragment = new CircleFragment(service);
                 }
-
 
 
                 FragmentManager fragmentManager = getFragmentManager();
@@ -89,8 +126,37 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
         organisations = new ArrayList<>();
         subThemes = new ArrayList<>();
         adapter = new SessionAdapter(getContext(), organisations, subThemes);
+
+       // getUserAccount();
         getOrganisationsData();
-        getSubThemesData();
+        //getSubThemesData();
+
+
+    }
+
+    private void getUserAccount() {
+        MainActivity activity = (MainActivity) getActivity();
+        Call<UserAccount> call = service.getUserId(activity.getUserProfile().getId());
+
+        call.enqueue(new Callback<UserAccount>() {
+            @Override
+            public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
+                userAccount = response.body();
+
+            }
+
+            @Override
+            public void onFailure(Call<UserAccount> call, Throwable t) {
+
+            }
+        });
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
 
     }
 
@@ -127,9 +193,12 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
                     organisations.addAll(organisationsTemp);
                     adapter.notifyDataSetChanged();
-                }catch (NullPointerException e){
+                    getSubThemesData();
 
-                    Toast.makeText(getActivity(),"Spijtig, er is iets misgegaan. Probeer in enkele ogenblikken terug",Toast.LENGTH_LONG).show();
+                } catch (NullPointerException e) {
+
+                    Toast.makeText(getActivity(), "Spijtig, er is iets misgegaan. Probeer in enkele ogenblikken terug", Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "onResponse: organisations" + e.getMessage());
                 }
             }
 
@@ -144,17 +213,23 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
     private void getSubThemesData() {
 
+
         Call<List<SubTheme>> call = service.getSubThemes();
 
         call.enqueue(new Callback<List<SubTheme>>() {
             @Override
             public void onResponse(Call<List<SubTheme>> call, Response<List<SubTheme>> response) {
-               try {
-                   subThemes.addAll(response.body());
-                   adapter.notifyDataSetChanged();
-               }catch (NullPointerException e){
-                   Toast.makeText(getActivity(),"Spijtig, er is iets misgegaan. Probeer in enkele ogenblikken terug",Toast.LENGTH_LONG).show();
-               }
+                try {
+                    subThemes.addAll(response.body());
+                    adapter.notifyDataSetChanged();
+
+                } catch (NullPointerException e) {
+
+                    Toast.makeText(getActivity(), "Spijtig, er is iets misgegaan met ophalen van de themas. Probeer in enkele ogenblikken terug", Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "onResponse: subthemes" + e.getMessage());
+
+
+                }
 
             }
 
