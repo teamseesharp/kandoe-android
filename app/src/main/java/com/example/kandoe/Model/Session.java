@@ -13,7 +13,7 @@ public class Session implements Serializable{
     private String End,Start;
     private int NumberOfSteps = 4;
 
-    private ArrayList<Card> Cards;
+    private ArrayList<Card> SessionCards;
     private ArrayList<ChatMessage> Chatmessages;
     private ArrayList<UserAccount> Organisers;
     private ArrayList<UserAccount> Participants;
@@ -36,7 +36,7 @@ public class Session implements Serializable{
         IsFinished = isFinished;
         End = end;
         Start = start;
-        Cards = cards;
+        SessionCards = cards;
         Chatmessages = chatmessages;
         Organisers = organisers;
         Participants = participants;
@@ -163,11 +163,11 @@ public class Session implements Serializable{
     }
 
     public ArrayList<Card> getCards() {
-        return Cards;
+        return SessionCards;
     }
 
     public void setCards(ArrayList<Card> cards) {
-        Cards = cards;
+        SessionCards = cards;
     }
 
     public ArrayList<ChatMessage> getChatmessages() {

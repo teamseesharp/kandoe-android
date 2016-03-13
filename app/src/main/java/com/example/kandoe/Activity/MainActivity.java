@@ -22,6 +22,7 @@ import com.auth0.core.Token;
 import com.auth0.core.UserProfile;
 import com.example.kandoe.Activity.Fragment.AccountFragment;
 import com.example.kandoe.Activity.Fragment.CircleFragment;
+import com.example.kandoe.Activity.Fragment.FinishedSessionListFragment;
 import com.example.kandoe.Activity.Fragment.HelpFragment;
 import com.example.kandoe.Activity.Fragment.MainFragment;
 import com.example.kandoe.Activity.Fragment.NavigationDrawerFragment;
@@ -58,6 +59,7 @@ public class MainActivity extends ActionBarActivity
             userProfile = intent.getParcelableExtra("profile");
             token = intent.getParcelableExtra("token");
             System.out.println(token.getIdToken());
+            System.out.println(userProfile.getId());
         }
 
         service = APIServiceGenerator.createService(KandoeBackendAPI.class,token.getIdToken());
@@ -94,7 +96,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
-                fragment = new MainFragment();
+                fragment = new FinishedSessionListFragment(service,userProfile);
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);

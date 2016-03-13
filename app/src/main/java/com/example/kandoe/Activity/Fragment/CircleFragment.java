@@ -78,8 +78,8 @@ public class CircleFragment extends Fragment {
             session = (Session) getArguments().getSerializable(EXTRA_SESSION);
         }
 
-        //TODO Add session parameter
-        controller = new CircleSessionController(getContext(), session);
+
+        controller = new CircleSessionController(getContext(), session,service);
 
         addSpelers();
         //getSessionInfo();
@@ -106,12 +106,15 @@ public class CircleFragment extends Fragment {
 
         ListView listView = (ListView) view.findViewById(R.id.lvCards);
         CardAdapter cardAdapter = new CardAdapter(getContext(), false, controller.getCards());
+
         controller.setAdapter(cardAdapter);
         listView.setAdapter(cardAdapter);
 
         TextView playerName = (TextView) view.findViewById(R.id.playersTurn);
         //TODO: current player ophalen en tonen
-        String player = "Michelle" + " " + playerName.getText().toString();
+
+        String currentPlayer = "dingske";
+        String player = currentPlayer + " " + playerName.getText().toString();
         playerName.setText(player);
 
         //BUTTONS

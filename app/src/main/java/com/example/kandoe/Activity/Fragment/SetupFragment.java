@@ -170,7 +170,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             @Override
             public void onClick(View v) {
                 addCardsToSession();
-                addUserToSession();
+              //  addUserToSession();
                 CircleFragment fragment = CircleFragment.newInstance(service, session);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();

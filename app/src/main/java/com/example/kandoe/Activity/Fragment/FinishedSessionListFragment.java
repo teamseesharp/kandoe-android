@@ -1,5 +1,6 @@
 package com.example.kandoe.Activity.Fragment;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.auth0.core.UserProfile;
@@ -32,10 +32,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by JoachimDs on 19/02/2016.
- * Shows all sessions in listview
+ * Created by Michelle on 12-3-2016.
  */
-public class SessionListFragment extends android.support.v4.app.Fragment {
+public class FinishedSessionListFragment extends  android.support.v4.app.Fragment {
 
     private final String TAG = "SessionListFragment";
     KandoeBackendAPI service;
@@ -46,7 +45,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
     boolean getDataSucces = false;
     private UserAccount userAccount;
 
-    public SessionListFragment(KandoeBackendAPI service, UserProfile userProfile) {
+    public FinishedSessionListFragment(KandoeBackendAPI service, UserProfile userProfile) {
         this.service = service;
 
     }
@@ -80,7 +79,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
                 SubTheme currentsubtheme = null;
                 Theme currenttheme = null;
-                for (UserAccount accounts : session.getParticipants()) {
+              /*  for (UserAccount accounts : session.getParticipants()) {
                     if (accounts.getId() == userAccount.getId()) {
                         firstTime = false;
                     }
@@ -98,18 +97,12 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                     if (theme.getId() == (currentsubtheme != null ? currentsubtheme.getThemaId() : 0)) {
                         currenttheme = theme;
                     }
-                }
+                }*/
 
 
                 android.support.v4.app.Fragment fragment;
-
-                if (firstTime) {
-                    fragment = SetupFragment.newInstance(service, session, currenttheme, currentsubtheme);
-
-                    //TODO
-                } else {
-                    fragment = new CircleFragment(service);
-                }
+                //todo snapshot
+                fragment = new CircleFragment(service);
 
 
                 FragmentManager fragmentManager = getFragmentManager();
@@ -127,7 +120,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
         subThemes = new ArrayList<>();
         adapter = new SessionAdapter(getContext(), organisations, subThemes);
 
-       // getUserAccount();
+        // getUserAccount();
         getOrganisationsData();
         //getSubThemesData();
 
@@ -169,7 +162,9 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
             public void onResponse(Call<List<Organisation>> call, Response<List<Organisation>> response) {
 
                 ArrayList<Organisation> organisationsTemp = (ArrayList<Organisation>) response.body();
-                ArrayList<Session> toDelete = new ArrayList<Session>();
+                ArrayList<Session> toDeleteSessions = new ArrayList<Session>();
+                ArrayList<Organisation> toDeleteOrganisations = new ArrayList<Organisation>();
+
                 try {
                     for (Organisation org : organisationsTemp) {
 
@@ -184,15 +179,22 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                         });
 
                         for (Session sess : org.getSessions()) {
-                            if (sess.isFinished()) {
+                            if (!sess.isFinished()) {
                               //  org.getSessions().remove(sess);
-                                toDelete.add(sess);
+                                toDeleteSessions.add(sess);
                             }
                         }
+                        org.getSessions().removeAll(toDeleteSessions);
 
-                        org.getSessions().removeAll(toDelete);
+                        if (org.getSessions().isEmpty()){
+                            toDeleteOrganisations.add(org);
+                        }
+
 
                     }
+
+                    organisationsTemp.removeAll(toDeleteOrganisations);
+
 
 
                     organisations.addAll(organisationsTemp);
@@ -247,4 +249,3 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
 
 }
-
