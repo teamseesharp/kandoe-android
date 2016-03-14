@@ -27,9 +27,15 @@ import com.example.kandoe.Activity.Fragment.HelpFragment;
 import com.example.kandoe.Activity.Fragment.MainFragment;
 import com.example.kandoe.Activity.Fragment.NavigationDrawerFragment;
 import com.example.kandoe.Activity.Fragment.SessionListFragment;
+import com.example.kandoe.Model.Card;
+import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.APIServiceGenerator;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends ActionBarActivity
@@ -45,6 +51,7 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
     private UserProfile userProfile;
+    private UserAccount userAccount;
     private Token token;
     private KandoeBackendAPI service;
 
@@ -63,6 +70,8 @@ public class MainActivity extends ActionBarActivity
         }
 
         service = APIServiceGenerator.createService(KandoeBackendAPI.class,token.getIdToken());
+
+        getUserAccount(userProfile);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5f995f")));
@@ -102,7 +111,7 @@ public class MainActivity extends ActionBarActivity
                 mTitle = getString(R.string.title_section3);
                 fragment = new AccountFragment();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("profile", userProfile);
+                bundle.putSerializable("profile", userAccount);
                 fragment.setArguments(bundle);
 
                 break;
@@ -233,5 +242,27 @@ public class MainActivity extends ActionBarActivity
 
     public UserProfile getUserProfile() {
         return userProfile;
+    }
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void getUserAccount(UserProfile profile){
+
+        Call<UserAccount>  call = service.getUserId(profile.getId());
+
+        call.enqueue(new Callback<UserAccount>() {
+            @Override
+            public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
+                userAccount = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<UserAccount> call, Throwable t) {
+
+            }
+        });
+
     }
 }

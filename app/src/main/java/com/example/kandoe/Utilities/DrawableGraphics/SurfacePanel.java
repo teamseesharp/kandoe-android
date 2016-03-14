@@ -22,6 +22,7 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
     public boolean isDrawing = true;
     protected DrawThread thread;
     private Bitmap mBitmap;
+    int counter = 0;
 
     private CircleSessionController controller;
 
@@ -39,7 +40,6 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
 
-
         getHolder().setFixedSize(width,height/2-100);
     }
 
@@ -49,6 +49,11 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
         this.controller = attrs;
         getHolder().addCallback(this);
         thread = new DrawThread(getHolder());
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+
+        getHolder().setFixedSize(width,height/2-100);
 
     }
 
@@ -65,14 +70,14 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
 
         @Override
         public void run() {
+
             Canvas canvas = null;
-
-
-
             while (_run){
-                if(isDrawing == true){
+
+                if(isDrawing){
+
                     try{
-                        canvas = mSurfaceHolder.lockCanvas(null);
+                        canvas = mSurfaceHolder.lockCanvas();
                         if(mBitmap == null){
                             mBitmap =  Bitmap.createBitmap (1, 1, Bitmap.Config.ARGB_8888);
                         }
@@ -82,13 +87,14 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
                       canvas.drawBitmap(mBitmap, 0, 0, null);
 
 
-
+                        mSurfaceHolder.unlockCanvasAndPost(canvas);
 
                     } finally {
-                        mSurfaceHolder.unlockCanvasAndPost(canvas);
-setRunning(false);
+
+
 
                     }
+                   if (counter++ == 20) setIsDrawing(false);
                 }
             }
         }
@@ -101,6 +107,7 @@ setRunning(false);
 
     public void surfaceCreated(SurfaceHolder holder) {
         // Starts thread execution
+        setWillNotDraw(false);
         thread.setRunning(true);
         thread.start();
     }
@@ -122,5 +129,13 @@ setRunning(false);
 
     public void setController(CircleSessionController controller) {
         this.controller = controller;
+    }
+
+
+
+
+    public void setIsDrawing(boolean isDrawing) {
+        if (isDrawing) counter = 0;
+        this.isDrawing = isDrawing;
     }
 }

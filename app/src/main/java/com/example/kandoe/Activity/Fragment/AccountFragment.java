@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 
 import com.auth0.core.UserProfile;
+import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.ImageLoadTask;
 
@@ -25,13 +26,13 @@ public class AccountFragment extends Fragment {
     private Switch aSwitch;
     private ImageView imageView;
 
-    private UserProfile userProfile;
+    private UserAccount userProfile;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        userProfile = getArguments().getParcelable("profile");
+        userProfile = (UserAccount) getArguments().getSerializable("profile");
 
     }
 
@@ -87,7 +88,7 @@ public class AccountFragment extends Fragment {
 
         email.setText(userProfile.getEmail());
 
-        new ImageLoadTask(userProfile.getPictureURL(), imageView).execute();
+        new ImageLoadTask(userProfile.getPicture(), imageView).execute();
     }
 
 

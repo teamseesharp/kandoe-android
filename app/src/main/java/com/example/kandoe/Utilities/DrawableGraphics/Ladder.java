@@ -19,7 +19,7 @@ public class Ladder extends View {
 
 private final String DEBUGTAG = "LADDER";
     private CircleSessionController controller;
-    private ArrayList<View> steps;
+    private ArrayList<RoundedRectangle> steps;
     private ArrayList<RoundedRectangle> legs;
     private double bottembound;
     private boolean firstTime;
@@ -36,23 +36,28 @@ private final String DEBUGTAG = "LADDER";
     public Ladder(CircleSessionController circleSessionController) {
         super(circleSessionController.getContext());
         this.controller = circleSessionController;
-        steps = new ArrayList<>();
-        legs = new ArrayList<>();
+
+
     }
 
     public void createLadder(Canvas container) {
         init();
-        createBackGround(container);
-        createSteps(container);
-        createLegs(container);
+          createBackGround(container);
+          createSteps(container);
+          createLegs(container);
+
 
         if (controller.getSession().getRound() != 0){
             createBullets(container);
         }
 
+        createBullets(container);
+
     }
 
     private void init() {
+        steps = new ArrayList<>();
+        legs = new ArrayList<>();
         DisplayMetrics displayMetrics = controller.getContext().getResources().getDisplayMetrics();
         width = displayMetrics.widthPixels;
         height = displayMetrics.heightPixels;
@@ -68,10 +73,10 @@ private final String DEBUGTAG = "LADDER";
 
     private void createBackGround(Canvas container) {
 
-        System.out.println("Drawing Background");
+        Log.d(DEBUGTAG, "creating Background");
 
         bottembound = (heightleg + heightleg * 0.3);
-        controller.setBottomboundLadder(bottembound);
+
 
         View background = new Background(getContext(), (int) bottembound,container);
 
@@ -88,8 +93,6 @@ private final String DEBUGTAG = "LADDER";
         for (Card card : controller.getCards()) {
             View bullet = new BulletPoint(getContext(), steps, card, legs, controller, container);
             controller.getBulletPoints().add(bullet);
-
-
         }
     }
 
@@ -98,8 +101,8 @@ private final String DEBUGTAG = "LADDER";
 
 
         Log.d(DEBUGTAG,"Creating steps");
-        int numberOfSteps = controller.getSession().getNumberOfSteps();
-
+      //  int numberOfSteps = controller.getSession().getNumberOfSteps();
+        int numberOfSteps = 10;
         //init values
          int ctLeft = clLeft + 30, ctTop = clTop + heightleg / numberOfSteps / 2, ctRight = clLeft + offset + 5, ctBottom = ctTop + 15;
 
@@ -136,11 +139,5 @@ private final String DEBUGTAG = "LADDER";
     }
 
 
-    public ArrayList<View> getSteps() {
-        return steps;
-    }
 
-    public void setSteps(ArrayList<View> steps) {
-        this.steps = steps;
-    }
 }

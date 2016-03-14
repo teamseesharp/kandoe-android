@@ -69,6 +69,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
         expandableListView.setAdapter(adapter);
 
+
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
@@ -116,6 +117,8 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                 return true;
             }
         });
+
+
         return view;
     }
 
@@ -126,7 +129,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
         subThemes = new ArrayList<>();
         adapter = new SessionAdapter(getContext(), organisations, subThemes);
 
-       // getUserAccount();
+        // getUserAccount();
         getOrganisationsData();
         //getSubThemesData();
 

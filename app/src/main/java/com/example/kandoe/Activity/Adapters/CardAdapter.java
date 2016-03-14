@@ -18,6 +18,8 @@ import com.example.kandoe.Model.Card;
 import com.example.kandoe.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import static com.example.kandoe.R.drawable.listborderitem;
 
@@ -25,18 +27,36 @@ import static com.example.kandoe.R.drawable.listborderitem;
 public class CardAdapter extends ArrayAdapter {
     private Context context;
     private int layoutResourceId;
-    private ArrayList data = new ArrayList();
+    private ArrayList<Card> data;
     private ArrayList<CheckBox> checks;
-    private RadioGroup radioGroup;
+    private String chosenCardToUpvote;
+
     private boolean setup;
 
-    public CardAdapter(Context context, boolean setup, ArrayList data) {
+    public CardAdapter(Context context, boolean setup, ArrayList<Card> data) {
         super(context, R.layout.card, data);
         this.context = context;
         this.layoutResourceId = R.layout.card;
         this.data = data;
         this.checks = new ArrayList<>();
         this.setup = setup;
+
+
+        sortCards();
+    }
+
+    public void sortCards() {
+        Collections.sort(data, new Comparator<Card>() {
+            @Override
+            public int compare(Card lhs, Card rhs) {
+                if (lhs.getSessionLevel() > rhs.getSessionLevel()) return 1;
+                if (lhs.getSessionLevel() < rhs.getSessionLevel()) return -1;
+                if (lhs.getSessionLevel() == rhs.getSessionLevel()) return 0;
+                return 0;
+            }
+        });
+
+        notifyDataSetChanged();
     }
 
     @Override
@@ -69,7 +89,7 @@ public class CardAdapter extends ArrayAdapter {
 
         setBG(holder, card.getId());
 
-        handleSetup(holder,view);
+        handleSetup(holder, view);
 
         return view;
     }
@@ -87,6 +107,9 @@ public class CardAdapter extends ArrayAdapter {
 
     private void handleSetup(final ViewHolder holder, View view) {
         if (!setup) {
+
+
+
             checks.add(holder.upvote);
 
             holder.upvote.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -100,15 +123,18 @@ public class CardAdapter extends ArrayAdapter {
                             }
 
                         }
+                        chosenCardToUpvote = holder.id.getText().toString();
                     }
 
                 }
             });
+
+
         } else {
             holder.upvote.setVisibility(View.INVISIBLE);
             holder.number.setText("");
 
-           view.setBackgroundResource(R.drawable.listborderitem);
+            view.setBackgroundResource(R.drawable.listborderitem);
 
         }
 
@@ -134,5 +160,15 @@ public class CardAdapter extends ArrayAdapter {
 
         // Finally, apply the GradientDrawable as TextView background
         holder.number.setBackground(gd);
+    }
+
+    public ArrayList<CheckBox> getChecks() {
+        return checks;
+    }
+
+    public String getChosenCardToUpvote() {
+        if (chosenCardToUpvote == null) {
+            return "";
+        } else return chosenCardToUpvote;
     }
 }

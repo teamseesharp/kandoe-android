@@ -33,13 +33,13 @@ public class BulletPoint extends View {
     }
 
 
-    public BulletPoint(Context context, ArrayList<View> steps, Card card, ArrayList<RoundedRectangle> legs, CircleSessionController controller, Canvas container) {
+    public BulletPoint(Context context, ArrayList<RoundedRectangle> steps, Card card, ArrayList<RoundedRectangle> legs, CircleSessionController controller, Canvas container) {
         super(context);
         initValues(card, steps, legs, controller);
 
 
         container.drawRoundRect(rectF, 100, 100, paint);
-        drawRectText(String.valueOf(card.getId()), container, rectF);
+        drawRectText(card, container, rectF);
     }
 
 
@@ -61,7 +61,7 @@ public class BulletPoint extends View {
 
 
         //Position bullet
-        RoundedRectangle step = getStepOnPosition(card.getId(), steps);
+        RoundedRectangle step = getStepOnPosition(card, steps);
         initValuesForPositon(step);
 
 
@@ -74,32 +74,35 @@ public class BulletPoint extends View {
         Canvas mycanvas = new Canvas(bmDest);
 
         mycanvas.drawRoundRect(rectF, 100, 100, paint);
-        drawRectText(String.valueOf(card.getId()), mycanvas, rectF);
+        drawRectText(card, mycanvas, rectF);
 
 
     }
 
     private void initValuesForPositon(RoundedRectangle trede) {
 
-        int size = 40;
+        int size = 27;
         int yCenter = (trede.getBottom2() + trede.getTop2()) / 2;
-        int xCenter = trede.getLeft2()+75+(100*trede.getBulletPoints().size());
+        int xCenter = trede.getLeft2() + 75 + (75 * trede.getBulletPoints().size());
         rect = new Rect(xCenter - size, yCenter - size, xCenter + size, yCenter + size);
         trede.getBulletPoints().add(rect);
     }
 
 
-    private RoundedRectangle getStepOnPosition(int cardId, ArrayList<RoundedRectangle> steps) {
+    private RoundedRectangle getStepOnPosition(Card card, ArrayList<RoundedRectangle> steps) {
 
-        //TODO Call naar positie card
-        int position = steps.size();
+
+        int position = card.getSessionLevel();
+        position--;
 
 
         for (RoundedRectangle step : steps) {
-            if (step.getStepNumber() == position) return step;
+            if (step.getStepNumber() == position) {
+                return step;
+            }
         }
 
-        return null;
+        return  null;
 
     }
 
@@ -107,22 +110,20 @@ public class BulletPoint extends View {
     protected void onDraw(Canvas canvas) {
 
         canvas.drawRoundRect(rectF, 100, 100, paint);
-        drawRectText(String.valueOf(card.getId()), canvas, rectF);
+       // drawRectText(card, canvas, rectF);
 
 
     }
 
 
-
-
-    private void drawRectText(String text, Canvas canvas, RectF r) {
+    private void drawRectText(Card card, Canvas canvas, RectF r) {
 
 
         float width = r.width();
 
-        int numOfChars = paint2.breakText(text, true, width, null);
-        int start = (text.length() - numOfChars) / 2;
-        canvas.drawText("", start, start + numOfChars, r.centerX(), r.centerY() + 20, paint2);
+        int numOfChars = paint2.breakText(String.valueOf(card.getId()), true, width, null);
+        int start = (String.valueOf(card.getId()).length() - numOfChars) / 2;
+//        canvas.drawText("", start, start + numOfChars, r.centerX(), r.centerY() + 20, paint2);
     }
 
 

@@ -179,9 +179,12 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = inf.inflate(R.layout.listgroup, null);
+
         }
         TextView tv = (TextView) convertView.findViewById(R.id.group_name);
         tv.setText(group.getName());
+
+
         return convertView;
     }
 

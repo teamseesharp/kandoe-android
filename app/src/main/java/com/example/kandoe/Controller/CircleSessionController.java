@@ -4,12 +4,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.kandoe.Activity.Adapters.CardAdapter;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Utilities.DrawableGraphics.Ladder;
+import com.example.kandoe.Utilities.DrawableGraphics.SurfacePanel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +32,15 @@ public class CircleSessionController {
 
 
     private ArrayList<UserAccount> participants;
-    private ArrayAdapter adapter;
+    private CardAdapter adapter;
     private Session session;
     private ChatController chatController;
+    private TextView currentPlayerTxt;
+    private SurfacePanel panel;
+
 
     private KandoeBackendAPI service;
     private Context context;
-    private double bottomboundLadder;
 
 
     public CircleSessionController(Context context, Session session, KandoeBackendAPI service) {
@@ -44,15 +51,68 @@ public class CircleSessionController {
     }
 
     private void init() {
-        cards = new ArrayList<>();
         bulletPoints = new ArrayList<>();
         participants = new ArrayList<>();
+        cards = new ArrayList<>();
         getVerboseSession();
+
         //chatController = new ChatController(session.getId());
     }
 
 
+    public void play() {
 
+        String chosenCard = adapter.getChosenCardToUpvote();
+
+        for (Card card : cards) {
+            if (card.getId() == Integer.parseInt(chosenCard)) {
+
+                if (card.getSessionLevel()!= 1){
+
+                  //vervangen door call
+                    int currentlvl = card.getSessionLevel();
+                    currentlvl--;
+                    card.setSessionLevel(currentlvl);
+
+
+                }else {
+                    Toast.makeText(getContext(),"Deze kaart kan je niet meer upvoten, kies een ander :)",Toast.LENGTH_LONG).show();
+                }
+
+            }
+        }
+        adapter.sortCards();
+        panel.setIsDrawing(true);
+
+   ;
+
+
+
+    }
+
+    //region API-Calls
+
+    private void voteCardUp() {
+        Call<Void> call = service.levelUpCard(1);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccess()) {
+                    Toast.makeText(getContext(), "Kaart 1 omhoog :)",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "kaarten verhogen mislukt",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getContext(), "Oeps er is iets misgelopen",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     public void getVerboseSession() {
         Call<Session> call = service.getVerboseSessionById(session.getId());
@@ -61,26 +121,65 @@ public class CircleSessionController {
             @Override
             public void onResponse(Call<Session> call, Response<Session> response) {
                 session = response.body();
+                cards.addAll(session.getSessionCards());
                 adapter.notifyDataSetChanged();
+                updateCurrentPlayer();
             }
 
             @Override
             public void onFailure(Call<Session> call, Throwable t) {
-
+                Toast.makeText(getContext(), "Het ophalen van de kaarten is mislukt", Toast.LENGTH_LONG).show();
             }
         });
+
+
     }
+    //endregion
 
-
-    public ArrayList<Card> getCards() {
-        return session.getCards();
-    }
-
+    //region UI methods
     public void createLadder(Canvas container) {
 
         Ladder ladder = new Ladder(this);
         ladder.createLadder(container);
+
     }
+
+    public void updateCurrentPlayer() {
+        UserAccount currentPlayer = getCurrentPlayer();
+        String player = currentPlayer.getName() + " is aan beurt. ";
+        currentPlayerTxt.setText(player);
+    }
+    //endregion
+
+    //region Getters and Setters
+
+    public void setPanel(SurfacePanel panel) {
+        this.panel = panel;
+    }
+
+    public ArrayList<UserAccount> getParticipants() {
+        return session.getParticipants();
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public UserAccount getCurrentPlayer() {
+
+        try {
+            return session.getParticipants().get(session.getCurrentPlayerIndex());
+        } catch (IndexOutOfBoundsException e) {
+            UserAccount userAccount = new UserAccount();
+            userAccount.setName("Niemand");
+            return userAccount;
+        }
+    }
+
+    public void setCurrentPlayerTxt(TextView currentPlayerTxt) {
+        this.currentPlayerTxt = currentPlayerTxt;
+    }
+
 
     public ArrayList<View> getBulletPoints() {
         return bulletPoints;
@@ -94,23 +193,19 @@ public class CircleSessionController {
         return context;
     }
 
-    public double getBottomboundLadder() {
-        return bottomboundLadder;
-    }
 
-    public void setBottomboundLadder(double bottomboundLadder) {
-        this.bottomboundLadder = bottomboundLadder;
-    }
-
-    public ArrayAdapter getAdapter() {
-        return adapter;
-    }
-
-    public void setAdapter(ArrayAdapter adapter) {
+    public void setAdapter(CardAdapter adapter) {
         this.adapter = adapter;
     }
 
-    public ArrayList<UserAccount> getParticipants() {
-        return participants;
+    public boolean amICurrentPlayer(UserAccount userAccount) {
+
+        if (getCurrentPlayer().getId() == userAccount.getId()) {
+            return true;
+        }
+        return false;
+
+
     }
+    //endregion
 }

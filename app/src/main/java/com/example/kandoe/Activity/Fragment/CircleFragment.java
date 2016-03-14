@@ -44,6 +44,7 @@ public class CircleFragment extends Fragment {
     private MainActivity mainActivity;
     private UserAccount account;
     private ArrayList<String> participants = new ArrayList<>();
+    private TextView txtCurrentPlayer;
 
     //TIJDELIJK
     public void addSpelers(){
@@ -83,13 +84,9 @@ public class CircleFragment extends Fragment {
         }
 
         mainActivity = (MainActivity) getActivity();
-        controller = new CircleSessionController(getContext(), session,service);
-
-        //addSpelers();
-        getUserAccountInfo();
-        //getSessionInfo();
-
-    }
+        controller = new CircleSessionController(getActivity(), session,service);
+               getUserAccountInfo();
+            }
 
 
     @Override
@@ -99,12 +96,12 @@ public class CircleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
 
 
-        // controller.createLadder(container);
-//container.addView(new SurfacePanel(getContext(),controller));
-
+        txtCurrentPlayer = (TextView) view.findViewById(R.id.playersTurn);
+        controller.setCurrentPlayerTxt(txtCurrentPlayer);
 
         SurfacePanel panel = (SurfacePanel) view.findViewById(R.id.view);
         panel.setController(controller);
+        controller.setPanel(panel);
         // panel.invalidate();
 
         System.out.println(panel.getBottom());
@@ -115,12 +112,6 @@ public class CircleFragment extends Fragment {
         controller.setAdapter(cardAdapter);
         listView.setAdapter(cardAdapter);
 
-        TextView playerName = (TextView) view.findViewById(R.id.playersTurn);
-        //TODO: current player ophalen en tonen
-
-        String currentPlayer = "dingske";
-        String player = currentPlayer + " " + playerName.getText().toString();
-        playerName.setText(player);
 
         //BUTTONS
         ImageButton showPersons = (ImageButton) view.findViewById(R.id.button_players);
@@ -133,24 +124,25 @@ public class CircleFragment extends Fragment {
 
         Button voteUp = (Button) view.findViewById(R.id.votebutton);
 
-        //TODO: wanneer session call werkt dit uit commentaar zetten + testen
-       /* int index = session.getCurrentPlayerIndex();
-        UserAccount current = session.getParticipants().get(index);
-        if(account.getName().equals(current.getName())){
+      voteUp.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+
+              System.out.println("KLIK");
+              controller.play();
+          }
+      });
+
+ /*       if (controller.amICurrentPlayer(mainActivity.getUserAccount())){
             voteUp.setVisibility(View.VISIBLE);
         }else{
             voteUp.setVisibility(View.INVISIBLE);
         }*/
 
-        voteUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: VOTEUP
 
-            }
-        });
 
-        //  listView.setPadding(0, (int) controller.getBottomboundLadder(), 0, 0);
+
+
 
         return view;
     }
@@ -173,6 +165,9 @@ public class CircleFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
+
+
 
     @Override
     public void onDetach() {
@@ -210,8 +205,8 @@ public class CircleFragment extends Fragment {
 
     public String participantsOnNewLine(){
         StringBuffer names = new StringBuffer();
-        for (String s : participants) {
-            names.append(s).append('\n');
+        for (UserAccount s : controller.getParticipants()) {
+            names.append(s.getName()).append('\n');
         }
         return names.toString();
     }
@@ -265,25 +260,5 @@ public class CircleFragment extends Fragment {
         });
     }
 
-    private void voteCardUp(){
-        Call<Void> call = service.levelUpCard(1);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccess()) {
-                    Toast.makeText(getActivity(), "Kaart 1 omhoog :)",
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getActivity(), "kaarten verhogen mislukt",
-                            Toast.LENGTH_LONG).show();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getActivity(), "Oeps er is iets misgelopen",
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 }
