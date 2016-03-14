@@ -124,7 +124,19 @@ public class CircleFragment extends Fragment {
 
         Button voteUp = (Button) view.findViewById(R.id.votebutton);
 
-      voteUp.setOnClickListener(new View.OnClickListener() {
+        if (controller.amICurrentPlayer(mainActivity.getUserAccount())){
+            voteUp.setVisibility(View.VISIBLE);
+        }else{
+            voteUp.setVisibility(View.INVISIBLE);
+        }
+
+        if(session.isFinished()){
+            voteUp.setVisibility(View.INVISIBLE);
+            Toast.makeText(getActivity(), "Helaas,, spel is gedaan", Toast.LENGTH_LONG).show();
+
+        }
+
+        voteUp.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
 
@@ -132,17 +144,6 @@ public class CircleFragment extends Fragment {
               controller.play();
           }
       });
-
- /*       if (controller.amICurrentPlayer(mainActivity.getUserAccount())){
-            voteUp.setVisibility(View.VISIBLE);
-        }else{
-            voteUp.setVisibility(View.INVISIBLE);
-        }*/
-
-
-
-
-
 
         return view;
     }
