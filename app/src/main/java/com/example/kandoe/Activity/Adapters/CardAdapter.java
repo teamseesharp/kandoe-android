@@ -108,7 +108,13 @@ public class CardAdapter extends ArrayAdapter {
     private void handleSetup(final ViewHolder holder, View view) {
         if (!setup) {
 
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    holder.upvote.setChecked(true);
+                }
+            });
 
             checks.add(holder.upvote);
 

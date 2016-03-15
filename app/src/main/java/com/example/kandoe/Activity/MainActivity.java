@@ -170,7 +170,10 @@ public class MainActivity extends ActionBarActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
-            startActivity(new Intent(MainActivity.this, StartActivity.class));
+
+            Intent intent = new Intent(getApplicationContext(),StartActivity.class);
+
+            startActivity(intent);
         }
 
         if( id == R.id.action_help){
