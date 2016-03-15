@@ -76,19 +76,64 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                Organisation organisation = organisations.get(groupPosition);
-                Session session = organisation.getSessions().get(childPosition);
+                final Organisation organisation = organisations.get(groupPosition);
+                final Session session = organisation.getSessions().get(childPosition);
 
-
+                final boolean[] firstTime = {true};
                 Call<Session> sessionCall = service.getVerboseSessionById(session.getId());
                 sessionCall.enqueue(new Callback<Session>() {
                     @Override
                     public void onResponse(Call<Session> call, Response<Session> response) {
-                        if(response.isSuccess()){
+                        if (response.isSuccess()) {
                             sessionVerbose = response.body();
                             Toast.makeText(getActivity(), "Verbose succes", Toast.LENGTH_LONG).show();
+
+
+                            ArrayList<UserAccount> participants = sessionVerbose.getParticipants();
+                            if (!participants.isEmpty()) {
+                                for (UserAccount u : participants) {
+                                    if (u.getId() == (userAccount.getId())) {
+                                        firstTime[0] = false;
+                                    }
+                                }
+                            }
+
+
+                            SubTheme currentsubtheme = null;
+                            Theme currenttheme = null;
+
+
+                            for (SubTheme subtheme : subThemes) {
+                                if (subtheme.getId() == session.getSubThemeId()) {
+                                    currentsubtheme = subtheme;
+                                }
+
+                            }
+                            for (Theme theme : organisation.getThemes()) {
+
+                                if (theme.getId() == (currentsubtheme != null ? currentsubtheme.getThemaId() : 0)) {
+                                    currenttheme = theme;
+                                }
+                            }
+
+                            android.support.v4.app.Fragment fragment;
+
+                            if (firstTime[0]) {
+                                fragment = SetupFragment.newInstance(service, session, currenttheme, currentsubtheme);
+
+                                //TODO
+                            } else {
+                                fragment = CircleFragment.newInstance(service, session);
+                                FragmentManager fragmentManager = getFragmentManager();
+                                fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
+                            }
+
+
+                            FragmentManager fragmentManager = getFragmentManager();
+                            fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).addToBackStack(TAG).commit();
                             System.out.println(response.code());
-                        }else{
+
+                        } else {
                             Toast.makeText(getActivity(), "Verbose fail", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -99,48 +144,9 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                     }
                 });
 
-                boolean firstTime = true;
-
-                SubTheme currentsubtheme = null;
-                Theme currenttheme = null;
-
-                /*ArrayList<UserAccount> participants = sessionVerbose.getParticipants();
-                if(participants.isEmpty()){
-                if (participants.contains(userAccount)) {
-                    firstTime = false;
-                  }
-                }*/
 
 
-                for (SubTheme subtheme : subThemes) {
-                    if (subtheme.getId() == session.getSubThemeId()) {
-                        currentsubtheme = subtheme;
-                    }
 
-                }
-                for (Theme theme : organisation.getThemes()) {
-
-                    if (theme.getId() == (currentsubtheme != null ? currentsubtheme.getThemaId() : 0)) {
-                        currenttheme = theme;
-                    }
-                }
-
-
-                android.support.v4.app.Fragment fragment;
-
-                if (firstTime) {
-                    fragment = SetupFragment.newInstance(service, session, currenttheme, currentsubtheme);
-
-                    //TODO
-                } else {
-                    fragment = CircleFragment.newInstance(service, session);
-                    FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
-                }
-
-
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).addToBackStack(TAG).commit();
                 return true;
             }
         });
