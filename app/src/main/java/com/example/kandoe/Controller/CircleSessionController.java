@@ -102,16 +102,16 @@ public class CircleSessionController {
     }
 
     public void playCard(Card card){
-        Call<Void> call = service.levelUpCard(session.getId(),card.getId());
+        Call<Void> call = service.levelUpCard(session.getId(), card.getId());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if(response.isSuccess()){
+                if (response.isSuccess()) {
                     System.out.println("Play card SUCCES");
                     Toast.makeText(getContext(), "SPELEN KAART SUCCES", Toast.LENGTH_LONG).show();
 
-                }else{
-                    Log.d(TAG,"Play card FAIL. ERROR: " + response.errorBody());
+                } else {
+                    Log.d(TAG, "Play card FAIL. ERROR: " + response.errorBody());
                     Toast.makeText(getContext(), "SPELEN KAART ONRESP FAIL", Toast.LENGTH_LONG).show();
                 }
             }
@@ -137,8 +137,13 @@ public class CircleSessionController {
             String sessionfinished = "Deze sessie is gestopt.";
             currentPlayerTxt.setText(sessionfinished);
         }else {
-            String player = currentPlayer.getName() + " is aan beurt... ";
-            currentPlayerTxt.setText(player);
+            if(amICurrentPlayer()){
+                String player = "Jij bent aan de beurt... ";
+                currentPlayerTxt.setText(player);
+            }else{
+                String player = currentPlayer.getName() + " is aan beurt... ";
+                currentPlayerTxt.setText(player);
+            }
         }
     }
     //endregion
