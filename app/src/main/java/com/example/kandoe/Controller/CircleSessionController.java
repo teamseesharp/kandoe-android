@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,8 @@ public class CircleSessionController {
     private ChatController chatController;
     private TextView currentPlayerTxt;
     private SurfacePanel panel;
+    private Button btnUpVote;
+    private UserAccount userAccount;
 
 
     private KandoeBackendAPI service;
@@ -67,16 +70,16 @@ public class CircleSessionController {
         for (Card card : cards) {
             if (card.getId() == Integer.parseInt(chosenCard)) {
 
-                if (card.getSessionLevel()!= 1){
+                if (card.getSessionLevel() != 1) {
 
-                  //vervangen door call
+                    //vervangen door call
                     int currentlvl = card.getSessionLevel();
                     currentlvl--;
                     card.setSessionLevel(currentlvl);
 
 
-                }else {
-                    Toast.makeText(getContext(),"Deze kaart kan je niet meer upvoten, kies een ander :)",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "Deze kaart kan je niet meer upvoten, kies een ander :)", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -84,8 +87,7 @@ public class CircleSessionController {
         adapter.sortCards();
         panel.setIsDrawing(true);
 
-   ;
-
+        ;
 
 
     }
@@ -124,6 +126,7 @@ public class CircleSessionController {
                 cards.addAll(session.getSessionCards());
                 adapter.notifyDataSetChanged();
                 updateCurrentPlayer();
+                amICurrentPlayer();
             }
 
             @Override
@@ -146,9 +149,16 @@ public class CircleSessionController {
 
     public void updateCurrentPlayer() {
         UserAccount currentPlayer = getCurrentPlayer();
-        String player = currentPlayer.getName() + " is aan beurt. ";
-        currentPlayerTxt.setText(player);
+        if (session.isFinished()){
+            String sessionfinished = "Deze sessie is gestopt.";
+            currentPlayerTxt.setText(sessionfinished);
+        }else {
+            String player = currentPlayer.getName() + " is aan beurt... ";
+            currentPlayerTxt.setText(player);
+        }
     }
+
+
     //endregion
 
     //region Getters and Setters
@@ -168,12 +178,14 @@ public class CircleSessionController {
     public UserAccount getCurrentPlayer() {
 
         try {
+
             return session.getParticipants().get(session.getCurrentPlayerIndex());
         } catch (IndexOutOfBoundsException e) {
             UserAccount userAccount = new UserAccount();
             userAccount.setName("Niemand");
             return userAccount;
         }
+
     }
 
     public void setCurrentPlayerTxt(TextView currentPlayerTxt) {
@@ -198,14 +210,26 @@ public class CircleSessionController {
         this.adapter = adapter;
     }
 
-    public boolean amICurrentPlayer(UserAccount userAccount) {
+    public boolean amICurrentPlayer() {
 
         if (getCurrentPlayer().getId() == userAccount.getId()) {
+            btnUpVote.setVisibility(View.VISIBLE);
             return true;
+        } else {
+            btnUpVote.setVisibility(View.INVISIBLE);
+
+
+            return false;
         }
-        return false;
 
+    }
 
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+
+    public void setBtnUpVote(Button btnUpVote) {
+        this.btnUpVote = btnUpVote;
     }
     //endregion
 }

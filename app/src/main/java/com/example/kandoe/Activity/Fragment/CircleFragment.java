@@ -45,9 +45,10 @@ public class CircleFragment extends Fragment {
     private UserAccount account;
     private ArrayList<String> participants = new ArrayList<>();
     private TextView txtCurrentPlayer;
+    Button voteUp;
 
     //TIJDELIJK
-    public void addSpelers(){
+    public void addSpelers() {
         participants.add("Michelle");
         participants.add("Joachim");
         participants.add("Thomas");
@@ -84,9 +85,9 @@ public class CircleFragment extends Fragment {
         }
 
         mainActivity = (MainActivity) getActivity();
-        controller = new CircleSessionController(getActivity(), session,service);
-               getUserAccountInfo();
-            }
+        controller = new CircleSessionController(getActivity(), session, service);
+        getUserAccountInfo();
+    }
 
 
     @Override
@@ -97,24 +98,22 @@ public class CircleFragment extends Fragment {
 
 
         txtCurrentPlayer = (TextView) view.findViewById(R.id.playersTurn);
-        controller.setCurrentPlayerTxt(txtCurrentPlayer);
-
+        voteUp = (Button) view.findViewById(R.id.votebutton);
         SurfacePanel panel = (SurfacePanel) view.findViewById(R.id.view);
+        ImageButton showPersons = (ImageButton) view.findViewById(R.id.button_players);
+        ListView listView = (ListView) view.findViewById(R.id.lvCards);
+
+        controller.setCurrentPlayerTxt(txtCurrentPlayer);
+        controller.setBtnUpVote(voteUp);
+        controller.setUserAccount(mainActivity.getUserAccount());
         panel.setController(controller);
         controller.setPanel(panel);
-        // panel.invalidate();
-
-        System.out.println(panel.getBottom());
-
-        ListView listView = (ListView) view.findViewById(R.id.lvCards);
         CardAdapter cardAdapter = new CardAdapter(getContext(), false, controller.getCards());
-
         controller.setAdapter(cardAdapter);
         listView.setAdapter(cardAdapter);
 
-
         //BUTTONS
-        ImageButton showPersons = (ImageButton) view.findViewById(R.id.button_players);
+
         showPersons.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,28 +121,22 @@ public class CircleFragment extends Fragment {
             }
         });
 
-        Button voteUp = (Button) view.findViewById(R.id.votebutton);
 
-        if (controller.amICurrentPlayer(mainActivity.getUserAccount())){
-            voteUp.setVisibility(View.VISIBLE);
-        }else{
-            voteUp.setVisibility(View.INVISIBLE);
-        }
 
-        if(session.isFinished()){
+        if (session.isFinished()) {
             voteUp.setVisibility(View.INVISIBLE);
             Toast.makeText(getActivity(), "Helaas,, spel is gedaan", Toast.LENGTH_LONG).show();
 
         }
 
         voteUp.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-              System.out.println("KLIK");
-              controller.play();
-          }
-      });
+                System.out.println("KLIK");
+                controller.play();
+            }
+        });
 
         return view;
     }
@@ -168,8 +161,6 @@ public class CircleFragment extends Fragment {
     }
 
 
-
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -178,7 +169,7 @@ public class CircleFragment extends Fragment {
 
     public void showPopup(View anchorView) {
 
-        final View popupView =  getActivity().getLayoutInflater().inflate(R.layout.popup, null);
+        final View popupView = getActivity().getLayoutInflater().inflate(R.layout.popup, null);
 
         final PopupWindow popupWindow = new PopupWindow(popupView,
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -204,7 +195,7 @@ public class CircleFragment extends Fragment {
 
     }
 
-    public String participantsOnNewLine(){
+    public String participantsOnNewLine() {
         StringBuffer names = new StringBuffer();
         for (UserAccount s : controller.getParticipants()) {
             names.append(s.getName()).append('\n');
@@ -230,7 +221,7 @@ public class CircleFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public void getSessionInfo(){
+    public void getSessionInfo() {
         Call<Session> call = service.getVerboseSessionById(session.getId());
         call.enqueue(new Callback<Session>() {
             @Override
