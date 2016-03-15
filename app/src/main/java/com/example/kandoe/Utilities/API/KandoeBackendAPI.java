@@ -87,7 +87,7 @@ public interface KandoeBackendAPI {
     Call<Session> getVerboseSessionById(@Path("id") int id);
 
     @PATCH ("api/sessions/{sessionId}/level-up-card/{cardId}")
-    Call<Void> levelUpCard(@Path("cardId") int id);
+    Call<Void> levelUpCard(@Path("sessionId") int sessionId,@Path("cardId") int cardId);
 
     //Organisation
     @GET("api/organisations")

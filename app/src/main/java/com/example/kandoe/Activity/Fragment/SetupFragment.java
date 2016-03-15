@@ -281,8 +281,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 System.out.println(t.toString());
             }
         });
-
-
     }
 
     private void addCard() {

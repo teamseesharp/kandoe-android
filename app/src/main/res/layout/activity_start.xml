@@ -31,7 +31,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kandoe !"
+        android:text="@string/start_title"
         android:id="@+id/textview"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -43,7 +43,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log in"
+        android:text="@string/start_log_in"
         android:id="@+id/sign_in_button"
         android:layout_marginBottom="29dp"
         style="@style/Base.Widget.AppCompat.Button.Borderless"

@@ -44,23 +44,24 @@ public class AccountFragment extends Fragment {
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             Editable tempEmail;
             Editable tempName;
+
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (!isChecked){
+                if (!isChecked) {
                     fName.setFocusable(false);
                     fName.setFocusableInTouchMode(false);
                     email.setFocusable(false);
                     email.setFocusableInTouchMode(false);
 
-                    if (!fName.getText().equals(tempName)){
+                    if (!fName.getText().equals(tempName)) {
                         // DO UPDATE NAME
                     }
 
-                    if (!email.getText().equals(tempEmail)){
+                    if (!email.getText().equals(tempEmail)) {
                         // DO UPDATE EMAIL
                     }
 
-                }else {
+                } else {
                     fName.setFocusable(true);
                     fName.setFocusableInTouchMode(true);
                     email.setFocusable(true);
@@ -81,10 +82,4 @@ public class AccountFragment extends Fragment {
 
         new ImageLoadTask(userProfile.getPicture(), imageView).execute();
     }
-
-
-
-
-
-
 }

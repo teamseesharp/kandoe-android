@@ -220,8 +220,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                 System.out.println(t.toString());
             }
         });
-
-
     }
 
     private void getSubThemesData() {

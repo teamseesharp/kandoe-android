@@ -2,6 +2,7 @@ package com.example.kandoe.Controller;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import retrofit2.Response;
  * Created by Thomas on 2016-02-23.
  */
 public class CircleSessionController {
+    private final String TAG = "CircleSessionController";
     private ArrayList<Card> cards;
     private ArrayList<View> bulletPoints;
 
@@ -55,7 +57,6 @@ public class CircleSessionController {
         //chatController = new ChatController(session.getId());
     }
 
-
     public void play() {
         String chosenCard = adapter.getChosenCardToUpvote();
 
@@ -65,11 +66,14 @@ public class CircleSessionController {
                     //vervangen door call
                     int currentlvl = card.getSessionLevel();
                     currentlvl--;
+
+                    playCard(card);
+
                     card.setSessionLevel(currentlvl);
+
                 }else {
                     Toast.makeText(getContext(),"Deze kaart kan je niet meer upvoten, kies een ander :)",Toast.LENGTH_LONG).show();
                 }
-
             }
         }
         adapter.sortCards();
@@ -93,6 +97,29 @@ public class CircleSessionController {
             @Override
             public void onFailure(Call<Session> call, Throwable t) {
                 Toast.makeText(getContext(), "Het ophalen van de kaarten is mislukt", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void playCard(Card card){
+        Call<Void> call = service.levelUpCard(session.getId(),card.getId());
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccess()){
+                    System.out.println("Play card SUCCES");
+                    Toast.makeText(getContext(), "SPELEN KAART SUCCES", Toast.LENGTH_LONG).show();
+
+                }else{
+                    Log.d(TAG,"Play card FAIL. ERROR: " + response.errorBody());
+                    Toast.makeText(getContext(), "SPELEN KAART ONRESP FAIL", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                System.out.println("Play card onfailure !!");
+                Toast.makeText(getContext(), "SPELEN KAART ONFAILURE", Toast.LENGTH_LONG).show();
             }
         });
     }

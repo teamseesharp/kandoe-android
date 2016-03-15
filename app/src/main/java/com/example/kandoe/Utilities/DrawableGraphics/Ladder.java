@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 
 import com.example.kandoe.Controller.CircleSessionController;
@@ -65,7 +64,7 @@ public class Ladder extends View {
     }
 
     private void createBackGround(Canvas container) {
-        Log.d(DEBUGTAG, "creating Background");
+       // Log.d(DEBUGTAG, "creating Background");
 
         bottembound = (heightleg + heightleg * 0.3);
 
@@ -73,7 +72,7 @@ public class Ladder extends View {
     }
 
     private void createBullets(Canvas container) {
-        Log.d(DEBUGTAG, "Creating bullets");
+      //  Log.d(DEBUGTAG, "Creating bullets");
 
         for (Card card : controller.getCards()) {
             View bullet = new BulletPoint(getContext(), steps, card, legs, controller, container);
@@ -83,7 +82,7 @@ public class Ladder extends View {
 
 
     private void createSteps( Canvas container) {
-        Log.d(DEBUGTAG,"Creating steps");
+        //Log.d(DEBUGTAG,"Creating steps");
       //  int numberOfSteps = controller.getSession().getNumberOfSteps();
         int numberOfSteps = 10;
         //init values
@@ -103,7 +102,7 @@ public class Ladder extends View {
     }
 
     private void createLegs(Canvas container) {
-        Log.d(DEBUGTAG,"Creating legs");
+       // Log.d(DEBUGTAG,"Creating legs");
 
         //left leg
         RoundedRectangle leftleg = new RoundedRectangle(getContext(), clLeft, clTop, clRight, clBottom, Color.rgb(102, 51, 0),container);

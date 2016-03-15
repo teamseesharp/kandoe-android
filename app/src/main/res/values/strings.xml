@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Kandoe</string>
 
+    <!--Start-->
+    <string name="start_title">Kandoe !</string>
+    <string name="start_log_in">Log in</string>
+
     <!-- Navigation drawer -->
     <string name="title_section1">Sessie overzicht</string>
     <string name="title_section2">Gespeelde sessies</string>
@@ -34,6 +38,10 @@
     <string name="help_Kandoe_4">4. Er worden nu verschillende rondes gespeeld en in elke ronde schuift elke deelnemer om de beurt één van de kaartjes één stap hoger.</string>
     <string name="help_Kandoe_5">5. de spelorganisator beslist wanneer het spel eindigt en neemt een snapshot.</string>
     <string name="help_Kandoe_6">6. kaartjes die hoger liggen hebben voor de deelnemers een hogere prioriteit.</string>
+
+    <!--Card-->
+    <string name="cardText">Kaart titel</string>
+    <string name="cardId">Id</string>
 
     <!--Card Setup-->
     <string name="cardSetup_title1">Gekozen kaarten</string>
