@@ -248,7 +248,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         double progress = (currentNumber / max) * 100;
         progressBar.setProgress((int) progress);
         progressBar.setProgress((int) progress);
-        //numberOfCards.setText(String.valueOf(cards.size()));
 
         if (progressBar.getProgress() == 100 && myCards.size() >= 1 && myCards.size() <= 3) {
             playButton.setEnabled(true);
@@ -272,7 +271,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         callList.enqueue(new Callback<List<Card>>() {
             @Override
             public void onResponse(Call<List<Card>> call, Response<List<Card>> response) {
-
                 try {
                     cards.addAll(response.body());
                     Collections.shuffle(cards);
@@ -282,8 +280,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                     Log.d(TAG, "onResponse: subthemes" + e.getMessage());
                     Log.d(TAG, "onResponse: " + response.errorBody());
                 }
-
-
             }
 
             @Override
@@ -315,7 +311,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                         newCard.setThemeId(theme.getId());
                         createCard(newCard);
 
-                        // TODO MOVE TO CALL (Response)
                         myCards.add(0, newCard);
                         myCardAdapter.notifyDataSetChanged();
 
@@ -336,16 +331,9 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             @Override
             public void onResponse(Call<Card> call, Response<Card> response) {
                 System.out.println(response);
-
                 if (response.isSuccess()) {
                     Toast.makeText(getActivity(), "kaart toegevoegd! :)",
                             Toast.LENGTH_LONG).show();
-
-                /* TODO Aanpassen in DB , callback card
-                   Card confirmationCard = response.body();
-                   myCards.add(0, confirmationCard);
-                   myCardAdapter.notifyDataSetChanged();*/
-
                 } else {
                     Toast.makeText(getActivity(), "Kaart niet toegevoegd! :(",
                             Toast.LENGTH_SHORT).show();
@@ -358,9 +346,5 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                         Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
-
-
 }

@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 
-import com.auth0.core.UserProfile;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.ImageLoadTask;
@@ -83,9 +82,7 @@ public class AccountFragment extends Fragment {
 
     private void setTexts(){
 
-
         fName.setText(userProfile.getName());
-
         email.setText(userProfile.getEmail());
 
         new ImageLoadTask(userProfile.getPicture(), imageView).execute();

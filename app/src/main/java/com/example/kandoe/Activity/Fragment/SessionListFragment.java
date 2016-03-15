@@ -35,7 +35,6 @@ import retrofit2.Response;
  * Shows all sessions in listview
  */
 public class SessionListFragment extends android.support.v4.app.Fragment {
-
     private final String TAG = "SessionListFragment";
     KandoeBackendAPI service;
 
@@ -48,9 +47,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
     public SessionListFragment(KandoeBackendAPI service, UserProfile userProfile) {
         this.service = service;
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,21 +62,17 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                 subThemes = new ArrayList<SubTheme>();
                 organisations = new ArrayList<Organisation>();
                 getOrganisationsData();
-
-
             }
         });
 
         expandableListView.setAdapter(adapter);
-
-
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 final Organisation organisation = organisations.get(groupPosition);
                 final Session session = organisation.getSessions().get(childPosition);
-
                 final boolean[] firstTime = {true};
+
                 Call<Session> sessionCall = service.getVerboseSessionById(session.getId());
                 sessionCall.enqueue(new Callback<Session>() {
                     @Override
@@ -97,7 +90,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                                     }
                                 }
                             }
-
 
                             SubTheme currentsubtheme = null;
                             Theme currenttheme = null;
@@ -121,7 +113,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                             if (firstTime[0]) {
                                 fragment = SetupFragment.newInstance(service, session, currenttheme, currentsubtheme);
 
-                                //TODO
                             } else {
                                 fragment = CircleFragment.newInstance(service, session);
                                 FragmentManager fragmentManager = getFragmentManager();
@@ -143,15 +134,9 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                         Toast.makeText(getActivity(), "FAILURE", Toast.LENGTH_LONG).show();
                     }
                 });
-
-
-
-
                 return true;
             }
         });
-
-
         return view;
     }
 
@@ -164,9 +149,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
         getUserAccount();
         getOrganisationsData();
-        //getSubThemesData();
-
-
     }
 
     private void getUserAccount() {
@@ -177,7 +159,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
             @Override
             public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
                 userAccount = response.body();
-
             }
 
             @Override
@@ -191,8 +172,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-
     }
 
     public void getOrganisationsData() {
@@ -218,25 +197,20 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                             }
                         });
 
-
-                        /*for (Session sess : org.getSessions()) {
+                        for (Session sess : org.getSessions()) {
                             if (sess.isFinished()) {
                               //  org.getSessions().remove(sess);
                                 toDelete.add(sess);
                             }
                         }
-*/
                         org.getSessions().removeAll(toDelete);
-
                     }
-
 
                     organisations.addAll(organisationsTemp);
                     adapter.notifyDataSetChanged();
                     getSubThemesData();
 
                 } catch (NullPointerException e) {
-
                     Toast.makeText(getActivity(), "Spijtig, er is iets misgegaan. Probeer in enkele ogenblikken terug", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "onResponse: organisations" + e.getMessage());
                 }

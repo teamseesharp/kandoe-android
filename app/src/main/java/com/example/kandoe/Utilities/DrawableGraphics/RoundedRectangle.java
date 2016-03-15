@@ -27,7 +27,6 @@ public class RoundedRectangle extends View {
 
     public RoundedRectangle(Context context) {
         super(context);
-
     }
 
     public RoundedRectangle(Context context, int left, int top, int right, int bottom, int color, Canvas container) {
@@ -38,8 +37,6 @@ public class RoundedRectangle extends View {
         this.bottom = bottom;
         this.color = color;
         this.setLayerType(LAYER_TYPE_SOFTWARE, paint);
-
-
 
         Rect rect = new Rect(left, top, right, bottom);
 
@@ -62,7 +59,6 @@ public class RoundedRectangle extends View {
         this.setLayerType(LAYER_TYPE_SOFTWARE, paint);
         bulletPoints = new ArrayList<>();
 
-
         Rect rect = new Rect(left, top, right, bottom);
 
         //RectF for rounded corners
@@ -76,38 +72,24 @@ public class RoundedRectangle extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-
-
-
-
         canvas.drawRoundRect(rectF, 15, 15, paint);
-
-
     }
-
 
     public int getLeft2() {
         return left;
     }
-
-
     public int getTop2() {
         return top;
     }
-
-
     public int getRight2() {
         return right;
     }
-
     public int getBottom2() {
         return bottom;
     }
-
     public int getStepNumber() {
         return stepNumber;
     }
-
     public ArrayList<Rect> getBulletPoints() {
         return bulletPoints;
     }

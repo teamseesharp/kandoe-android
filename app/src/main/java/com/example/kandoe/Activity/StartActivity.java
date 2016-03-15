@@ -29,7 +29,6 @@ public class StartActivity extends AppCompatActivity {
             final Intent newIntent = new Intent(StartActivity.this, MainActivity.class);
             UserProfile profile = intent.getParcelableExtra(Lock.AUTHENTICATION_ACTION_PROFILE_PARAMETER);
             Token token = intent.getParcelableExtra(Lock.AUTHENTICATION_ACTION_TOKEN_PARAMETER);
-            //newIntent.putExtras(intent);
 
             newIntent.putExtra("profile", profile);
             newIntent.putExtra("token", token);

@@ -7,8 +7,6 @@ import java.util.Arrays;
  * Created by Thomas on 2016-02-26.
  */
 public enum BulletColor {
-
-
     RED("#F44336"),
     PINK("#E91E63"),
     PURPLE("#9C27B0"),
@@ -38,15 +36,9 @@ public enum BulletColor {
     }
 
     public static BulletColor getColor(int cardId) {
-
-
         if (cardId >= list.size()) {
-
             return list.get(cardId%list.size());
-
         }
-
-
         return list.get(cardId);
     }
 

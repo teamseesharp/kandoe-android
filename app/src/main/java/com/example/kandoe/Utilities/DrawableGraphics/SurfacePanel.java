@@ -3,8 +3,6 @@ package com.example.kandoe.Utilities.DrawableGraphics;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.SurfaceHolder;
@@ -16,7 +14,6 @@ import com.example.kandoe.Controller.CircleSessionController;
  * Created by Thomas on 3-3-2016.
  */
 public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
-
     // Global variables
     private Boolean _run;
     public boolean isDrawing = true;
@@ -54,7 +51,6 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
         int height = metrics.heightPixels;
 
         getHolder().setFixedSize(width,height/2-100);
-
     }
 
     class DrawThread extends  Thread {
@@ -91,8 +87,6 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
 
                     } finally {
 
-
-
                     }
                    if (counter++ == 20) setIsDrawing(false);
                 }
@@ -126,14 +120,9 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
         }
     }
 
-
     public void setController(CircleSessionController controller) {
         this.controller = controller;
     }
-
-
-
-
     public void setIsDrawing(boolean isDrawing) {
         if (isDrawing) counter = 0;
         this.isDrawing = isDrawing;

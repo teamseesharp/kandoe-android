@@ -53,10 +53,6 @@ public interface KandoeBackendAPI {
 
 
     //Account
-    //Todo voorlopig komt de response niet overeen met de klasse..
-    @GET("api/accounts")
-    Call<UserAccount> getUsers();
-
     @GET ("api/accounts/{id}")
     Call<UserAccount> getUserById(@Path("id") int id);
 

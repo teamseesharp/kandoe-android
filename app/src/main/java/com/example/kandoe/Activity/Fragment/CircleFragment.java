@@ -47,18 +47,6 @@ public class CircleFragment extends Fragment {
     private TextView txtCurrentPlayer;
     Button voteUp;
 
-    //TIJDELIJK
-    public void addSpelers() {
-        participants.add("Michelle");
-        participants.add("Joachim");
-        participants.add("Thomas");
-        participants.add("Cas");
-        participants.add("Bennie");
-        participants.add("Olivier");
-        participants.add("Paljas");
-        participants.add("dingske");
-    }
-
     public CircleFragment() {
     }
 
@@ -96,7 +84,6 @@ public class CircleFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
 
-
         txtCurrentPlayer = (TextView) view.findViewById(R.id.playersTurn);
         voteUp = (Button) view.findViewById(R.id.votebutton);
         SurfacePanel panel = (SurfacePanel) view.findViewById(R.id.view);
@@ -113,26 +100,21 @@ public class CircleFragment extends Fragment {
         listView.setAdapter(cardAdapter);
 
         //BUTTONS
-
         showPersons.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPopup(v);
             }
         });
-
-
-
+        
         if (session.isFinished()) {
             voteUp.setVisibility(View.INVISIBLE);
             Toast.makeText(getActivity(), "Helaas,, spel is gedaan", Toast.LENGTH_LONG).show();
-
         }
 
         voteUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 System.out.println("KLIK");
                 controller.play();
             }
@@ -147,8 +129,6 @@ public class CircleFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -159,8 +139,7 @@ public class CircleFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
-
-
+    
     @Override
     public void onDetach() {
         super.onDetach();
@@ -221,20 +200,6 @@ public class CircleFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public void getSessionInfo() {
-        Call<Session> call = service.getVerboseSessionById(session.getId());
-        call.enqueue(new Callback<Session>() {
-            @Override
-            public void onResponse(Call<Session> call, Response<Session> response) {
-                session = response.body();
-            }
-
-            @Override
-            public void onFailure(Call<Session> call, Throwable t) {
-
-            }
-        });
-    }
 
     private void getUserAccountInfo() {
         String secret = mainActivity.getUserProfile().getId();
