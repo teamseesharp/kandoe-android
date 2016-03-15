@@ -26,18 +26,13 @@ private final String DEBUGTAG = "LADDER";
 
     int clLeft, clTop, clRight, clBottom, offset, width, height, heightleg;
 
-
     public Ladder(Context context) {
         super(context);
     }
 
-
-
     public Ladder(CircleSessionController circleSessionController) {
         super(circleSessionController.getContext());
         this.controller = circleSessionController;
-
-
     }
 
     public void createLadder(Canvas container) {
@@ -46,13 +41,11 @@ private final String DEBUGTAG = "LADDER";
           createSteps(container);
           createLegs(container);
 
-
         if (controller.getSession().getRound() != 0){
             createBullets(container);
         }
 
         createBullets(container);
-
     }
 
     private void init() {
@@ -72,22 +65,14 @@ private final String DEBUGTAG = "LADDER";
     }
 
     private void createBackGround(Canvas container) {
-
         Log.d(DEBUGTAG, "creating Background");
 
         bottembound = (heightleg + heightleg * 0.3);
 
-
         View background = new Background(getContext(), (int) bottembound,container);
-
-
-
-
     }
 
-
     private void createBullets(Canvas container) {
-
         Log.d(DEBUGTAG, "Creating bullets");
 
         for (Card card : controller.getCards()) {
@@ -98,8 +83,6 @@ private final String DEBUGTAG = "LADDER";
 
 
     private void createSteps( Canvas container) {
-
-
         Log.d(DEBUGTAG,"Creating steps");
       //  int numberOfSteps = controller.getSession().getNumberOfSteps();
         int numberOfSteps = 10;
@@ -114,17 +97,12 @@ private final String DEBUGTAG = "LADDER";
             topOffset += heightleg / numberOfSteps;
 
             steps.add(trede);
-
-
-
         }
 
 
     }
 
-
     private void createLegs(Canvas container) {
-
         Log.d(DEBUGTAG,"Creating legs");
 
         //left leg
@@ -135,9 +113,5 @@ private final String DEBUGTAG = "LADDER";
 
         legs.add(leftleg);
         legs.add(rightLeg);
-
     }
-
-
-
 }

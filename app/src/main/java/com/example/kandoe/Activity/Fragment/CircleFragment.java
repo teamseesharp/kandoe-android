@@ -46,18 +46,6 @@ public class CircleFragment extends Fragment {
     private ArrayList<String> participants = new ArrayList<>();
     private TextView txtCurrentPlayer;
 
-    //TIJDELIJK
-    public void addSpelers(){
-        participants.add("Michelle");
-        participants.add("Joachim");
-        participants.add("Thomas");
-        participants.add("Cas");
-        participants.add("Bennie");
-        participants.add("Olivier");
-        participants.add("Paljas");
-        participants.add("dingske");
-    }
-
     public CircleFragment() {
     }
 
@@ -94,7 +82,6 @@ public class CircleFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
-
 
         txtCurrentPlayer = (TextView) view.findViewById(R.id.playersTurn);
         controller.setCurrentPlayerTxt(txtCurrentPlayer);
@@ -155,7 +142,6 @@ public class CircleFragment extends Fragment {
         }
     }
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -166,9 +152,6 @@ public class CircleFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
-
-
-
 
     @Override
     public void onDetach() {
@@ -230,20 +213,6 @@ public class CircleFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public void getSessionInfo(){
-        Call<Session> call = service.getVerboseSessionById(session.getId());
-        call.enqueue(new Callback<Session>() {
-            @Override
-            public void onResponse(Call<Session> call, Response<Session> response) {
-                session = response.body();
-            }
-
-            @Override
-            public void onFailure(Call<Session> call, Throwable t) {
-
-            }
-        });
-    }
 
     private void getUserAccountInfo() {
         String secret = mainActivity.getUserProfile().getId();

@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,7 +28,6 @@ import com.example.kandoe.Activity.Fragment.HelpFragment;
 import com.example.kandoe.Activity.Fragment.MainFragment;
 import com.example.kandoe.Activity.Fragment.NavigationDrawerFragment;
 import com.example.kandoe.Activity.Fragment.SessionListFragment;
-import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.APIServiceGenerator;
@@ -113,16 +113,10 @@ public class MainActivity extends ActionBarActivity
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("profile", userAccount);
                 fragment.setArguments(bundle);
-
                 break;
-            /*case 4:
-                mTitle = "Spel starten";
-                listfragment = new SetupFragment(token);
-                break;*/
             default:
                 fragment = new MainFragment();
                 break;
-
         }
 
         if (fragment != null) {
@@ -134,9 +128,7 @@ public class MainActivity extends ActionBarActivity
             fragmentManager.beginTransaction().replace(R.id.fragment_main, listfragment).commit();
 
         } else {
-            // error in creating fragment
-            //Todo error loggen
-            //Log.e("MainActivity", "Error in creating fragment");
+            Log.e("MainActivity", "Error in creating fragment");
         }
 
     }
