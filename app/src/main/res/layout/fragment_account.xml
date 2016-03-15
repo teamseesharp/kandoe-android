@@ -16,6 +16,35 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp" />
 
+    <EditText
+        android:id="@+id/account_fname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="@string/editFirstName"
+        android:textColor="@color/dark_grey"
+        android:drawableLeft="@drawable/ic_action_person"
+        android:editable="false"
+        android:inputType="text"
+        android:layout_below="@+id/account_avatar"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/account_lname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="@string/editLastName"
+        android:textColor="@color/dark_grey"
+        android:drawableLeft="@drawable/ic_action_person"
+        android:editable="false"
+        android:inputType="text"
+        android:layout_below="@+id/account_fname"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/account_email"
@@ -30,24 +59,10 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
 
-        android:layout_below="@+id/account_fname"
+        android:layout_below="@+id/account_lname"
         android:layout_alignParentStart="true" />
 
 
-    <EditText
-        android:id="@+id/account_fname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:text="@string/editName"
-        android:textColor="@color/dark_grey"
-        android:drawableLeft="@drawable/ic_action_person"
-        android:inputType="textEmailAddress"
-        android:editable="false"
-        android:layout_below="@+id/account_avatar"
-        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,6 +82,15 @@
         android:layout_marginStart="41dp"
         android:layout_alignTop="@+id/account_email"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/account_email"
+        android:layout_centerHorizontal="true"
+        android:text="@string/saveAcc"
+        android:visibility="invisible"
+        android:id="@+id/account_saveButton"/>
 
     <Switch
         android:layout_width="wrap_content"

@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-import com.auth0.core.UserProfile;
 import com.example.kandoe.Activity.Adapters.SessionAdapter;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
@@ -43,9 +42,8 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
     boolean getDataSucces = false;
     private UserAccount userAccount;
 
-    public FinishedSessionListFragment(KandoeBackendAPI service, UserProfile userProfile) {
+    public FinishedSessionListFragment(KandoeBackendAPI service) {
         this.service = service;
-
     }
 
 

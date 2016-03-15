@@ -101,18 +101,15 @@ public class MainActivity extends ActionBarActivity
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
-                fragment = new SessionListFragment(service,userProfile);
+                fragment = new SessionListFragment(service);
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
-                fragment = new FinishedSessionListFragment(service,userProfile);
+                fragment = new FinishedSessionListFragment(service);
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
-                fragment = new AccountFragment();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("profile", userAccount);
-                fragment.setArguments(bundle);
+                fragment = new AccountFragment(service,userProfile);
                 break;
             default:
                 fragment = new MainFragment();

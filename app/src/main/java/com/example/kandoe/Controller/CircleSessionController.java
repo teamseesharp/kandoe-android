@@ -108,18 +108,15 @@ public class CircleSessionController {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccess()) {
                     System.out.println("Play card SUCCES");
-                    Toast.makeText(getContext(), "SPELEN KAART SUCCES", Toast.LENGTH_LONG).show();
 
                 } else {
                     Log.d(TAG, "Play card FAIL. ERROR: " + response.errorBody());
-                    Toast.makeText(getContext(), "SPELEN KAART ONRESP FAIL", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 System.out.println("Play card onfailure !!");
-                Toast.makeText(getContext(), "SPELEN KAART ONFAILURE", Toast.LENGTH_LONG).show();
             }
         });
     }

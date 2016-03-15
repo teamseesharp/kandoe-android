@@ -25,8 +25,10 @@
     <string name="account_title">Profiel</string>
     <string name="nametxt">Naam</string>
     <string name="emailtxt">Email</string>
-    <string name="editName">Naam</string>
+    <string name="editFirstName">Voornaam</string>
+    <string name="editLastName">Achternaam</string>
     <string name="editEmail">Email</string>
+    <string name="saveAcc">Opslaan</string>
 
     <!-- Help -->
     <string name="help_About_title">Over</string>

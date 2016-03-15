@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-import com.auth0.core.UserProfile;
 import com.example.kandoe.Activity.Adapters.SessionAdapter;
 import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.Model.Organisation;
@@ -45,7 +44,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
     private UserAccount userAccount;
     Session sessionVerbose;
 
-    public SessionListFragment(KandoeBackendAPI service, UserProfile userProfile) {
+    public SessionListFragment(KandoeBackendAPI service) {
         this.service = service;
     }
 

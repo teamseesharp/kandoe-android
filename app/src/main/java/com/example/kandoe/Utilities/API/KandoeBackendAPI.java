@@ -17,7 +17,6 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -57,8 +56,8 @@ public interface KandoeBackendAPI {
     Call<UserAccount> getUserById(@Path("id") int id);
 
     //TODO: deze klopt niet
-    @PUT("api/accounts")
-    Call<ResponseBody> changeAccount(@Body String oldPassword, @Body String newPassword, @Body String confirmPassword);
+    @PATCH("api/accounts")
+    Call<Void> changeAccount(@Body UserAccount account);
 
     @GET("api/accounts/by-auth0-user-id/{secret}")
     Call<UserAccount> getUserId(@Path("secret") String secret);
