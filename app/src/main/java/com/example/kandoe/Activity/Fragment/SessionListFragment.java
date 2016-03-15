@@ -79,8 +79,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                     public void onResponse(Call<Session> call, Response<Session> response) {
                         if (response.isSuccess()) {
                             sessionVerbose = response.body();
-                            Toast.makeText(getActivity(), "Verbose succes", Toast.LENGTH_LONG).show();
-
+                            Log.d(TAG,"Verbose succes");
 
                             ArrayList<UserAccount> participants = sessionVerbose.getParticipants();
                             if (!participants.isEmpty()) {
@@ -93,14 +92,13 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
                             SubTheme currentsubtheme = null;
                             Theme currenttheme = null;
-
-
+                            
                             for (SubTheme subtheme : subThemes) {
                                 if (subtheme.getId() == session.getSubThemeId()) {
                                     currentsubtheme = subtheme;
                                 }
-
                             }
+
                             for (Theme theme : organisation.getThemes()) {
 
                                 if (theme.getId() == (currentsubtheme != null ? currentsubtheme.getThemaId() : 0)) {
@@ -126,12 +124,13 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
                         } else {
                             Toast.makeText(getActivity(), "Verbose fail", Toast.LENGTH_LONG).show();
+                            Log.d(TAG,"Session verbose fail");
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Session> call, Throwable t) {
-                        Toast.makeText(getActivity(), "FAILURE", Toast.LENGTH_LONG).show();
+                        Log.d(TAG, "Session verbose onfailure");
                     }
                 });
                 return true;
@@ -159,11 +158,12 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
             @Override
             public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
                 userAccount = response.body();
+                Log.d(TAG,"USer call succes");
             }
 
             @Override
             public void onFailure(Call<UserAccount> call, Throwable t) {
-
+                Log.d(TAG,"User call not succes" );
             }
         });
     }
@@ -211,7 +211,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                     getSubThemesData();
 
                 } catch (NullPointerException e) {
-                    Toast.makeText(getActivity(), "Spijtig, er is iets misgegaan. Probeer in enkele ogenblikken terug", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "onResponse: organisations" + e.getMessage());
                 }
             }
@@ -235,7 +234,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                     adapter.notifyDataSetChanged();
 
                 } catch (NullPointerException e) {
-
                     Toast.makeText(getActivity(), "Spijtig, er is iets misgegaan met ophalen van de themas. Probeer in enkele ogenblikken terug", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "onResponse: subthemes" + e.getMessage());
                 }

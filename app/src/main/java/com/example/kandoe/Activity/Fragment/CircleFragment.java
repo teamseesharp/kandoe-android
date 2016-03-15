@@ -14,7 +14,6 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.kandoe.Activity.Adapters.CardAdapter;
 import com.example.kandoe.Activity.MainActivity;
@@ -86,6 +85,7 @@ public class CircleFragment extends Fragment {
 
         txtCurrentPlayer = (TextView) view.findViewById(R.id.playersTurn);
         voteUp = (Button) view.findViewById(R.id.votebutton);
+
         SurfacePanel panel = (SurfacePanel) view.findViewById(R.id.view);
         ImageButton showPersons = (ImageButton) view.findViewById(R.id.button_players);
         ListView listView = (ListView) view.findViewById(R.id.lvCards);
@@ -95,6 +95,7 @@ public class CircleFragment extends Fragment {
         controller.setUserAccount(mainActivity.getUserAccount());
         panel.setController(controller);
         controller.setPanel(panel);
+
         CardAdapter cardAdapter = new CardAdapter(getContext(), false, controller.getCards());
         controller.setAdapter(cardAdapter);
         listView.setAdapter(cardAdapter);
@@ -106,11 +107,6 @@ public class CircleFragment extends Fragment {
                 showPopup(v);
             }
         });
-        
-        if (session.isFinished()) {
-            voteUp.setVisibility(View.INVISIBLE);
-            Toast.makeText(getActivity(), "Helaas,, spel is gedaan", Toast.LENGTH_LONG).show();
-        }
 
         voteUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,7 +149,6 @@ public class CircleFragment extends Fragment {
         final PopupWindow popupWindow = new PopupWindow(popupView,
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        // TODO: spelers inladen
         TextView tv = (TextView) popupView.findViewById(R.id.popup_tv);
         tv.setText(participantsOnNewLine());
 
@@ -171,7 +166,6 @@ public class CircleFragment extends Fragment {
         // Using location, the PopupWindow will be displayed right under anchorView
         popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY,
                 location[0], location[1] + anchorView.getHeight());
-
     }
 
     public String participantsOnNewLine() {
@@ -181,7 +175,6 @@ public class CircleFragment extends Fragment {
         }
         return names.toString();
     }
-
 
     /**
      * This interface must be implemented by activities that contain this
@@ -193,13 +186,9 @@ public class CircleFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-
-
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
 
     private void getUserAccountInfo() {
         String secret = mainActivity.getUserProfile().getId();

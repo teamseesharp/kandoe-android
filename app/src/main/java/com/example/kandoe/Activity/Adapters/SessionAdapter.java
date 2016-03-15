@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.SubTheme;
@@ -38,8 +37,6 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         this.context = context;
         this.groups = groups;
         this.subThemes = subThemes;
-
-
     }
 
     @Override
@@ -56,8 +53,6 @@ public class SessionAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-
-
         final Session child = (Session) getChild(groupPosition, childPosition);
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context
@@ -122,7 +117,6 @@ public class SessionAdapter extends BaseExpandableListAdapter {
 
                     // show it
                     alertDialog.show();
-
                 }
             });
 
@@ -131,7 +125,6 @@ public class SessionAdapter extends BaseExpandableListAdapter {
     }
 
     private boolean checkStartDate(Session child) {
-
         String startDate = Utilities.dateFormatter(child.getStart());
         String endDate = Utilities.dateFormatter(child.getEnd());
 
@@ -147,8 +140,6 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         Calendar cal = Calendar.getInstance();
 
         return cal.after(dateStart);
-
-
     }
 
     @Override
@@ -179,11 +170,9 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = inf.inflate(R.layout.listgroup, null);
-
         }
         TextView tv = (TextView) convertView.findViewById(R.id.group_name);
         tv.setText(group.getName());
-
 
         return convertView;
     }

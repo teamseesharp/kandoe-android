@@ -244,7 +244,6 @@ public class MainActivity extends ActionBarActivity
     }
 
     public void getUserAccount(UserProfile profile){
-
         Call<UserAccount>  call = service.getUserId(profile.getId());
 
         call.enqueue(new Callback<UserAccount>() {
@@ -255,7 +254,7 @@ public class MainActivity extends ActionBarActivity
 
             @Override
             public void onFailure(Call<UserAccount> call, Throwable t) {
-
+                System.out.println("Get user faill");
             }
         });
 

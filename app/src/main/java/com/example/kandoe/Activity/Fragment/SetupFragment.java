@@ -103,18 +103,15 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 System.out.println(response.code());
                 if (response.isSuccess()) {
-                    Toast.makeText(getActivity(), "speler aan sessie toegevoegd! :)",
-                            Toast.LENGTH_LONG).show();
+                    System.out.println("Toevoegen speler aan sessie: GELUKT!");
                 } else {
-                    Toast.makeText(getActivity(), "speler NIET aan sessie toegevoegd! :/",
-                            Toast.LENGTH_LONG).show();
+                    Log.d(TAG,"addUserToSession: FAIL. ERROR: " + response.errorBody());
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getActivity(), "Oeps ! Er is iets misgelopen",
-                        Toast.LENGTH_LONG).show();
+                Log.d(TAG, "addUserToSession: ONFAILURE");
             }
         });
     }
@@ -185,18 +182,15 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccess()) {
-                    Toast.makeText(getActivity(), "kaarten aan sessie toegevoegd! :)",
-                            Toast.LENGTH_LONG).show();
+                    System.out.println("Add cards to session: SUCCES");
                 } else {
-                    Toast.makeText(getActivity(), "kaarten NIET aan sessie toegevoegd! :/",
-                            Toast.LENGTH_LONG).show();
+                    Log.d(TAG,"add cards to session: NOT SUCCES. ERROR: " + response.errorBody());
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getActivity(), "Oeps er is iets fout gegaan...",
-                        Toast.LENGTH_LONG).show();
+                Log.d(TAG, "add cards to session: ON FAILURE ");
             }
         });
     }
@@ -332,18 +326,15 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             public void onResponse(Call<Card> call, Response<Card> response) {
                 System.out.println(response);
                 if (response.isSuccess()) {
-                    Toast.makeText(getActivity(), "kaart toegevoegd! :)",
-                            Toast.LENGTH_LONG).show();
+                    System.out.println("CAll createCard Succes");
                 } else {
-                    Toast.makeText(getActivity(), "Kaart niet toegevoegd! :(",
-                            Toast.LENGTH_SHORT).show();
+                    Log.d(TAG,"createCard FAIL. Error: " + response.errorBody());
                 }
             }
 
             @Override
             public void onFailure(Call<Card> call, Throwable t) {
-                Toast.makeText(getActivity(), "Kaart toevoegen mislukt",
-                        Toast.LENGTH_SHORT).show();
+                System.out.println("createCard faill");
             }
         });
     }

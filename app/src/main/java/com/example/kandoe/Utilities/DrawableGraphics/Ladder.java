@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Ladder extends View {
 
-private final String DEBUGTAG = "LADDER";
+    private final String DEBUGTAG = "LADDER";
     private CircleSessionController controller;
     private ArrayList<RoundedRectangle> steps;
     private ArrayList<RoundedRectangle> legs;

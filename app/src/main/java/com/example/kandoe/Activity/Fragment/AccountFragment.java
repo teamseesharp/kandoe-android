@@ -24,7 +24,6 @@ public class AccountFragment extends Fragment {
     private EditText fName,email;
     private Switch aSwitch;
     private ImageView imageView;
-
     private UserAccount userProfile;
 
     @Override
@@ -32,7 +31,6 @@ public class AccountFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         userProfile = (UserAccount) getArguments().getSerializable("profile");
-
     }
 
     @Override
@@ -42,8 +40,6 @@ public class AccountFragment extends Fragment {
         email = (EditText) view.findViewById(R.id.account_email);
         imageView =(ImageView) view.findViewById(R.id.account_avatar);
         aSwitch = (Switch) view.findViewById(R.id.switch1);
-
-
 
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             Editable tempEmail;
@@ -55,7 +51,6 @@ public class AccountFragment extends Fragment {
                     fName.setFocusableInTouchMode(false);
                     email.setFocusable(false);
                     email.setFocusableInTouchMode(false);
-
 
                     if (!fName.getText().equals(tempName)){
                         // DO UPDATE NAME
@@ -81,7 +76,6 @@ public class AccountFragment extends Fragment {
     }
 
     private void setTexts(){
-
         fName.setText(userProfile.getName());
         email.setText(userProfile.getEmail());
 

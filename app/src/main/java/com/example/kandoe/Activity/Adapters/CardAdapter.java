@@ -10,18 +10,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.kandoe.Utilities.DrawableGraphics.BulletColor;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.R;
+import com.example.kandoe.Utilities.DrawableGraphics.BulletColor;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
-import static com.example.kandoe.R.drawable.listborderitem;
 
 
 public class CardAdapter extends ArrayAdapter {
@@ -40,7 +37,6 @@ public class CardAdapter extends ArrayAdapter {
         this.data = data;
         this.checks = new ArrayList<>();
         this.setup = setup;
-
 
         sortCards();
     }
@@ -74,7 +70,6 @@ public class CardAdapter extends ArrayAdapter {
             holder.number = (TextView) view.findViewById(R.id.txtNumberHolder);
             holder.id = (TextView) view.findViewById(R.id.txtId);
 
-
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
@@ -84,7 +79,6 @@ public class CardAdapter extends ArrayAdapter {
         holder.description.setText(card.getText());
         holder.id.setText(String.valueOf(card.getId()));
 
-        //TODO positie meegeven
         holder.number.setText("");
 
         setBG(holder, card.getId());
@@ -95,13 +89,10 @@ public class CardAdapter extends ArrayAdapter {
     }
 
     static class ViewHolder {
-
         TextView description;
         CheckBox upvote;
         TextView number;
         TextView id;
-
-
     }
 
 
@@ -111,7 +102,6 @@ public class CardAdapter extends ArrayAdapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     holder.upvote.setChecked(true);
                 }
             });
@@ -127,11 +117,9 @@ public class CardAdapter extends ArrayAdapter {
                             if (!box.equals(buttonView)) {
                                 box.setChecked(false);
                             }
-
                         }
                         chosenCardToUpvote = holder.id.getText().toString();
                     }
-
                 }
             });
 
@@ -141,10 +129,7 @@ public class CardAdapter extends ArrayAdapter {
             holder.number.setText("");
 
             view.setBackgroundResource(R.drawable.listborderitem);
-
         }
-
-
     }
 
     private void setBG(ViewHolder holder, int id) {

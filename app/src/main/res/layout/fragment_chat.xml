@@ -3,9 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.kandoe.Activity.Fragment.ChatFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,7 +36,6 @@
     <ImageButton
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="New Button"
         android:id="@+id/button"
         android:layout_below="@+id/divider"
         android:layout_alignParentEnd="true"

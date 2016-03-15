@@ -3,9 +3,7 @@ package com.example.kandoe.Controller;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -137,7 +135,7 @@ public class CircleSessionController {
             return session.getParticipants().get(session.getCurrentPlayerIndex());
         } catch (IndexOutOfBoundsException e) {
             UserAccount userAccount = new UserAccount();
-            userAccount.setName("Niemand");
+            userAccount.setName("Nog niemand");
             return userAccount;
         }
     }

@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:text="@string/account_email"
+        android:text="@string/editEmail"
         android:textColor="@color/dark_grey"
         android:drawableLeft="@drawable/ic_action_email"
         android:inputType="textEmailAddress"
@@ -41,7 +41,7 @@
         android:paddingLeft="10dp"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:text="Naam"
+        android:text="@string/editName"
         android:textColor="@color/dark_grey"
         android:drawableLeft="@drawable/ic_action_person"
         android:inputType="textEmailAddress"
@@ -52,7 +52,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Naam"
+        android:text="@string/nametxt"
         android:id="@+id/textView"
         android:layout_alignTop="@+id/account_fname"
         android:layout_alignStart="@+id/textView2" />
@@ -60,7 +60,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="@string/emailtxt"
         android:id="@+id/textView2"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="43dp"

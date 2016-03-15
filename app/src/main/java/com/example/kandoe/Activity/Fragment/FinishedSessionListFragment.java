@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.auth0.core.UserProfile;
 import com.example.kandoe.Activity.Adapters.SessionAdapter;
-import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.SubTheme;
@@ -119,41 +118,15 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
         subThemes = new ArrayList<>();
         adapter = new SessionAdapter(getContext(), organisations, subThemes);
 
-        // getUserAccount();
         getOrganisationsData();
-        //getSubThemesData();
-
-
     }
-
-    private void getUserAccount() {
-        MainActivity activity = (MainActivity) getActivity();
-        Call<UserAccount> call = service.getUserId(activity.getUserProfile().getId());
-
-        call.enqueue(new Callback<UserAccount>() {
-            @Override
-            public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
-                userAccount = response.body();
-
-            }
-
-            @Override
-            public void onFailure(Call<UserAccount> call, Throwable t) {
-
-            }
-        });
-    }
-
 
     @Override
     public void onResume() {
         super.onResume();
-
-
     }
 
     public void getOrganisationsData() {
-
         Call<List<Organisation>> callList = service.getOrganisationsVerbose();
 
         callList.enqueue(new Callback<List<Organisation>>() {
@@ -188,13 +161,9 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
                         if (org.getSessions().isEmpty()){
                             toDeleteOrganisations.add(org);
                         }
-
-
                     }
 
                     organisationsTemp.removeAll(toDeleteOrganisations);
-
-
 
                     organisations.addAll(organisationsTemp);
                     adapter.notifyDataSetChanged();
@@ -217,8 +186,6 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
     }
 
     private void getSubThemesData() {
-
-
         Call<List<SubTheme>> call = service.getSubThemes();
 
         call.enqueue(new Callback<List<SubTheme>>() {
@@ -229,13 +196,9 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
                     adapter.notifyDataSetChanged();
 
                 } catch (NullPointerException e) {
-
                     Toast.makeText(getActivity(), "Spijtig, er is iets misgegaan met ophalen van de themas. Probeer in enkele ogenblikken terug", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "onResponse: subthemes" + e.getMessage());
-
-
                 }
-
             }
 
             @Override

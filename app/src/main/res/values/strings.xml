@@ -19,9 +19,10 @@
 
     <!-- Account -->
     <string name="account_title">Profiel</string>
-    <string name="account_firstName">Voornaam</string>
-    <string name="account_lastName">Achternaam</string>
-    <string name="account_email">Email</string>
+    <string name="nametxt">Naam</string>
+    <string name="emailtxt">Email</string>
+    <string name="editName">Naam</string>
+    <string name="editEmail">Email</string>
 
     <!-- Help -->
     <string name="help_About_title">Over</string>
@@ -34,7 +35,6 @@
     <string name="help_Kandoe_5">5. de spelorganisator beslist wanneer het spel eindigt en neemt een snapshot.</string>
     <string name="help_Kandoe_6">6. kaartjes die hoger liggen hebben voor de deelnemers een hogere prioriteit.</string>
 
-
     <!--Card Setup-->
     <string name="cardSetup_title1">Gekozen kaarten</string>
     <string name="cardSetup_title2">Beschikbare Kaarten</string>
@@ -42,6 +42,7 @@
     <!--Circle session-->
     <string name="session_playerName">[naam]</string>
     <string name="session_playersTurn">is aan de beurt</string>
+    <string name="vote">Stem</string>
 
 
     <!-- TODO(user): replace with your real server client ID -->
