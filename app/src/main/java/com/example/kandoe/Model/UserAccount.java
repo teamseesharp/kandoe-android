@@ -17,8 +17,6 @@ public class UserAccount implements Serializable {
     private ArrayList<SubTheme> Subthemes;
     private ArrayList<Theme> Themes;
 
-
-
     public UserAccount(){
 
     }

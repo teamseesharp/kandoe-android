@@ -4,9 +4,11 @@ package com.example.kandoe.Model;
  * Created by Michelle on 22-2-2016.
  */
 public class ChatMessage {
-    private int Id,MessengerId,SessionId;
+    private int Id,MessengerId,SessionId,SnapshotId;
     private String Text;
     private String Timestamp;
+
+    public ChatMessage() {}
 
     public ChatMessage(int id, int messengerId, int sessionId, String text, String timestamp) {
         Id = id;
@@ -16,8 +18,23 @@ public class ChatMessage {
         this.Timestamp = timestamp;
     }
 
+    public ChatMessage(int id, int messengerId, int sessionId, int snapshotId, String text, String timestamp) {
+        Id = id;
+        MessengerId = messengerId;
+        SessionId = sessionId;
+        SnapshotId = snapshotId;
+        Text = text;
+        Timestamp = timestamp;
+    }
 
     public ChatMessage(int messengerId, int sessionId, String text) {
+        MessengerId = messengerId;
+        SessionId = sessionId;
+        Text = text;
+    }
+
+    public ChatMessage(int id,int messengerId, int sessionId, String text) {
+        Id = id;
         MessengerId = messengerId;
         SessionId = sessionId;
         Text = text;
@@ -61,5 +78,13 @@ public class ChatMessage {
 
     public void setTimestamp(String timestamp) {
         this.Timestamp = timestamp;
+    }
+
+    public int getSnapshotId() {
+        return SnapshotId;
+    }
+
+    public void setSnapshotId(int snapshotId) {
+        SnapshotId = snapshotId;
     }
 }

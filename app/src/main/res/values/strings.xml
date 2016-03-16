@@ -23,7 +23,8 @@
 
     <!-- Account -->
     <string name="account_title">Profiel</string>
-    <string name="nametxt">Naam</string>
+    <string name="nametxt">Voornaam</string>
+    <string name="surnametxt">Achternaam</string>
     <string name="emailtxt">Email</string>
     <string name="editFirstName">Voornaam</string>
     <string name="editLastName">Achternaam</string>

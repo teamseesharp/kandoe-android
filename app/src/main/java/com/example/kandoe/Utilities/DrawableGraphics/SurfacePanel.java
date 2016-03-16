@@ -80,7 +80,7 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
                         final Canvas c = new Canvas (mBitmap);
 
                         controller.createLadder(c);
-                      canvas.drawBitmap(mBitmap, 0, 0, null);
+                        canvas.drawBitmap(mBitmap, 0, 0, null);
 
 
                         mSurfaceHolder.unlockCanvasAndPost(canvas);

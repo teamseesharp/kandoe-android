@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.ChatMessage;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
@@ -17,7 +15,6 @@ import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Utilities.Utilities;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

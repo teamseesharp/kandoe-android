@@ -55,13 +55,14 @@ public interface KandoeBackendAPI {
     @GET ("api/accounts/{id}")
     Call<UserAccount> getUserById(@Path("id") int id);
 
-    //TODO: deze klopt niet
+    @POST("api/accounts")
+    Call<UserAccount> postUser(@Body UserAccount account);
+
     @PATCH("api/accounts")
     Call<Void> changeAccount(@Body UserAccount account);
 
     @GET("api/accounts/by-auth0-user-id/{secret}")
     Call<UserAccount> getUserId(@Path("secret") String secret);
-
 
     //Session
     @GET ("api/sessions")

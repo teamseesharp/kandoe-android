@@ -1,7 +1,6 @@
 package com.example.kandoe.Controller;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.kandoe.Controller.Adapters.ChatAdapter;
 import com.example.kandoe.Model.ChatMessage;
@@ -9,10 +8,10 @@ import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
-import java.io.IOException;
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeoutException;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -38,13 +37,11 @@ public class ChatController {
         this.mService = mService;
         this.mUserAccount = mUserAccount;
         this.chatMessages = new ArrayList<>();
-
     }
 
     public void initAdapter(ChatAdapter chatAdapter){
         this.chatAdapter = chatAdapter;
         chatAdapter.setService(mService);
-
     }
 
     public void getMessages(){
@@ -56,7 +53,6 @@ public class ChatController {
                 if (response.isSuccess()) {
                     chatMessages.addAll(response.body());
                     chatAdapter.notifyDataSetChanged();
-
                 }
             }
 
@@ -65,36 +61,38 @@ public class ChatController {
                 Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
+
         chatAdapter.notifyDataSetChanged();
     }
 
     public void sentMessage(String content){
-
         //ChatMessage chatMessage = new ChatMessage(mUserAccount.getId(),mSession.getId(),content);
-
         //TODO WEGLATEN ID EN TIMESTAMP
-        ChatMessage chatMessage = new ChatMessage(1,mUserAccount.getId(),mSession.getId(),content,"2016-03-16T00:00:00");
+        ChatMessage chatMessage = new ChatMessage();
+        chatMessage.setMessengerId(mUserAccount.getId());
+        chatMessage.setSessionId(mSession.getId());
+        chatMessage.setText(content);
+        chatMessage.setTimestamp("");
 
-
-       Call<ResponseBody> call = mService.chat(chatMessage);
-
+        Call<ResponseBody> call = mService.chat(chatMessage);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccess()){
                     getMessages();
                     System.out.println(response);
-                }
+                    System.out.println("MSG GELUKT!!");
+                }else{
+                    System.out.println("chatmsg onresp FAIL... CODE: " + response.code());
 
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                System.out.println("chatmsg onresp ONFAILURE");
             }
         });
-
-
     }
 
 

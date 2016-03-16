@@ -22,25 +22,27 @@ import android.view.ViewGroup;
 import com.auth0.core.Token;
 import com.auth0.core.UserProfile;
 import com.example.kandoe.Activity.Fragment.AccountFragment;
-import com.example.kandoe.Activity.Fragment.ChatFragment;
 import com.example.kandoe.Activity.Fragment.CircleFragment;
 import com.example.kandoe.Activity.Fragment.FinishedSessionListFragment;
 import com.example.kandoe.Activity.Fragment.HelpFragment;
 import com.example.kandoe.Activity.Fragment.MainFragment;
 import com.example.kandoe.Activity.Fragment.NavigationDrawerFragment;
+import com.example.kandoe.Activity.Fragment.ReviewSessionFragment;
 import com.example.kandoe.Activity.Fragment.SessionListFragment;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.APIServiceGenerator;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, CircleFragment.OnFragmentInteractionListener {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ReviewSessionFragment.OnFragmentInteractionListener,CircleFragment.OnFragmentInteractionListener{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -53,6 +55,7 @@ public class MainActivity extends ActionBarActivity
     private CharSequence mTitle;
     private UserProfile userProfile;
     private UserAccount userAccount;
+    private UserAccount postAccount;
     private Token token;
     private KandoeBackendAPI service;
 
@@ -61,6 +64,8 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        postAccount = new UserAccount();
+
         Intent intent = getIntent();
 
         if (intent != null) {
@@ -68,9 +73,12 @@ public class MainActivity extends ActionBarActivity
             token = intent.getParcelableExtra("token");
             System.out.println(token.getIdToken());
             System.out.println(userProfile.getId());
+            postAccount.setName(userProfile.getNickname());
+            postAccount.setEmail(userProfile.getEmail());
+            postAccount.setSecret(userProfile.getId());
         }
-
         service = APIServiceGenerator.createService(KandoeBackendAPI.class,token.getIdToken());
+        createNewUser(postAccount);
 
         getUserAccount(userProfile);
 
@@ -170,14 +178,9 @@ public class MainActivity extends ActionBarActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
-
             Intent intent = new Intent(getApplicationContext(),StartActivity.class);
-
-
-
             startActivity(intent);
         }
 
@@ -262,6 +265,24 @@ public class MainActivity extends ActionBarActivity
                 System.out.println("Get user faill");
             }
         });
+    }
 
+    public void createNewUser(UserAccount account){
+        Call<UserAccount> call = service.postUser(account);
+        call.enqueue(new Callback<UserAccount>() {
+            @Override
+            public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
+                if(response.isSuccess()){
+                    Crouton.makeText(MainActivity.this, "post SUCCES", Style.CONFIRM).show();
+                }else{
+                    Crouton.makeText(MainActivity.this, "post onresponse FAIL", Style.CONFIRM).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserAccount> call, Throwable t) {
+                Crouton.makeText(MainActivity.this, "FAIL", Style.CONFIRM).show();
+            }
+        });
     }
 }

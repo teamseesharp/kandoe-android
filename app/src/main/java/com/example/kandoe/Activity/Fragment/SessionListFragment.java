@@ -101,7 +101,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                                 fragment = SetupFragment.newInstance(service, session, currenttheme, currentsubtheme);
 
                             } else {
-                                fragment = CircleFragment.newInstance(service, session);
+                                fragment = CircleFragment.newInstance(service, session,currentsubtheme);
                                 FragmentManager fragmentManager = getFragmentManager();
                                 fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
                             }

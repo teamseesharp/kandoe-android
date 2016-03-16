@@ -64,8 +64,8 @@ public class CircleSessionController {
         for (Card card : cards) {
             if (card.getId() == Integer.parseInt(chosenCard)) {
                 if (card.getSessionLevel()!= 1){
-                    //vervangen door call
                     int currentlvl = card.getSessionLevel();
+
                     currentlvl--;
 
                     playCard(card);
@@ -134,7 +134,9 @@ public class CircleSessionController {
         if (session.isFinished()){
             String sessionfinished = "Deze sessie is gestopt.";
             currentPlayerTxt.setText(sessionfinished);
-        }else {
+
+            //TODO: kijken of snapshots leeg is --> zo niet: SETTEXT("SNAPSHOT") ofz
+        } else {
             if(amICurrentPlayer()){
                 String player = "Jij bent aan de beurt... ";
                 currentPlayerTxt.setText(player);

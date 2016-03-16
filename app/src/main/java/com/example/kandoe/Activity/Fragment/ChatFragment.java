@@ -33,6 +33,7 @@ public class ChatFragment extends Fragment {
     private static final String ARG_PARAM1 = "Service";
     private static final String ARG_PARAM2 = "Sessions";
     private static final String ARG_PARAM3 = "Profile";
+    private static final String ARG_PARAM4 = "isReview";
 
 
     private KandoeBackendAPI mService;
@@ -46,17 +47,20 @@ public class ChatFragment extends Fragment {
     private EditText txtMessage;
     private ImageButton btnSend;
 
+    private boolean mIsReview;
+
 
     public ChatFragment() {
         // Required empty public constructor
     }
 
-    public static ChatFragment newInstance(KandoeBackendAPI param1, Session param2, UserAccount userAccount) {
+    public static ChatFragment newInstance(KandoeBackendAPI param1, Session param2, UserAccount userAccount, boolean isReview) {
         ChatFragment fragment = new ChatFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, (Serializable) param1);
         args.putSerializable(ARG_PARAM2, param2);
         args.putSerializable(ARG_PARAM3, userAccount);
+        args.putSerializable(ARG_PARAM4, isReview);
         fragment.setArguments(args);
         return fragment;
     }
@@ -68,21 +72,17 @@ public class ChatFragment extends Fragment {
             mService = (KandoeBackendAPI) getArguments().getSerializable(ARG_PARAM1);
             mSession = (Session) getArguments().getSerializable(ARG_PARAM2);
             mUserAccount = (UserAccount) getArguments().getSerializable(ARG_PARAM3);
-
+            mIsReview = getArguments().getBoolean(ARG_PARAM4);
         }
-
         chatController = new ChatController(mSession, mService, mUserAccount);
-
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
 
         btnSend = (ImageButton) view.findViewById(R.id.btnSend);
-        txtMessage = (EditText) view.findViewById(R.id.txtMessage);
+        txtMessage = (EditText) view.findViewById(R.id.txtMsg);
         ListView listView = (ListView) view.findViewById(R.id.lvMessages);
 
         ChatAdapter chatAdapter = new ChatAdapter(getContext(),android.R.layout.simple_list_item_1, chatController.getChatMessages());
@@ -90,7 +90,6 @@ public class ChatFragment extends Fragment {
         listView.setAdapter(chatAdapter);
 
         chatController.getMessages();
-
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override

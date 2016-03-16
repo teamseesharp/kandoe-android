@@ -12,8 +12,6 @@ public class KandoeApplication extends Application implements LockProvider {
 
     private Lock lock;
 
-
-
     public void onCreate() {
         super.onCreate();
         lock = new Lock.Builder()

@@ -136,7 +136,7 @@ public class AccountFragment extends Fragment {
                         @Override
                         public void afterTextChanged(Editable s) {
                             String newLastName = lName.getText().toString();
-                            userAccount.setName(newLastName);
+                            userAccount.setSurname(newLastName);
                         }
                     });
 

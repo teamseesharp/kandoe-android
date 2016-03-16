@@ -61,16 +61,8 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
                 Organisation organisation = organisations.get(groupPosition);
                 Session session = organisation.getSessions().get(childPosition);
 
-                boolean firstTime = true;
-
                 SubTheme currentsubtheme = null;
                 Theme currenttheme = null;
-              /*  for (UserAccount accounts : session.getParticipants()) {
-                    if (accounts.getId() == userAccount.getId()) {
-                        firstTime = false;
-                    }
-                }
-
 
                 for (SubTheme subtheme : subThemes) {
                     if (subtheme.getId() == session.getSubThemeId()) {
@@ -79,20 +71,15 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
 
                 }
                 for (Theme theme : organisation.getThemes()) {
-
                     if (theme.getId() == (currentsubtheme != null ? currentsubtheme.getThemaId() : 0)) {
                         currenttheme = theme;
                     }
-                }*/
-
+                }
 
                 android.support.v4.app.Fragment fragment;
-                //todo snapshot
-                fragment = new CircleFragment(service);
-
-
+                fragment = ReviewSessionFragment.newInstance(service, session,currentsubtheme);
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).addToBackStack(TAG).commit();
+                fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
                 return true;
             }
         });
@@ -144,11 +131,13 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
                                 toDeleteSessions.add(sess);
                             }
                         }
+
                         org.getSessions().removeAll(toDeleteSessions);
 
                         if (org.getSessions().isEmpty()){
                             toDeleteOrganisations.add(org);
                         }
+
                     }
 
                     organisationsTemp.removeAll(toDeleteOrganisations);

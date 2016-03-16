@@ -5,7 +5,7 @@ package com.example.kandoe.Model;
  */
 
 public class Card {
-    private int Id,SessionId,SessionLevel,SubthemeId,ThemeId;
+    private int Id,SessionId,SessionLevel,SnapshotId,SubthemeId,ThemeId;
     private String Text,Image;
 
     public Card() {
@@ -73,8 +73,13 @@ public class Card {
         ThemeId = themeId;
     }
 
+    public int getSnapshotId() {
+        return SnapshotId;
+    }
 
-
+    public void setSnapshotId(int snapshotId) {
+        SnapshotId = snapshotId;
+    }
 }
 
 

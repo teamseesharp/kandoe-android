@@ -17,6 +17,7 @@ public class Session implements Serializable{
     private ArrayList<ChatMessage> ChatMessages;
     private ArrayList<UserAccount> Organisers;
     private ArrayList<UserAccount> Participants;
+    private ArrayList<Snapshot> snapshots;
 
 
     public Session() {
@@ -184,5 +185,11 @@ public class Session implements Serializable{
         Organisers = organisers;
     }
 
+    public ArrayList<Snapshot> getSnapshots() {
+        return snapshots;
+    }
 
+    public void setSnapshots(ArrayList<Snapshot> snapshots) {
+        this.snapshots = snapshots;
+    }
 }
