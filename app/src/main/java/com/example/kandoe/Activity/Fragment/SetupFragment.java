@@ -21,7 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kandoe.Activity.Adapters.CardAdapter;
+import com.example.kandoe.Controller.Adapters.CardAdapter;
 import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Session;

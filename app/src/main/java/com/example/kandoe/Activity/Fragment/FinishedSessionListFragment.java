@@ -6,11 +6,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-import com.example.kandoe.Activity.Adapters.SessionAdapter;
+import com.example.kandoe.Controller.Adapters.SessionAdapter;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.SubTheme;
@@ -52,16 +51,7 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
         final View view = inflater.inflate(R.layout.fragment_session_list, container, false);
 
         ExpandableListView expandableListView = (ExpandableListView) view.findViewById(R.id.listview);
-        Button refresh = (Button) view.findViewById(R.id.btnRefresh);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                subThemes = new ArrayList<SubTheme>();
-                organisations = new ArrayList<Organisation>();
-                getOrganisationsData();
 
-            }
-        });
 
         expandableListView.setAdapter(adapter);
 

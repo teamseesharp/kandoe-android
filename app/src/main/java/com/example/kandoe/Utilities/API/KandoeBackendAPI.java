@@ -111,7 +111,7 @@ public interface KandoeBackendAPI {
     Call<ChatMessage> getChatById(@Path("id") int id);
 
     @POST("api/chat-messages")
-    Call<ResponseBody> chat(@Body String chatmessage);
+    Call<ResponseBody> chat(@Body ChatMessage chatmessage);
 
     @GET ("api/chat-messages/by-session/{id}")
     Call<List<ChatMessage>> getChatMessagesBySessionId(@Path("id") int id);

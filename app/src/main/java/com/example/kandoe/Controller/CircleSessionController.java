@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kandoe.Activity.Adapters.CardAdapter;
+import com.example.kandoe.Controller.Adapters.CardAdapter;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.UserAccount;
@@ -38,6 +38,7 @@ public class CircleSessionController {
     private SurfacePanel panel;
     private Button btnUpVote;
     private UserAccount userAccount;
+
 
     private KandoeBackendAPI service;
     private Context context;
@@ -160,6 +161,8 @@ public class CircleSessionController {
     }
 
     public UserAccount getCurrentPlayer() {
+
+
         try {
             return session.getParticipants().get(session.getCurrentPlayerIndex());
         } catch (IndexOutOfBoundsException e) {
@@ -194,9 +197,11 @@ public class CircleSessionController {
     public boolean amICurrentPlayer() {
         if (getCurrentPlayer().getId() == userAccount.getId()) {
             btnUpVote.setVisibility(View.VISIBLE);
+
             return true;
         } else {
             btnUpVote.setVisibility(View.INVISIBLE);
+
             return false;
         }
     }
@@ -208,5 +213,10 @@ public class CircleSessionController {
     public void setBtnUpVote(Button btnUpVote) {
         this.btnUpVote = btnUpVote;
     }
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
     //endregion
 }

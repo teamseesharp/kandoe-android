@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import com.auth0.core.Token;
 import com.auth0.core.UserProfile;
 import com.example.kandoe.Activity.Fragment.AccountFragment;
+import com.example.kandoe.Activity.Fragment.ChatFragment;
 import com.example.kandoe.Activity.Fragment.CircleFragment;
 import com.example.kandoe.Activity.Fragment.FinishedSessionListFragment;
 import com.example.kandoe.Activity.Fragment.HelpFragment;
@@ -151,6 +152,10 @@ public class MainActivity extends ActionBarActivity
         menu.clear();
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
+        MenuItem item3 = menu.findItem(R.id.action_chat);
+      //  item3.setVisible(false);
+
+
         MenuItem item = menu.findItem(R.id.action_login);
         item.setVisible(true);
         MenuItem item2 = menu.findItem(R.id.action_help);
@@ -165,10 +170,13 @@ public class MainActivity extends ActionBarActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
 
             Intent intent = new Intent(getApplicationContext(),StartActivity.class);
+
+
 
             startActivity(intent);
         }

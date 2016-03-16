@@ -6,14 +6,21 @@ package com.example.kandoe.Model;
 public class ChatMessage {
     private int Id,MessengerId,SessionId;
     private String Text;
-    private String timestamp;
+    private String Timestamp;
 
     public ChatMessage(int id, int messengerId, int sessionId, String text, String timestamp) {
         Id = id;
         MessengerId = messengerId;
         SessionId = sessionId;
         Text = text;
-        this.timestamp = timestamp;
+        this.Timestamp = timestamp;
+    }
+
+
+    public ChatMessage(int messengerId, int sessionId, String text) {
+        MessengerId = messengerId;
+        SessionId = sessionId;
+        Text = text;
     }
 
     public int getId() {
@@ -49,10 +56,10 @@ public class ChatMessage {
     }
 
     public String getTimestamp() {
-        return timestamp;
+        return Timestamp;
     }
 
     public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+        this.Timestamp = timestamp;
     }
 }

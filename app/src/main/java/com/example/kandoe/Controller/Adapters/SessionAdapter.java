@@ -1,4 +1,4 @@
-package com.example.kandoe.Activity.Adapters;
+package com.example.kandoe.Controller.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;

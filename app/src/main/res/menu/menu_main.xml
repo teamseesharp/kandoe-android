@@ -2,6 +2,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Activity.MainActivity">
+
+    <item
+        android:id="@+id/action_chat"
+        android:icon="@drawable/ic_chat_white_24dp"
+        android:title="@string/action_chat"
+        app:showAsAction="always"
+        android:visible="false"/>
+
+
     <item android:id="@+id/action_help"
         android:title="@string/menu_help"
         android:icon="@drawable/ic_action_help"

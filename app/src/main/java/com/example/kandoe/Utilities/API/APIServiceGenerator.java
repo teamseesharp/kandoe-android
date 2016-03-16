@@ -1,6 +1,7 @@
 package com.example.kandoe.Utilities.API;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -11,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by Thomas on 2016-02-16.
  */
-public class APIServiceGenerator {
+public class APIServiceGenerator implements Serializable {
 
     public static final String API_BASE_URL = "http://kandoe-api.azurewebsites.net/";
 

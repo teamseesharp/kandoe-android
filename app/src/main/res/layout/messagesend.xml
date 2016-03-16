@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="5dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Slakje"
+        android:id="@+id/txtName"
+        android:layout_marginLeft="15dp"
+        android:textSize="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/relativeLayout"
+        android:layout_marginRight="15dp" />
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/messagebgreceive"
+        android:layout_marginRight="10dp"
+        android:id="@+id/relativeLayout"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+id/txtName"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Op zondag 20/3 om middernacht, zullen wij een clone doen van alle code.  Dat is de code waarop je geëvalueerd zal worden."
+            android:id="@+id/txtMessage"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="#212121"
+            android:textAlignment="textEnd" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="14:23"
+            android:id="@+id/txtDate"
+            android:layout_below="@+id/txtMessage"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

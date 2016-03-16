@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,7 +18,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.example.kandoe.Activity.Adapters.CardAdapter;
+import com.example.kandoe.Controller.Adapters.CardAdapter;
 import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.Model.Session;
@@ -76,12 +79,33 @@ public class CircleFragment extends Fragment {
         getUserAccountInfo();
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.findItem(R.id.action_chat).setVisible(true);
+        menu.findItem(R.id.action_chat).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                System.out.println("Action Clicked");
+
+                Fragment fragment = ChatFragment.newInstance(service, session, controller.getUserAccount());
+                android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).addToBackStack(null).commit();
+
+
+                return false;
+            }
+        });
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
+        setHasOptionsMenu(true);
+
 
         txtCurrentPlayer = (TextView) view.findViewById(R.id.playersTurn);
         voteUp = (Button) view.findViewById(R.id.votebutton);
@@ -135,7 +159,7 @@ public class CircleFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
-    
+
     @Override
     public void onDetach() {
         super.onDetach();

@@ -33,7 +33,7 @@ import retrofit2.Response;
 public class AccountFragment extends Fragment {
     private static final String TAG = "Accountfragment";
     private static final String EXTRA_SERVICE = "Service";
-    private EditText fName,lName,email;
+    private EditText fName, lName, email;
     private Button saveButton;
     private Switch aSwitch;
     private ImageView imageView;
@@ -57,7 +57,7 @@ public class AccountFragment extends Fragment {
         fName = (EditText) view.findViewById(R.id.account_fname);
         lName = (EditText) view.findViewById(R.id.account_lname);
         email = (EditText) view.findViewById(R.id.account_email);
-        imageView =(ImageView) view.findViewById(R.id.account_avatar);
+        imageView = (ImageView) view.findViewById(R.id.account_avatar);
         aSwitch = (Switch) view.findViewById(R.id.switch1);
         saveButton = (Button) view.findViewById(R.id.account_saveButton);
 
@@ -144,6 +144,7 @@ public class AccountFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             updateUser(userAccount);
+                            aSwitch.setChecked(false);
                         }
                     });
                 }
@@ -159,37 +160,40 @@ public class AccountFragment extends Fragment {
         call.enqueue(new Callback<UserAccount>() {
             @Override
             public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
-                userAccount = response.body();
-                fName.setText(userAccount.getName());
-                email.setText(userAccount.getEmail());
-                lName.setText(userAccount.getSurname());
 
-                new ImageLoadTask(userAccount.getPicture(), imageView).execute();
+                if (response.body() != null) {
+                    userAccount = response.body();
+                    fName.setText(userAccount.getName());
+                    email.setText(userAccount.getEmail());
+                    lName.setText(userAccount.getSurname());
+
+                    new ImageLoadTask(userAccount.getPicture(), imageView).execute();
+                }
             }
 
             @Override
             public void onFailure(Call<UserAccount> call, Throwable t) {
                 Toast.makeText(getActivity(), "Oeps er is iets misgelopen met het ophalen van je gegevens.Probeer later opnieuw", Toast.LENGTH_LONG).show();
-                Log.d(TAG,"Fail accountfragment: get account info");
+                Log.d(TAG, "Fail accountfragment: get account info");
             }
         });
     }
 
-    private void updateUser(UserAccount account){
+    private void updateUser(UserAccount account) {
         Call<Void> call = service.changeAccount(account);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if(response.isSuccess()){
+                if (response.isSuccess()) {
                     Toast.makeText(getActivity(), "Gegevens zijn opgeslagen", Toast.LENGTH_LONG).show();
-                }else{
-                    Log.d(TAG,response.message());
+                } else {
+                    Log.d(TAG, response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Log.d(TAG,"Fail update user");
+                Log.d(TAG, "Fail update user");
             }
         });
     }

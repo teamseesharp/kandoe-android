@@ -66,4 +66,5 @@
 
 
     <string name="facebook_app_id">590812887748784</string>
+    <string name="action_chat">Chat</string>
 </resources>
