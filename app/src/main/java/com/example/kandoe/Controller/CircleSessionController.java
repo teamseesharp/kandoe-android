@@ -39,7 +39,6 @@ public class CircleSessionController {
     private Button btnUpVote;
     private UserAccount userAccount;
 
-
     private KandoeBackendAPI service;
     private Context context;
 
@@ -60,7 +59,6 @@ public class CircleSessionController {
 
     public void play() {
         String chosenCard = adapter.getChosenCardToUpvote();
-
         for (Card card : cards) {
             if (card.getId() == Integer.parseInt(chosenCard)) {
                 if (card.getSessionLevel()!= 1){
@@ -132,9 +130,12 @@ public class CircleSessionController {
     public void updateCurrentPlayer() {
         UserAccount currentPlayer = getCurrentPlayer();
         if (session.isFinished()){
-            String sessionfinished = "Deze sessie is gestopt.";
-            currentPlayerTxt.setText(sessionfinished);
+            if(session.getSnapshots().isEmpty()){
+                String sessionfinished = "Deze sessie is gestopt.";
+                currentPlayerTxt.setText(sessionfinished);
+            }else{
 
+            }
             //TODO: kijken of snapshots leeg is --> zo niet: SETTEXT("SNAPSHOT") ofz
         } else {
             if(amICurrentPlayer()){

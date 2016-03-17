@@ -28,8 +28,6 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class ChatFragment extends Fragment {
-
-
     private static final String ARG_PARAM1 = "Service";
     private static final String ARG_PARAM2 = "Sessions";
     private static final String ARG_PARAM3 = "Profile";
@@ -48,7 +46,6 @@ public class ChatFragment extends Fragment {
     private ImageButton btnSend;
 
     private boolean mIsReview;
-
 
     public ChatFragment() {
         // Required empty public constructor
@@ -83,9 +80,15 @@ public class ChatFragment extends Fragment {
 
         btnSend = (ImageButton) view.findViewById(R.id.btnSend);
         txtMessage = (EditText) view.findViewById(R.id.txtMsg);
+
+        if(mIsReview){
+            btnSend.setVisibility(View.INVISIBLE);
+            txtMessage.setVisibility(View.INVISIBLE);
+        }
+
         ListView listView = (ListView) view.findViewById(R.id.lvMessages);
 
-        ChatAdapter chatAdapter = new ChatAdapter(getContext(),android.R.layout.simple_list_item_1, chatController.getChatMessages());
+        ChatAdapter chatAdapter = new ChatAdapter(getContext(),android.R.layout.simple_list_item_1, chatController.getChatMessages(),mService,mUserAccount);
         chatController.initAdapter(chatAdapter);
         listView.setAdapter(chatAdapter);
 
@@ -95,7 +98,10 @@ public class ChatFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String messageContent = txtMessage.getText().toString();
-                if (messageContent.length() > 3) chatController.sentMessage(messageContent);
+                if (messageContent.length() > 3) chatController.sendMessage(messageContent);
+                if (chatController.isSucces()) {
+                    txtMessage.setText("");
+                }
             }
         });
 

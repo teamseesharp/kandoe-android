@@ -153,7 +153,6 @@ public class ReviewSessionFragment  extends Fragment{
 
     public void showPopup(View anchorView) {
         final View popupView = getActivity().getLayoutInflater().inflate(R.layout.popup, null);
-
         final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         TextView tv = (TextView) popupView.findViewById(R.id.popup_tv);
@@ -180,6 +179,7 @@ public class ReviewSessionFragment  extends Fragment{
         for (UserAccount s : controller.getParticipants()) {
             names.append(s.getName()).append('\n');
         }
+
         return names.toString();
     }
 

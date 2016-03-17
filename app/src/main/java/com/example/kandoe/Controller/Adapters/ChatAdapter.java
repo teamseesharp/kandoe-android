@@ -24,55 +24,72 @@ import retrofit2.Response;
  * Created by Thomas on 2016-03-16.
  */
 public class ChatAdapter extends ArrayAdapter {
-
-
     private ArrayList<ChatMessage> chatMessages;
-    private KandoeBackendAPI service;
+    private KandoeBackendAPI mService;
+    private UserAccount mUserAccount;
+    private UserAccount currentUser;
+    private ViewHolder holder = null;
 
-
-
-    public ChatAdapter(Context context, int resource, ArrayList<ChatMessage> data) {
+    public ChatAdapter(Context context, int resource, ArrayList<ChatMessage> data,KandoeBackendAPI service, UserAccount userAccount) {
         super(context, resource, data);
         chatMessages = data;
+        mService = service;
+        currentUser = userAccount;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
-        ViewHolder holder = null;
 
         ChatMessage message = chatMessages.get(position);
 
-        //getSenderAccount(message.getMessengerId());
-
-
         if (view == null) {
-            LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
+            if(currentUser.getId() == message.getMessengerId()){
+                LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
+                view = inflater.inflate(R.layout.messagesend, parent, false);
+                holder.date = (TextView) view.findViewById(R.id.txtDate_snd);
+                holder.message = (TextView) view.findViewById(R.id.txtMessage_snd);
+                holder.sender = (TextView) view.findViewById(R.id.txtName_snd);
 
-            view = inflater.inflate(R.layout.messagereveice, parent, false);
-
-
-
+            }else{
+                LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
+                view = inflater.inflate(R.layout.messagereveice, parent, false);
+                holder.date = (TextView) view.findViewById(R.id.txtChatDate);
+                holder.message = (TextView) view.findViewById(R.id.txtMessage);
+                holder.sender = (TextView) view.findViewById(R.id.txtChatName);
+            }
 
             holder = new ViewHolder();
             view.setTag(holder);
-
-            holder.date = (TextView) view.findViewById(R.id.txtDate);
-            holder.message = (TextView) view.findViewById(R.id.txtMessage);
-            holder.sender = (TextView) view.findViewById(R.id.txtName);
 
         } else {
             holder = (ViewHolder) view.getTag();
         }
 
-
         holder.date.setText(Utilities.dateFormatterWithHour(message.getTimestamp()));
         holder.message.setText(message.getText());
-        //holder.sender.setText(getSenderAccount(message.getMessengerId()));
 
+        //TODO DEES MOET HIER ANDERS PAKT DIE DAT NIET
+        Call<UserAccount> accountCall = mService.getUserById(message.getMessengerId());
+        accountCall.enqueue(new Callback<UserAccount>() {
+            @Override
+            public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
+                if (response.isSuccess()) {
+                    mUserAccount = response.body();
+                    holder.sender.setText(mUserAccount.getName());
+                    System.out.println("GET USER SUCCES");
+                } else {
+                    System.out.println("GET USER ONREPS FAIL");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserAccount> call, Throwable t) {
+                System.out.println("GET USER ONREPS FAIL");
+            }
+        });
 
         return view;
-
     }
 
     static class ViewHolder {
@@ -80,8 +97,6 @@ public class ChatAdapter extends ArrayAdapter {
         TextView sender;
         TextView date;
     }
-
-
 
 
     public ArrayList<ChatMessage> getChatMessages() {
@@ -95,35 +110,5 @@ public class ChatAdapter extends ArrayAdapter {
     @Override
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
-
-    }
-
-    private String getSenderAccount(int messengerId) {
-
-        Call<UserAccount> accountCall = service.getUserById(messengerId);
-
-
-        final UserAccount[] account = new UserAccount[1];
-
-        accountCall.enqueue(new Callback<UserAccount>() {
-            @Override
-            public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
-                if (response.isSuccess()) {
-                    account[0] = response.body();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UserAccount> call, Throwable t) {
-
-            }
-        });
-
-        return account[0].getName();
-
-    }
-
-    public void setService(KandoeBackendAPI service) {
-        this.service = service;
     }
 }

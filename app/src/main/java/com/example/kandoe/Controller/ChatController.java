@@ -8,12 +8,9 @@ import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
-import org.joda.time.DateTime;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,6 +24,7 @@ public class ChatController {
     private Session mSession;
     private KandoeBackendAPI mService;
     private UserAccount mUserAccount;
+    private boolean succes;
 
     private ChatAdapter chatAdapter;
     private ArrayList<ChatMessage> chatMessages;
@@ -41,18 +39,19 @@ public class ChatController {
 
     public void initAdapter(ChatAdapter chatAdapter){
         this.chatAdapter = chatAdapter;
-        chatAdapter.setService(mService);
     }
 
     public void getMessages(){
         Call<List<ChatMessage>> call = mService.getChatMessagesBySessionId(mSession.getId());
-
         call.enqueue(new Callback<List<ChatMessage>>() {
             @Override
             public void onResponse(Call<List<ChatMessage>> call, Response<List<ChatMessage>> response) {
                 if (response.isSuccess()) {
                     chatMessages.addAll(response.body());
                     chatAdapter.notifyDataSetChanged();
+                    System.out.println("GET MSG GELUKT!!");
+                }else{
+                    System.out.println("GET MSG ONRESP !!");
                 }
             }
 
@@ -65,32 +64,30 @@ public class ChatController {
         chatAdapter.notifyDataSetChanged();
     }
 
-    public void sentMessage(String content){
-        //ChatMessage chatMessage = new ChatMessage(mUserAccount.getId(),mSession.getId(),content);
-        //TODO WEGLATEN ID EN TIMESTAMP
+    public void sendMessage(String content){
         ChatMessage chatMessage = new ChatMessage();
         chatMessage.setMessengerId(mUserAccount.getId());
         chatMessage.setSessionId(mSession.getId());
         chatMessage.setText(content);
-        chatMessage.setTimestamp("");
 
-        Call<ResponseBody> call = mService.chat(chatMessage);
-        call.enqueue(new Callback<ResponseBody>() {
+        Call<Void> call = mService.postChatMessages(chatMessage);
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccess()){
                     getMessages();
-                    System.out.println(response);
                     System.out.println("MSG GELUKT!!");
+                    succes = true;
                 }else{
                     System.out.println("chatmsg onresp FAIL... CODE: " + response.code());
-
+                    succes = false;
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                System.out.println("chatmsg onresp ONFAILURE");
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+                succes = false;
             }
         });
     }
@@ -100,4 +97,7 @@ public class ChatController {
         return chatMessages;
     }
 
+    public boolean isSucces() {
+        return succes;
+    }
 }

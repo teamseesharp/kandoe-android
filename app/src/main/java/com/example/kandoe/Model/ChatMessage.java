@@ -4,7 +4,8 @@ package com.example.kandoe.Model;
  * Created by Michelle on 22-2-2016.
  */
 public class ChatMessage {
-    private int Id,MessengerId,SessionId,SnapshotId;
+    private int Id,MessengerId,SessionId;
+    private Integer SnapshotId;
     private String Text;
     private String Timestamp;
 
@@ -80,11 +81,11 @@ public class ChatMessage {
         this.Timestamp = timestamp;
     }
 
-    public int getSnapshotId() {
+    public Integer getSnapshotId() {
         return SnapshotId;
     }
 
-    public void setSnapshotId(int snapshotId) {
+    public void setSnapshotId(Integer snapshotId) {
         SnapshotId = snapshotId;
     }
 }

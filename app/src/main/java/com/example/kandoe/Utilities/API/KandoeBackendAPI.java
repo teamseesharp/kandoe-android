@@ -11,7 +11,6 @@ import com.example.kandoe.Model.UserAccount;
 import java.util.Date;
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -112,7 +111,7 @@ public interface KandoeBackendAPI {
     Call<ChatMessage> getChatById(@Path("id") int id);
 
     @POST("api/chat-messages")
-    Call<ResponseBody> chat(@Body ChatMessage chatmessage);
+    Call<Void> postChatMessages(@Body ChatMessage chatmessage);
 
     @GET ("api/chat-messages/by-session/{id}")
     Call<List<ChatMessage>> getChatMessagesBySessionId(@Path("id") int id);
