@@ -11,12 +11,14 @@ import android.widget.Toast;
 import com.example.kandoe.Controller.Adapters.CardAdapter;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Session;
+import com.example.kandoe.Model.Snapshot;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Utilities.DrawableGraphics.Ladder;
 import com.example.kandoe.Utilities.DrawableGraphics.SurfacePanel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,6 +30,7 @@ import retrofit2.Response;
 public class CircleSessionController {
     private final String TAG = "CircleSessionController";
     private ArrayList<Card> cards;
+    private List<Snapshot> snapshots;
     private ArrayList<View> bulletPoints;
 
     private ArrayList<UserAccount> participants;
@@ -53,6 +56,7 @@ public class CircleSessionController {
         bulletPoints = new ArrayList<>();
         participants = new ArrayList<>();
         cards = new ArrayList<>();
+        snapshots = new ArrayList<>();
         getVerboseSession();
         //chatController = new ChatController(session.getId());
     }
@@ -119,6 +123,7 @@ public class CircleSessionController {
             }
         });
     }
+
     //endregion
 
     //region UI methods
@@ -130,13 +135,8 @@ public class CircleSessionController {
     public void updateCurrentPlayer() {
         UserAccount currentPlayer = getCurrentPlayer();
         if (session.isFinished()){
-            if(session.getSnapshots().isEmpty()){
-                String sessionfinished = "Deze sessie is gestopt.";
+                String sessionfinished = "Einde sessie";
                 currentPlayerTxt.setText(sessionfinished);
-            }else{
-
-            }
-            //TODO: kijken of snapshots leeg is --> zo niet: SETTEXT("SNAPSHOT") ofz
         } else {
             if(amICurrentPlayer()){
                 String player = "Jij bent aan de beurt... ";

@@ -44,24 +44,14 @@ public class ChatAdapter extends ArrayAdapter {
         ChatMessage message = chatMessages.get(position);
 
         if (view == null) {
-            if(currentUser.getId() == message.getMessengerId()){
-                LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
-                view = inflater.inflate(R.layout.messagesend, parent, false);
-                holder.date = (TextView) view.findViewById(R.id.txtDate_snd);
-                holder.message = (TextView) view.findViewById(R.id.txtMessage_snd);
-                holder.sender = (TextView) view.findViewById(R.id.txtName_snd);
-
-            }else{
-                LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
-                view = inflater.inflate(R.layout.messagereveice, parent, false);
-                holder.date = (TextView) view.findViewById(R.id.txtChatDate);
-                holder.message = (TextView) view.findViewById(R.id.txtMessage);
-                holder.sender = (TextView) view.findViewById(R.id.txtChatName);
-            }
+                 LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
+                 view = inflater.inflate(R.layout.messagereveice, parent, false);
+                 holder.date = (TextView) view.findViewById(R.id.txtChatDate);
+                 holder.message = (TextView) view.findViewById(R.id.txtMessage);
+                 holder.sender = (TextView) view.findViewById(R.id.txtChatName);
 
             holder = new ViewHolder();
             view.setTag(holder);
-
         } else {
             holder = (ViewHolder) view.getTag();
         }

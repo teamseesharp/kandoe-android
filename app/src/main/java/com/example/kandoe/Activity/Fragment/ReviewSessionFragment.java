@@ -33,6 +33,8 @@ import java.io.Serializable;
 /**
  * Created by Michelle on 16-3-2016.
  */
+
+//TODO: DEZE KLASSE KAN WEG
 public class ReviewSessionFragment  extends Fragment{
     private static final String EXTRA_SERVICE = "Service";
     private static final String EXTRA_SESSION = "Session";

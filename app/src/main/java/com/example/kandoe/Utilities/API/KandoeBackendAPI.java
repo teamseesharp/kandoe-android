@@ -4,6 +4,7 @@ import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.ChatMessage;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
+import com.example.kandoe.Model.Snapshot;
 import com.example.kandoe.Model.SubTheme;
 import com.example.kandoe.Model.Theme;
 import com.example.kandoe.Model.UserAccount;
@@ -140,6 +141,13 @@ public interface KandoeBackendAPI {
 
     @GET("api/subthemes/by-theme/{id}")
     Call<List<SubTheme>>getSubthemesByThemeId(@Path("id") int id);
+
+    //Snapshot
+    @GET ("api/snapshots/{id}")
+    Call<Snapshot> getSnapshotById(@Path("id") int id);
+
+    @GET ("api/snapshots/by-session/{id}")
+    Call<List<Snapshot>> getSnapshotsBySessionId(@Path("id") int id);
 }
 
 

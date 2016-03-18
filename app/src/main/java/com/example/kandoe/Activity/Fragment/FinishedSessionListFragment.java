@@ -77,7 +77,8 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
                 }
 
                 android.support.v4.app.Fragment fragment;
-                fragment = ReviewSessionFragment.newInstance(service, session,currentsubtheme);
+                //fragment = ReviewSessionFragment.newInstance(service, session,currentsubtheme);
+                fragment = CircleFragment.newInstance(service, session,currentsubtheme);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
                 return true;

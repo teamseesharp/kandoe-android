@@ -10,7 +10,7 @@ public class Session implements Serializable{
 
     private int Id, MaxCardsToChoose, MaxParticipants, Modus, OrganisationId, Round, SubthemeId,CurrentPlayerIndex;
     private boolean CardCreationAllowed, IsFinished;
-    private String End,Start;
+    private String End,Start,Description;
     private int NumberOfSteps = 4;
 
     private ArrayList<Card> SessionCards;
@@ -111,6 +111,14 @@ public class Session implements Serializable{
 
     public void setIsFinished(boolean isFinished) {
         IsFinished = isFinished;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
     }
 
     public String getEnd() {
