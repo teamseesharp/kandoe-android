@@ -134,12 +134,12 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         //numberOfCards = (TextView) view.findViewById(R.id.txtNumberOfCards);
 
         grdMyCards = (GridView) view.findViewById(R.id.grdmycards);
-        myCardAdapter = new CardAdapter(view.getContext(), true, myCards);
+        myCardAdapter = new CardAdapter(view.getContext(), true, false, myCards);
         grdMyCards.setAdapter(myCardAdapter);
         grdMyCards.setOnItemClickListener(this);
 
         grdCards = (GridView) view.findViewById(R.id.grdcards);
-        cardAdapter = new CardAdapter(view.getContext(), true, cards);
+        cardAdapter = new CardAdapter(view.getContext(), true, false, cards);
 
         grdCards.setAdapter(cardAdapter);
         grdCards.setOnItemClickListener(this);

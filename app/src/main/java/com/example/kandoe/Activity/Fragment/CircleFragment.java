@@ -127,7 +127,7 @@ public class CircleFragment extends Fragment {
         panel.setController(controller);
         controller.setPanel(panel);
 
-        CardAdapter cardAdapter = new CardAdapter(getContext(), false, controller.getCards());
+        CardAdapter cardAdapter = new CardAdapter(getContext(), false, mIsReview, controller.getCards());
         controller.setAdapter(cardAdapter);
         listView.setAdapter(cardAdapter);
 

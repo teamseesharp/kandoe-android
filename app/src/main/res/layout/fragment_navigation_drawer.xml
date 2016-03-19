@@ -6,5 +6,6 @@
     android:divider="@android:color/transparent"
     android:dividerHeight="0dp"
     android:background="@color/material_grey_800"
-    tools:context=".Activity.Fragment.NavigationDrawerFragment" />
+    tools:context=".Activity.Fragment.NavigationDrawerFragment"
+    android:id="@+id/navigation_drawerlv"/>
 

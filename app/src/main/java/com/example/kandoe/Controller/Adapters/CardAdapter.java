@@ -28,15 +28,17 @@ public class CardAdapter extends ArrayAdapter {
     private ArrayList<CheckBox> checks;
     private String chosenCardToUpvote;
 
-    private boolean setup;
+    private boolean setup, mIsReview;
 
-    public CardAdapter(Context context, boolean setup, ArrayList<Card> data) {
+    public CardAdapter(Context context, boolean setup, boolean mIsReview, ArrayList<Card> data) {
         super(context, R.layout.card, data);
         this.context = context;
         this.layoutResourceId = R.layout.card;
         this.data = data;
         this.checks = new ArrayList<>();
         this.setup = setup;
+        this.mIsReview = mIsReview;
+
 
         sortCards();
     }
@@ -129,6 +131,10 @@ public class CardAdapter extends ArrayAdapter {
             holder.number.setText("");
 
             view.setBackgroundResource(R.drawable.listborderitem);
+        }
+
+        if (mIsReview){
+            holder.upvote.setVisibility(View.INVISIBLE);
         }
     }
 
