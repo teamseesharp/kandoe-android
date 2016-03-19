@@ -23,7 +23,6 @@ import retrofit2.http.Path;
  * Created by Thomas on 2016-02-16.
  */
 public interface KandoeBackendAPI {
-
     //SelectionCard
     @GET("api/selection-cards")
     Call<List<Card>> getSelectionCards();
@@ -85,6 +84,9 @@ public interface KandoeBackendAPI {
 
     @GET ("api/verbose/sessions/{id}")
     Call<Session> getVerboseSessionById(@Path("id") int id);
+
+    @GET ("api/sessions/by-user/{id}")
+    Call<List<Session>> getSessionsByUserId(@Path("id") int id);
 
     @PATCH ("api/sessions/{sessionId}/level-up-card/{cardId}")
     Call<Void> levelUpCard(@Path("sessionId") int sessionId,@Path("cardId") int cardId);

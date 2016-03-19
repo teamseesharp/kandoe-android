@@ -164,8 +164,6 @@ public class CircleSessionController {
     }
 
     public UserAccount getCurrentPlayer() {
-
-
         try {
             return session.getParticipants().get(session.getCurrentPlayerIndex());
         } catch (IndexOutOfBoundsException e) {
@@ -179,7 +177,6 @@ public class CircleSessionController {
         this.currentPlayerTxt = currentPlayerTxt;
     }
 
-
     public ArrayList<View> getBulletPoints() {
         return bulletPoints;
     }
@@ -191,7 +188,6 @@ public class CircleSessionController {
     public Context getContext() {
         return context;
     }
-
 
     public void setAdapter(CardAdapter adapter) {
         this.adapter = adapter;

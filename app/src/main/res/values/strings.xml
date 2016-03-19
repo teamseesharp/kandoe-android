@@ -8,8 +8,8 @@
     <!-- Navigation drawer -->
     <string name="title_section1">Sessie overzicht</string>
     <string name="title_section2">Gespeelde sessies</string>
-    <string name="title_section3">Mijn profiel</string>
-    <string name="title_section4">Help</string>
+    <string name="title_section3">Mijn sessies</string>
+    <string name="title_section4">Mijn profiel</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -66,7 +66,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_section5">Spel setup</string>
+
 
 
     <string name="facebook_app_id">590812887748784</string>

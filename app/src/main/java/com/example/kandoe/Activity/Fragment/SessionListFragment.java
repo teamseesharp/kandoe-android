@@ -29,8 +29,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by JoachimDs on 19/02/2016.
- * Shows all sessions in listview
+ * List of all organisations with corresponding themes, subthemes and sessions
  */
 public class SessionListFragment extends android.support.v4.app.Fragment {
     private final String TAG = "SessionListFragment";
@@ -48,12 +47,21 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        organisations = new ArrayList<>();
+        subThemes = new ArrayList<>();
+        adapter = new SessionAdapter(getContext(), organisations, subThemes);
+
+        getUserAccount();
+        getOrganisationsData();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_session_list, container, false);
 
         ExpandableListView expandableListView = (ExpandableListView) view.findViewById(R.id.listview);
-
-
         expandableListView.setAdapter(adapter);
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
@@ -68,7 +76,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                     public void onResponse(Call<Session> call, Response<Session> response) {
                         if (response.isSuccess()) {
                             sessionVerbose = response.body();
-                            Log.d(TAG,"Verbose succes");
+                            Log.d(TAG, "Verbose succes");
 
                             ArrayList<UserAccount> participants = sessionVerbose.getParticipants();
                             if (!participants.isEmpty()) {
@@ -82,7 +90,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
                             SubTheme currentsubtheme = null;
                             Theme currenttheme = null;
-                            
+
                             for (SubTheme subtheme : subThemes) {
                                 if (subtheme.getId() == session.getSubThemeId()) {
                                     currentsubtheme = subtheme;
@@ -102,7 +110,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                                 fragment = SetupFragment.newInstance(service, session, currenttheme, currentsubtheme);
 
                             } else {
-                                fragment = CircleFragment.newInstance(service, session,currentsubtheme);
+                                fragment = CircleFragment.newInstance(service, session, currentsubtheme);
                                 FragmentManager fragmentManager = getFragmentManager();
                                 fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
                             }
@@ -114,7 +122,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
                         } else {
                             Toast.makeText(getActivity(), "Verbose fail", Toast.LENGTH_LONG).show();
-                            Log.d(TAG,"Session verbose fail");
+                            Log.d(TAG, "Session verbose fail");
                         }
                     }
 
@@ -127,17 +135,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
             }
         });
         return view;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        organisations = new ArrayList<>();
-        subThemes = new ArrayList<>();
-        adapter = new SessionAdapter(getContext(), organisations, subThemes);
-
-        getUserAccount();
-        getOrganisationsData();
     }
 
     private void getUserAccount() {
@@ -165,9 +162,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
     }
 
     public void getOrganisationsData() {
-
         Call<List<Organisation>> callList = service.getOrganisationsVerbose();
-
         callList.enqueue(new Callback<List<Organisation>>() {
             @Override
             public void onResponse(Call<List<Organisation>> call, Response<List<Organisation>> response) {
@@ -225,7 +220,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                     Toast.makeText(getActivity(), "Spijtig, er is iets misgegaan met ophalen van de themas. Probeer in enkele ogenblikken terug", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "onResponse: subthemes" + e.getMessage());
                 }
-
             }
 
             @Override
@@ -233,7 +227,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                 System.out.println(t.toString());
             }
         });
-
     }
 }
 

@@ -28,7 +28,6 @@ import java.util.Date;
  * Created by Thomas on 2016-03-01.
  */
 public class SessionAdapter extends BaseExpandableListAdapter {
-
     private Context context;
     private ArrayList<Organisation> groups;
     private ArrayList<SubTheme> subThemes;
@@ -76,17 +75,17 @@ public class SessionAdapter extends BaseExpandableListAdapter {
                         break;
                     }
                 }
-
             }
         }
+
         if (currentTheme != null) {
             themetag.setText(currentTheme.getName());
             themedescp.setText(currentTheme.getDescription());
         }
+
         if (currentSubtheme != null) {
             subtheme.setText(currentSubtheme.getName());
         }
-
 
         boolean notYetstarted = checkStartDate(child);
         if (notYetstarted) {
@@ -119,7 +118,6 @@ public class SessionAdapter extends BaseExpandableListAdapter {
                     alertDialog.show();
                 }
             });
-
         }
         return convertView;
     }
@@ -137,6 +135,7 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         Calendar cal = Calendar.getInstance();
 
         return cal.after(dateStart);
