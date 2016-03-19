@@ -75,7 +75,7 @@ public class MainActivity extends ActionBarActivity
         if (intent != null) {
 
 
-            if (intent.getBooleanExtra("testing",true)) {
+            if (intent.getBooleanExtra("testing",false)) {
                 token = new Token("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2thbmRvZS5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NTZkNDU5MTMxN2FjYTkxZjFhZmY1ZGZiIiwiYXVkIjoib0ZnUUJtZnNsSHFlYWhZazJpdk5OQXprZ2NQZ3dUYTgiLCJleHAiOjE0NTg0Mjc2NDIsImlhdCI6MTQ1ODM5MTY0Mn0.1WrQleFrOys5H3nwfWftxv8lBovWsMsGH7sVpWYY0fg",
                         "3MLwR1Yt7rPn50pF",
                         "bearer",

@@ -16,7 +16,8 @@
         android:layout_marginLeft="5dp"
         android:background="@drawable/greentag"
         android:padding="5dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#212121" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,9 +25,10 @@
         android:text="Hoe laten werken?"
         android:id="@+id/txtDescription"
         android:padding="5dp"
-        android:textSize="14dp"
-        android:layout_alignBottom="@+id/txtThemeName"
-        android:layout_toEndOf="@+id/txtThemeName" />
+        android:textSize="12dp"
+        android:layout_below="@+id/txtSessionName"
+        android:layout_toEndOf="@+id/txtSubthemeName"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,11 +37,10 @@
         android:text="Werken ?"
         android:id="@+id/txtSubthemeName"
         android:padding="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="10dp"
         android:textStyle="bold"
         android:textSize="15dp"
-        android:layout_below="@+id/txtThemeName" />
+        android:layout_alignBottom="@+id/txtDescription"
+        android:layout_alignStart="@+id/txtThemeName" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,9 +49,10 @@
         android:text="Sessie 1"
         android:id="@+id/txtSessionName"
         android:padding="5dp"
-        android:layout_toEndOf="@+id/txtSubthemeName"
-        android:layout_below="@+id/txtThemeName"
-        android:textStyle="italic" />
+        android:layout_alignBaseline="@+id/txtThemeName"
+        android:layout_alignBottom="@+id/txtThemeName"
+        android:layout_toEndOf="@+id/txtThemeName"
+        android:textColor="#212121" />
 
 
 </RelativeLayout>

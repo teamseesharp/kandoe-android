@@ -17,12 +17,18 @@ import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.Utilities;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import retrofit2.Call;
 
 /**
  * Created by Thomas on 2016-03-01.
@@ -34,16 +40,17 @@ public class SessionAdapter extends BaseExpandableListAdapter {
     private ArrayList<SubTheme> subThemes;
 
 
-    private String title, message;
+    private final String TITLE = "Helaas..";
+    private String message;
     private boolean invite = false;
     private boolean mIsSessionListFragment;
 
-    public SessionAdapter(Context context, ArrayList<Organisation> groups, ArrayList<SubTheme> subThemes,UserAccount userAccount,boolean isSessionListFragment) {
+    public SessionAdapter(Context context, ArrayList<Organisation> groups, ArrayList<SubTheme> subThemes, UserAccount userAccount, boolean isSessionListFragment) {
         this.context = context;
         this.groups = groups;
         this.subThemes = subThemes;
         account = userAccount;
-        title = "Helaas!";
+
         mIsSessionListFragment = isSessionListFragment;
     }
 
@@ -62,6 +69,8 @@ public class SessionAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
         final Session child = (Session) getChild(groupPosition, childPosition);
+
+
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(context.LAYOUT_INFLATER_SERVICE);
@@ -97,47 +106,50 @@ public class SessionAdapter extends BaseExpandableListAdapter {
             subtheme.setText(currentSubtheme.getName());
         }
 
-        if(sessiondescp != null){
+        if (sessiondescp != null) {
             sessiondescp.setText(child.getDescription());
         }
 
-        if (child.isFinished()) {
-            themetag.setBackgroundResource(R.drawable.redtag);
-        }
 
-        //TODO DEES KLOPT NIET
+
+
         boolean notYetstarted = checkStartDate(child);
         if (notYetstarted) {
             themetag.setBackgroundResource(R.drawable.orangetag);
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    message = "Dju! Deze sessie moet nog beginnen. We zien je graag terug op \" + Utilities.dateFormatter(child.getStart()) + \".\n" + "Tot dan!";
-                    showAlertDialog(title,message);
+                    message = "Dju! Deze sessie moet nog beginnen. We zien je graag terug op " + Utilities.dateFormatter(child.getStart()) + ".\n" + "Tot dan!";
+                    showAlertDialog(TITLE, message);
                 }
             });
+        } else themetag.setBackgroundResource(R.drawable.greentag);
+
+        if (child.isFinished()) {
+            themetag.setBackgroundResource(R.drawable.redtag);
+
         }
 
-        if(child.getParticipants().size() >= child.getMaxParticipants()){
+        if (child.getParticipants().size() >= child.getMaxParticipants()) {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     message = "Deze sessie zit al vol!";
-                    showAlertDialog(title,message);
+                    showAlertDialog(TITLE, message);
                 }
             });
         }
 
         //TODO: IDEM HIER --> OF ALLES KUNNEN DEELNEMEN OF GEEN ENKELE
-        if(mIsSessionListFragment) {
+        if (mIsSessionListFragment) {
             for (UserAccount invitee : child.getInvitees()) {
                 if (invitee.getId() != account.getId()) {
                     convertView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            title = "Sorry..";
+
                             message = "Je bent niet uitgenodigd voor deze sessie en kan dus hier niet aan deelnemen";
-                            showAlertDialog(title, message);
+                            showAlertDialog(TITLE, message);
                         }
                     });
                 }
@@ -147,7 +159,7 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    private void showAlertDialog(String title,String message){
+    private void showAlertDialog(String title, String message) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setTitle(title);
         alertDialogBuilder
@@ -164,21 +176,16 @@ public class SessionAdapter extends BaseExpandableListAdapter {
     }
 
     private boolean checkStartDate(Session child) {
-        String startDate = Utilities.dateFormatter(child.getStart());
+        String startDate = child.getStart();
 
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Date dateStart = null;
-        try {
-            dateStart = dateFormat.parse(startDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        DateTime dateTime = DateTime.parse(startDate);
+        DateTime now = DateTime.now();
 
-        Calendar cal = Calendar.getInstance();
-
-        return cal.after(dateStart);
+        return now.isBefore(dateTime);
     }
 
+
+    //region Override Methods
 
     @Override
     public int getChildrenCount(int groupPosition) {
@@ -224,5 +231,6 @@ public class SessionAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
+    //endregion
 
 }

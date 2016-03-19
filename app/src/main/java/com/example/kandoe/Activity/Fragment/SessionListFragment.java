@@ -53,7 +53,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
         super.onCreate(savedInstanceState);
         organisations = new ArrayList<>();
         subThemes = new ArrayList<>();
-        adapter = new SessionAdapter(getContext(), organisations, subThemes,userAccount,isSessionListFragment);
+        adapter = new SessionAdapter(getContext(), organisations, subThemes, userAccount, isSessionListFragment);
 
         getUserAccount();
         getOrganisationsData();
@@ -65,9 +65,11 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
         ExpandableListView expandableListView = (ExpandableListView) view.findViewById(R.id.explv);
         expandableListView.setAdapter(adapter);
+
+
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+            public boolean onChildClick(final ExpandableListView parent, View v, int groupPosition, final int childPosition, long id) {
                 final Organisation organisation = organisations.get(groupPosition);
                 final Session session = organisation.getSessions().get(childPosition);
                 final boolean[] firstTime = {true};
@@ -93,7 +95,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                             Theme currenttheme = null;
 
                             for (SubTheme subtheme : subThemes) {
-                                if (subtheme.getId() == session.getSubThemeId()) {
+                                if (subtheme.getId() == sessionVerbose.getSubThemeId()) {
                                     currentsubtheme = subtheme;
                                 }
                             }
@@ -108,10 +110,10 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                             android.support.v4.app.Fragment fragment;
 
                             if (firstTime[0]) {
-                                fragment = SetupFragment.newInstance(service, session, currenttheme, currentsubtheme);
+                                fragment = SetupFragment.newInstance(service, sessionVerbose, currenttheme, currentsubtheme);
 
                             } else {
-                                fragment = CircleFragment.newInstance(service, session, currentsubtheme);
+                                fragment = CircleFragment.newInstance(service, sessionVerbose, currentsubtheme);
                                 FragmentManager fragmentManager = getFragmentManager();
                                 fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
                             }
