@@ -128,7 +128,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             mainActivity.getSupportActionBar().setTitle(subtheme.getName());
         }
 
-
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         progressBar.setProgress(0);
 

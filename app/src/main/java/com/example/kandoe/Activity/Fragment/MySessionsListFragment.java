@@ -14,6 +14,7 @@ import com.example.kandoe.Controller.Adapters.SessionAdapter;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.SubTheme;
+import com.example.kandoe.Model.Theme;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
@@ -38,10 +39,13 @@ public class MySessionsListFragment extends Fragment {
     private ArrayList<Organisation> organisations;
     private ArrayList<SubTheme> subThemes;
     private UserAccount account;
+    private boolean isSessionlistFragment;
+    private Session sessionVerbose;
 
     public MySessionsListFragment(KandoeBackendAPI service, UserAccount userAccount) {
         this.service = service;
         this.account = userAccount;
+        isSessionlistFragment = false;
     }
 
     @Override
@@ -49,7 +53,7 @@ public class MySessionsListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         organisations = new ArrayList<>();
         subThemes = new ArrayList<>();
-        adapter = new SessionAdapter(getContext(), organisations, subThemes);
+        adapter = new SessionAdapter(getContext(), organisations, subThemes,account,isSessionlistFragment);
 
         getOrganisationsData();
     }
@@ -65,19 +69,67 @@ public class MySessionsListFragment extends Fragment {
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 final Organisation organisation = organisations.get(groupPosition);
                 final Session session = organisation.getSessions().get(childPosition);
+                final boolean[] firstTime = {true};
 
-                SubTheme currentsubtheme = null;
-                for (SubTheme subtheme : subThemes) {
-                    if (subtheme.getId() == session.getSubThemeId()) {
-                        currentsubtheme = subtheme;
+                Call<Session> sessionCall = service.getVerboseSessionById(session.getId());
+                sessionCall.enqueue(new Callback<Session>() {
+                    @Override
+                    public void onResponse(Call<Session> call, Response<Session> response) {
+                        if (response.isSuccess()) {
+                            sessionVerbose = response.body();
+                            Log.d(TAG, "Verbose succes");
+
+                            ArrayList<UserAccount> participants = sessionVerbose.getParticipants();
+                            if (!participants.isEmpty()) {
+                                for (UserAccount u : participants) {
+                                    if (u.getId() == (account.getId())) {
+                                        firstTime[0] = false;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            SubTheme currentsubtheme = null;
+                            Theme currentTheme = null;
+
+                            for (SubTheme subtheme : subThemes) {
+                                if (subtheme.getId() == session.getSubThemeId()) {
+                                    currentsubtheme = subtheme;
+                                }
+                            }
+
+                            for (Theme theme : organisation.getThemes()) {
+
+                                if (theme.getId() == (currentsubtheme != null ? currentsubtheme.getThemaId() : 0)) {
+                                    currentTheme = theme;
+                                }
+                            }
+
+                            android.support.v4.app.Fragment fragment;
+                            if (firstTime[0]) {
+                                fragment = SetupFragment.newInstance(service, session, currentTheme, currentsubtheme);
+
+                            } else {
+                                fragment = CircleFragment.newInstance(service, session, currentsubtheme);
+                                FragmentManager fragmentManager = getFragmentManager();
+                                fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
+                            }
+
+                            FragmentManager fragmentManager = getFragmentManager();
+                            fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).addToBackStack(TAG).commit();
+                            System.out.println(response.code());
+
+                        } else {
+                            Toast.makeText(getActivity(), "Verbose fail", Toast.LENGTH_LONG).show();
+                            Log.d(TAG, "Session verbose fail");
+                        }
                     }
-                }
 
-                android.support.v4.app.Fragment fragment;
-                fragment = CircleFragment.newInstance(service, session, currentsubtheme);
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
-
+                    @Override
+                    public void onFailure(Call<Session> call, Throwable t) {
+                        Log.d(TAG, "Session verbose onfailure");
+                    }
+                });
                 return true;
             }
         });
@@ -116,18 +168,20 @@ public class MySessionsListFragment extends Fragment {
                                 @Override
                                 public void onResponse(Call<Session> call, Response<Session> response) {
                                     Session sessionVerbose = response.body();
-                                    ArrayList<UserAccount> participants = sessionVerbose.getParticipants();
+                                    ArrayList<UserAccount> invitees;
+                                    ArrayList<Session> toDeleteSessions = new ArrayList<Session>();
 
-                                    if (!participants.isEmpty()) {
-                                        for (UserAccount participant : participants) {
-
-                                            if (participant.getId() == account.getId()) {
-                                                validSessions.add(s);
-                                            }
+                                    if (sessionVerbose != null) {
+                                        invitees = sessionVerbose.getInvitees();
+                                          for (UserAccount invitee : invitees) {
+                                              if (invitee.getId() == account.getId()) {
+                                                  validSessions.add(s);
+                                              }
+                                          }
+                                         org.setSessions(validSessions);
+                                        //org.getSessions().removeAll(toDeleteSessions);
                                         }
-                                    }
-                                    org.setSessions(validSessions);
-                                }
+                                      }
 
                                 @Override
                                 public void onFailure(Call<Session> call, Throwable t) {

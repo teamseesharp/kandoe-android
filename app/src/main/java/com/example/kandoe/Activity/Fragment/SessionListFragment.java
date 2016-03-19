@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
-import com.example.kandoe.Controller.Adapters.SessionAdapter;
 import com.example.kandoe.Activity.MainActivity;
+import com.example.kandoe.Controller.Adapters.SessionAdapter;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.SubTheme;
@@ -38,12 +38,14 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
     private ArrayList<Organisation> organisations;
     private SessionAdapter adapter;
     private ArrayList<SubTheme> subThemes;
-    boolean getDataSucces = false;
     private UserAccount userAccount;
-    Session sessionVerbose;
+    private Session sessionVerbose;
+
+    private boolean isSessionListFragment;
 
     public SessionListFragment(KandoeBackendAPI service) {
         this.service = service;
+        isSessionListFragment = true;
     }
 
     @Override
@@ -51,7 +53,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
         super.onCreate(savedInstanceState);
         organisations = new ArrayList<>();
         subThemes = new ArrayList<>();
-        adapter = new SessionAdapter(getContext(), organisations, subThemes);
+        adapter = new SessionAdapter(getContext(), organisations, subThemes,userAccount,isSessionListFragment);
 
         getUserAccount();
         getOrganisationsData();
@@ -81,9 +83,8 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                             ArrayList<UserAccount> participants = sessionVerbose.getParticipants();
                             if (!participants.isEmpty()) {
                                 for (UserAccount u : participants) {
-                                    if (u.getId() == (userAccount.getId())) {
+                                    if (u.getId() == userAccount.getId()) {
                                         firstTime[0] = false;
-                                        break;
                                     }
                                 }
                             }
@@ -145,12 +146,12 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
             @Override
             public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
                 userAccount = response.body();
-                Log.d(TAG,"USer call succes");
+                Log.d(TAG, "USer call succes");
             }
 
             @Override
             public void onFailure(Call<UserAccount> call, Throwable t) {
-                Log.d(TAG,"User call not succes" );
+                Log.d(TAG, "User call not succes");
             }
         });
     }
@@ -184,7 +185,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
                         for (Session sess : org.getSessions()) {
                             if (sess.isFinished()) {
-                              //  org.getSessions().remove(sess);
                                 toDelete.add(sess);
                             }
                         }

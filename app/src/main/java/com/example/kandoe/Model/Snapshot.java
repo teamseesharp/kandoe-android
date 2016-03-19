@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Snapshot {
     private int Id, SessionId;
-    private ArrayList<Integer> Participants, Organisers;
+    private ArrayList<UserAccount> Participants, Organisers;
     private ArrayList<Card> SessionCards;
     private ArrayList<ChatMessage> ChatMessages;
 
@@ -27,19 +27,19 @@ public class Snapshot {
         SessionId = sessionId;
     }
 
-    public ArrayList<Integer> getParticipants() {
+    public ArrayList<UserAccount> getParticipants() {
         return Participants;
     }
 
-    public void setParticipants(ArrayList<Integer> participants) {
+    public void setParticipants(ArrayList<UserAccount> participants) {
         Participants = participants;
     }
 
-    public ArrayList<Integer> getOrganisers() {
+    public ArrayList<UserAccount> getOrganisers() {
         return Organisers;
     }
 
-    public void setOrganisers(ArrayList<Integer> organisers) {
+    public void setOrganisers(ArrayList<UserAccount> organisers) {
         Organisers = organisers;
     }
 

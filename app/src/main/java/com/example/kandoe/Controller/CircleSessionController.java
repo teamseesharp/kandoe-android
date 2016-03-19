@@ -11,14 +11,12 @@ import android.widget.Toast;
 import com.example.kandoe.Controller.Adapters.CardAdapter;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Session;
-import com.example.kandoe.Model.Snapshot;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import com.example.kandoe.Utilities.DrawableGraphics.Ladder;
 import com.example.kandoe.Utilities.DrawableGraphics.SurfacePanel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +28,6 @@ import retrofit2.Response;
 public class CircleSessionController {
     private final String TAG = "CircleSessionController";
     private ArrayList<Card> cards;
-    private List<Snapshot> snapshots;
     private ArrayList<View> bulletPoints;
 
     private ArrayList<UserAccount> participants;
@@ -56,7 +53,7 @@ public class CircleSessionController {
         bulletPoints = new ArrayList<>();
         participants = new ArrayList<>();
         cards = new ArrayList<>();
-        snapshots = new ArrayList<>();
+
         getVerboseSession();
         //chatController = new ChatController(session.getId());
     }
@@ -91,7 +88,9 @@ public class CircleSessionController {
             @Override
             public void onResponse(Call<Session> call, Response<Session> response) {
                 session = response.body();
-                cards.addAll(session.getSessionCards());
+                if(!session.getSessionCards().isEmpty()){
+                    cards.addAll(session.getSessionCards());
+                }
                 adapter.notifyDataSetChanged();
                 updateCurrentPlayer();
                 amICurrentPlayer();

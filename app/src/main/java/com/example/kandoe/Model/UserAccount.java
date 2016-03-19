@@ -11,6 +11,7 @@ public class UserAccount implements Serializable {
     private String Email, Name,Picture, Surname,Secret;
 
     private ArrayList<ChatMessage> ChatMessages;
+    private ArrayList<Session> InvitedSessions;
     private ArrayList<Organisation> Organisations;
     private ArrayList<Session> OrganisedSessions;
     private ArrayList<Session> ParticipatingSessions;
@@ -123,5 +124,13 @@ public class UserAccount implements Serializable {
 
     public void setThemes(ArrayList<Theme> themes) {
         Themes = themes;
+    }
+
+    public ArrayList<Session> getInvitedSessions() {
+        return InvitedSessions;
+    }
+
+    public void setInvitedSessions(ArrayList<Session> invitedSessions) {
+        InvitedSessions = invitedSessions;
     }
 }

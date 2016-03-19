@@ -21,9 +21,7 @@ import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import java.io.Serializable;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link ChatFragment#newInstance} factory method to
- * create an instance of this fragment.
+ *
  */
 public class ChatFragment extends Fragment {
     private static final String ARG_PARAM1 = "Service";
@@ -31,14 +29,10 @@ public class ChatFragment extends Fragment {
     private static final String ARG_PARAM3 = "Profile";
     private static final String ARG_PARAM4 = "isReview";
 
-
     private KandoeBackendAPI mService;
     private Session mSession;
-
     private UserAccount mUserAccount;
-
     private ChatController chatController;
-
     private EditText txtMessage;
     private ImageButton btnSend;
 

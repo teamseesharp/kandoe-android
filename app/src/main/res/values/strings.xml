@@ -7,9 +7,10 @@
 
     <!-- Navigation drawer -->
     <string name="title_section1">Sessie overzicht</string>
-    <string name="title_section2">Gespeelde sessies</string>
+    <string name="title_section2">Beïndigde sessies</string>
     <string name="title_section3">Mijn sessies</string>
     <string name="title_section4">Mijn profiel</string>
+    <string name="title_section5">Help</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

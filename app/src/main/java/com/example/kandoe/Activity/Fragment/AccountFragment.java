@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.auth0.core.UserProfile;
 import com.example.kandoe.Activity.MainActivity;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
@@ -27,8 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Michelle on 16-2-2016.
- * Shows user account information
+ * Shows user account information + user can edit his personal info
  */
 public class AccountFragment extends Fragment {
     private static final String TAG = "Accountfragment";
@@ -40,7 +38,7 @@ public class AccountFragment extends Fragment {
     private UserAccount userAccount;
     private KandoeBackendAPI service;
 
-    public AccountFragment(KandoeBackendAPI service, UserProfile userProfile) {
+    public AccountFragment(KandoeBackendAPI service) {
         this.service = service;
     }
 
@@ -48,7 +46,6 @@ public class AccountFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getUserAccount();
-        System.out.println(userAccount);
     }
 
     @Override

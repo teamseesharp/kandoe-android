@@ -106,7 +106,9 @@ public class MainActivity extends ActionBarActivity
         getUserAccount(userProfile);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5f995f")));
+        if(actionBar != null) {
+            actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5f995f")));
+        }
 
         mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -137,7 +139,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
-                fragment = new FinishedSessionListFragment(service);
+                fragment = new FinishedSessionListFragment(service,userAccount);
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
@@ -145,7 +147,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 4:
                 mTitle = getString(R.string.title_section4);
-                fragment = new AccountFragment(service, userProfile);
+                fragment = new AccountFragment(service);
                 break;
             default:
                 fragment = new MainFragment();
@@ -167,9 +169,11 @@ public class MainActivity extends ActionBarActivity
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
+        if(actionBar != null) {
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setTitle(mTitle);
+        }
     }
 
 
@@ -192,7 +196,6 @@ public class MainActivity extends ActionBarActivity
         MenuItem item2 = menu.findItem(R.id.action_help);
         item2.setVisible(true);
         MenuItem item3 = menu.findItem(R.id.action_chat);
-        //  item3.setVisible(false);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -205,10 +208,6 @@ public class MainActivity extends ActionBarActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
-           /* Intent intent = new Intent(getApplicationContext(),StartActivity.class);
-            startActivity(intent);*/
-
-
             //restart app
             Intent i = getBaseContext().getPackageManager()
                     .getLaunchIntentForPackage(getBaseContext().getPackageName());
@@ -217,8 +216,8 @@ public class MainActivity extends ActionBarActivity
             System.exit(0);
         }
 
-        if (id == R.id.action_help) {
-            mTitle = getString(R.string.title_section4);
+        if( id == R.id.action_help){
+            mTitle = getString(R.string.title_section5);
             restoreActionBar();
 
             Fragment help = new HelpFragment();
@@ -282,6 +281,10 @@ public class MainActivity extends ActionBarActivity
 
     public UserAccount getUserAccount() {
         return userAccount;
+    }
+
+    public void setmTitle(CharSequence mTitle) {
+        this.mTitle = mTitle;
     }
 
     public void getUserAccount(UserProfile profile) {

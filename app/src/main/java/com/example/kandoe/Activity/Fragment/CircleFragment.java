@@ -55,8 +55,6 @@ public class CircleFragment extends Fragment {
     public CircleFragment() {
     }
 
-
-
     public static CircleFragment newInstance(KandoeBackendAPI service, Session session,SubTheme subTheme) {
         CircleFragment fragment = new CircleFragment();
         Bundle args = new Bundle();
@@ -89,7 +87,6 @@ public class CircleFragment extends Fragment {
         menu.findItem(R.id.action_chat).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-
                 System.out.println("Action Clicked");
 
                 mIsReview = false;
@@ -108,12 +105,13 @@ public class CircleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_circlesession, container, false);
         setHasOptionsMenu(true);
 
-
         if (mainActivity.getActionBar() != null) {
-            mainActivity.getActionBar().setTitle(subtheme.getName());
+            mainActivity.setmTitle(subtheme.getName());
+            mainActivity.restoreActionBar();
         }
         if (mainActivity.getSupportActionBar() != null) {
-            mainActivity.getSupportActionBar().setTitle(subtheme.getName());
+            mainActivity.setmTitle(subtheme.getName());
+            mainActivity.restoreActionBar();
         }
 
         txtCurrentPlayer = (TextView) view.findViewById(R.id.playersTurn);

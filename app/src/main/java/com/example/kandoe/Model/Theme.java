@@ -9,6 +9,7 @@ public class Theme implements Serializable{
     private String Name,Description,Tags;
 
     private ArrayList<SubTheme> Subthemes;
+    private ArrayList<Card> SelectionCards;
 
     public Theme() {
     }
@@ -79,5 +80,11 @@ public class Theme implements Serializable{
         Subthemes = subthemes;
     }
 
+    public ArrayList<Card> getSelectionCards() {
+        return SelectionCards;
+    }
 
+    public void setSelectionCards(ArrayList<Card> selectionCards) {
+        SelectionCards = selectionCards;
+    }
 }

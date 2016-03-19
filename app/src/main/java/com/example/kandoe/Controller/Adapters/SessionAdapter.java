@@ -3,7 +3,6 @@ package com.example.kandoe.Controller.Adapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.SubTheme;
 import com.example.kandoe.Model.Theme;
+import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.Utilities;
 
@@ -29,13 +29,22 @@ import java.util.Date;
  */
 public class SessionAdapter extends BaseExpandableListAdapter {
     private Context context;
+    private UserAccount account;
     private ArrayList<Organisation> groups;
     private ArrayList<SubTheme> subThemes;
 
-    public SessionAdapter(Context context, ArrayList<Organisation> groups, ArrayList<SubTheme> subThemes) {
+
+    private String title, message;
+    private boolean invite = false;
+    private boolean mIsSessionListFragment;
+
+    public SessionAdapter(Context context, ArrayList<Organisation> groups, ArrayList<SubTheme> subThemes,UserAccount userAccount,boolean isSessionListFragment) {
         this.context = context;
         this.groups = groups;
         this.subThemes = subThemes;
+        account = userAccount;
+        title = "Helaas!";
+        mIsSessionListFragment = isSessionListFragment;
     }
 
     @Override
@@ -62,10 +71,7 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         TextView themetag = (TextView) convertView.findViewById(R.id.txtThemeName);
         TextView subtheme = (TextView) convertView.findViewById(R.id.txtSubthemeName);
         TextView themedescp = (TextView) convertView.findViewById(R.id.txtDescription);
-
-
-
-
+        TextView sessiondescp = (TextView) convertView.findViewById(R.id.txtSessionName);
 
         Theme currentTheme = null;
         SubTheme currentSubtheme = null;
@@ -91,55 +97,79 @@ public class SessionAdapter extends BaseExpandableListAdapter {
             subtheme.setText(currentSubtheme.getName());
         }
 
-        boolean notYetstarted = checkStartDate(child);
+        if(sessiondescp != null){
+            sessiondescp.setText(child.getDescription());
+        }
+
         if (child.isFinished()) {
             themetag.setBackgroundResource(R.drawable.redtag);
         }
+
+        //TODO DEES KLOPT NIET
+        boolean notYetstarted = checkStartDate(child);
         if (notYetstarted) {
             themetag.setBackgroundResource(R.drawable.orangetag);
-            convertView.setAlpha((float) 0.5);
-            convertView.setBackgroundColor(Color.LTGRAY);
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                            context);
-                    // set title
-                    alertDialogBuilder.setTitle("Helaas!");
-
-                    // set dialog message
-                    alertDialogBuilder
-                            .setMessage("Dju! Deze sessie moet nog beginnen. We zien je graag terug op " + Utilities.dateFormatter(child.getStart()) + ".\nTot dan!")
-                            .setCancelable(false)
-                            .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // if this button is clicked, just close
-                                    // the dialog box and do nothing
-                                    dialog.cancel();
-                                }
-                            });
-
-                    // create alert dialog
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-
-                    // show it
-                    alertDialog.show();
+                    message = "Dju! Deze sessie moet nog beginnen. We zien je graag terug op \" + Utilities.dateFormatter(child.getStart()) + \".\n" + "Tot dan!";
+                    showAlertDialog(title,message);
                 }
             });
         }
+
+        if(child.getParticipants().size() >= child.getMaxParticipants()){
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    message = "Deze sessie zit al vol!";
+                    showAlertDialog(title,message);
+                }
+            });
+        }
+
+        //TODO: IDEM HIER --> OF ALLES KUNNEN DEELNEMEN OF GEEN ENKELE
+        if(mIsSessionListFragment) {
+            for (UserAccount invitee : child.getInvitees()) {
+                if (invitee.getId() != account.getId()) {
+                    convertView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            title = "Sorry..";
+                            message = "Je bent niet uitgenodigd voor deze sessie en kan dus hier niet aan deelnemen";
+                            showAlertDialog(title, message);
+                        }
+                    });
+                }
+            }
+        }
+
         return convertView;
+    }
+
+    private void showAlertDialog(String title,String message){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        alertDialogBuilder.setTitle(title);
+        alertDialogBuilder
+                .setMessage(message)
+                .setCancelable(false)
+                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     private boolean checkStartDate(Session child) {
         String startDate = Utilities.dateFormatter(child.getStart());
-        String endDate = Utilities.dateFormatter(child.getEnd());
 
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date dateStart = null;
-        Date dateEnd = null;
         try {
             dateStart = dateFormat.parse(startDate);
-            dateEnd = dateFormat.parse(endDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -148,6 +178,7 @@ public class SessionAdapter extends BaseExpandableListAdapter {
 
         return cal.after(dateStart);
     }
+
 
     @Override
     public int getChildrenCount(int groupPosition) {

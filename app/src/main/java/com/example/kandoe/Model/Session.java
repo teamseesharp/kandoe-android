@@ -13,12 +13,11 @@ public class Session implements Serializable{
     private String End,Start,Description;
     private int NumberOfSteps = 4;
 
-    private ArrayList<Card> SessionCards;
     private ArrayList<ChatMessage> ChatMessages;
+    private ArrayList<UserAccount> Invitees;
     private ArrayList<UserAccount> Organisers;
     private ArrayList<UserAccount> Participants;
-    private ArrayList<Snapshot> snapshots;
-
+    private ArrayList<Card> SessionCards;
 
     public Session() {
         MaxParticipants = 8;
@@ -193,11 +192,11 @@ public class Session implements Serializable{
         Organisers = organisers;
     }
 
-    public ArrayList<Snapshot> getSnapshots() {
-        return snapshots;
+    public ArrayList<UserAccount> getInvitees() {
+        return Invitees;
     }
 
-    public void setSnapshots(ArrayList<Snapshot> snapshots) {
-        this.snapshots = snapshots;
+    public void setInvitees(ArrayList<UserAccount> invitees) {
+        Invitees = invitees;
     }
 }
