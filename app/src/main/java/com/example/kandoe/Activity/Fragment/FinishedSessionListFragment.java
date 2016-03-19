@@ -44,7 +44,7 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_session_list, container, false);
 
-        ExpandableListView expandableListView = (ExpandableListView) view.findViewById(R.id.listview);
+        ExpandableListView expandableListView = (ExpandableListView) view.findViewById(R.id.explv);
         expandableListView.setAdapter(adapter);
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 

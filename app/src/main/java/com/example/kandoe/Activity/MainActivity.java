@@ -35,6 +35,8 @@ import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.APIServiceGenerator;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
+import java.util.HashMap;
+
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 import retrofit2.Call;
@@ -43,7 +45,7 @@ import retrofit2.Response;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ReviewSessionFragment.OnFragmentInteractionListener,CircleFragment.OnFragmentInteractionListener{
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ReviewSessionFragment.OnFragmentInteractionListener, CircleFragment.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -59,6 +61,7 @@ public class MainActivity extends ActionBarActivity
     private UserAccount postAccount;
     private Token token;
     private KandoeBackendAPI service;
+    private boolean testing = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,15 +73,34 @@ public class MainActivity extends ActionBarActivity
         Intent intent = getIntent();
 
         if (intent != null) {
-            userProfile = intent.getParcelableExtra("profile");
-            token = intent.getParcelableExtra("token");
-            System.out.println(token.getIdToken());
-            System.out.println(userProfile.getId());
-            postAccount.setName(userProfile.getNickname());
-            postAccount.setEmail(userProfile.getEmail());
-            postAccount.setSecret(userProfile.getId());
+
+
+            if (intent.getBooleanExtra("testing",true)) {
+                token = new Token("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2thbmRvZS5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NTZkNDU5MTMxN2FjYTkxZjFhZmY1ZGZiIiwiYXVkIjoib0ZnUUJtZnNsSHFlYWhZazJpdk5OQXprZ2NQZ3dUYTgiLCJleHAiOjE0NTg0Mjc2NDIsImlhdCI6MTQ1ODM5MTY0Mn0.1WrQleFrOys5H3nwfWftxv8lBovWsMsGH7sVpWYY0fg",
+                        "3MLwR1Yt7rPn50pF",
+                        "bearer",
+                        "Vu3ZM67oczh8Xo46sTGPwLH79vE3swAPpmoiCBp4FuvAU");
+
+                HashMap<String, Object> values = new HashMap<>();
+                values.put("user_id", "auth0|56d4591317aca91f1aff5dfb");
+                values.put("nickname", "thomastvd");
+                values.put("email", "thomastvd@gmail.com");
+                userProfile = new UserProfile(values);
+
+            } else {
+
+                userProfile = intent.getParcelableExtra("profile");
+                token = intent.getParcelableExtra("token");
+            }
+
+                System.out.println(token.getIdToken());
+                System.out.println(userProfile.getId());
+                postAccount.setName(userProfile.getNickname());
+                postAccount.setEmail(userProfile.getEmail());
+                postAccount.setSecret(userProfile.getId());
+
         }
-        service = APIServiceGenerator.createService(KandoeBackendAPI.class,token.getIdToken());
+        service = APIServiceGenerator.createService(KandoeBackendAPI.class, token.getIdToken());
         createNewUser(postAccount);
 
         getUserAccount(userProfile);
@@ -119,11 +141,11 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
-                fragment = new MySessionsListFragment(service,userAccount);
+                fragment = new MySessionsListFragment(service, userAccount);
                 break;
             case 4:
                 mTitle = getString(R.string.title_section4);
-                fragment = new AccountFragment(service,userProfile);
+                fragment = new AccountFragment(service, userProfile);
                 break;
             default:
                 fragment = new MainFragment();
@@ -189,13 +211,13 @@ public class MainActivity extends ActionBarActivity
 
             //restart app
             Intent i = getBaseContext().getPackageManager()
-                    .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                    .getLaunchIntentForPackage(getBaseContext().getPackageName());
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
             System.exit(0);
         }
 
-        if( id == R.id.action_help){
+        if (id == R.id.action_help) {
             mTitle = getString(R.string.title_section4);
             restoreActionBar();
 
@@ -262,8 +284,8 @@ public class MainActivity extends ActionBarActivity
         return userAccount;
     }
 
-    public void getUserAccount(UserProfile profile){
-        Call<UserAccount>  call = service.getUserId(profile.getId());
+    public void getUserAccount(UserProfile profile) {
+        Call<UserAccount> call = service.getUserId(profile.getId());
 
         call.enqueue(new Callback<UserAccount>() {
             @Override
@@ -278,14 +300,14 @@ public class MainActivity extends ActionBarActivity
         });
     }
 
-    public void createNewUser(UserAccount account){
+    public void createNewUser(UserAccount account) {
         Call<UserAccount> call = service.postUser(account);
         call.enqueue(new Callback<UserAccount>() {
             @Override
             public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
-                if(response.isSuccess()){
+                if (response.isSuccess()) {
                     Crouton.makeText(MainActivity.this, "post SUCCES", Style.CONFIRM).show();
-                }else{
+                } else {
                     Crouton.makeText(MainActivity.this, "post onresponse FAIL", Style.CONFIRM).show();
                 }
             }
@@ -295,5 +317,9 @@ public class MainActivity extends ActionBarActivity
                 Crouton.makeText(MainActivity.this, "FAIL", Style.CONFIRM).show();
             }
         });
+    }
+
+    public void setTesting(boolean testing) {
+        this.testing = testing;
     }
 }

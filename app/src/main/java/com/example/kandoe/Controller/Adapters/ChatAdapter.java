@@ -47,6 +47,8 @@ public class ChatAdapter extends ArrayAdapter {
         ChatMessage message = chatMessages.get(position);
         UserAccount sender = getMatchingAccount(message.getMessengerId());
 
+
+
         if (currentUser.getId() != sender.getId()) {
 
             v = LayoutInflater.from(getContext()).inflate(R.layout.messagereveice, null, false);
