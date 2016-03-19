@@ -55,9 +55,7 @@ public class CircleFragment extends Fragment {
     public CircleFragment() {
     }
 
-    public CircleFragment(KandoeBackendAPI service) {
-        this.service = service;
-    }
+
 
     public static CircleFragment newInstance(KandoeBackendAPI service, Session session,SubTheme subTheme) {
         CircleFragment fragment = new CircleFragment();

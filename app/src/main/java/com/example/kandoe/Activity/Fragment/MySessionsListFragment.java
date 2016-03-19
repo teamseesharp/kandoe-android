@@ -97,9 +97,6 @@ public class MySessionsListFragment extends Fragment {
             public void onResponse(Call<List<Organisation>> call, Response<List<Organisation>> response) {
                 ArrayList<Organisation> organisationsTemp = (ArrayList<Organisation>) response.body();
 
-                final ArrayList<Session> toDeleteSessions = new ArrayList<Session>();
-                ArrayList<Organisation> toDeleteOrganisations = new ArrayList<Organisation>();
-
                 try {
                     for (final Organisation org : organisationsTemp) {
                         Collections.sort(org.getSessions(), new Comparator<Session>() {
@@ -129,9 +126,7 @@ public class MySessionsListFragment extends Fragment {
                                             }
                                         }
                                     }
-
                                     org.setSessions(validSessions);
-
                                 }
 
                                 @Override
@@ -154,7 +149,6 @@ public class MySessionsListFragment extends Fragment {
             @Override
             public void onFailure(Call<List<Organisation>> call, Throwable t) {
                 System.out.println(t.toString());
-                Toast.makeText(getActivity(), "FAIL ORGGGGGGGGG", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -177,7 +171,6 @@ public class MySessionsListFragment extends Fragment {
             @Override
             public void onFailure(Call<List<SubTheme>> call, Throwable t) {
                 System.out.println(t.toString());
-                Toast.makeText(getActivity(), "FAIL SUBHTMA", Toast.LENGTH_LONG).show();
             }
         });
     }

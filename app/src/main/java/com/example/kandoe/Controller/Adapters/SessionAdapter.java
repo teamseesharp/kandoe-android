@@ -63,6 +63,10 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         TextView subtheme = (TextView) convertView.findViewById(R.id.txtSubthemeName);
         TextView themedescp = (TextView) convertView.findViewById(R.id.txtDescription);
 
+
+
+
+
         Theme currentTheme = null;
         SubTheme currentSubtheme = null;
         ArrayList<Theme> themes = groups.get(groupPosition).getThemes();
@@ -88,7 +92,11 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         }
 
         boolean notYetstarted = checkStartDate(child);
+        if (child.isFinished()) {
+            themetag.setBackgroundResource(R.drawable.redtag);
+        }
         if (notYetstarted) {
+            themetag.setBackgroundResource(R.drawable.orangetag);
             convertView.setAlpha((float) 0.5);
             convertView.setBackgroundColor(Color.LTGRAY);
             convertView.setOnClickListener(new View.OnClickListener() {

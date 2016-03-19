@@ -9,18 +9,16 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.kandoe.Controller.Adapters.ChatAdapter;
-import com.example.kandoe.Controller.Adapters.MessageAdapter;
 import com.example.kandoe.Controller.ChatController;
-import com.example.kandoe.Model.ChatMessage;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,14 +80,18 @@ public class ChatFragment extends Fragment {
         btnSend = (ImageButton) view.findViewById(R.id.btnSend);
         txtMessage = (EditText) view.findViewById(R.id.txtMsg);
 
-        if(mIsReview){
+
+        if(mSession.isFinished()){
             btnSend.setVisibility(View.INVISIBLE);
             txtMessage.setVisibility(View.INVISIBLE);
+
+            TextView divider = (TextView) view.findViewById(R.id.divider);
+            divider.setVisibility(View.INVISIBLE);
         }
 
-         listView = (ListView) view.findViewById(R.id.lvMessages);
+        listView = (ListView) view.findViewById(R.id.lvMessages);
 
-         chatAdapter = new ChatAdapter(getContext(),android.R.layout.simple_list_item_1, chatController.getChatMessages(),mUserAccount);
+        chatAdapter = new ChatAdapter(getContext(),android.R.layout.simple_list_item_1, chatController.getChatMessages(),mUserAccount);
         chatController.initAdapter(chatAdapter);
         listView.setAdapter(chatAdapter);
 
@@ -100,10 +102,8 @@ public class ChatFragment extends Fragment {
             public void onClick(View v) {
                 String messageContent = txtMessage.getText().toString();
                 if (messageContent.length() > 3) chatController.sendMessage(txtMessage);
-
             }
         });
-
 
         return view;
     }
