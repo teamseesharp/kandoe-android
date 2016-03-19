@@ -12,17 +12,6 @@ public class Organisation {
     private ArrayList<Session> Sessions;
     private ArrayList<Theme> Themes;
 
-    public Organisation() {
-    }
-
-    public Organisation(int id, int organiserId, String name, ArrayList<Session> sessions, ArrayList<Theme> themes) {
-        Id = id;
-        OrganiserId = organiserId;
-        Name = name;
-        Sessions = sessions;
-        Themes = themes;
-    }
-
     public String getName() {
         return Name;
     }
@@ -62,6 +51,4 @@ public class Organisation {
     public void setOrganiserId(int organiserId) {
         OrganiserId = organiserId;
     }
-
-
 }

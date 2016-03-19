@@ -11,36 +11,6 @@ public class ChatMessage {
 
     public ChatMessage() {}
 
-    public ChatMessage(int id, int messengerId, int sessionId, String text, String timestamp) {
-        Id = id;
-        MessengerId = messengerId;
-        SessionId = sessionId;
-        Text = text;
-        this.Timestamp = timestamp;
-    }
-
-    public ChatMessage(int id, int messengerId, int sessionId, int snapshotId, String text, String timestamp) {
-        Id = id;
-        MessengerId = messengerId;
-        SessionId = sessionId;
-        SnapshotId = snapshotId;
-        Text = text;
-        Timestamp = timestamp;
-    }
-
-    public ChatMessage(int messengerId, int sessionId, String text) {
-        MessengerId = messengerId;
-        SessionId = sessionId;
-        Text = text;
-    }
-
-    public ChatMessage(int id,int messengerId, int sessionId, String text) {
-        Id = id;
-        MessengerId = messengerId;
-        SessionId = sessionId;
-        Text = text;
-    }
-
     public int getId() {
         return Id;
     }
