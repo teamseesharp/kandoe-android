@@ -1,7 +1,6 @@
 package com.example.kandoe.Activity.Fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import com.example.kandoe.Controller.Adapters.SessionAdapter;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.SubTheme;
-import com.example.kandoe.Model.Theme;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
@@ -65,78 +63,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
 
         ExpandableListView expandableListView = (ExpandableListView) view.findViewById(R.id.explv);
         expandableListView.setAdapter(adapter);
-
-
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(final ExpandableListView parent, View v, int groupPosition, final int childPosition, long id) {
-                final Organisation organisation = organisations.get(groupPosition);
-                final Session session = organisation.getSessions().get(childPosition);
-                final boolean[] firstTime = {true};
-
-                Call<Session> sessionCall = service.getVerboseSessionById(session.getId());
-                sessionCall.enqueue(new Callback<Session>() {
-                    @Override
-                    public void onResponse(Call<Session> call, Response<Session> response) {
-                        if (response.isSuccess()) {
-                            sessionVerbose = response.body();
-                            Log.d(TAG, "Verbose succes");
-
-                            ArrayList<UserAccount> participants = sessionVerbose.getParticipants();
-                            if (!participants.isEmpty()) {
-                                for (UserAccount u : participants) {
-                                    if (u.getId() == userAccount.getId()) {
-                                        firstTime[0] = false;
-                                    }
-                                }
-                            }
-
-                            SubTheme currentsubtheme = null;
-                            Theme currenttheme = null;
-
-                            for (SubTheme subtheme : subThemes) {
-                                if (subtheme.getId() == sessionVerbose.getSubThemeId()) {
-                                    currentsubtheme = subtheme;
-                                }
-                            }
-
-                            for (Theme theme : organisation.getThemes()) {
-
-                                if (theme.getId() == (currentsubtheme != null ? currentsubtheme.getThemaId() : 0)) {
-                                    currenttheme = theme;
-                                }
-                            }
-
-                            android.support.v4.app.Fragment fragment;
-
-                            if (firstTime[0]) {
-                                fragment = SetupFragment.newInstance(service, sessionVerbose, currenttheme, currentsubtheme);
-
-                            } else {
-                                fragment = CircleFragment.newInstance(service, sessionVerbose, currentsubtheme);
-                                FragmentManager fragmentManager = getFragmentManager();
-                                fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).commit();
-                            }
-
-
-                            FragmentManager fragmentManager = getFragmentManager();
-                            fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).addToBackStack(TAG).commit();
-                            System.out.println(response.code());
-
-                        } else {
-                            Toast.makeText(getActivity(), "Verbose fail", Toast.LENGTH_LONG).show();
-                            Log.d(TAG, "Session verbose fail");
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Session> call, Throwable t) {
-                        Log.d(TAG, "Session verbose onfailure");
-                    }
-                });
-                return true;
-            }
-        });
         return view;
     }
 

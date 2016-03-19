@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.kandoe.Model.Card;
+import com.example.kandoe.Model.Session;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.DrawableGraphics.BulletColor;
 
@@ -27,19 +28,18 @@ public class CardAdapter extends ArrayAdapter {
     private ArrayList<Card> data;
     private ArrayList<CheckBox> checks;
     private String chosenCardToUpvote;
+    private Session mSession;
 
-    private boolean setup, mIsReview;
+    private boolean setup;
 
-    public CardAdapter(Context context, boolean setup, boolean mIsReview, ArrayList<Card> data) {
+    public CardAdapter(Context context, boolean setup, ArrayList<Card> data, Session session) {
         super(context, R.layout.card, data);
         this.context = context;
         this.layoutResourceId = R.layout.card;
         this.data = data;
         this.checks = new ArrayList<>();
         this.setup = setup;
-        this.mIsReview = mIsReview;
-
-
+        this.mSession = session;
         sortCards();
     }
 
@@ -133,7 +133,7 @@ public class CardAdapter extends ArrayAdapter {
             view.setBackgroundResource(R.drawable.listborderitem);
         }
 
-        if (mIsReview){
+        if (mSession.isFinished()){
             holder.upvote.setVisibility(View.INVISIBLE);
         }
     }

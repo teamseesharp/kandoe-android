@@ -11,13 +11,8 @@ import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.Utilities.API.ChatPoller;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,7 +48,6 @@ public class ChatController {
     public void initAdapter(ChatAdapter chatAdapter) {
         this.chatAdapter = chatAdapter;
         chatAdapter.setParticpants(mSession.getParticipants());
-
     }
 
     public void getMessages() {
@@ -100,10 +94,8 @@ public class ChatController {
                     getMessages();
                     System.out.println("MSG GELUKT!!");
                     setEdittextEmpty(content);
-
                 } else {
                     System.out.println("chatmsg onresp FAIL... CODE: " + response.code());
-
                 }
             }
 
@@ -115,7 +107,6 @@ public class ChatController {
         });
     }
 
-
     //region Getters & Setters
     private void setEdittextEmpty(EditText edittext) {
         edittext.setText("");
@@ -124,8 +115,6 @@ public class ChatController {
     public ArrayList<ChatMessage> getChatMessages() {
         return chatMessages;
     }
-
-
 
     public Session getmSession() {
         return mSession;

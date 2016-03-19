@@ -50,8 +50,6 @@ public class CircleFragment extends Fragment {
     private TextView txtCurrentPlayer;
     private Button voteUp;
 
-    private boolean mIsReview;
-
     public CircleFragment() {
     }
 
@@ -62,7 +60,6 @@ public class CircleFragment extends Fragment {
         args.putSerializable(EXTRA_SESSION, (Serializable) session);
         args.putSerializable(EXTRA_SUBTHEME, (Serializable) subTheme);
         fragment.setArguments(args);
-
         return fragment;
     }
 
@@ -89,9 +86,7 @@ public class CircleFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 System.out.println("Action Clicked");
 
-                mIsReview = false;
-
-                Fragment fragment = ChatFragment.newInstance(service, controller.getSession(), controller.getUserAccount(),mIsReview);
+                Fragment fragment = ChatFragment.newInstance(service, controller.getSession(), controller.getUserAccount());
                 android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).addToBackStack(null).commit();
 
@@ -127,7 +122,7 @@ public class CircleFragment extends Fragment {
         panel.setController(controller);
         controller.setPanel(panel);
 
-        CardAdapter cardAdapter = new CardAdapter(getContext(), false, mIsReview, controller.getCards());
+        CardAdapter cardAdapter = new CardAdapter(getContext(), false, controller.getCards(),session);
         controller.setAdapter(cardAdapter);
         listView.setAdapter(cardAdapter);
 

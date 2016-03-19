@@ -38,11 +38,13 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
     private ArrayList<Organisation> organisations;
     private ArrayList<SubTheme> subThemes;
     private boolean isSessionListFragment;
+    private boolean mIsReview;
 
     public FinishedSessionListFragment(KandoeBackendAPI service,UserAccount userAccount) {
         this.service = service;
         this.account = userAccount;
         isSessionListFragment = false;
+        mIsReview = true;
     }
 
     @Override

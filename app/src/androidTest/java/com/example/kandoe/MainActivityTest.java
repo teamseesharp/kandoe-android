@@ -1,52 +1,33 @@
 package com.example.kandoe;
 
-import android.content.Intent;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.PerformException;
-import android.support.test.espresso.matcher.BoundedMatcher;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
 
-import com.auth0.core.Token;
-import com.auth0.core.UserProfile;
 import com.example.kandoe.Activity.MainActivity;
-import com.example.kandoe.Controller.Adapters.SessionAdapter;
-import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
 
 import junit.framework.AssertionFailedError;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkNotNull;
-import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static junit.framework.Assert.fail;
 import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.AllOf.allOf;
@@ -254,7 +235,6 @@ public class MainActivityTest {
 
                 Log.d(TAG, "testSessions: " + e.getViewMatcherDescription());
             }
-
 
             try {
                 Thread.sleep(2000);

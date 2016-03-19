@@ -18,17 +18,8 @@ import com.example.kandoe.R;
 import com.example.kandoe.Utilities.Utilities;
 
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-import retrofit2.Call;
 
 /**
  * Created by Thomas on 2016-03-01.
@@ -110,24 +101,22 @@ public class SessionAdapter extends BaseExpandableListAdapter {
             sessiondescp.setText(child.getDescription());
         }
 
-
-
-
         boolean notYetstarted = checkStartDate(child);
-        if (notYetstarted) {
-            themetag.setBackgroundResource(R.drawable.orangetag);
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    message = "Dju! Deze sessie moet nog beginnen. We zien je graag terug op " + Utilities.dateFormatter(child.getStart()) + ".\n" + "Tot dan!";
-                    showAlertDialog(TITLE, message);
-                }
-            });
+            if (notYetstarted) {
+                themetag.setBackgroundResource(R.drawable.orangetag);
+                if(!mIsSessionListFragment) {
+                convertView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        message = "Dju! Deze sessie moet nog beginnen. We zien je graag terug op " + Utilities.dateFormatter(child.getStart()) + ".\n" + "Tot dan!";
+                        showAlertDialog(TITLE, message);
+                    }
+                });
+            }
         } else themetag.setBackgroundResource(R.drawable.greentag);
 
         if (child.isFinished()) {
             themetag.setBackgroundResource(R.drawable.redtag);
-
         }
 
         if (child.getParticipants().size() >= child.getMaxParticipants()) {
@@ -138,22 +127,6 @@ public class SessionAdapter extends BaseExpandableListAdapter {
                     showAlertDialog(TITLE, message);
                 }
             });
-        }
-
-        //TODO: IDEM HIER --> OF ALLES KUNNEN DEELNEMEN OF GEEN ENKELE
-        if (mIsSessionListFragment) {
-            for (UserAccount invitee : child.getInvitees()) {
-                if (invitee.getId() != account.getId()) {
-                    convertView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            message = "Je bent niet uitgenodigd voor deze sessie en kan dus hier niet aan deelnemen";
-                            showAlertDialog(TITLE, message);
-                        }
-                    });
-                }
-            }
         }
 
         return convertView;

@@ -35,8 +35,6 @@ public class ChatFragment extends Fragment {
     private ChatController chatController;
     private EditText txtMessage;
     private ImageButton btnSend;
-
-    private boolean mIsReview;
     private ListView listView;
     private ChatAdapter chatAdapter;
 
@@ -44,15 +42,15 @@ public class ChatFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ChatFragment newInstance(KandoeBackendAPI param1, Session param2, UserAccount userAccount, boolean isReview) {
+    public static ChatFragment newInstance(KandoeBackendAPI param1, Session param2, UserAccount userAccount) {
         ChatFragment fragment = new ChatFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM1, (Serializable) param1);
         args.putSerializable(ARG_PARAM2, param2);
         args.putSerializable(ARG_PARAM3, userAccount);
-        args.putSerializable(ARG_PARAM4, isReview);
         fragment.setArguments(args);
         return fragment;
+
     }
 
     @Override
@@ -62,7 +60,6 @@ public class ChatFragment extends Fragment {
             mService = (KandoeBackendAPI) getArguments().getSerializable(ARG_PARAM1);
             mSession = (Session) getArguments().getSerializable(ARG_PARAM2);
             mUserAccount = (UserAccount) getArguments().getSerializable(ARG_PARAM3);
-            mIsReview = getArguments().getBoolean(ARG_PARAM4);
         }
         chatController = new ChatController(mSession, mService, mUserAccount,this);
     }
@@ -73,7 +70,6 @@ public class ChatFragment extends Fragment {
 
         btnSend = (ImageButton) view.findViewById(R.id.btnSend);
         txtMessage = (EditText) view.findViewById(R.id.txtMsg);
-
 
         if(mSession.isFinished()){
             btnSend.setVisibility(View.INVISIBLE);

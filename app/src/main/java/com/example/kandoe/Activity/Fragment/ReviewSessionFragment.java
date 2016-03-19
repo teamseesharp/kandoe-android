@@ -102,7 +102,7 @@ public class ReviewSessionFragment  extends Fragment{
         panel.setController(controller);
         controller.setPanel(panel);
 
-        CardAdapter cardAdapter = new CardAdapter(getContext(), false, true, controller.getCards());
+        CardAdapter cardAdapter = new CardAdapter(getContext(), false, controller.getCards(),session);
         controller.setAdapter(cardAdapter);
         listView.setAdapter(cardAdapter);
 
@@ -127,7 +127,7 @@ public class ReviewSessionFragment  extends Fragment{
 
                 System.out.println("Action Clicked");
                 isReview = true;
-                Fragment fragment = ChatFragment.newInstance(service, session, controller.getUserAccount(),isReview);
+                Fragment fragment = ChatFragment.newInstance(service, session, controller.getUserAccount());
                 android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).addToBackStack(null).commit();
 

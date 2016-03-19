@@ -83,7 +83,6 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
 
                         if (canvas != null)canvas.drawBitmap(mBitmap, 0, 0, null);
 
-
                         mSurfaceHolder.unlockCanvasAndPost(canvas);
 
                     } finally {
