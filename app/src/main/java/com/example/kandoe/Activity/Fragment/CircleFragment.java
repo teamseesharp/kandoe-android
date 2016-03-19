@@ -96,7 +96,7 @@ public class CircleFragment extends Fragment {
 
                 mIsReview = false;
 
-                Fragment fragment = ChatFragment.newInstance(service, session, controller.getUserAccount(),mIsReview);
+                Fragment fragment = ChatFragment.newInstance(service, controller.getSession(), controller.getUserAccount(),mIsReview);
                 android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragment_main, fragment).addToBackStack(null).commit();
 

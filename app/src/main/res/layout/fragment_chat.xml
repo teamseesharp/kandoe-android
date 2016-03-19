@@ -14,7 +14,9 @@
         android:layout_above="@+id/divider"
         android:divider="@android:color/transparent"
         android:clickable="false"
-        android:background="@android:color/transparent" />
+        android:background="@android:color/transparent"
+        android:paddingBottom="5dp"
+  />
 
     <TextView
         android:layout_width="fill_parent"

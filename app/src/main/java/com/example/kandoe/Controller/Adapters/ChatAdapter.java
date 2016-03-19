@@ -25,61 +25,79 @@ import retrofit2.Response;
  */
 public class ChatAdapter extends ArrayAdapter {
     private ArrayList<ChatMessage> chatMessages;
-    private KandoeBackendAPI mService;
-    private UserAccount mUserAccount;
-    private UserAccount currentUser;
-    private ViewHolder holder = null;
 
-    public ChatAdapter(Context context, int resource, ArrayList<ChatMessage> data,KandoeBackendAPI service, UserAccount userAccount) {
+
+    private UserAccount currentUser;
+
+    private ArrayList<UserAccount> particpants;
+
+    public ChatAdapter(Context context, int resource, ArrayList<ChatMessage> data, UserAccount userAccount) {
         super(context, resource, data);
         chatMessages = data;
-        mService = service;
         currentUser = userAccount;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
+        View v = null;
+
+        ViewHolder holder;
+
 
         ChatMessage message = chatMessages.get(position);
+        UserAccount sender = getMatchingAccount(message.getMessengerId());
 
-        if (view == null) {
-                 LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
-                 view = inflater.inflate(R.layout.messagereveice, parent, false);
-                 holder.date = (TextView) view.findViewById(R.id.txtChatDate);
-                 holder.message = (TextView) view.findViewById(R.id.txtMessage);
-                 holder.sender = (TextView) view.findViewById(R.id.txtChatName);
+        if (currentUser.getId() != sender.getId()) {
+
+            v = LayoutInflater.from(getContext()).inflate(R.layout.messagereveice, null, false);
+            holder = new ViewHolder();
+
+            holder.date = (TextView) v.findViewById(R.id.txtChatDate);
+            holder.message = (TextView) v.findViewById(R.id.txtMessage);
+            holder.sender = (TextView) v.findViewById(R.id.txtChatName);
+
+            v.setTag(holder);
+
+
+        } else {
+            v = LayoutInflater.from(getContext()).inflate(R.layout.messagesend, null, false);
 
             holder = new ViewHolder();
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
+
+
+            holder.date = (TextView) v.findViewById(R.id.txtChatDate);
+            holder.message = (TextView) v.findViewById(R.id.txtMessage);
+            holder.sender = (TextView) v.findViewById(R.id.txtChatName);
+
+            v.setTag(holder);
+
+
         }
 
         holder.date.setText(Utilities.dateFormatterWithHour(message.getTimestamp()));
         holder.message.setText(message.getText());
+        holder.sender.setText(sender.getName());
 
-        //TODO DEES MOET HIER ANDERS PAKT DIE DAT NIET
-        Call<UserAccount> accountCall = mService.getUserById(message.getMessengerId());
-        accountCall.enqueue(new Callback<UserAccount>() {
-            @Override
-            public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
-                if (response.isSuccess()) {
-                    mUserAccount = response.body();
-                    holder.sender.setText(mUserAccount.getName());
-                    System.out.println("GET USER SUCCES");
-                } else {
-                    System.out.println("GET USER ONREPS FAIL");
-                }
+
+
+        return v;
+    }
+
+    public void setParticpants(ArrayList<UserAccount> particpants) {
+        this.particpants = particpants;
+    }
+
+
+    private UserAccount getMatchingAccount(int id) {
+
+        for (UserAccount parti : particpants) {
+            if (parti.getId() == id) {
+                return parti;
             }
+        }
+        return null;
 
-            @Override
-            public void onFailure(Call<UserAccount> call, Throwable t) {
-                System.out.println("GET USER ONREPS FAIL");
-            }
-        });
 
-        return view;
     }
 
     static class ViewHolder {
@@ -98,7 +116,7 @@ public class ChatAdapter extends ArrayAdapter {
     }
 
     @Override
-    public void notifyDataSetChanged() {
-        super.notifyDataSetChanged();
+    public int getCount() {
+        return chatMessages.size();
     }
 }

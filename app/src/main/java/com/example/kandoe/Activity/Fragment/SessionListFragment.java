@@ -75,6 +75,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                                 for (UserAccount u : participants) {
                                     if (u.getId() == (userAccount.getId())) {
                                         firstTime[0] = false;
+                                        break;
                                     }
                                 }
                             }

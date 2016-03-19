@@ -180,8 +180,16 @@ public class MainActivity extends ActionBarActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
-            Intent intent = new Intent(getApplicationContext(),StartActivity.class);
-            startActivity(intent);
+           /* Intent intent = new Intent(getApplicationContext(),StartActivity.class);
+            startActivity(intent);*/
+
+
+            //restart app
+            Intent i = getBaseContext().getPackageManager()
+                    .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+            System.exit(0);
         }
 
         if( id == R.id.action_help){

@@ -36,8 +36,7 @@ public class ChatFragment extends Fragment {
 
     private KandoeBackendAPI mService;
     private Session mSession;
-    private ArrayList<ChatMessage> chatMessages;
-    private MessageAdapter messageAdapter;
+
     private UserAccount mUserAccount;
 
     private ChatController chatController;
@@ -46,6 +45,8 @@ public class ChatFragment extends Fragment {
     private ImageButton btnSend;
 
     private boolean mIsReview;
+    private ListView listView;
+    private ChatAdapter chatAdapter;
 
     public ChatFragment() {
         // Required empty public constructor
@@ -71,7 +72,7 @@ public class ChatFragment extends Fragment {
             mUserAccount = (UserAccount) getArguments().getSerializable(ARG_PARAM3);
             mIsReview = getArguments().getBoolean(ARG_PARAM4);
         }
-        chatController = new ChatController(mSession, mService, mUserAccount);
+        chatController = new ChatController(mSession, mService, mUserAccount,this);
     }
 
     @Override
@@ -86,9 +87,9 @@ public class ChatFragment extends Fragment {
             txtMessage.setVisibility(View.INVISIBLE);
         }
 
-        ListView listView = (ListView) view.findViewById(R.id.lvMessages);
+         listView = (ListView) view.findViewById(R.id.lvMessages);
 
-        ChatAdapter chatAdapter = new ChatAdapter(getContext(),android.R.layout.simple_list_item_1, chatController.getChatMessages(),mService,mUserAccount);
+         chatAdapter = new ChatAdapter(getContext(),android.R.layout.simple_list_item_1, chatController.getChatMessages(),mUserAccount);
         chatController.initAdapter(chatAdapter);
         listView.setAdapter(chatAdapter);
 
@@ -98,14 +99,24 @@ public class ChatFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String messageContent = txtMessage.getText().toString();
-                if (messageContent.length() > 3) chatController.sendMessage(messageContent);
-                if (chatController.isSucces()) {
-                    txtMessage.setText("");
-                }
+                if (messageContent.length() > 3) chatController.sendMessage(txtMessage);
+
             }
         });
+
 
         return view;
     }
 
+
+
+    public void scrollMyListViewToBottom() {
+        listView.post(new Runnable() {
+            @Override
+            public void run() {
+                // Select the last row so it will scroll into view...
+                listView.smoothScrollToPosition(chatAdapter.getCount() - 1);
+            }
+        });
+    }
 }
