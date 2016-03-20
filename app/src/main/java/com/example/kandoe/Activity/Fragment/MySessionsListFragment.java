@@ -29,18 +29,21 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Michelle on 18-3-2016.
+ * Show all sessions where user is participant or user is invited for
  */
 public class MySessionsListFragment extends Fragment {
     private final String TAG = "MySessionListFragment";
 
     private KandoeBackendAPI service;
     private SessionAdapter adapter;
+
+    private UserAccount account;
+    private Session sessionVerbose;
+
     private ArrayList<Organisation> organisations;
     private ArrayList<SubTheme> subThemes;
-    private UserAccount account;
+
     private boolean isSessionlistFragment;
-    private Session sessionVerbose;
 
     public MySessionsListFragment(KandoeBackendAPI service, UserAccount userAccount) {
         this.service = service;
@@ -77,7 +80,6 @@ public class MySessionsListFragment extends Fragment {
                     public void onResponse(Call<Session> call, Response<Session> response) {
                         if (response.isSuccess()) {
                             sessionVerbose = response.body();
-                            Log.d(TAG, "Verbose succes");
 
                             ArrayList<UserAccount> participants = sessionVerbose.getParticipants();
                             if (!participants.isEmpty()) {
@@ -136,7 +138,6 @@ public class MySessionsListFragment extends Fragment {
         return view;
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -148,6 +149,7 @@ public class MySessionsListFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Organisation>> call, Response<List<Organisation>> response) {
                 ArrayList<Organisation> organisationsTemp = (ArrayList<Organisation>) response.body();
+                ArrayList<Organisation> toDeleteOrganisations = new ArrayList<Organisation>();
 
                 try {
                     for (final Organisation org : organisationsTemp) {
@@ -169,7 +171,6 @@ public class MySessionsListFragment extends Fragment {
                                 public void onResponse(Call<Session> call, Response<Session> response) {
                                     Session sessionVerbose = response.body();
                                     ArrayList<UserAccount> invitees;
-                                    ArrayList<Session> toDeleteSessions = new ArrayList<Session>();
 
                                     if (sessionVerbose != null) {
                                         invitees = sessionVerbose.getInvitees();
@@ -178,18 +179,21 @@ public class MySessionsListFragment extends Fragment {
                                                   validSessions.add(s);
                                               }
                                           }
-                                         org.setSessions(validSessions);
-                                        //org.getSessions().removeAll(toDeleteSessions);
+                                          org.setSessions(validSessions);
                                         }
                                       }
 
                                 @Override
                                 public void onFailure(Call<Session> call, Throwable t) {
-
+                                    Log.d(TAG, "Sessionverbose onFailure ");
                                 }
                             });
                         }
+                        if (org.getSessions().isEmpty()) {
+                            toDeleteOrganisations.add(org);
+                        }
                     }
+                    organisationsTemp.removeAll(toDeleteOrganisations);
 
                     organisations.addAll(organisationsTemp);
                     adapter.notifyDataSetChanged();

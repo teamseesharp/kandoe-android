@@ -34,7 +34,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+/**
+ * In this fragment users can play kandoe
+ */
 public class CircleFragment extends Fragment {
     private static final String EXTRA_SERVICE = "Service";
     private static final String EXTRA_SESSION = "Session";
@@ -42,16 +44,15 @@ public class CircleFragment extends Fragment {
 
     private CircleSessionController controller;
     private OnFragmentInteractionListener mListener;
+
     private KandoeBackendAPI service;
     private Session session;
     private SubTheme subtheme;
-    private MainActivity mainActivity;
     private UserAccount account;
-    private TextView txtCurrentPlayer;
-    private Button voteUp;
 
-    public CircleFragment() {
-    }
+    private MainActivity mainActivity;
+
+    public CircleFragment() {}
 
     public static CircleFragment newInstance(KandoeBackendAPI service, Session session,SubTheme subTheme) {
         CircleFragment fragment = new CircleFragment();
@@ -84,7 +85,6 @@ public class CircleFragment extends Fragment {
         menu.findItem(R.id.action_chat).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                System.out.println("Action Clicked");
 
                 Fragment fragment = ChatFragment.newInstance(service, controller.getSession(), controller.getUserAccount());
                 android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
@@ -101,16 +101,16 @@ public class CircleFragment extends Fragment {
         setHasOptionsMenu(true);
 
         if (mainActivity.getActionBar() != null) {
-            mainActivity.setmTitle(subtheme.getName());
+            mainActivity.setmTitle(session.getDescription());
             mainActivity.restoreActionBar();
         }
         if (mainActivity.getSupportActionBar() != null) {
-            mainActivity.setmTitle(subtheme.getName());
+            mainActivity.setmTitle(session.getDescription());
             mainActivity.restoreActionBar();
         }
 
-        txtCurrentPlayer = (TextView) view.findViewById(R.id.playersTurn);
-        voteUp = (Button) view.findViewById(R.id.votebutton);
+        TextView txtCurrentPlayer = (TextView) view.findViewById(R.id.playersTurn);
+        Button voteUp = (Button) view.findViewById(R.id.votebutton);
 
         SurfacePanel panel = (SurfacePanel) view.findViewById(R.id.view);
         ImageButton showPersons = (ImageButton) view.findViewById(R.id.button_players);
@@ -137,18 +137,10 @@ public class CircleFragment extends Fragment {
         voteUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("KLIK");
                 controller.play();
             }
         });
-
         return view;
-    }
-
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
@@ -169,19 +161,15 @@ public class CircleFragment extends Fragment {
     }
 
     public void showPopup(View anchorView) {
-
         final View popupView = getActivity().getLayoutInflater().inflate(R.layout.popup, null);
-
-        final PopupWindow popupWindow = new PopupWindow(popupView,
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         TextView tv = (TextView) popupView.findViewById(R.id.popup_tv);
         tv.setText(participantsOnNewLine());
 
-        // If the PopupWindow should be focusable
         popupWindow.setFocusable(true);
 
-        // If you need the PopupWindow to dismiss when touched outside
+        //to dismiss popup window when touched outside
         popupWindow.setBackgroundDrawable(new ColorDrawable());
 
         int location[] = new int[2];
@@ -189,9 +177,8 @@ public class CircleFragment extends Fragment {
         // Get the View's(the one that was clicked in the Fragment) location
         anchorView.getLocationOnScreen(location);
 
-        // Using location, the PopupWindow will be displayed right under anchorView
-        popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY,
-                location[0], location[1] + anchorView.getHeight());
+        // PopupWindow will be displayed right under anchorView
+        popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, location[0], location[1] + anchorView.getHeight());
     }
 
     public String participantsOnNewLine() {
@@ -200,20 +187,6 @@ public class CircleFragment extends Fragment {
             names.append(s.getName()).append('\n');
         }
         return names.toString();
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
     }
 
     private void getUserAccountInfo() {
@@ -232,5 +205,11 @@ public class CircleFragment extends Fragment {
         });
     }
 
-
+    /**
+     * This interface must be implemented by activities that contain this fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that activity.
+     */
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+    }
 }

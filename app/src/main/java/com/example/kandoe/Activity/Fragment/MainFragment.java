@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.example.kandoe.R;
 
 /**
- * Created by Michelle on 16-2-2016.
+ * Creates helpfragment
  */
 public class MainFragment extends Fragment {
 

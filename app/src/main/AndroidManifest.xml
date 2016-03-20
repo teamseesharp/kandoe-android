@@ -43,6 +43,10 @@
             android:label="@string/app_name" />
 
         <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <meta-data
             android:name="com.auth0.lock.client-id"
             android:value="oFgQBmfslHqeahYk2ivNNAzkgcPgwTa8" />
         <meta-data
@@ -50,17 +54,6 @@
             android:value="kandoe.eu.auth0.com" />
         <!-- Auth0 Lock End -->
 
-        <!-- Facebook Native -->
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:label="@string/app_name" />
-
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-        <!-- Facebook Native End -->
 
 
         <activity

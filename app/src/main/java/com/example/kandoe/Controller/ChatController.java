@@ -27,12 +27,12 @@ public class ChatController {
     private Session mSession;
     private KandoeBackendAPI mService;
     private UserAccount mUserAccount;
-    private boolean firstTime = true;
     private ChatFragment fragment;
 
     private ChatAdapter chatAdapter;
     private ArrayList<ChatMessage> chatMessages;
 
+    private boolean firstTime = true;
 
     public ChatController(Session mSession, KandoeBackendAPI mService, UserAccount mUserAccount, ChatFragment chatFragment) {
         this.mSession = mSession;
@@ -68,7 +68,6 @@ public class ChatController {
                     fragment.scrollMyListViewToBottom();
                     firstTime=false;
                 }
-
             }
 
             @Override
@@ -76,8 +75,6 @@ public class ChatController {
                 Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
-
-
     }
 
     public void sendMessage(final EditText content) {

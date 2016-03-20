@@ -21,26 +21,24 @@ import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import java.io.Serializable;
 
 /**
- *
+ * Chat
  */
 public class ChatFragment extends Fragment {
     private static final String ARG_PARAM1 = "Service";
     private static final String ARG_PARAM2 = "Sessions";
     private static final String ARG_PARAM3 = "Profile";
-    private static final String ARG_PARAM4 = "isReview";
 
     private KandoeBackendAPI mService;
     private Session mSession;
     private UserAccount mUserAccount;
     private ChatController chatController;
+
     private EditText txtMessage;
     private ImageButton btnSend;
     private ListView listView;
     private ChatAdapter chatAdapter;
 
-    public ChatFragment() {
-        // Required empty public constructor
-    }
+    public ChatFragment() {}
 
     public static ChatFragment newInstance(KandoeBackendAPI param1, Session param2, UserAccount userAccount) {
         ChatFragment fragment = new ChatFragment();
@@ -50,7 +48,6 @@ public class ChatFragment extends Fragment {
         args.putSerializable(ARG_PARAM3, userAccount);
         fragment.setArguments(args);
         return fragment;
-
     }
 
     @Override
@@ -97,8 +94,6 @@ public class ChatFragment extends Fragment {
 
         return view;
     }
-
-
 
     public void scrollMyListViewToBottom() {
         listView.post(new Runnable() {

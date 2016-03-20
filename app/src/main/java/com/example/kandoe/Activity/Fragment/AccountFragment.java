@@ -147,7 +147,6 @@ public class AccountFragment extends Fragment {
                 }
             }
         });
-
         return view;
     }
 
@@ -157,7 +156,6 @@ public class AccountFragment extends Fragment {
         call.enqueue(new Callback<UserAccount>() {
             @Override
             public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
-
                 if (response.body() != null) {
                     userAccount = response.body();
                     fName.setText(userAccount.getName());

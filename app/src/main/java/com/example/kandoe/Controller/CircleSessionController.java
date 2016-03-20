@@ -55,7 +55,6 @@ public class CircleSessionController {
         cards = new ArrayList<>();
 
         getVerboseSession();
-        //chatController = new ChatController(session.getId());
     }
 
     public void play() {
@@ -70,7 +69,6 @@ public class CircleSessionController {
                     playCard(card);
 
                     card.setSessionLevel(currentlvl);
-
                 }else {
                     Toast.makeText(getContext(),"Deze kaart kan je niet meer upvoten, kies een ander :)",Toast.LENGTH_LONG).show();
                 }
@@ -195,11 +193,10 @@ public class CircleSessionController {
     public boolean amICurrentPlayer() {
         if (getCurrentPlayer().getId() == userAccount.getId()) {
             btnUpVote.setVisibility(View.VISIBLE);
-
             return true;
+
         } else {
             btnUpVote.setVisibility(View.INVISIBLE);
-
             return false;
         }
     }

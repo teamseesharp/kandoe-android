@@ -31,13 +31,13 @@ import retrofit2.Response;
  */
 public class SessionListFragment extends android.support.v4.app.Fragment {
     private final String TAG = "SessionListFragment";
-    KandoeBackendAPI service;
 
     private ArrayList<Organisation> organisations;
-    private SessionAdapter adapter;
     private ArrayList<SubTheme> subThemes;
+
+    private SessionAdapter adapter;
     private UserAccount userAccount;
-    private Session sessionVerbose;
+    private KandoeBackendAPI service;
 
     private boolean isSessionListFragment;
 
@@ -94,13 +94,13 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
         callList.enqueue(new Callback<List<Organisation>>() {
             @Override
             public void onResponse(Call<List<Organisation>> call, Response<List<Organisation>> response) {
-
                 ArrayList<Organisation> organisationsTemp = (ArrayList<Organisation>) response.body();
                 ArrayList<Session> toDelete = new ArrayList<Session>();
+                ArrayList<Organisation> toDeleteOrganisations = new ArrayList<Organisation>();
+
                 try {
                     for (Organisation org : organisationsTemp) {
-
-                        Collections.sort(org.getSessions(), new Comparator<Session>() {
+                         Collections.sort(org.getSessions(), new Comparator<Session>() {
                             @Override
                             public int compare(Session lhs, Session rhs) {
                                 if (lhs.getSubthemeId() == rhs.getSubthemeId()) return 0;
@@ -116,7 +116,12 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                             }
                         }
                         org.getSessions().removeAll(toDelete);
+
+                        if (org.getSessions().isEmpty()) {
+                            toDeleteOrganisations.add(org);
+                        }
                     }
+                    organisationsTemp.removeAll(toDeleteOrganisations);
 
                     organisations.addAll(organisationsTemp);
                     adapter.notifyDataSetChanged();

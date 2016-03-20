@@ -35,8 +35,10 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
     private KandoeBackendAPI service;
     private SessionAdapter adapter;
     private UserAccount account;
+
     private ArrayList<Organisation> organisations;
     private ArrayList<SubTheme> subThemes;
+
     private boolean isSessionListFragment;
     private boolean mIsReview;
 
