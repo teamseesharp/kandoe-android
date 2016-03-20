@@ -28,7 +28,7 @@ public class ChatAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v = null;
+        View v = convertView;
 
         ViewHolder holder;
 

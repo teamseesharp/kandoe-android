@@ -98,7 +98,7 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         }
 
         boolean notYetstarted = checkStartDate(child);
-            if (notYetstarted) {
+        if (notYetstarted) {
                 themetag.setBackgroundResource(R.drawable.orangetag);
                 if(!mIsSessionListFragment) {
                 convertView.setOnClickListener(new View.OnClickListener() {
