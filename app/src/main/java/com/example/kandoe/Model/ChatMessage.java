@@ -2,7 +2,6 @@ package com.example.kandoe.Model;
 
 public class ChatMessage {
     private int Id,MessengerId,SessionId;
-    private Integer SnapshotId;
     private String Text;
     private String Timestamp;
 
@@ -46,13 +45,5 @@ public class ChatMessage {
 
     public void setTimestamp(String timestamp) {
         this.Timestamp = timestamp;
-    }
-
-    public Integer getSnapshotId() {
-        return SnapshotId;
-    }
-
-    public void setSnapshotId(Integer snapshotId) {
-        SnapshotId = snapshotId;
     }
 }

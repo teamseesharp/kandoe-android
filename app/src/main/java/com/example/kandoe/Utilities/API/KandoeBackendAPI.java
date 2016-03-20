@@ -37,7 +37,7 @@ public interface KandoeBackendAPI {
 
     //Get position of a specified card in a specified session.
     @GET("api/cards/{id}/position/{sessionid}")
-    Call<Integer> getPositionInSession(@Path("id") int cardId, @Path("sessionid") int sessionId);
+    Call<Integer> getPositionInSession(@Path("id") int id, @Path("sessionid") int sessionId);
 
     @PATCH("api/sessions/{id}/join")
     Call<Void> addPlayerToSession(@Path("id") int id);

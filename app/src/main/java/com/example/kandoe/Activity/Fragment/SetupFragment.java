@@ -199,7 +199,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 if (response.isSuccess()) {
                     System.out.println("Add cards to session: SUCCES");
                 } else {
-                    Log.d(TAG, "add cards to session: NOT SUCCES. ERROR: " + response.errorBody());
+                    Log.d(TAG, "add cards to session: NOT SUCCES. ERROR: " + response.code());
                 }
             }
 
@@ -219,7 +219,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 if (response.isSuccess()) {
                     System.out.println("Toevoegen speler aan sessie: GELUKT!");
                 } else {
-                    Log.d(TAG, "addUserToSession: FAIL. ERROR: " + response.errorBody());
+                    Log.d(TAG, "addUserToSession: FAIL. ERRORcode: " + response.code());
                 }
             }
 
@@ -232,7 +232,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
     private void getCardData() {
         Call<List<Card>> callList = service.getSelectionCardsBySubthemeId(session.getSubThemeId());
-
         callList.enqueue(new Callback<List<Card>>() {
             @Override
             public void onResponse(Call<List<Card>> call, Response<List<Card>> response) {
@@ -262,8 +261,9 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 System.out.println(response);
                 if (response.isSuccess()) {
                     System.out.println("CAll createCard Succes");
+                    getCardData();
                 } else {
-                    Log.d(TAG, "createCard FAIL. Error: " + response.errorBody());
+                    Log.d(TAG, "createCard FAIL. Errorcode: " + response.code());
                 }
             }
 

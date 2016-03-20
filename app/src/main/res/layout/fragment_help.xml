@@ -12,6 +12,7 @@
         android:background="@color/primary"
         android:paddingBottom="5dp"
         android:paddingLeft="15dp"
+        android:paddingRight="5dp"
         android:paddingTop="7dp"
         android:text="@string/help_About_title"
         android:textColor="@color/white"
@@ -60,6 +61,7 @@
         android:layout_below="@+id/txtHelp_title"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
+        android:paddingRight="10dp"
         android:textSize="15dp"
         android:id="@+id/help_kandoe"/>
 </RelativeLayout>

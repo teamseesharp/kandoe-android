@@ -42,6 +42,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:text="@string/vote"
+            android:visibility="invisible"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="5dp"

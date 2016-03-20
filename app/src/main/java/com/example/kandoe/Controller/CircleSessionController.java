@@ -66,6 +66,10 @@ public class CircleSessionController {
                     playCard(card);
 
                     card.setSessionLevel(currentlvl);
+
+                    btnUpVote.setVisibility(View.INVISIBLE);
+                    updateCurrentPlayer();
+
                 }else {
                     Toast.makeText(getContext(),"Deze kaart kan je niet meer upvoten, kies een ander :)",Toast.LENGTH_LONG).show();
                 }
@@ -107,7 +111,7 @@ public class CircleSessionController {
                     System.out.println("Play card SUCCES");
 
                 } else {
-                    Log.d(TAG, "Play card FAIL. ERROR: " + response.errorBody());
+                    Log.d(TAG, "Play card FAIL. ERRORCode: " + response.code());
                 }
             }
 
