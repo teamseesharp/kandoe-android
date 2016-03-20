@@ -2,9 +2,6 @@ package com.example.kandoe.Model;
 
 import java.util.ArrayList;
 
-/**
- * Created by Michelle on 16-3-2016.
- */
 public class Snapshot {
     private int Id, SessionId;
     private ArrayList<UserAccount> Participants, Organisers;

@@ -17,9 +17,6 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-/**
- * Created by Thomas on 2016-02-16.
- */
 public interface KandoeBackendAPI {
 
     //SelectionCard

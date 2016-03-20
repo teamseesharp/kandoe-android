@@ -50,6 +50,16 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        organisations = new ArrayList<>();
+        subThemes = new ArrayList<>();
+        adapter = new SessionAdapter(getContext(), organisations, subThemes,account,isSessionListFragment);
+
+        getOrganisationsData();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_session_list, container, false);
 
@@ -80,20 +90,11 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        organisations = new ArrayList<>();
-        subThemes = new ArrayList<>();
-        adapter = new SessionAdapter(getContext(), organisations, subThemes,account,isSessionListFragment);
-
-        getOrganisationsData();
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
     }
 
+    //region calls
     public void getOrganisationsData() {
         Call<List<Organisation>> callList = service.getOrganisationsVerbose();
         callList.enqueue(new Callback<List<Organisation>>() {
@@ -169,4 +170,5 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
             }
         });
     }
+    //endregion
 }

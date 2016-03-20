@@ -22,6 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//Controller for circlesession
 public class CircleSessionController {
     private final String TAG = "CircleSessionController";
 
@@ -190,7 +191,6 @@ public class CircleSessionController {
         if (getCurrentPlayer().getId() == userAccount.getId()) {
             btnUpVote.setVisibility(View.VISIBLE);
             return true;
-
         } else {
             btnUpVote.setVisibility(View.INVISIBLE);
             return false;

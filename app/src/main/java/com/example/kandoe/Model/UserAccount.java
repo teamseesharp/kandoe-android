@@ -3,9 +3,6 @@ package com.example.kandoe.Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by Michelle on 10-2-2016.
- */
 public class UserAccount implements Serializable {
     private int Id;
     private String Email, Name,Picture, Surname,Secret;

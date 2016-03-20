@@ -95,7 +95,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.setup, container, false);
+        View view = inflater.inflate(R.layout.fragment_setup, container, false);
 
         if (mainActivity.getActionBar() != null) {
             mainActivity.getActionBar().setTitle(subtheme.getName());

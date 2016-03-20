@@ -3,11 +3,7 @@ package com.example.kandoe.Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by Michelle on 20-2-2016.
- */
 public class Session implements Serializable{
-
     private int Id, MaxCardsToChoose, MaxParticipants, Modus, OrganisationId, Round, SubthemeId,CurrentPlayerIndex;
     private boolean CardCreationAllowed, IsFinished;
     private String End,Start,Description;

@@ -36,13 +36,12 @@ import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
 import java.util.HashMap;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, CircleFragment.OnFragmentInteractionListener {
+    private static final String TAG = "Mainactivity";
 
     // Fragment managing the behaviors, interactions and presentation of the navigation drawer.
     private NavigationDrawerFragment mNavigationDrawerFragment;
@@ -298,15 +297,15 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             @Override
             public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
                 if (response.isSuccess()) {
-                    Crouton.makeText(MainActivity.this, "post SUCCES", Style.CONFIRM).show();
+                    System.out.println("post user succes ");
                 } else {
-                    Crouton.makeText(MainActivity.this, "post onresponse FAIL", Style.CONFIRM).show();
+                    System.out.println("post user onreponse failed. Code: "+ response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<UserAccount> call, Throwable t) {
-                Crouton.makeText(MainActivity.this, "FAIL", Style.CONFIRM).show();
+                Log.d(TAG,"post user onfailre " + t.getMessage());
             }
         });
     }

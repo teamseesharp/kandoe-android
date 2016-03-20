@@ -2,9 +2,6 @@ package com.example.kandoe.Model;
 
 import java.util.ArrayList;
 
-/**
- * Created by Michelle on 22-2-2016.
- */
 public class Organisation {
     private int Id, OrganiserId;
     private String Name;

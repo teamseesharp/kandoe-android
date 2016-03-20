@@ -1,4 +1,4 @@
-package com.example.kandoe.Utilities.API;
+package com.example.kandoe.Utilities;
 
 import android.util.Log;
 
@@ -16,9 +16,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Thomas on 19-3-2016.
+ * Retrieves the chat messages
  */
 public class ChatPoller {
+    //retrieve every 2 seconds
     private final int REFRESH_RATE = 2;
     private ScheduledExecutorService scheduler;
 
@@ -41,7 +42,6 @@ public class ChatPoller {
                             chatController.getChatMessages().clear();
                             chatController.getChatMessages().addAll(response.body());
                             chatController.getChatAdapter().notifyDataSetChanged();
-
                         } else {
                             System.out.println("POLL MSG NOT SUCCESFULL !!");
                         }
@@ -61,6 +61,7 @@ public class ChatPoller {
             public void run() {
                 pollerHandle.cancel(true);
             }
+            //retrieve messages for 1 hour
         }, 60 * 60, TimeUnit.SECONDS);
     }
 }

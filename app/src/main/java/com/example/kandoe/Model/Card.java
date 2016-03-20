@@ -1,9 +1,5 @@
 package com.example.kandoe.Model;
 
-/**
- * Created by Michelle on 22-2-2016.
- */
-
 public class Card {
     private int Id,SessionId,SessionLevel,SnapshotId,SubthemeId,ThemeId;
     private String Text,Image;
@@ -31,7 +27,6 @@ public class Card {
     public void setImage(String image) {
         this.Image = image;
     }
-
 
     public int getSessionId() {
         return SessionId;

@@ -8,7 +8,7 @@ import com.example.kandoe.Controller.Adapters.ChatAdapter;
 import com.example.kandoe.Model.ChatMessage;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.UserAccount;
-import com.example.kandoe.Utilities.API.ChatPoller;
+import com.example.kandoe.Utilities.ChatPoller;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//Controller for chat
 public class ChatController {
     private static final String TAG = "ChatController";
 

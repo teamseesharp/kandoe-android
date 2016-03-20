@@ -3,9 +3,6 @@ package com.example.kandoe.Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by Michelle on 22-2-2016.
- */
 public class SubTheme implements Serializable {
     private int Id,OrganiserId,ThemeId;
     private String Name;
@@ -14,15 +11,6 @@ public class SubTheme implements Serializable {
     private ArrayList<Card> SelectionCards;
 
     public SubTheme() {
-    }
-
-    public SubTheme(int id, int organiserId, int themeId, String name, ArrayList<Session> sessions, ArrayList<Card> cards) {
-        Id = id;
-        OrganiserId = organiserId;
-        ThemeId = themeId;
-        Name = name;
-        Sessions = sessions;
-        SelectionCards = cards;
     }
 
     public int getId() {

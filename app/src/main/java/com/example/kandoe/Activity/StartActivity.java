@@ -26,6 +26,7 @@ public class StartActivity extends AppCompatActivity {
     private BroadcastReceiver authenticationReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            //when authenticated, main activity will open
             final Intent newIntent = new Intent(StartActivity.this, MainActivity.class);
             UserProfile profile = intent.getParcelableExtra(Lock.AUTHENTICATION_ACTION_PROFILE_PARAMETER);
             Token token = intent.getParcelableExtra(Lock.AUTHENTICATION_ACTION_TOKEN_PARAMETER);
@@ -50,6 +51,7 @@ public class StartActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //opens lockactivity from auth0 to log in
                 startActivity(new Intent(StartActivity.this, LockActivity.class));
             }
         });

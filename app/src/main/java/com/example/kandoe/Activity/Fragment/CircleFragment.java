@@ -1,7 +1,6 @@
 package com.example.kandoe.Activity.Fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,8 +18,8 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.example.kandoe.Controller.Adapters.CardAdapter;
 import com.example.kandoe.Activity.MainActivity;
+import com.example.kandoe.Controller.Adapters.CardAdapter;
 import com.example.kandoe.Controller.CircleSessionController;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.SubTheme;
@@ -46,12 +45,11 @@ public class CircleFragment extends Fragment {
     private CircleSessionController controller;
     private OnFragmentInteractionListener mListener;
 
-    private KandoeBackendAPI service;
     private Session session;
     private SubTheme subtheme;
     private UserAccount account;
-    private Intent starterIntent;
 
+    private KandoeBackendAPI service;
     private MainActivity mainActivity;
 
     public CircleFragment() {}
@@ -196,6 +194,7 @@ public class CircleFragment extends Fragment {
         return names.toString();
     }
 
+    //region calls
     private void getUserAccountInfo() {
         String secret = mainActivity.getUserProfile().getId();
 
@@ -211,6 +210,7 @@ public class CircleFragment extends Fragment {
             }
         });
     }
+    //endregion
 
     /**
      * This interface must be implemented by activities that contain this fragment to allow an interaction in this fragment to be communicated

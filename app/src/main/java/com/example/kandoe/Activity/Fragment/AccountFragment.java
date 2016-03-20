@@ -30,11 +30,12 @@ import retrofit2.Response;
  */
 public class AccountFragment extends Fragment {
     private static final String TAG = "Accountfragment";
-    private static final String EXTRA_SERVICE = "Service";
+
     private EditText fName, lName, email;
     private Button saveButton;
     private Switch aSwitch;
     private ImageView imageView;
+
     private UserAccount userAccount;
     private KandoeBackendAPI service;
 

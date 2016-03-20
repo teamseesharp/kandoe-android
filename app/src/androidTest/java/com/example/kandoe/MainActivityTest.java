@@ -37,8 +37,6 @@ import static org.hamcrest.core.AllOf.allOf;
 @LargeTest
 public class MainActivityTest {
     private static final String TAG = "SessionTest";
-    private MainActivity mActivity;
-
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
@@ -53,7 +51,6 @@ public class MainActivityTest {
     @Test
     public void testSessionDisplay() {
         // aversionsListView is the id of the ExpandableListView containing the expandable list
-
         boolean succes = true;
 
         //loop because delay of API call, can return an Exception when not fully loaded.
@@ -95,12 +92,8 @@ public class MainActivityTest {
             } catch (NoMatchingViewException e) {
                 succes = false;
                 Log.d(TAG, "no setup needed");
-
-
             }
             //endregion
-
-
         }
     }
 
@@ -156,10 +149,8 @@ public class MainActivityTest {
             }
             //endregion
 
-
             onData(anything()).inAdapterView(withId(R.id.lvCards)).atPosition(0)
                     .perform(click());
-
             try {
 
                 onView(withId(R.id.votebutton)).check(matches(isDisplayed())).perform(click());
