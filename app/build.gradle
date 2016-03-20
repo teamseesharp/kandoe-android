@@ -65,6 +65,7 @@ dependencies {
     compile 'com.rabbitmq:amqp-client:3.6.0'
     compile 'com.google.android.gms:play-services-auth:8.4.0'
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
+    compile 'com.android.support.test.espresso:espresso-core:2.2.1'
 }
 
 
