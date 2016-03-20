@@ -68,7 +68,6 @@ public class CircleSessionController {
                     card.setSessionLevel(currentlvl);
 
                     btnUpVote.setVisibility(View.INVISIBLE);
-                    updateCurrentPlayer();
 
                 }else {
                     Toast.makeText(getContext(),"Deze kaart kan je niet meer upvoten, kies een ander :)",Toast.LENGTH_LONG).show();

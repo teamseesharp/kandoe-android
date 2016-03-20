@@ -260,8 +260,8 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
             public void onResponse(Call<Card> call, Response<Card> response) {
                 System.out.println(response);
                 if (response.isSuccess()) {
+                    response.body();
                     System.out.println("CAll createCard Succes");
-                    getCardData();
                 } else {
                     Log.d(TAG, "createCard FAIL. Errorcode: " + response.code());
                 }
@@ -318,6 +318,8 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
                         myCards.add(0, newCard);
                         myCardAdapter.notifyDataSetChanged();
+
+                        setProgress();
 
                     }
                 })
