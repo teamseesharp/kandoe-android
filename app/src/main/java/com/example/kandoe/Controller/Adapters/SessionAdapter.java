@@ -21,6 +21,9 @@ import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
+/**
+ * Adapter for CircleSessionfragment
+ */
 public class SessionAdapter extends BaseExpandableListAdapter {
     private Context context;
     private UserAccount account;
@@ -69,6 +72,7 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         TextView themedescp = (TextView) convertView.findViewById(R.id.txtDescription);
         TextView sessiondescp = (TextView) convertView.findViewById(R.id.txtSessionName);
 
+        //get current theme & subtheme
         Theme currentTheme = null;
         SubTheme currentSubtheme = null;
         ArrayList<Theme> themes = groups.get(groupPosition).getThemes();
@@ -84,6 +88,7 @@ public class SessionAdapter extends BaseExpandableListAdapter {
             }
         }
 
+        //set fields
         if (currentTheme != null) {
             themetag.setText(currentTheme.getName());
             themedescp.setText(currentTheme.getDescription());
@@ -97,6 +102,7 @@ public class SessionAdapter extends BaseExpandableListAdapter {
             sessiondescp.setText(child.getDescription());
         }
 
+        //set drawables depending if session has started/finished or not yet started
         boolean notYetstarted = checkStartDate(child);
             if (notYetstarted) {
                 themetag.setBackgroundResource(R.drawable.orangetag);
@@ -115,6 +121,7 @@ public class SessionAdapter extends BaseExpandableListAdapter {
             themetag.setBackgroundResource(R.drawable.redtag);
         }
 
+        //check is session is full
         if (child.getParticipants().size() >= child.getMaxParticipants()) {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -152,7 +159,6 @@ public class SessionAdapter extends BaseExpandableListAdapter {
 
         return now.isBefore(dateTime);
     }
-
 
     //region Override Methods
 

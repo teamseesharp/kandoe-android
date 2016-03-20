@@ -4,12 +4,10 @@ import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.ChatMessage;
 import com.example.kandoe.Model.Organisation;
 import com.example.kandoe.Model.Session;
-import com.example.kandoe.Model.Snapshot;
 import com.example.kandoe.Model.SubTheme;
 import com.example.kandoe.Model.Theme;
 import com.example.kandoe.Model.UserAccount;
 
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -23,10 +21,8 @@ import retrofit2.http.Path;
  * Created by Thomas on 2016-02-16.
  */
 public interface KandoeBackendAPI {
-    //SelectionCard
-    @GET("api/selection-cards")
-    Call<List<Card>> getSelectionCards();
 
+    //SelectionCard
     @GET("api/selection-cards/{id}")
     Call<List<Card>> getSelectionCardsById(@Path("id") int id);
 
@@ -76,12 +72,6 @@ public interface KandoeBackendAPI {
     @GET ("api/sessions/by-subtheme/{id}")
     Call<List<Session>> getSessionsBySubtheme(@Path("id") int id);
 
-    @GET ("api/sessions/by-start-date/{date}")
-    Call<List<Session>> getSessionsByStartDate(@Path("date") Date date);
-
-    @GET ("api/sessions/by-end-date/{date}")
-    Call<List<Session>> getSessionsByEndDate(@Path("date") Date date);
-
     @GET ("api/verbose/sessions/{id}")
     Call<Session> getVerboseSessionById(@Path("id") int id);
 
@@ -92,9 +82,6 @@ public interface KandoeBackendAPI {
     Call<Void> levelUpCard(@Path("sessionId") int sessionId,@Path("cardId") int cardId);
 
     //Organisation
-    @GET("api/organisations")
-    Call<List<Organisation>> getOrganisations();
-
     //Get all organisations and all nested collections.
     @GET("api/verbose/organisations")
     Call<List<Organisation>> getOrganisationsVerbose();
@@ -130,9 +117,6 @@ public interface KandoeBackendAPI {
     @GET ("api/themes/by-organisation/{id}")
     Call<Theme> getThemeByOrganisationId(@Path("id") int id);
 
-    @GET ("api/themes/by-tag/{tag}")
-    Call<List<Theme>>getThemesByTag(@Path("tag") String tag);
-
 
     //Subtheme
     @GET("api/subThemes")
@@ -144,12 +128,6 @@ public interface KandoeBackendAPI {
     @GET("api/subthemes/by-theme/{id}")
     Call<List<SubTheme>>getSubthemesByThemeId(@Path("id") int id);
 
-    //Snapshot
-    @GET ("api/snapshots/{id}")
-    Call<Snapshot> getSnapshotById(@Path("id") int id);
-
-    @GET ("api/snapshots/by-session/{id}")
-    Call<List<Snapshot>> getSnapshotsBySessionId(@Path("id") int id);
 }
 
 

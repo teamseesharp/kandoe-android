@@ -32,13 +32,10 @@ import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.AllOf.allOf;
 
-/**
- * Created by Thomas on 19-3-2016.
- */
+
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class MainActivityTest {
-
     private static final String TAG = "SessionTest";
     private MainActivity mActivity;
 

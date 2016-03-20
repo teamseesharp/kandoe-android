@@ -33,7 +33,6 @@ public class Background extends View {
             d.setBounds(0, 0, width, (int) (height));
         }
 
-        //rect = new Rect(0, 0, width, height / 2);
         border = new Rect(0, height - 2, width, height + 2);
 
         d.draw(container);
@@ -54,7 +53,6 @@ public class Background extends View {
             d.setBounds(0, 0, width, (int) (height));
         }
 
-        //rect = new Rect(0, 0, width, height / 2);
         border = new Rect(0, height - 2, width, height + 2);
     }
 
@@ -65,6 +63,4 @@ public class Background extends View {
         d.draw(canvas);
         canvas.drawRect(border, paint);
     }
-
-
 }

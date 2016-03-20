@@ -143,6 +143,7 @@ public class MySessionsListFragment extends Fragment {
         super.onResume();
     }
 
+    //region calls
     public void getOrganisationsData() {
         Call<List<Organisation>> callList = service.getOrganisationsVerbose();
         callList.enqueue(new Callback<List<Organisation>>() {
@@ -229,4 +230,5 @@ public class MySessionsListFragment extends Fragment {
             }
         });
     }
+    //endregion
 }

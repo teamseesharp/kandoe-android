@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/**
+ * Adapter for the cards for setup & circleFragment
+ */
 public class CardAdapter extends ArrayAdapter {
     private Context context;
     private int layoutResourceId;

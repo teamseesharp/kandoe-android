@@ -14,6 +14,9 @@ import com.example.kandoe.Utilities.Utilities;
 
 import java.util.ArrayList;
 
+/**
+ * Adapter for chatfragment
+ */
 public class ChatAdapter extends ArrayAdapter {
     private ArrayList<ChatMessage> chatMessages;
     private ArrayList<UserAccount> particpants;
@@ -44,6 +47,8 @@ public class ChatAdapter extends ArrayAdapter {
                 holder.sender = (TextView) v.findViewById(R.id.txtChatName);
                 v.setTag(holder);
 
+                holder.sender.setText(sender.getName());
+
             } else {
                 v = LayoutInflater.from(getContext()).inflate(R.layout.messagesend, null, false);
                 holder = new ViewHolder();
@@ -55,7 +60,6 @@ public class ChatAdapter extends ArrayAdapter {
 
             holder.date.setText(Utilities.dateFormatterWithHour(message.getTimestamp()));
             holder.message.setText(message.getText());
-            holder.sender.setText(sender.getName());
         }
         return v;
     }

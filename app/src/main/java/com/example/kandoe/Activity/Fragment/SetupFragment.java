@@ -21,13 +21,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kandoe.Controller.Adapters.CardAdapter;
 import com.example.kandoe.Activity.MainActivity;
+import com.example.kandoe.Controller.Adapters.CardAdapter;
 import com.example.kandoe.Model.Card;
 import com.example.kandoe.Model.Session;
 import com.example.kandoe.Model.SubTheme;
 import com.example.kandoe.Model.Theme;
-import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
 import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 
@@ -40,7 +39,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+//Fragment where users can choose their cards
 public class SetupFragment extends ListFragment implements OnItemClickListener {
     private static final String EXTRA_SERVICE = "Service";
     private static final String EXTRA_SESSION = "Session";
@@ -49,17 +48,16 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
     private static final String TAG = "Setupfragment";
 
     private ArrayList<Card> cards, myCards;
+
     private GridView grdMyCards, grdCards;
     private CardAdapter cardAdapter, myCardAdapter;
     private ProgressBar progressBar;
     private Button playButton;
-    private TextView numberOfCards;
     private ImageButton addButton;
 
     private KandoeBackendAPI service;
     private Session session;
     private MainActivity mainActivity;
-    private UserAccount account;
     private SubTheme subtheme;
     private Theme theme;
 
@@ -94,28 +92,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         cards = new ArrayList<>();
         getCardData();
     }
-
-
-    private void addUserToSession() {
-        Call<Void> call = service.addPlayerToSession(session.getId());
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                System.out.println(response.code());
-                if (response.isSuccess()) {
-                    System.out.println("Toevoegen speler aan sessie: GELUKT!");
-                } else {
-                    Log.d(TAG,"addUserToSession: FAIL. ERROR: " + response.errorBody());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Log.d(TAG, "addUserToSession: ONFAILURE");
-            }
-        });
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -175,25 +151,6 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         return view;
     }
 
-    private void addCardsToSession() {
-        Call<Void> call = service.addCardsToSession(session.getId(), myCards);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccess()) {
-                    System.out.println("Add cards to session: SUCCES");
-                } else {
-                    Log.d(TAG,"add cards to session: NOT SUCCES. ERROR: " + response.errorBody());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Log.d(TAG, "add cards to session: ON FAILURE ");
-            }
-        });
-    }
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -233,29 +190,44 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
         myCardAdapter.notifyDataSetChanged();
     }
 
+    //region calls
+    private void addCardsToSession() {
+        Call<Void> call = service.addCardsToSession(session.getId(), myCards);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccess()) {
+                    System.out.println("Add cards to session: SUCCES");
+                } else {
+                    Log.d(TAG, "add cards to session: NOT SUCCES. ERROR: " + response.errorBody());
+                }
+            }
 
-    private void setProgress() {
-        session.setNumberOfCards(3);
-        double max = session.getNumberOfCards();
-        double currentNumber = myCards.size();
-        double progress = (currentNumber / max) * 100;
-        progressBar.setProgress((int) progress);
-        progressBar.setProgress((int) progress);
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d(TAG, "add cards to session: ON FAILURE ");
+            }
+        });
+    }
 
-        if (progressBar.getProgress() == 100 && myCards.size() >= 1 && myCards.size() <= 3) {
-            playButton.setEnabled(true);
-            playButton.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.INVISIBLE);
-        } else if (progressBar.getProgress() == 100 && myCards.size() >= 3) {
-            Toast.makeText(getContext(), "Je hebt teveel kaarten geselecteerd!", Toast.LENGTH_LONG).show();
-            playButton.setEnabled(false);
-            playButton.setVisibility(View.INVISIBLE);
-            progressBar.setVisibility(View.VISIBLE);
-        } else {
-            playButton.setEnabled(false);
-            playButton.setVisibility(View.INVISIBLE);
-            progressBar.setVisibility(View.VISIBLE);
-        }
+    private void addUserToSession() {
+        Call<Void> call = service.addPlayerToSession(session.getId());
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                System.out.println(response.code());
+                if (response.isSuccess()) {
+                    System.out.println("Toevoegen speler aan sessie: GELUKT!");
+                } else {
+                    Log.d(TAG, "addUserToSession: FAIL. ERROR: " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d(TAG, "addUserToSession: ONFAILURE");
+            }
+        });
     }
 
     private void getCardData() {
@@ -268,7 +240,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                     cards.addAll(response.body());
                     Collections.shuffle(cards);
                     cardAdapter.notifyDataSetChanged();
-                } catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     Toast.makeText(getActivity(), "Spijtig, er is iets misgegaan met ophalen van de kaarten. Probeer in enkele ogenblikken terug", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "onResponse: subthemes" + e.getMessage());
                     Log.d(TAG, "onResponse: " + response.errorBody());
@@ -280,6 +252,48 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                 System.out.println(t.toString());
             }
         });
+    }
+
+    private void createCard(Card card) {
+        Call<Card> call = service.addCard(card);
+        call.enqueue(new Callback<Card>() {
+            @Override
+            public void onResponse(Call<Card> call, Response<Card> response) {
+                System.out.println(response);
+                if (response.isSuccess()) {
+                    System.out.println("CAll createCard Succes");
+                } else {
+                    Log.d(TAG, "createCard FAIL. Error: " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Card> call, Throwable t) {
+                System.out.println("createCard faill");
+            }
+        });
+    }
+    //endregion
+
+    private void setProgress() {
+        double max = session.getNumberOfCards();
+        double currentNumber = myCards.size();
+        double progress = (currentNumber / max) * 100;
+        progressBar.setProgress((int) progress);
+        progressBar.setProgress((int) progress);
+
+        if (myCards.size() >= 1 && myCards.size() <= max) {
+            playButton.setEnabled(true);
+            playButton.setVisibility(View.VISIBLE);
+        } else if (myCards.size() >= max) {
+            Toast.makeText(getContext(), "Je hebt teveel kaarten geselecteerd!", Toast.LENGTH_LONG).show();
+            playButton.setEnabled(false);
+            playButton.setVisibility(View.INVISIBLE);
+        } else {
+            playButton.setEnabled(false);
+            playButton.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
+        }
     }
 
     private void addCard() {
@@ -314,25 +328,5 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                     }
                 })
                 .show();
-    }
-
-    private void createCard(Card card) {
-        Call<Card> call = service.addCard(card);
-        call.enqueue(new Callback<Card>() {
-            @Override
-            public void onResponse(Call<Card> call, Response<Card> response) {
-                System.out.println(response);
-                if (response.isSuccess()) {
-                    System.out.println("CAll createCard Succes");
-                } else {
-                    Log.d(TAG,"createCard FAIL. Error: " + response.errorBody());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Card> call, Throwable t) {
-                System.out.println("createCard faill");
-            }
-        });
     }
 }

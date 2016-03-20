@@ -27,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Michelle on 12-3-2016.
+ * Shows a list off all finished sessions.
  */
 public class FinishedSessionListFragment extends  android.support.v4.app.Fragment {
     private final String TAG = "SessionListFragment";
@@ -56,7 +56,6 @@ public class FinishedSessionListFragment extends  android.support.v4.app.Fragmen
         ExpandableListView expandableListView = (ExpandableListView) view.findViewById(R.id.explv);
         expandableListView.setAdapter(adapter);
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 Organisation organisation = organisations.get(groupPosition);

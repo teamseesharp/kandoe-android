@@ -15,9 +15,6 @@
 //import static android.support.test.espresso.action.ViewActions.typeText;
 //import static android.support.test.espresso.matcher.ViewMatchers.withId;
 //
-///**
-// * Created by Thomas on 2016-02-16.
-// */
 //
 //@RunWith(AndroidJUnit4.class)
 //@LargeTest

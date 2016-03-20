@@ -44,9 +44,7 @@ import retrofit2.Response;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, CircleFragment.OnFragmentInteractionListener {
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
+    // Fragment managing the behaviors, interactions and presentation of the navigation drawer.
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     private CharSequence mTitle;
@@ -88,9 +86,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 postAccount.setName(userProfile.getNickname());
             if(userProfile.getEmail() == null){
                 postAccount.setEmail("");
-            } else    postAccount.setEmail(userProfile.getEmail());
-
+            } else {
+                postAccount.setEmail(userProfile.getEmail());
                 postAccount.setSecret(userProfile.getId());
+            }
         }
 
         service = APIServiceGenerator.createService(KandoeBackendAPI.class, token.getIdToken());
@@ -227,7 +226,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     }
 
-
     public static class PlaceholderFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
@@ -277,6 +275,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         this.mTitle = mTitle;
     }
 
+    //region calls
     public void getUserAccount(UserProfile profile) {
         Call<UserAccount> call = service.getUserId(profile.getId());
 
@@ -311,6 +310,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             }
         });
     }
+    //endregion calls
 
     public void setTesting(boolean testing) {
         this.testing = testing;

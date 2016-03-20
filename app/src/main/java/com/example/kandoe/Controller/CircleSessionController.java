@@ -24,6 +24,7 @@ import retrofit2.Response;
 
 public class CircleSessionController {
     private final String TAG = "CircleSessionController";
+
     private ArrayList<Card> cards;
     private ArrayList<View> bulletPoints;
 

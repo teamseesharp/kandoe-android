@@ -15,13 +15,12 @@ import java.util.ArrayList;
  * Creates the Ladder for the circlesession
  */
 public class Ladder extends View {
-
-    private final String DEBUGTAG = "LADDER";
     private CircleSessionController controller;
+
     private ArrayList<RoundedRectangle> steps;
     private ArrayList<RoundedRectangle> legs;
+
     private double bottembound;
-    private boolean firstTime;
 
     int clLeft, clTop, clRight, clBottom, offset, width, height, heightleg;
 
@@ -43,7 +42,6 @@ public class Ladder extends View {
         if (controller.getSession().getRound() != 0){
             createBullets(container);
         }
-
         createBullets(container);
     }
 
@@ -64,16 +62,12 @@ public class Ladder extends View {
     }
 
     private void createBackGround(Canvas container) {
-       // Log.d(DEBUGTAG, "creating Background");
-
         bottembound = (heightleg + heightleg * 0.3);
 
         View background = new Background(getContext(), (int) bottembound,container);
     }
 
     private void createBullets(Canvas container) {
-      //  Log.d(DEBUGTAG, "Creating bullets");
-
         for (Card card : controller.getCards()) {
             View bullet = new BulletPoint(getContext(), steps, card, legs, controller, container);
             controller.getBulletPoints().add(bullet);
@@ -82,9 +76,8 @@ public class Ladder extends View {
 
 
     private void createSteps( Canvas container) {
-        //Log.d(DEBUGTAG,"Creating steps");
-      //  int numberOfSteps = controller.getSession().getNumberOfSteps();
         int numberOfSteps = 10;
+
         //init values
          int ctLeft = clLeft + 30, ctTop = clTop + heightleg / numberOfSteps / 2, ctRight = clLeft + offset + 5, ctBottom = ctTop + 15;
 
@@ -97,13 +90,9 @@ public class Ladder extends View {
 
             steps.add(trede);
         }
-
-
     }
 
     private void createLegs(Canvas container) {
-       // Log.d(DEBUGTAG,"Creating legs");
-
         //left leg
         RoundedRectangle leftleg = new RoundedRectangle(getContext(), clLeft, clTop, clRight, clBottom, Color.rgb(102, 51, 0),container);
 

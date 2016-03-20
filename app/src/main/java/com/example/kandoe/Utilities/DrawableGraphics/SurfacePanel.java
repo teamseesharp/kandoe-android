@@ -11,15 +11,16 @@ import android.view.SurfaceView;
 import com.example.kandoe.Controller.CircleSessionController;
 
 /**
- * Creates a surpacepanel for circlesession
+ * Creates the surpacepanel for circlesession
  */
 public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
-    // Global variables
-    private Boolean _run;
-    public boolean isDrawing = true;
     protected DrawThread thread;
     private Bitmap mBitmap;
-    int counter = 0;
+
+    private Boolean _run;
+    public boolean isDrawing = true;
+
+    private int counter = 0;
 
     private CircleSessionController controller;
 
@@ -40,7 +41,6 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
         getHolder().setFixedSize(width,height/2-100);
     }
 
-    // Constructor
     public SurfacePanel(Context context, CircleSessionController attrs) {
         super(context);
         this.controller = attrs;

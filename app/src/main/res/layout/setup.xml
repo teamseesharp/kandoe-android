@@ -84,12 +84,10 @@
         android:id="@+id/btnPlay"
         android:enabled="false"
         android:focusable="false"
-        android:layout_alignEnd="@+id/grdmycards"
-        android:layout_alignParentTop="true"
-        android:layout_alignBottom="@+id/txtmyCards"
-        android:layout_alignTop="@+id/txtmyCards"
         android:textSize="18dp"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:layout_above="@+id/grdmycards"
+        android:layout_alignParentEnd="true" />
 
     <ProgressBar
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -97,15 +95,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/progressBar"
         android:progress="100"
-        android:progressTint="@color/accent"
+        android:progressTint="@color/com_facebook_button_login_silver_background_color"
         android:indeterminate="false"
         android:max="100"
-        android:layout_alignBottom="@+id/txtmyCards"
-        android:layout_alignStart="@+id/btnPlay"
-        android:layout_alignEnd="@+id/btnPlay"
-        android:layout_margin="15dp"
         android:paddingLeft="2dp"
-        android:paddingRight="2dp" />
+        android:paddingRight="2dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_alignBottom="@+id/txtmyCards"
+        android:layout_toStartOf="@+id/btnPlay"
+        android:layout_alignParentTop="true" />
 
     <ImageButton
         android:layout_width="wrap_content"

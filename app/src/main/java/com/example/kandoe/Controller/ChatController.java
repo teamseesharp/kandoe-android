@@ -19,8 +19,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ChatController {
-
     private static final String TAG = "ChatController";
+
     private Session mSession;
     private KandoeBackendAPI mService;
     private UserAccount mUserAccount;
@@ -47,6 +47,7 @@ public class ChatController {
         chatAdapter.setParticpants(mSession.getParticipants());
     }
 
+    //region calls
     public void getMessages() {
         Call<List<ChatMessage>> call = mService.getChatMessagesBySessionId(mSession.getId());
         call.enqueue(new Callback<List<ChatMessage>>() {
@@ -100,6 +101,7 @@ public class ChatController {
             }
         });
     }
+    //endregion
 
     //region Getters & Setters
     private void setEdittextEmpty(EditText edittext) {

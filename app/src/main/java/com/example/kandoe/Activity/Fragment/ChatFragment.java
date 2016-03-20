@@ -21,7 +21,7 @@ import com.example.kandoe.Utilities.API.KandoeBackendAPI;
 import java.io.Serializable;
 
 /**
- * Chat
+ * Fragment where users can chat
  */
 public class ChatFragment extends Fragment {
     private static final String ARG_PARAM1 = "Service";

@@ -184,6 +184,9 @@ public class CircleFragment extends Fragment {
     public String participantsOnNewLine() {
         StringBuffer names = new StringBuffer();
         for (UserAccount s : controller.getParticipants()) {
+            if(s.getId() == account.getId()){
+                s.setName("Jij");
+            }
             names.append(s.getName()).append('\n');
         }
         return names.toString();

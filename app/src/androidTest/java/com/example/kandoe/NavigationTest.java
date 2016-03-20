@@ -20,9 +20,6 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
-/**
- * Created by Michelle on 17-2-2016.
- */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class NavigationTest {

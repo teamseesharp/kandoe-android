@@ -150,6 +150,7 @@ public class AccountFragment extends Fragment {
         return view;
     }
 
+    //region calls
     private void getUserAccount() {
         MainActivity activity = (MainActivity) getActivity();
         Call<UserAccount> call = service.getUserId(activity.getUserProfile().getId());
@@ -192,5 +193,5 @@ public class AccountFragment extends Fragment {
             }
         });
     }
-
+    //endregion
 }

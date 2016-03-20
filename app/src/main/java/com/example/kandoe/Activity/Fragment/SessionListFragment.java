@@ -66,6 +66,13 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    //region calls
+
     private void getUserAccount() {
         MainActivity activity = (MainActivity) getActivity();
         Call<UserAccount> call = service.getUserId(activity.getUserProfile().getId());
@@ -82,11 +89,6 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
                 Log.d(TAG, "User call not succes");
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     public void getOrganisationsData() {
@@ -160,5 +162,7 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
             }
         });
     }
+
+    //endregion
 }
 
