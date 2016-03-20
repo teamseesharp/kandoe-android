@@ -18,9 +18,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by Thomas on 2016-02-26.
- */
 public class ChatController {
 
     private static final String TAG = "ChatController";

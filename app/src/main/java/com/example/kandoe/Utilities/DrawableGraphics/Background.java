@@ -12,7 +12,7 @@ import android.view.View;
 import com.example.kandoe.R;
 
 /**
- * Created by Thomas on 2016-02-23.
+ * Creates the background with help of paint
  */
 public class Background extends View {
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);

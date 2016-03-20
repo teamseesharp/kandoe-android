@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-
 public class CardAdapter extends ArrayAdapter {
     private Context context;
     private int layoutResourceId;
@@ -147,7 +146,6 @@ public class CardAdapter extends ArrayAdapter {
 
         // Set the fill color of drawable
         gd.setColor(Color.parseColor(BulletColor.getColor(id).getHexCode())); // make the background transparent
-
 
         // Create a 2 pixels width red colored border for drawable
         gd.setStroke(1, Color.GRAY); // border width and color

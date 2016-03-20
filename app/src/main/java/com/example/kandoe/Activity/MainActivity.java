@@ -28,7 +28,6 @@ import com.example.kandoe.Activity.Fragment.HelpFragment;
 import com.example.kandoe.Activity.Fragment.MainFragment;
 import com.example.kandoe.Activity.Fragment.MySessionsListFragment;
 import com.example.kandoe.Activity.Fragment.NavigationDrawerFragment;
-import com.example.kandoe.Activity.Fragment.ReviewSessionFragment;
 import com.example.kandoe.Activity.Fragment.SessionListFragment;
 import com.example.kandoe.Model.UserAccount;
 import com.example.kandoe.R;
@@ -43,18 +42,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ReviewSessionFragment.OnFragmentInteractionListener, CircleFragment.OnFragmentInteractionListener {
+public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, CircleFragment.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
     private CharSequence mTitle;
     private UserProfile userProfile;
     private UserAccount userAccount;
@@ -230,9 +224,7 @@ public class MainActivity extends ActionBarActivity
 
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
+
     public static class PlaceholderFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this

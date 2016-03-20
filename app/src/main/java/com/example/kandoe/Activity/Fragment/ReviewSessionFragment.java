@@ -46,7 +46,6 @@ public class ReviewSessionFragment  extends Fragment{
     private Session session;
     private SubTheme subtheme;
     private MainActivity mainActivity;
-    private UserAccount account;
     private TextView txtCurrentPlayer;
     private Button voteUp;
 

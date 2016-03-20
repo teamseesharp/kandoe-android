@@ -15,7 +15,7 @@ import com.example.kandoe.Model.Card;
 import java.util.ArrayList;
 
 /**
- * Created by Thomas on 2016-02-22.
+ * Creates the bulletpoints(cards)
  */
 public class BulletPoint extends View {
     private Paint paint, paint2;

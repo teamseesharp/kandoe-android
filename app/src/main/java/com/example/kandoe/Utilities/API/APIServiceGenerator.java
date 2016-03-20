@@ -9,9 +9,6 @@ import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by Thomas on 2016-02-16.
- */
 public class APIServiceGenerator implements Serializable {
 
     public static final String API_BASE_URL = "http://kandoe-api.azurewebsites.net/";

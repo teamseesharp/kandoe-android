@@ -11,7 +11,7 @@ import android.view.SurfaceView;
 import com.example.kandoe.Controller.CircleSessionController;
 
 /**
- * Created by Thomas on 3-3-2016.
+ * Creates a surpacepanel for circlesession
  */
 public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
     // Global variables

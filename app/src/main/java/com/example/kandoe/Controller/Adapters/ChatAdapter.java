@@ -14,16 +14,11 @@ import com.example.kandoe.Utilities.Utilities;
 
 import java.util.ArrayList;
 
-/**
- * Created by Thomas on 2016-03-16.
- */
 public class ChatAdapter extends ArrayAdapter {
     private ArrayList<ChatMessage> chatMessages;
-
+    private ArrayList<UserAccount> particpants;
 
     private UserAccount currentUser;
-
-    private ArrayList<UserAccount> particpants;
 
     public ChatAdapter(Context context, int resource, ArrayList<ChatMessage> data, UserAccount userAccount) {
         super(context, resource, data);
@@ -61,9 +56,7 @@ public class ChatAdapter extends ArrayAdapter {
             holder.date.setText(Utilities.dateFormatterWithHour(message.getTimestamp()));
             holder.message.setText(message.getText());
             holder.sender.setText(sender.getName());
-
         }
-
         return v;
     }
 

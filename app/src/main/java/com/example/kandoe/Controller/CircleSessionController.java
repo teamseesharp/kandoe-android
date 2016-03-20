@@ -22,22 +22,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by Thomas on 2016-02-23.
- */
 public class CircleSessionController {
     private final String TAG = "CircleSessionController";
     private ArrayList<Card> cards;
     private ArrayList<View> bulletPoints;
 
-    private ArrayList<UserAccount> participants;
     private CardAdapter adapter;
     private Session session;
-    private ChatController chatController;
+    private UserAccount userAccount;
+
     private TextView currentPlayerTxt;
     private SurfacePanel panel;
     private Button btnUpVote;
-    private UserAccount userAccount;
 
     private KandoeBackendAPI service;
     private Context context;
@@ -51,7 +47,6 @@ public class CircleSessionController {
 
     private void init() {
         bulletPoints = new ArrayList<>();
-        participants = new ArrayList<>();
         cards = new ArrayList<>();
 
         getVerboseSession();

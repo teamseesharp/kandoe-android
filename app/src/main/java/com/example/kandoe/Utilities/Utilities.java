@@ -1,19 +1,7 @@
 package com.example.kandoe.Utilities;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-
 import java.util.Calendar;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Created by Thomas on 2016-02-23.
- */
 public class Utilities {
 
     public static String dateFormatter(String string) {

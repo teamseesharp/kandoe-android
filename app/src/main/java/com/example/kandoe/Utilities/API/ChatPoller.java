@@ -34,8 +34,6 @@ public class ChatPoller {
             public void run() {
 
                 Call<List<ChatMessage>> call = chatController.getmService().getChatMessagesBySessionId(chatController.getmSession().getId());
-
-
                 call.enqueue(new Callback<List<ChatMessage>>() {
                     @Override
                     public void onResponse(Call<List<ChatMessage>> call, Response<List<ChatMessage>> response) {
@@ -54,11 +52,8 @@ public class ChatPoller {
                         Log.d("POLLER", "onFailure: " + t.getMessage());
                     }
                 });
-
-
             }
         };
-
 
         final ScheduledFuture pollerHandle = scheduler.scheduleWithFixedDelay(poller, 0, REFRESH_RATE, TimeUnit.SECONDS);
 
@@ -67,9 +62,5 @@ public class ChatPoller {
                 pollerHandle.cancel(true);
             }
         }, 60 * 60, TimeUnit.SECONDS);
-
-
     }
-
-
 }

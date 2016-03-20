@@ -189,9 +189,6 @@ public class MySessionsListFragment extends Fragment {
                                 }
                             });
                         }
-                        if (org.getSessions().isEmpty()) {
-                            toDeleteOrganisations.add(org);
-                        }
                     }
                     organisationsTemp.removeAll(toDeleteOrganisations);
 

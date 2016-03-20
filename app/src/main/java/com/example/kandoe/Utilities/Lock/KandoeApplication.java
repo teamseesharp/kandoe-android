@@ -6,7 +6,7 @@ import com.auth0.lock.Lock;
 import com.auth0.lock.LockProvider;
 
 /**
- * Created by Thomas on 28-2-2016.
+ * class for Lock from Auth0
  */
 public class KandoeApplication extends Application implements LockProvider {
 

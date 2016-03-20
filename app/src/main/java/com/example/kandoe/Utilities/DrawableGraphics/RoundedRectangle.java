@@ -11,7 +11,6 @@ import android.view.View;
 import java.util.ArrayList;
 
 /**
- * Created by Thomas on 2016-02-22.
  * Class to create rounded rectangles with help of paint
  */
 public class RoundedRectangle extends View {

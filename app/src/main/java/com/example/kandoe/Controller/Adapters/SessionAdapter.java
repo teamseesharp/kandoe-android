@@ -21,19 +21,15 @@ import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
-/**
- * Created by Thomas on 2016-03-01.
- */
 public class SessionAdapter extends BaseExpandableListAdapter {
     private Context context;
     private UserAccount account;
+
     private ArrayList<Organisation> groups;
     private ArrayList<SubTheme> subThemes;
 
-
     private final String TITLE = "Helaas..";
     private String message;
-    private boolean invite = false;
     private boolean mIsSessionListFragment;
 
     public SessionAdapter(Context context, ArrayList<Organisation> groups, ArrayList<SubTheme> subThemes, UserAccount userAccount, boolean isSessionListFragment) {

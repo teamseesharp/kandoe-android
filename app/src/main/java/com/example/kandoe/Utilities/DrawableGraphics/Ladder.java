@@ -12,7 +12,7 @@ import com.example.kandoe.Model.Card;
 import java.util.ArrayList;
 
 /**
- * Created by Thomas on 2016-02-22.
+ * Creates the Ladder for the circlesession
  */
 public class Ladder extends View {
 
