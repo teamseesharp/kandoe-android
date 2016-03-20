@@ -53,7 +53,7 @@
 
     <!--Circle session-->
     <string name="session_playerName">[naam]</string>
-    <string name="session_playersTurn">is aan de beurt</string>
+    <string name="session_playersTurn">Niemand is aan de beurt</string>
     <string name="vote">Stem</string>
 
     <!--Chat message-->

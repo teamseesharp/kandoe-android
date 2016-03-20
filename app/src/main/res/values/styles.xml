@@ -7,4 +7,9 @@
         <item name="colorControlActivated">@color/primary</item>
         <item name="colorControlHighlight">@color/accent</item>
     </style>
+    <style name="MyButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/secondary_text</item>
+        <item name="colorButtonNormal">#8BC34A</item>
+    </style>
+
 </resources>
