@@ -2,6 +2,8 @@ package com.example.kandoe.Utilities.Lock;
 
 import android.app.Application;
 
+import com.auth0.core.Strategies;
+import com.auth0.facebook.FacebookIdentityProvider;
 import com.auth0.lock.Lock;
 import com.auth0.lock.LockProvider;
 
@@ -18,7 +20,7 @@ public class KandoeApplication extends Application implements LockProvider {
                 .loadFromApplication(this)
                         /** Other configuration goes here */
                 //.withIdentityProvider(Strategies.GooglePlus, new GooglePlusIdentityProvider(this))
-               // .withIdentityProvider(Strategies.Facebook, new FacebookIdentityProvider(this))
+                .withIdentityProvider(Strategies.Facebook, new FacebookIdentityProvider(this))
 
                 .closable(true)
                 .build();
