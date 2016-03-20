@@ -33,7 +33,7 @@ public class SessionAdapter extends BaseExpandableListAdapter {
 
     private final String TITLE = "Helaas..";
     private String message;
-    private boolean mIsSessionListFragment;
+    private boolean mIsSessionListFragment,isInviteOnly;
 
     public SessionAdapter(Context context, ArrayList<Organisation> groups, ArrayList<SubTheme> subThemes, UserAccount userAccount, boolean isSessionListFragment) {
         this.context = context;
@@ -194,6 +194,8 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         TextView tv = (TextView) convertView.findViewById(R.id.group_name);
         tv.setText(group.getName());
 
+
+
         return convertView;
     }
 
@@ -208,4 +210,12 @@ public class SessionAdapter extends BaseExpandableListAdapter {
     }
     //endregion
 
+
+    public boolean isInviteOnly() {
+        return isInviteOnly;
+    }
+
+    public void setIsInviteOnly(boolean isInviteOnly) {
+        this.isInviteOnly = isInviteOnly;
+    }
 }

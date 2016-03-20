@@ -56,8 +56,8 @@ public class MySessionsListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         organisations = new ArrayList<>();
         subThemes = new ArrayList<>();
-        adapter = new SessionAdapter(getContext(), organisations, subThemes,account,isSessionlistFragment);
-
+        adapter = new SessionAdapter(getContext(), organisations, subThemes, account, isSessionlistFragment);
+        adapter.setIsInviteOnly(true);
         getOrganisationsData();
     }
 
@@ -151,7 +151,7 @@ public class MySessionsListFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Organisation>> call, Response<List<Organisation>> response) {
                 ArrayList<Organisation> organisationsTemp = (ArrayList<Organisation>) response.body();
-                ArrayList<Organisation> toDeleteOrganisations = new ArrayList<Organisation>();
+                final ArrayList<Organisation> toDeleteOrganisations = new ArrayList<Organisation>();
 
                 try {
                     for (final Organisation org : organisationsTemp) {
@@ -166,6 +166,8 @@ public class MySessionsListFragment extends Fragment {
                         });
 
                         final ArrayList<Session> validSessions = new ArrayList<Session>();
+
+
                         for (final Session s : org.getSessions()) {
                             Call<Session> sessionCall = service.getVerboseSessionById(s.getId());
                             sessionCall.enqueue(new Callback<Session>() {
@@ -176,14 +178,18 @@ public class MySessionsListFragment extends Fragment {
 
                                     if (sessionVerbose != null) {
                                         invitees = sessionVerbose.getInvitees();
-                                          for (UserAccount invitee : invitees) {
-                                              if (invitee.getId() == account.getId()) {
-                                                  validSessions.add(s);
-                                              }
-                                          }
-                                          org.setSessions(validSessions);
+                                        for (UserAccount invitee : invitees) {
+                                            if (invitee.getId() == account.getId()) {
+                                                validSessions.add(s);
+                                            }
                                         }
-                                      }
+                                        org.setSessions(validSessions);
+
+                                      /* if (org.getSessions().isEmpty()) {
+                                            toDeleteOrganisations.add(org);
+                                        }*/
+                                    }
+                                }
 
                                 @Override
                                 public void onFailure(Call<Session> call, Throwable t) {
@@ -191,6 +197,7 @@ public class MySessionsListFragment extends Fragment {
                                 }
                             });
                         }
+
                     }
                     organisationsTemp.removeAll(toDeleteOrganisations);
 

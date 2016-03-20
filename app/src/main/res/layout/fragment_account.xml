@@ -99,7 +99,8 @@
         android:layout_centerHorizontal="true"
         android:text="@string/saveAcc"
         android:visibility="invisible"
-        android:id="@+id/account_saveButton"/>
+        android:id="@+id/account_saveButton"
+        android:theme="@style/MyButton" />
 
     <Switch
         android:layout_width="wrap_content"
