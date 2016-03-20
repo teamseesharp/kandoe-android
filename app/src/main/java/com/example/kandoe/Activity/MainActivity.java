@@ -86,7 +86,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 System.out.println(token.getIdToken());
                 System.out.println(userProfile.getId());
                 postAccount.setName(userProfile.getNickname());
-                postAccount.setEmail(userProfile.getEmail());
+            if(userProfile.getEmail() == null){
+                postAccount.setEmail("");
+            } else    postAccount.setEmail(userProfile.getEmail());
+
                 postAccount.setSecret(userProfile.getId());
         }
 

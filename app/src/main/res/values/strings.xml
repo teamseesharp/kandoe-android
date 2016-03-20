@@ -72,4 +72,6 @@
 
     <string name="facebook_app_id">1669661933300549</string>
     <string name="action_chat">Chat</string>
+    <string name="auth0_client_id">oFgQBmfslHqeahYk2ivNNAzkgcPgwTa8</string>
+    <string name="auth0_domain_name">kandoe.eu.auth0.com</string>
 </resources>
