@@ -1,6 +1,7 @@
 package com.example.kandoe.Activity.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ public class CircleFragment extends Fragment {
     private Session session;
     private SubTheme subtheme;
     private UserAccount account;
+    private Intent starterIntent;
 
     private MainActivity mainActivity;
 
@@ -67,6 +69,7 @@ public class CircleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             service = (KandoeBackendAPI) getArguments().getSerializable(EXTRA_SERVICE);
             session = (Session) getArguments().getSerializable(EXTRA_SESSION);
@@ -111,6 +114,7 @@ public class CircleFragment extends Fragment {
 
         TextView txtCurrentPlayer = (TextView) view.findViewById(R.id.playersTurn);
         Button voteUp = (Button) view.findViewById(R.id.votebutton);
+        voteUp.setVisibility(View.INVISIBLE);
 
         SurfacePanel panel = (SurfacePanel) view.findViewById(R.id.view);
         ImageButton showPersons = (ImageButton) view.findViewById(R.id.button_players);
@@ -214,5 +218,11 @@ public class CircleFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 }
