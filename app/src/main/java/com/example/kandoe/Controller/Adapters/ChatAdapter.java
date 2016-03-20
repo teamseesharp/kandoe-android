@@ -66,7 +66,6 @@ public class ChatAdapter extends ArrayAdapter {
 
 
     private UserAccount getMatchingAccount(int id) {
-
         for (UserAccount parti : particpants) {
             if (parti.getId() == id) {
                 return parti;

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Kandoe</string>
+    <string name="title_activity_login">Log in</string>
 
     <!--Start-->
     <string name="start_title">Kandoe !</string>
@@ -15,12 +16,12 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_example">Example action</string>
 
+    <!--Action bar menu items -->
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login">Log in</string>
     <string name="menu_login">Uitloggen</string>
     <string name="menu_help">Help</string>
+    <string name="action_chat">Chat</string>
 
     <!-- Account -->
     <string name="account_title">Profiel</string>
@@ -68,10 +69,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-
-
+    <!-- fb login -->
     <string name="facebook_app_id">1669661933300549</string>
-    <string name="action_chat">Chat</string>
+
+
+
+    <!-- Auth0 -->
     <string name="auth0_client_id">oFgQBmfslHqeahYk2ivNNAzkgcPgwTa8</string>
     <string name="auth0_domain_name">kandoe.eu.auth0.com</string>
 </resources>
