@@ -255,13 +255,16 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
 
     private void createCard(Card card) {
         Call<Card> call = service.addCard(card);
+        ;
         call.enqueue(new Callback<Card>() {
             @Override
             public void onResponse(Call<Card> call, Response<Card> response) {
                 System.out.println(response);
                 if (response.isSuccess()) {
-                    response.body();
-                    System.out.println("CAll createCard Succes");
+                    Card returnCard  =  response.body();
+                    myCards.add(0, returnCard);
+                    myCardAdapter.notifyDataSetChanged();
+                    System.out.println("Call createCard Succes");
                 } else {
                     Log.d(TAG, "createCard FAIL. Errorcode: " + response.code());
                 }
@@ -316,8 +319,7 @@ public class SetupFragment extends ListFragment implements OnItemClickListener {
                         newCard.setThemeId(theme.getId());
                         createCard(newCard);
 
-                        myCards.add(0, newCard);
-                        myCardAdapter.notifyDataSetChanged();
+
 
                         setProgress();
 
