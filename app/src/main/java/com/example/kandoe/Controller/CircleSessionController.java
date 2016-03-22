@@ -50,7 +50,6 @@ public class CircleSessionController {
     private void init() {
         bulletPoints = new ArrayList<>();
         cards = new ArrayList<>();
-
         getVerboseSession();
     }
 
@@ -67,7 +66,7 @@ public class CircleSessionController {
 
                     card.setSessionLevel(currentlvl);
 
-                    btnUpVote.setVisibility(View.INVISIBLE);
+
 
                 }else {
                     Toast.makeText(getContext(),"Deze kaart kan je niet meer upvoten, kies een ander :)",Toast.LENGTH_LONG).show();
@@ -75,7 +74,11 @@ public class CircleSessionController {
             }
         }
         adapter.sortCards();
+
+
+
         panel.setIsDrawing(true);
+
     }
 
     //region API-Calls
@@ -86,12 +89,15 @@ public class CircleSessionController {
             @Override
             public void onResponse(Call<Session> call, Response<Session> response) {
                 session = response.body();
-                if(!session.getSessionCards().isEmpty()){
+
+                    cards.clear();
                     cards.addAll(session.getSessionCards());
-                }
+
                 adapter.notifyDataSetChanged();
                 updateCurrentPlayer();
                 amICurrentPlayer();
+                panel.setIsDrawing(true);
+
             }
 
             @Override
@@ -108,6 +114,7 @@ public class CircleSessionController {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccess()) {
                     System.out.println("Play card SUCCES");
+                    getVerboseSession();
 
                 } else {
                     Log.d(TAG, "Play card FAIL. ERRORCode: " + response.code());

@@ -93,6 +93,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         service = APIServiceGenerator.createService(KandoeBackendAPI.class, token.getIdToken());
 
+
+
         createNewUser(postAccount);
         getUserAccount(userProfile);
 
@@ -292,6 +294,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             @Override
             public void onResponse(Call<UserAccount> call, Response<UserAccount> response) {
                 if (response.isSuccess()) {
+
                     System.out.println("post user succes ");
                 } else {
                     System.out.println("post user onreponse failed. Code: "+ response.code());

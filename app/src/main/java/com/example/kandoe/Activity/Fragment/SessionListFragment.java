@@ -49,12 +49,14 @@ public class SessionListFragment extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         organisations = new ArrayList<>();
         subThemes = new ArrayList<>();
         adapter = new SessionAdapter(getContext(), organisations, subThemes, userAccount, isSessionListFragment);
 
         getUserAccount();
         getOrganisationsData();
+
     }
 
     @Override

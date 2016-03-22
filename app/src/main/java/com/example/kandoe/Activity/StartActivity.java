@@ -34,6 +34,7 @@ public class StartActivity extends AppCompatActivity {
             newIntent.putExtra("profile", profile);
             newIntent.putExtra("token", token);
 
+
             startActivity(newIntent);
         }
     };
@@ -48,7 +49,8 @@ public class StartActivity extends AppCompatActivity {
 
 
         Button signInButton = (Button) findViewById(R.id.sign_in_button);
-        signInButton.setOnClickListener(new View.OnClickListener() {
+
+               signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //opens lockactivity from auth0 to log in

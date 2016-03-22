@@ -111,7 +111,7 @@ public class CircleFragment extends Fragment {
         }
 
         TextView txtCurrentPlayer = (TextView) view.findViewById(R.id.playersTurn);
-        Button voteUp = (Button) view.findViewById(R.id.votebutton);
+         Button voteUp = (Button) view.findViewById(R.id.votebutton);
         voteUp.setVisibility(View.INVISIBLE);
 
         SurfacePanel panel = (SurfacePanel) view.findViewById(R.id.view);
@@ -140,6 +140,7 @@ public class CircleFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 controller.play();
+                v.setVisibility(View.INVISIBLE);
             }
         });
         return view;

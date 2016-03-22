@@ -61,6 +61,7 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         final Session child = (Session) getChild(groupPosition, childPosition);
 
 
+
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(context.LAYOUT_INFLATER_SERVICE);
@@ -76,6 +77,7 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         Theme currentTheme = null;
         SubTheme currentSubtheme = null;
         ArrayList<Theme> themes = groups.get(groupPosition).getThemes();
+
         for (SubTheme subthemeTemp : subThemes) {
             if (subthemeTemp.getId() == child.getSubThemeId()) {
                 for (Theme themeTemp : themes) {
@@ -103,8 +105,8 @@ public class SessionAdapter extends BaseExpandableListAdapter {
         }
 
         //set drawables depending if session has started/finished or not yet started
-        boolean notYetstarted = checkStartDate(child);
-        if (notYetstarted) {
+
+        if (checkStartDate(child) && !child.isFinished()) {
                 themetag.setBackgroundResource(R.drawable.orangetag);
                 if(!mIsSessionListFragment) {
                 convertView.setOnClickListener(new View.OnClickListener() {

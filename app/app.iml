@@ -92,6 +92,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/pre-dexed" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/proguard-rules" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/restart-dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
@@ -128,8 +129,8 @@
     <orderEntry type="library" exported="" name="retrofit-2.0.0-beta4" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="uiautomator-v18-2.1.2" level="project" />
     <orderEntry type="library" exported="" name="identity-core-1.13.0" level="project" />
-    <orderEntry type="library" exported="" name="okhttp-3.0.1" level="project" />
     <orderEntry type="library" exported="" name="javax.annotation-api-1.2" level="project" />
+    <orderEntry type="library" exported="" name="okhttp-3.0.1" level="project" />
     <orderEntry type="library" exported="" name="javax.inject-1" level="project" />
     <orderEntry type="library" exported="" name="jackson-core-2.4.1" level="project" />
     <orderEntry type="library" exported="" name="rules-0.4.1" level="project" />

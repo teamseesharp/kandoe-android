@@ -55,6 +55,8 @@ public class AccountFragment extends Fragment {
         fName = (EditText) view.findViewById(R.id.account_fname);
         lName = (EditText) view.findViewById(R.id.account_lname);
         email = (EditText) view.findViewById(R.id.account_email);
+
+
         imageView = (ImageView) view.findViewById(R.id.account_avatar);
         aSwitch = (Switch) view.findViewById(R.id.switch1);
         saveButton = (Button) view.findViewById(R.id.account_saveButton);

@@ -83,7 +83,6 @@ public class ChatFragment extends Fragment {
         listView.setAdapter(chatAdapter);
 
         chatController.getMessages();
-
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
