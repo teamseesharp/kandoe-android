@@ -102,7 +102,6 @@ public class MySessionsListFragment extends Fragment {
                             }
 
                             for (Theme theme : organisation.getThemes()) {
-
                                 if (theme.getId() == (currentsubtheme != null ? currentsubtheme.getThemaId() : 0)) {
                                     currentTheme = theme;
                                 }

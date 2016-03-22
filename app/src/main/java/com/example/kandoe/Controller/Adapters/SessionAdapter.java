@@ -22,7 +22,7 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 
 /**
- * Adapter for CircleSessionfragment
+ * Adapter for SessionListfragments
  */
 public class SessionAdapter extends BaseExpandableListAdapter {
     private Context context;

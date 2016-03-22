@@ -25,7 +25,8 @@ public class SurfacePanel extends SurfaceView implements SurfaceHolder.Callback{
     private CircleSessionController controller;
 
     public SurfacePanel(Context context) {
-        super(context);getHolder().addCallback(this);
+        super(context);
+        getHolder().addCallback(this);
         thread = new DrawThread(getHolder());
     }
 

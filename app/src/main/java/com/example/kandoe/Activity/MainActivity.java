@@ -105,18 +105,14 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         mTitle = getTitle();
 
         // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+        mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+        fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position + 1)).commit();
     }
 
     public void onSectionAttached(int number) {
@@ -199,8 +195,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
             //restart app
-            Intent i = getBaseContext().getPackageManager()
-                    .getLaunchIntentForPackage(getBaseContext().getPackageName());
+            Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
             System.exit(0);

@@ -22,7 +22,7 @@ public class KandoeApplication extends Application implements LockProvider {
                         /** Other configuration goes here */
                 //.withIdentityProvider(Strategies.GooglePlus, new GooglePlusIdentityProvider(this))
                 .withIdentityProvider(Strategies.Facebook, new FacebookIdentityProvider(this))
-             //   .withIdentityProvider(Strategies.Twitter, new WebIdentityProvider(new CallbackParser(),auth0.getClientId(), auth0.getAuthorizeUrl()))
+                //.withIdentityProvider(Strategies.Twitter, new WebIdentityProvider(new CallbackParser(),auth0.getClientId(), auth0.getAuthorizeUrl()))
 
                 .closable(true)
                 .build();

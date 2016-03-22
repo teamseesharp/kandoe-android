@@ -127,7 +127,6 @@ public class CardAdapter extends ArrayAdapter {
                 }
             });
 
-
         } else {
             holder.upvote.setVisibility(View.INVISIBLE);
             holder.number.setText("");
